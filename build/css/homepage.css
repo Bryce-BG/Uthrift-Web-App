@@ -1,0 +1,16 @@
+body
+ {
+  padding-top: 60px; /*make it so the nav bar is not sitting on top of the content*/
+  background-color: #4f3d96;
+}
+
+div.col-md-9
+{
+  background-color: #818c9e;
+  height: 99999px;
+}
+div.col-md-3
+{
+  background-color: #86b3f9;
+  height: 99999px;
+}
