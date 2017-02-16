@@ -4,13 +4,8 @@ body
   background-color: #4f3d96;
 }
 
-div.col-md-9
+div.col-md-12
 {
   background-color: #818c9e;
-  height: 99999px;
-}
-div.col-md-3
-{
-  background-color: #86b3f9;
-  height: 99999px;
+  height: 300px;
 }
