@@ -1,11 +1,20 @@
 body
  {
   padding-top: 60px; /*make it so the nav bar is not sitting on top of the content*/
-  background-color: #4f3d96;
+  background-color: #dbac46;
 }
 
-div.col-md-11
+div.col-md-12
 {
   background-color: #818c9e;
   height: 300px;
+}
+div.col-md-3
+{
+  border: 1px solid black;
+}
+div.middle-carousel-item
+{
+  border-left: none;
+  border-right: none;
 }
