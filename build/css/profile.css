@@ -5,3 +5,16 @@ body {
 .gap{
   margin-bottom: 10px;
 }
+
+.box{
+  width:80px;
+  height:80px;
+}
+
+.red{
+  background: #f00;
+}
+
+.green{
+  background:#0f0;
+}
