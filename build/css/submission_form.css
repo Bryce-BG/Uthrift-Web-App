@@ -12,11 +12,15 @@ body {
 }
 
 .details {
-  margin-right: 24px;
+  margin-right: 32px;
 }
 
 .identifier {
-  margin-right: 24px;
+  margin-right: 12px;
+}
+
+.article-spacing {
+  margin-right: 42px;
 }
 
       /* layout.css Style */
