@@ -1,0 +1,13 @@
+body {
+  padding-top: 60px; /*make it so the nav bar is not sitting on top of the content*/
+  background-color: lavender;
+}
+
+.form-entry {
+  padding-top: 8px;
+  padding-bottom: 24px;
+}
+
+.details {
+  margin-right: 24px;
+}
