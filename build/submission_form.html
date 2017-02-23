@@ -22,31 +22,71 @@
     <div class = "container">
       <div class = "row">
 
-        <div class = "col-md-2 details">
-          <img src="img/partyhat.jpg" width="100%" />
-          <br><a href="#">Your Item</a>
+        <div class = "col-md-4 details">
+          <img class = "photo-entry" src="img/war_peace.jpg" width = "50%"/>
+
+          <form>
+
+            <div class="photo-entry">
+              <label for="exampleInputFile">Upload Photo</label>
+              <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+            </div>
+
+            <label for="exampleInputFile">OR drag and drop files below:</label>
+            <div class="upload-drop-zone" id="drop-zone">
+              Just drag and drop files here
+            </div>
+
+            <div class="form-group">
+              <label for="formGroupExampleInput">Title</label>
+              <input type="text" class="form-control" id="formGroupExampleInput" placeholder="ex. War and Peace">
+            </div>
+
+            <label for="inlineFormInputGroup">Cost</label>
+              <div class="input-group form-entry">
+                <div class="input-group-addon">$</div>
+                <input type="number" min = "0" step = "0.01" class="form-control" id="inlineFormInputGroup" placeholder="150.00">
+              </div>
+
+            <div class = "photo-entry">
+              <label for="exampleSelect1">Condition</label>
+              <select class="form-control" id="exampleSelect1">
+                <option selected>Choose...</option>
+                <option>New</option>
+                <option>Like New</option>
+                <option>Good Enough</option>
+                <option>Visibly Used</option>
+                <option>Poor</option>
+              </select>
+            </div>
+            <div class="form-group form-entry">
+              <label class = "sr-only" for="exampleTextarea">Condition Textarea</label>
+              <textarea class="form-control" id="exampleTextarea" rows="3" placeholder = "Describe the item's condition here..."></textarea>
+            </div>
+
+          </form>
         </div>
 
-        <div class = "col-md-6 form-entry">
-          <div class = "row form-entry">
-            <div class = "col-md-3">
+        <div class = "col-md-7 form-entry">
+            <label class="mr-sm-2 identifier" for="inlineFormCustomSelect">Category</label>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+              <option selected>Choose...</option>
+              <option value="1">Book</option>
+              <option value="2">Clothing</option>
+              <option value="3">Tech</option>
+              <option value="4">Event</option>
+              <option value="5">Furniture</option>
+              <option value="6">Miscellaneous</option>
+            </select>
+
+         <div class = "row form-entry">
+            <div class = "col-md-2">
               textbox:
             </div>
-            <div class = "col-md-9">
+            <div class = "col-md-10">
               <input type = "text" class = "form-control" placeholder = "place text here">
             </div>
           </div>
-
-          <div class="input-group form-entry">
-            <select name="cars" class="form-control">
-               <option value="Textbooks">Textbooks</option>
-               <option value="Clothing">Clothing</option>
-               <option value="Tech">Tech</option>
-               <option value="Events">Events</option>
-               <option value="Furniture">Furniture</option>
-               <option value="Miscellaneous">Miscellaneous</option>
-             </select>
-           </div>
         </div>
 
 
