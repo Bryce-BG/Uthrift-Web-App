@@ -2,13 +2,14 @@ body
  {
   padding-top: 60px; /*make it so the nav bar is not sitting on top of the content*/
   #background-color: #dbac46;
+
 }
 /*navbar related styling*/
 .navbar {
   background-color: #33ff33;
   border-radius: 0px 0px 8px 8px; /*border-radious: 25; completly round the end*/
-	box-shadow:  0px 1px 1px 0px rgb(0, 0, 0),
-		 0px 2px 1px 1px rgb(0, 0, 0);
+	/*box-shadow:  0px 1px 1px 0px rgb(0, 0, 0),
+		 0px 2px 1px 1px rgb(0, 0, 0);*/
 }
 .navbar-brand { /*to align the home image that for some reason won't center without custom css*/
   margin-top:  -9px;
@@ -19,7 +20,7 @@ body
 /*end navbar styling */
 
 div.col-md-12{
-  /*background-color: #818c9e;*/
+  background-color: #818c9e;
   height: 300px;
 }
 div.col-md-3{
@@ -40,16 +41,7 @@ div.middle-carousel-item{ /*add space between the div items in the carousel*/
   margin-right: 20px;
 }
 /*end carousel styling*/
-
-
-.cube {
-/*up
-  box-shadow:  0px 1px 1px 0px rgb(0, 0, 0),
-  		 0px 2px 1px 1px rgb(0, 0, 0);*/
-
-
-       box-shadow:  2px 2px #d5dce8,
-		                2px 2px #d5dce8;
-
-
+.carousel-inner > .item > img {
+    margin: 0 auto;
+    height: 400px;
 }
