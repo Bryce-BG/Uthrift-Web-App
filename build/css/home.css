@@ -2,7 +2,7 @@ body {
     background: #eff0f2;
 }
 
-#uthrift-navbar {
+.navbar {
     background-color: #1EAD00;
     color: #FFFFFF;
 }
@@ -21,6 +21,10 @@ body {
     border: 0 none;
     outline: 0 none;
     font-size: 15px;
+}
+
+.uthrift-navbar-search{
+    padding-left: 30px;
 }
 
 .uthrift-navbar-button {
