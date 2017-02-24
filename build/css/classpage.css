@@ -1,9 +1,20 @@
+.navbar {
+  background-color: #1ead00;
+  border-radius: 0px 0px 8px 8px; /*border-radious: 25; completly round the end*/
+
+}
+
 body {
   padding-top:  60px;
   padding-left: 20px;
   padding-right: 20px;
   /* I figured out the background color using Chrome's Inspect tool. */
-/*  background-color: #e9eaed;*/
+  background-color: #ffffff;
+}
+
+.item-label{
+  padding-top:  30px;
+  padding-left: 30px;
 }
 
 /* Style the tab */
@@ -32,7 +43,7 @@ div.tab a:hover {
 
 /* Create an active/current tablink class */
 div.tab a:focus, .active {
-    background-color: #ccc;
+    background-color: #9c3232;
 }
 
 /* Style the tab content */
