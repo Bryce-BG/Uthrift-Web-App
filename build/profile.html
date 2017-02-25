@@ -17,6 +17,7 @@
     <!-- Custom HTML goes here -->
 
     <!-- navigation bar-->
+    <!--
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -34,6 +35,68 @@
           </ul>
         </div>
       </div>
+    </nav>-->
+    <!--NAVIGATION BAR START-->
+    <nav class="navbar navbar-default navbar-fixed-top raisedNav">
+
+     <div class="container-fluid">
+       <div class="navbar-header">
+         <a class="navbar-brand" href="homepage.html" ><img src="img/uthrift.png" alt="UTHRIFT"  style="width:40px;height:40px;"></a><!--homepage IMAGE-->
+       </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+          <!--left hanging components for the navigation bar (the search menu)-->
+
+
+          <form class="navbar-form navbar-left" role="search">
+
+           <!-- search bar. -->
+           <div class="input-group">
+             <select name="categories" class="form-control">
+              <option value="Textbooks">Textbooks</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Tech">Tech</option>
+              <option value="Events">Events</option>
+              <option value="Furniture">Furniture</option>
+              <option value="Miscellaneous">Miscellaneous</option>
+            </select>
+            <span class="input-group-addon" style="width:0px; padding:0px; border:none;"></span> <!--just to get rid of the fact that the select and search bar do not wish to display inline-->
+
+             <input type="text" class="form-control " placeholder="Search for products">
+             <span class="input-group-btn">
+               <button type="submit" class="btn btn-default">
+                 <span class="glyphicon glyphicon-search"></span>
+               </button>
+             </span>
+           </div>
+          </form>
+
+         <div class="nav navbar-nav navbar-right">
+
+           <!-- Right-aligned items -->
+            <div class="btn-toolbar pull-right" role="toolbar">
+              <!--the button to access acount information -->
+              <div class="btn-group" role="group">
+               <button type="button" class="btn btn-default navbar-btn">
+                 <span class="glyphicon glyphicon-user">cart</span>
+
+               </button>
+              </div><!--end acount information button-->
+
+
+
+             <!--user's cart-->
+             <div class="btn-group" role="group">
+                 <button type="button" class="btn btn-default navbar-btn">
+                   <span> Watchlist</span>
+                  <span class="badge">5</span>
+                 </button>
+             </div>
+            </div><!--end right alligned items in navbar-->
+          </div> <!--end right alligned items in navbar-->
+
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
     </nav>
 
     <div class="container">
@@ -49,7 +112,7 @@
           <div class="panel panel-default">
             <div class="panel-body">
               <div class="col-md-5">
-                <img src="img/avatar.png" width="100%" />
+                <img src="img/avatar.png" width="100%">
                 <div style="text-align:center;margin:auto;padding-bottom:10px;">
                   <button type="button" class="btn btn-default">
                      Change
@@ -124,55 +187,33 @@
             <div class="panel-body">
               <div class="row">
                 <div class="col-md-2">
-                  <div class="box red">
-
-                  </div>
+                  <a href="#"><img src="img/iclicker.jpg" width=80 height=80></a>
                 </div>
                 <div class="col-md-2">
-                  <div class="box green">
-
-                  </div>
+                  <a href="#"><img src="img/Lamp.jpg" width=80 height=80></a>
                 </div>
-                <div class="col-md-2">
-                  <div class="box">
+              </div>
 
+              <div class="row">
+                <div style="text-align:center">
+                  <div class="col-md-2">
+                    <a href="#">Iclicker</a>
                   </div>
-                </div>
-                <div class="col-md-2">
-                  <div class="box">
-
-                  </div>
-                </div>
-                <div class="col-md-2">
-                  <div class="box">
-
-                  </div>
-                </div>
-                <div class="col-md-2">
-                  <div class="box">
-
+                  <div class="col-md-2">
+                    <a href="#">LED Desk Lamp...</a>
                   </div>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-2">
-                  <a href="#">Math233 Note for Exam 1</a>
-                  Status:Selling
+                  Status: <font color="#FFFF00">Selling</font>
                 </div>
                 <div class="col-md-2">
-                  <a href="#">LED Desk Lamp...</a>
-                  Statas:Sold
-                </div>
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-2">
+                  Statas: <font color="#7CFC00">Sold</font>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
