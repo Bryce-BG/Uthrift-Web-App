@@ -1,5 +1,5 @@
 body {
-  padding-top: 60px;
+  padding-top: 120px;
 }
 
 .gap{
@@ -18,20 +18,3 @@ body {
 .green{
   background:#0f0;
 }
-
-/*navbar related styling*/
-.navbar {
-  background-color: #1ead00;
-  border-radius: 0px 0px 8px 8px; /*border-radious: 25; completly round the end*/
-
-}
-.form-control {
-  border-radius: 0px;
-}
-.navbar-brand { /*to align the home image that for some reason won't center without custom css*/
-  margin-top:  -9px;
-}
-.navbar-right {
-  margin-right:10px;
-}
-/*end navbar styling */
