@@ -6,13 +6,22 @@ body{
 .h1, .h2, .h3, h1, h2, h3{
     margin-top: 15px;
 }
+
+.more-items{
+    margin-top: 10px !important;
+}
+
+.item-title-related{
+    margin-top: 5px;
+}
+
 .content-contain {
     
     background-color: white;
 }
 
 .item {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .item-buttons {
@@ -24,7 +33,7 @@ body{
     height: 43px;
     border-radius: 0px;
     font-weight: 500;
-    width: 100%;
+    width: 45%;
     display: inline-block;
     text-decoration: none;
     color: white;
@@ -34,8 +43,4 @@ body{
 
 .item-buttons:after, .item-buttons:active, .item-buttons:visited, .item-buttons:hover {
     background-color: #1D9304;
-}
-
-bottom{
-    margin-bottom: 0px;
 }
