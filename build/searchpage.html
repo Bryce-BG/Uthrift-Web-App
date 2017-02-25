@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Search Page</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet"> 
+    <!-- Custom CSS goes here -->
+    <link href="css/searchpage.css" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Nav bar placeholder -->
+    <nav class="navbar navbar-fixed-top navbar-default">
+        <div class="container">
+        </div>
+    </nav>
+    <!-- The container for our grid. The outermost grid must be placed within
+     a `container` or `container-fluid` class. (Meaning: If you nest a grid
+     within a grid, you should not define another `container`)
+     What's the difference between these two types of container? There's a
+     good answer here: http://stackoverflow.com/a/22263969 -->
+    <div class="container">
+      <!-- The row that contains the three main columns of the website. -->
+      <div class="row">
+        <!-- Left bar placeholder -->
+        <div class="col-md-2 fb-left-sidebar">
+        </div>
+        <!-- Main search feed: A cell that spans 7 columns -->
+        <div class="col-md-7">
+            <h1 class="page-header">Search Result
+                <small>"Books on how to hack life"</small>
+            </h1>
+            <!-- Projects Row -->
+            <div class="row">
+                <div class="col-md-4 portfolio-item">
+                    <a href="javascript:;" data-name="btnAddToFavorites" data-gid="92" class="fav-it"><i class="fa fa-heart-o"></i></a>
+                    <a href="#">
+                        <img class="img-responsive" src="img/book1.jpg" alt="">
+                    </a>
+                    <p class = "des"> Item 1 Description</p>
+                    <p class="price"> $18.00 </p>
+                </div>
+                <div class="col-md-4 portfolio-item">
+                    <a href="#">
+                        <img class="img-responsive" src="img/book2.jpg" alt="">
+                    </a>
+                    <p class = "des"> Item 2 Description </p>
+                    <p class="price"> $21.00 </p>
+                </div>
+                <div class="col-md-4 portfolio-item">
+                    <a href="#">
+                        <img class="img-responsive" src="img/book3.jpg" alt="">
+                    </a>
+                    <p class = "des"> Item 3 Description</p>
+                    <p class="price"> $25.00 </p>
+                </div>
+            </div>
+            <hr>
+            <!-- Projects Row -->
+            <div class="row">
+                <div class="col-md-4 portfolio-item">
+                    <a href="#">
+                        <img class="img-responsive" src="img/book4.jpg" alt="">
+                    </a>
+                    <p class="des"> Item 4 Description</p>
+                    <p class="price"> $7.50 </p>
+                </div>
+                <div class="col-md-4 portfolio-item">
+                    <a href="#">
+                        <img class="img-responsive" src="img/book5.jpg" alt="">
+                    </a>
+                    <p class = "des"> Item 5 Description </p>
+                    <p class="price"> $5.00 </p>
+                </div>
+                <div class="col-md-4 portfolio-item">
+                    <a href="#">
+                        <img class="img-responsive" src="img/book6.jpg" alt="">
+                    </a>
+                    <p class = "des"> Item 6 Description</p>
+                    <p class="price"> $6.00 </p>
+                </div>
+            </div>
+            <hr>
+            <!-- Pagination -->
+            <div class="row text-center">
+                <div class="col-lg-12">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#">&laquo;</a>
+                        </li>
+                        <li class="active">
+                            <a href="#">1</a>
+                        </li>
+                        <li>
+                            <a href="#">2</a>
+                        </li>
+                        <li>
+                            <a href="#">3</a>
+                        </li>
+                        <li>
+                            <a href="#">4</a>
+                        </li>
+                        <li>
+                            <a href="#">5</a>
+                        </li>
+                        <li>
+                            <a href="#">&raquo;</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.row -->
+            <hr>
+        </div>
+
+        <!-- Right bar placeholder -->
+        <div class="col-md-2 fb-right-sidebar">
+        </div>        
+      </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- App code -->
+    <script src="js/bundle.js"></script>
+  </body>
+</html>
