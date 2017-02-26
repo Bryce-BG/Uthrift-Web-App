@@ -1,6 +1,10 @@
 body {
-  padding-top: 150px; /*make it so the nav bar is not sitting on top of the content*/
-  background-color: lavender;
+  padding-top: 90px; /*make it so the nav bar is not sitting on top of the content*/
+  background-color: lightgray;
+}
+
+.content-contain {
+    background-color: white;
 }
 
 .form-entry {
