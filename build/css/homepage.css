@@ -5,6 +5,9 @@ body
 
 
 }
+ body > container{background-color: white;}
+
+
 /*navbar related styling*/
 .navbar {
   background-color: #1ead00;
