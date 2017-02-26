@@ -8,14 +8,19 @@ img {
   max-height:200px;
   width: auto;
   height: auto;
+  padding-left: 18px;
+  padding-bottom: 5px;
 }
 
 .des {
-	padding-top: 10px;
 	font-size: 15px;
+	color:  #696969;
 }
 
 .price {
-	font-size: 24px;
-	color:  #006400;
+	font-size: 21px;
+}
+
+.glyphicon {
+	border:none;
 }
