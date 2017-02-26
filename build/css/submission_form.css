@@ -15,6 +15,10 @@ body {
   padding-bottom: 6px;
 }
 
+.textarea {
+  resize: none;
+}
+
 .sp8 {
   margin-right: 8px;
 }
