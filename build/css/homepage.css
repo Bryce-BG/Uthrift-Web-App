@@ -1,11 +1,50 @@
 body
  {
-  padding-top: 60px; /*make it so the nav bar is not sitting on top of the content*/
-  background-color: #4f3d96;
-}
+  padding-top: 90px; /*make it so the nav bar is not sitting on top of the content*/
+  background-color: #eff0f2;
 
-div.col-md-12
-{
+
+}
+/*navbar related styling*/
+.navbar {
+  background-color: #1ead00;
+  border-radius: 0px 0px 8px 8px; /*border-radious: 25; completly round the end*/
+
+}
+.form-control {
+  border-radius: 0px;
+}
+.navbar-brand { /*to align the home image that for some reason won't center without custom css*/
+  margin-top:  -9px;
+}
+.navbar-right {
+  margin-right:10px;
+}
+/*end navbar styling */
+
+div.col-md-12{
   background-color: #818c9e;
   height: 300px;
+}
+div.col-md-3{
+  border: 1px solid black;
+  /*align-items: center;*/
+}
+
+/*carousel related css*/
+.carousel-control.right, .carousel-control.left {
+    background-image: none; /*get rid of background coloring-*/
+    color: #e50dcf; /*set the color for the arrows*/
+}
+.carousel-indicators li{
+    display: none; /*kill the default icons at bottom of the carousel.*/
+}
+div.middle-carousel-item{ /*add space between the div items in the carousel*/
+  margin-left: 20px;
+  margin-right: 20px;
+}
+/*end carousel styling*/
+.carousel-inner > .item > img {
+    margin: 0 auto;
+    height: 400px;
 }
