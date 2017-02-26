@@ -5,7 +5,10 @@ body
 
 
 }
- body > container{background-color: white;}
+.content-contain {
+
+    background-color: white;
+}
 
 
 /*navbar related styling*/
