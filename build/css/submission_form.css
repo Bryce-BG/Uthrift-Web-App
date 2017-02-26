@@ -15,16 +15,31 @@ body {
   padding-bottom: 6px;
 }
 
-.details {
-  margin-right: 32px;
-}
-
-.identifier {
+.sp12 {
   margin-right: 12px;
 }
 
-.article-spacing {
+.sp32 {
+  margin-right: 32px;
+}
+
+.sp42 {
   margin-right: 42px;
+}
+
+.sp80 {
+  margin-right: 80px;
+}
+
+.left-column{
+  margin-left: 15px;
+}
+
+.main-photo {
+max-width:100%;
+max-height:300px;
+height: auto;
+width: auto;
 }
 
       /* layout.css Style */
