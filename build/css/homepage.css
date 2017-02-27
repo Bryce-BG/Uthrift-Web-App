@@ -1,10 +1,16 @@
 body
  {
-  padding-top: 60px; /*make it so the nav bar is not sitting on top of the content*/
+  padding-top: 90px; /*make it so the nav bar is not sitting on top of the content*/
   background-color: #eff0f2;
 
 
 }
+.content-contain {
+
+    background-color: white;
+}
+
+
 /*navbar related styling*/
 .navbar {
   background-color: #1ead00;
