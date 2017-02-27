@@ -1,0 +1,39 @@
+body {
+  padding-top: 90px;
+  background-color: #eff0f2;
+}
+
+.content-contain {
+  background-color: white;
+}
+
+.item-label {
+  padding-top: 30px;
+  padding-left: 30px;
+}
+
+.class-title {
+  padding-left: 120px;
+}
+
+.class-description {
+  padding-top: 35px;
+  padding-bottom: 30px;
+  font-size: large;
+}
+
+.nav-tabs>li>a {
+  border: medium none;
+  font-size: large;
+}
+
+.nav-tabs>li>a:hover {
+  background-color: #1EAD00 !important;
+  border: medium none;
+  border-radius: 100;
+  color: #fff;
+}
+
+.img-responsive {
+  max-height: 350px;
+}
