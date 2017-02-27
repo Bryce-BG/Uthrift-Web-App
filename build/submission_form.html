@@ -133,7 +133,7 @@
     <!--- End Left Side --->
 
     <!--- Main Content --->
-        <div class = "col-md-7">
+        <div class = "col-md-7" style="padding-bottom: 50px;">
             <!--- Start Class Related --->
           <div class = "form-check form-check-inline" style = "padding-top: 25px; margin-bottom: 5px;">
               <label class = "sp8">Is this item class-related?</label>
@@ -165,30 +165,138 @@
           <!--- Start Category Select --->
           <div class = "col-md-12" style = "padding-top: 15px;">
             <h3 style="margin-bottom: 25px;">Select Applicable Categories</h3>
-
-            <label class="form-check-label" for = "categorySelect">
+            <!--- Start Textbook --->
+            <label class="form-check-label categoryEntry" style="font-size: 20px;" for = "categorySelect">
               <input class="form-check-input" type="checkbox" name="categoryOptions" id="Textbook" value="option1"> Textbook
             </label>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-2">
+                    <label style="padding-left: 15px;">Author:</label>
+                  </div>
+                  <div class="col-md-9 pull-right">
+                    <input type="text" class = "form-control" placeholder="ex. Leo Tolstoy" style="height:23px;">
+                  </div>
+                </div>
+                <div class="row" style="padding-top:4px;">
+                  <div class="col-md-3">
+                    <label style="padding-left: 15px;">Edition:</label>
+                  </div>
+                  <div class="col-md-9">
+                    <input type="number" class = "form-control" placeholder="00" style="height:23px">
+                  </div>
+                </div>
+              <div class = "form-check form-check-inline" style="padding-left: 15px; padding-top: 4px;">
+                  <label class="form-check-label" style="margin-right: 18px;">
+                    <input class="form-check-input" type="radio" name="bookCoverOptions" id="hard" value="option1"> Hardcover
+                  </label>
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="bookCoverOptions" id="paper" value="option2"> Paperback
+                  </label>
+              </div>
+              </div>
+              <div class="col-md-6">
+                <label class = "sr-only" for="categoryTextarea">Condition Description</label>
+                <textarea class="form-control textarea" id="textbookTextarea" rows="3" placeholder = "Describe the item here..."></textarea>
+              </div>
+            </div>
+            <!--- End Textbook --->
             <hr></hr>
-            <label class="form-check-label" for = "categorySelect">
+            <!--- Start Clothing --->
+            <label class="form-check-label" style="font-size: 20px;" for = "categorySelect">
               <input class="form-check-input" type="checkbox" name="categoryOptions" id="Clothing" value="option2"> Clothing
             </label>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-2">
+                    <label style="padding-left: 15px;">Size:</label>
+                  </div>
+                  <div class="col-md-4">
+                    <select class="custom-select">
+                      <option selected>Choose...</option>
+                      <option value="1">Small</option>
+                      <option value="2">Medium</option>
+                      <option value="3">Large</option>
+                    </select>
+                  </div>
+                  <div class="col-md-2">
+                    <label style="padding-left: 5px;">OR</label>
+                  </div>
+                  <div class="col-md-4">
+                    <input type="number" class = "form-control" placeholder="00" style="height:23px">
+                  </div>
+                </div>
+                <div class="row" style="padding-top:4px;">
+                  <div class="col-md-2">
+                    <label style="padding-left: 20px;">OR</label>
+                  </div>
+                  <div class="col-md-10">
+                    <input type="text" class = "form-control" placeholder="ex. 32 waist, 32 length" style="height:23px">
+                  </div>
+                </div>
+              <div class = "form-check form-check-inline" style="padding-left: 15px; padding-top: 4px;">
+                  <label class="form-check-label" style="margin-right: 6px;">
+                    <input class="form-check-input" type="checkbox" name="clothingOptions" id="adult" value="option1"> Adult
+                  </label>
+                  <label class="form-check-label" style="margin-right: 20px;">
+                    <input class="form-check-input" type="checkbox" name="clothingOptions" id="child" value="option2"> Child
+                  </label>
+                  <label class="form-check-label" style="margin-right: 6px;">
+                    <input class="form-check-input" type="checkbox" name="clothingOptions" id="mens" value="option2"> Men's
+                  </label>
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="clothingOptions" id="womens" value="option2"> Women's
+                  </label>
+              </div>
+              </div>
+              <div class="col-md-6">
+                <label class = "sr-only" for="categoryTextarea">Condition Description</label>
+                <textarea class="form-control textarea" id="clothingTextarea" rows="3" placeholder = "Describe the item here..."></textarea>
+              </div>
+            </div>
+            <!--- End Clothing --->
             <hr></hr>
-            <label class="form-check-label" for = "categorySelect">
+            <!--- Start Tech --->
+            <label class="form-check-label" style="font-size: 20px;" for = "categorySelect">
               <input class="form-check-input" type="checkbox" name="categoryOptions" id="Tech" value="option3"> Tech
             </label>
+              <label class = "sr-only" for="categoryTextarea">Condition Description</label>
+              <div  style="padding-left: 15px;">
+                <textarea class="form-control textarea" id="techTextarea" rows="3" placeholder = "Describe the item here..."></textarea>
+              </div>
+            <!--- End Tech --->
             <hr></hr>
-            <label class="form-check-label" for = "categorySelect">
+            <!--- Start Events --->
+            <label class="form-check-label" style="font-size: 20px;" for = "categorySelect">
               <input class="form-check-input" type="checkbox" name="categoryOptions" id="Events" value="option4"> Events
             </label>
+              <label class = "sr-only" for="categoryTextarea">Condition Description</label>
+              <div  style="padding-left: 15px;">
+                <textarea class="form-control textarea" id="eventTextarea" rows="3" placeholder = "Describe the item here..."></textarea>
+              </div>
+          <!--- End Events --->
             <hr></hr>
-            <label class="form-check-label" for = "categorySelect">
+            <!--- Start Furniture --->
+            <label class="form-check-label" style="font-size: 20px;" for = "categorySelect">
               <input class="form-check-input" type="checkbox" name="categoryOptions" id="Furniture" value="option5"> Furniture
             </label>
+              <label class = "sr-only" for="categoryTextarea">Condition Description</label>
+              <div  style="padding-left: 15px;">
+                <textarea class="form-control textarea" id="furnitureTextarea" rows="3" placeholder = "Describe the item here..."></textarea>
+              </div>
+          <!--- End Furniture --->
             <hr></hr>
-            <label class="form-check-label" for = "categorySelect">
+            <!--- Start Misc --->
+            <label class="form-check-label" style="font-size: 20px;" for = "categorySelect">
               <input class="form-check-input" type="checkbox" name="categoryOptions" id="Miscellaneous" value="option6"> Miscellaneous
             </label>
+            <div  style="padding-left: 15px;">
+              <label class = "sr-only" for="categoryTextarea">Condition Description</label>
+                <textarea class="form-control textarea" id="miscTextarea" rows="3" placeholder = "Describe the item here..."></textarea>
+              </div>
+          <!--- End Misc --->
           </div>
 
         </div>

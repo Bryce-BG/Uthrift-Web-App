@@ -15,6 +15,10 @@ body {
   padding-bottom: 6px;
 }
 
+.categoryEntry {
+  margin-bottom: 8px;
+}
+
 .textarea {
   resize: none;
 }
@@ -36,7 +40,7 @@ body {
 }
 
 .left-column{
-  margin-left: 15px;
+  margin-left: 30px;
 }
 
 .main-photo {
