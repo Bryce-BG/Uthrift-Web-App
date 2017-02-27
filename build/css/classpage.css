@@ -1,62 +1,56 @@
-
-
-.navbar {
-  background-color: #1ead00;
-  border-radius: 0px 0px 8px 8px; /*border-radious: 25; completly round the end*/
-
-}
-
 body {
-  padding-top:  60px;
-  padding-left: 20px;
-  padding-right: 20px;
-  /* I figured out the background color using Chrome's Inspect tool. */
-  background-color: #ffffff;
+  padding-top: 90px;
+  background-color: lightgray;
 }
 
-.item-label{
-  padding-top:  30px;
+.content-contain {
+  background-color: white;
+}
+
+.item-label {
+  padding-top: 30px;
   padding-left: 30px;
 }
 
-.classTitle{
+.classTitle {
+  font-size: xx-large;
   font-weight: bold;
-  padding-left:  20px;
+  padding-left: 20px;
 }
 
-.classDesc{
-  padding-top:  20px;
+.classDesc {
+  padding-top: 20px;
   padding-bottom: 30px;
   font-size: x-large;
   font-weight: bold;
 }
 
-.nav-tabs > li > a{
+.nav-tabs>li>a {
   font-size: x-large;
 }
 
-.multi-item-carousel{
-    padding-left: 300px;
-  .carousel-inner{
-    > .item{
+.multi-item-carousel {
+  padding-left: 300px;
+  .carousel-inner {
+    >.item {
       transition: 500ms ease-in-out left;
     }
-    .active{
-      &.left{
-        left:-33%;
+    .active {
+      &.left {
+        left: -33%;
       }
-      &.right{
-        left:33%;
+      &.right {
+        left: 33%;
       }
     }
-    .next{
+    .next {
       left: 33%;
     }
-    .prev{
+    .prev {
       left: -33%;
     }
     @media all and (transform-3d), (-webkit-transform-3d) {
-      > .item{
+      >.item {
         // use your favourite prefixer here
         transition: 500ms ease-in-out left;
         transition: 500ms ease-in-out all;
@@ -65,8 +59,8 @@ body {
       }
     }
   }
-  .carouse-control{
-    &.left, &.right{
+  .carouse-control {
+    &.left, &.right {
       background-image: none;
     }
   }
