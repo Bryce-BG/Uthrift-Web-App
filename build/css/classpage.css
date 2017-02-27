@@ -12,17 +12,15 @@ body {
   padding-left: 30px;
 }
 
-.classTitle {
-  font-size: xx-large;
-  font-weight: bold;
-  padding-left: 20px;
+.class-title {
+  padding-left: 120px;
 }
 
-.classDesc {
-  padding-top: 20px;
+.class-description {
+  padding-top: 35px;
   padding-bottom: 30px;
-  font-size: x-large;
-  font-weight: bold;
+  font-size: large;
+
 }
 
 .nav-tabs>li>a {
