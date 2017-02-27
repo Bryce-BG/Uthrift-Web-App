@@ -1,6 +1,6 @@
 body {
   padding-top: 90px;
-  background-color: lightgray;
+  background-color: #eff0f2;
 }
 
 .content-contain {
@@ -25,41 +25,4 @@ body {
 
 .nav-tabs>li>a {
   font-size: x-large;
-}
-
-.multi-item-carousel {
-  padding-left: 300px;
-  .carousel-inner {
-    >.item {
-      transition: 500ms ease-in-out left;
-    }
-    .active {
-      &.left {
-        left: -33%;
-      }
-      &.right {
-        left: 33%;
-      }
-    }
-    .next {
-      left: 33%;
-    }
-    .prev {
-      left: -33%;
-    }
-    @media all and (transform-3d), (-webkit-transform-3d) {
-      >.item {
-        // use your favourite prefixer here
-        transition: 500ms ease-in-out left;
-        transition: 500ms ease-in-out all;
-        backface-visibility: visible;
-        transform: none!important;
-      }
-    }
-  }
-  .carouse-control {
-    &.left, &.right {
-      background-image: none;
-    }
-  }
 }
