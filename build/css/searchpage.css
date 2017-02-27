@@ -29,6 +29,10 @@ body {
     background: #eff0f2;
 }
 
+.content-contain {
+  background-color: #ffffff;
+}
+
 .navbar {
     background-color: #1EAD00;
     color: #FFFFFF;
