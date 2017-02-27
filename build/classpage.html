@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap Template</title>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Class Page</title>
 
-    <!-- Custom CSS goes here -->
-    <link href="css/classpage.css" rel="stylesheet">
-  </head>
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
 
-  <body>
-    <!-- Custom HTML goes here -->
-    <!--NAVIGATION BAR START-->
-    <nav class="navbar navbar-fixed-top navbar-default">
+  <!-- Custom CSS goes here -->
+  <link href="css/classpage.css" rel="stylesheet">
+</head>
 
-     <div class="container">
+<body>
+  <!-- Custom HTML goes here -->
+  <!--NAVIGATION BAR START-->
+  <nav class="navbar navbar-fixed-top navbar-default">
 
-    <!-- On mobile, this div is hidden by default. The user hits the button
+    <div class="container">
+
+      <!-- On mobile, this div is hidden by default. The user hits the button
         in the `navbar-header` to see the content of the div.
         On desktop, this div is visible all of the time. -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-          <!--left hanging components for the navigation bar (the search menu)-->
-          <form class="navbar-form navbar-left" role="search">
-           <!-- search bar. -->
-           <div class="input-group">
-             <select name="cars" class="form-control ">
+        <!--left hanging components for the navigation bar (the search menu)-->
+        <form class="navbar-form navbar-left" role="search">
+          <!-- search bar. -->
+          <div class="input-group">
+            <select name="cars" class="form-control ">
               <option value="Textbooks">Textbooks</option>
               <option value="Clothing">Clothing</option>
               <option value="Tech">Tech</option>
@@ -38,128 +39,169 @@
               <option value="Furniture">Furniture</option>
               <option value="Miscellaneous">Miscellaneous</option>
             </select>
-            <span class="input-group-addon" style="width:0px; padding:0px; border:none;"></span> <!--just to get rid of the fact that the select and search bar do not wish to display inline-->
+            <span class="input-group-addon" style="width:0px; padding:0px; border:none;"></span>
+            <!--just to get rid of the fact that the select and search bar do not wish to display inline-->
 
-             <input type="text" class="form-control " placeholder="Search for products">
-             <span class="input-group-btn">
+            <input type="text" class="form-control " placeholder="Search for products">
+            <span class="input-group-btn">
                <button type="submit" class="btn btn-default">
                  <span class="glyphicon glyphicon-search"></span>
-               </button>
-             </span>
-           </div>
-       </form>
+            </button>
+            </span>
+          </div>
+        </form>
 
-       <div class="nav navbar-nav navbar-right">
+        <div class="nav navbar-nav navbar-right">
 
-         <!-- Right-aligned items -->
+          <!-- Right-aligned items -->
           <div class="btn-toolbar pull-right" role="toolbar">
             <!--the button to access acount information -->
             <div class="btn-group" role="group">
-             <button type="button" class="btn btn-default navbar-btn">
+              <button type="button" class="btn btn-default navbar-btn">
                John Doe
              </button>
-            </div><!--end acount information button-->
+            </div>
+            <!--end acount information button-->
 
-           <!--homepage button-->
-           <div class="btn-group" role="group">
-             <button type="button" class="btn btn-default navbar-btn">
+            <!--homepage button-->
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default navbar-btn">
                Home
              </button>
-           </div><!--end homepage button-->
+            </div>
+            <!--end homepage button-->
 
-           <!--user's cart-->
-           <div class="btn-group" role="group">
-               <button type="button" class="btn btn-default navbar-btn">
+            <!--user's cart-->
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-default navbar-btn">
                  <span class="glyphicon glyphicon-user">cart</span>
                  <span class="badge">5</span>
                </button>
-           </div>
-          </div><!--end right alligned items in navbar-->
-        </div> <!--end right alligned items in navbar-->
+            </div>
+          </div>
+          <!--end right alligned items in navbar-->
+        </div>
+        <!--end right alligned items in navbar-->
 
-        </div><!-- /.navbar-collapse -->
-        </div><!-- /.container -->
-    </nav>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+  </nav>
 
-    <!-- Row for class title and description -->
-    <div class="row">
-      <!-- Class Title: 5 Cols wide -->
-      <div class="col-md-5">
-        <h1 class="classTitle">
+  <!-- Row for class title and description -->
+  <div class="row">
+    <!-- Class Title: 5 Cols wide -->
+    <div class="col-md-5">
+      <h1 class="classTitle">
           CS 326
         </h1>
-      </div>
-      <!-- Class Description: 7 Cols wide -->
-      <div class="col-md-7">
-        <p class="classDesc">
-            This class teaches students how to git gud. Those who don't git
-            good will be thrown into the pits of Government contracting.<br /><br />
-            Professor: No man<br />
-            Diffuculty: Your Mother
-        </p>
-      </div>
     </div>
-    <!-- Row for tab bar -->
-    <div class="row">
-      <div class="tab">
-        <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Items')">Items</a>
-        <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Stats')">Stats</a>
-        <a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Sellers')">Sellers</a>
-      </div>
-      <div id="Items" class="tabcontent">
-        <h3>Items</h3>
-        <p>London is the capital city of England.</p>
-      </div>
-      <div id="Stats" class="tabcontent">
-        <h3>Stats</h3>
-        <p>Paris is the capital of France.</p>
-      </div>
-      <div id="Sellers" class="tabcontent">
-        <h3>Sellers</h3>
-        <p>Tokyo is the capital of Japan.</p>
-      </div>
-      <div class = "Items">
-        <h3 Class = "item-label">Books</h3>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="carousel slide multi-item-carousel" id="theCarousel">
-              <div class="carousel-inner">
-                <div class="item active">
-                  <div class="col-md-4"><a href="#1"><img src="img/Books/1.jpg" alt="Book"></a></div>
-                </div>
-                <div class="item">
-                  <div class="col-md-4"><a href="#1"><img src="img/Books/2.jpg" alt="Book"></a></div>
-                </div>
-                <div class="item">
-                  <div class="col-md-4"><a href="#1"><img src="img/Books/3.jpg" alt="Book"></a></div>
-                </div>
-                <div class="item">
-                  <div class="col-md-4"><a href="#1"><img src="img/Books/4.jpg" alt="Book"></a></div>
-                </div>
-                <div class="item">
-                  <div class="col-md-4"><a href="#1"><img src="img/Books/5.jpg" alt="Book"></a></div>
-                </div>
-                <div class="item">
-                  <div class="col-md-4"><a href="#1"><img src="img/Books/6.jpg" alt="Book"></a></div>
-                </div>
-                <div class="item">
-                  <div class="col-md-4"><a href="#1"><img src="img/Books/7.jpg" alt="Book"></a></div>
+    <!-- Class Description: 7 Cols wide -->
+    <div class="col-md-7">
+      <p class="classDesc">
+        This class teaches students how to git gud. Those who don't git good will be thrown into the pits of Government contracting.<br /><br /> Professor: No man<br /> Diffuculty: Your Mother
+      </p>
+    </div>
+  </div>
+  <!-- Row for tab bar -->
+  <div class="row">
+    <ul class="nav nav-tabs nav-justified">
+      <li class="active"><a data-toggle="tab" href="#Books">Books</a></li>
+      <li><a data-toggle="tab" href="#Books">Books</a></li>
+      <li><a data-toggle="tab" href="#Tech">Tech</a></li>
+    </ul>
+  </div>
+  <div class="tab-content Items">
+    <div id = "Books" class="tab-pane fade in active">
+      <h3 Class="item-label">Books</h3>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="carousel slide multi-item-carousel" id="bookCarousel">
+            <div class="carousel-inner">
+              <div class="item active">
+                <div class="col-md-4">
+                  <a href="#1"><img src="img/Books/1.jpg" alt="Book"></a>
                 </div>
               </div>
-              <a class="left carousel-control" href="#theCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-              <a class="right carousel-control" href="#theCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+              <div class="item">
+                <div class="col-md-4">
+                  <a href="#1"><img src="img/Books/2.jpg" alt="Book"></a>
+                </div>
+              </div>
+              <div class="item">
+                <div class="col-md-4">
+                  <a href="#1"><img src="img/Books/3.jpg" alt="Book"></a>
+                </div>
+              </div>
+              <div class="item">
+                <div class="col-md-4">
+                  <a href="#1"><img src="img/Books/4.jpg" alt="Book"></a>
+                </div>
+              </div>
+              <div class="item">
+                <div class="col-md-4">
+                  <a href="#1"><img src="img/Books/5.jpg" alt="Book"></a>
+                </div>
+              </div>
+              <div class="item">
+                <div class="col-md-4">
+                  <a href="#1"><img src="img/Books/6.jpg" alt="Book"></a>
+                </div>
+              </div>
+              <div class="item">
+                <div class="col-md-4">
+                  <a href="#1"><img src="img/Books/7.jpg" alt="Book"></a>
+                </div>
+              </div>
             </div>
+            <a class="left carousel-control" href="#bookCarousel" data-slide="prev">
+              <i class="glyphicon glyphicon-chevron-left"></i></a>
+            <a class="right carousel-control" href="#bookCarousel" data-slide="next">
+              <i class="glyphicon glyphicon-chevron-right"></i></a>
           </div>
         </div>
       </div>
     </div>
+    <div id = "Tech" class="tab-pane fade in">
+      <h3 Class="item-label">Tech</h3>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="carousel slide multi-item-carousel" id="techCarousel">
+            <div class="carousel-inner">
+              <div class="item active">
+                <div class="col-md-4">
+                  <a href="#1"><img src="img/electronics/iclicker.jpg" alt="Book"></a>
+                </div>
+              </div>
+              <div class="item">
+                <div class="col-md-4">
+                  <a href="#1"><img src="img/electronics/iclicker.jpg" alt="Book"></a>
+                </div>
+              </div>
+              <div class="item">
+                <div class="col-md-4">
+                  <a href="#1"><img src="img/electronics/iclicker.jpg" alt="Book"></a>
+                </div>
+              </div>
+            </div>
+            <a class="left carousel-control" href="#techCarousel" data-slide="prev">
+              <i class="glyphicon glyphicon-chevron-left"></i></a>
+            <a class="right carousel-control" href="#techCarousel" data-slide="next">
+              <i class="glyphicon glyphicon-chevron-right"></i></a>
+          </div>
+        </div>
+      </div>
+  </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- App code -->
-    <script src="js/slider.js"></script>
-    <script src="js/bundle.js"></script>
-  </body>
+  </div>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="js/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  <!-- App code -->
+  <script src="js/slider.js"></script>
+  <script src="js/bundle.js"></script>
+</body>
+
 </html>
