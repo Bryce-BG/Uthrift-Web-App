@@ -16,10 +16,10 @@ export default class NAVBAR extends React.Component {
               </div>
               <div className="row row2">
                              <div className="col-md-2">
-                                 <span className="largenav"><img src="img/uthrift.png" style="height:75px; margin-top: -19px;" alt="" /></span>
+                                 <span className="largenav" id="largenavlogo"><img src="img/uthrift.png" alt="logo" /></span>
                              </div>
 
-                             <div className="col-md-2" style="margin-right: 0px; padding-right: 0px;" >
+                             <div className="col-md-2" id = "catogory-Select" >
                                <select name="catogories" className="form-control">
                                 <option value="Textbooks">Textbooks</option>
                                 <option value="Clothing">Clothing</option>
@@ -30,11 +30,11 @@ export default class NAVBAR extends React.Component {
                               </select>
                              </div>
 
-                             <div className="uthrift-navbar-search col-md-6" style="margin-right: 0px; padding-left: 0px;">
+                             <div className="uthrift-navbar-search col-md-6" id="navSearch" >
 
-                                 <form role="search" className="col-md-12" style="display: inline-block">
+                                 <form role="search" className="col-md-12" id = "searchForm">
 
-                                     <input className="uthrift-navbar-input col-md-11" type="text" placeholder="Search UThrift..." name="search" style="color: rgb(0,0,0)"/>
+                                     <input className="uthrift-navbar-input col-md-11" type="text" placeholder="Search UThrift..." name="search"/>
 
                                      <button className="uthrift-navbar-button col-md-1">
                                          <svg width="15px" height="15px">

@@ -16,11 +16,7 @@ body
 
 
 /*navbar related styling*/
-.navbar {
-  background-color: #1ead00;
-  border-radius: 0px 0px 8px 8px; /*border-radious: 25; completly round the end*/
 
-}
 .form-control {
   border-radius: 0px;
 }
