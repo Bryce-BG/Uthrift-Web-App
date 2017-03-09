@@ -9,6 +9,10 @@ body
 
     background-color: white;
 }
+#main-content { /*make is so that we ahve a bit of a space between the navbar and the actual page conetnt.*/
+  margin-top: 30px;
+
+}
 
 
 /*navbar related styling*/
