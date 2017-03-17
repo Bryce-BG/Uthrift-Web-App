@@ -1,5 +1,7 @@
 import React from 'react';
 import NAVBAR from './navbar.js';
+import HOMEPAGEBODY from './homepagebody.js';
+
 
 
 export default class HOMEPAGE extends React.Component {
@@ -7,7 +9,9 @@ export default class HOMEPAGE extends React.Component {
     return (
       <div>
         <NAVBAR  />
-        <h1> homepage content </h1> //place holder will be replaced with other components
+
+        <HOMEPAGEBODY />
+
       </div>
 
     )
