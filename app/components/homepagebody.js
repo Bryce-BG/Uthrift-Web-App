@@ -57,21 +57,21 @@ export default class HOMEPAGEBODY extends React.Component
 
             <div className="carousel-inner" role="listbox">
               <div className="item active col-md-offset-1">
-              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "10,000$"/>
-              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "10,000$"/>
-              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "10,000$"/>
+              <HOMEPAGECAROUSELITEM name="book1" referance="img/book1.jpg" price = "#1,000,000"/>
+              <HOMEPAGECAROUSELITEM name="book2" referance="img/book2.jpg" price = "$10,000"/>
+              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "$10,000"/>
               </div>
 
               <div className="item col-md-offset-1">
-              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "10,000$"/>
-              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "10,000$"/>
-              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "10,000$"/>
+              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "$10,000"/>
+              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "$10,000"/>
+              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "$10,000"/>
               </div>
 
               <div className="item col-md-offset-1">
-              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "10,000$"/>
-              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "10,000$"/>
-              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "10,000$"/>
+                <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "$10,000"/>
+                <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "$10,000"/>
+                <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "$10,000"/>
               </div>
             </div>
 
