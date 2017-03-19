@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 
 // Each major browser view user interface must be imported.
 import HOMEPAGE from './components/homepage.js';
-import UI02 from './components/ui-02.js'; 
+import PROFILEPAGE from './components/profilepage.js';
+import UI02 from './components/ui-02.js';
 
 // For each view conditionally determine which view to display
 // depending on if the ID is present in the HTML.
@@ -20,5 +21,12 @@ else if (document.getElementById('homepage') !== null) {
   ReactDOM.render(
     <HOMEPAGE />,
     document.getElementById('homepage')
+  );
+}
+
+else if (document.getElementById('profilepage') !== null) {
+  ReactDOM.render(
+    <PROFILEPAGE />,
+    document.getElementById('profilepage')
   );
 }

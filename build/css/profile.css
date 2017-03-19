@@ -18,3 +18,29 @@ body {
 .green{
   background:#0f0;
 }
+
+.icon_shape{
+  text-align: center;
+  margin:auto;
+  padding-bottom: 10px;
+  padding-top: 30px;
+}
+
+.gap-btw{
+  padding-left: 40px;
+}
+
+.tittle_shape{
+  border: none;
+  font-size: 10px
+}
+
+.button_shape{
+  text-align: center;
+  ;margin: auto;
+  padding-bottom: 60px;
+}
+
+.center{
+  text-align: center;
+}
