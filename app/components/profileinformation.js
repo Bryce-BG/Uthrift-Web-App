@@ -38,7 +38,7 @@ export default class PROFILEINFORMATION extends React.Component{
 
                   <div className="form-group row gap">
                     <div className="col-md-8">
-                      <input className="form-control" type="nickname" value="Eric" id="name" readonly />
+                      <input className="form-control" type="nickname" value="Eric" id="name" readOnly />
                     </div>
                   </div>
 
@@ -53,7 +53,7 @@ export default class PROFILEINFORMATION extends React.Component{
 
                   <div className="form-group row gap">
                     <div className="col-md-8">
-                      <input className="form-control" type="password" value="123456789" id="password" readonly />
+                      <input className="form-control" type="password" value="123456789" id="password" readOnly />
                     </div>
                   </div>
 
@@ -68,7 +68,7 @@ export default class PROFILEINFORMATION extends React.Component{
 
                   <div className="form-group row gap">
                     <div className="col-md-8">
-                      <input className="form-control" type="email" value="yixiangxu@umass.edu" id="email" readonly />
+                      <input className="form-control" type="email" value="yixiangxu@umass.edu" id="email" readOnly />
                     </div>
                   </div>
 
@@ -83,7 +83,7 @@ export default class PROFILEINFORMATION extends React.Component{
 
                   <div className="form-group row gap">
                     <div className="col-md-8">
-                      <input className="form-control" type="tel" value="(413)406-8347" id="tel" readonly />
+                      <input className="form-control" type="tel" value="(413)406-8347" id="tel" readOnly />
                     </div>
                   </div>
                 </div>
@@ -91,7 +91,7 @@ export default class PROFILEINFORMATION extends React.Component{
             </div>
           </div>
         </div>
-		  </div>
-	 )
+			</div>
+		)
  }
 }

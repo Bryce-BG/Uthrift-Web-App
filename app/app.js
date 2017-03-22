@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 
 // Each major browser view user interface must be imported.
 import HOMEPAGE from './components/homepage.js';
-{/*import PROFILEPAGE from './components/profilepage.js';
-import SEARCHPAGE from './components/searchpage.js';*/}
+import PROFILEPAGE from './components/profilepage.js';
+import SEARCHPAGE from './components/searchpage.js';
 import UI02 from './components/ui-02.js';
 
 // For each view conditionally determine which view to display
@@ -25,7 +25,7 @@ else if (document.getElementById('homepage') !== null) {
   );
 }
 
-{/*}
+
 else if (document.getElementById('profilepage') !== null) {
   ReactDOM.render(
     <PROFILEPAGE />,
@@ -38,4 +38,3 @@ else if (document.getElementById('searchpage') !== null) {
     <SEARCHPAGE />,
     document.getElementById('searchpage')
   );}
-  */}
