@@ -1,4 +1,5 @@
 import React from 'react';
+import PROFILEITEM from './profileitem';
 
 export default class PROFILESELLINGHISTORY extends React.Component{
 	render(){
@@ -11,33 +12,8 @@ export default class PROFILESELLINGHISTORY extends React.Component{
             <div className="panel panel-default">
               <div className="panel-heading">SELLING/SOLD</div>
               <div className="panel-body">
-                <div className="row">
-                  <div className="col-md-2">
-                    <a href="#"><img src="img/iclicker-profile.jpg" width="80" height="80" /></a>
-                  </div>
-                  <div className="col-md-2">
-                    <a href="#"><img src="img/Lamp.jpg" width="80" height="80" /></a>
-                  </div>
-                </div>
-
-                <div className="row center">
-                  <div className="col-md-2">
-                    <a href="#">Iclicker</a>
-                  </div>
-                  <div className="col-md-2">
-                    <a href="#">LED Desk Lamp...</a>
-                  </div>
-                </div>
-
-                <div className="row">
-                  <div className="col-md-2">
-                    Status: <font color="#FFFF00">Selling</font>
-                  </div>
-                  <div className="col-md-2">
-                    Statas: <font color="#7CFC00">Sold</font>
-                  </div>
-                </div>
-
+								<PROFILEITEM img="img/iclicker-profile.jpg" name="Iclicker" color="#FFFF00" />
+								<PROFILEITEM img="img/Lamp.jpg" name="LED Desk Lamp..." color="#7CFC00" />
               </div>
             </div>
           </div>
