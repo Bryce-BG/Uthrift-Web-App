@@ -1,5 +1,10 @@
 body{
 	padding-top: 100px;
+    background: #eff0f2;
+}
+
+.content-contain {
+    background-color: white;
 }
 
 img {
@@ -25,12 +30,8 @@ img {
 	border:none;
 }
 
-body {
-    background: #eff0f2;
-}
-
-.content-contain {
-  background-color: #ffffff;
+.glyphicon-heart-empty {
+    color:red;
 }
 
 .navbar {
