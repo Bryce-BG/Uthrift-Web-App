@@ -6,9 +6,9 @@ export default class PROFILEPAGE extends React.Component{
 	render(){
 		return(
 			<div>
-		    <NAVBAR />
+				<NAVBAR />
 				<PROFILEPAGEBODY />
-		  </div>
-	 )
+			</div>
+		)
  }
 }

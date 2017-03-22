@@ -92,7 +92,7 @@ export default class PROFILEINFORMATION extends React.Component{
             </div>
           </div>
         </div>
-		  </div>
-	 )
+			</div>
+		)
  }
 }
