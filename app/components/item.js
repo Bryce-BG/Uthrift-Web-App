@@ -1,5 +1,6 @@
 import React from 'react';
 import NAVBAR from './navbar.js';
+import ITEMHERO from './itemhero.js';
 
 
 export default class ITEM extends React.Component {
@@ -7,37 +8,9 @@ export default class ITEM extends React.Component {
     return (
       <div>
         <NAVBAR  />
+        <ITEMHERO name="i>clicker" itembigpic="img/dummy-item-main.jpg"/>
+
         <div className="container content-contain">
-
-            <div className="row">
-                <div className="col-md-12">
-                    <h1 className="page-header">i>clicker</h1>
-                </div>
-            </div>
-
-            <div className="row">
-
-                <div className="col-md-6">
-                    <img className="img-responsive" src="img/dummy-item-main.jpg" alt="" />
-                </div>
-
-                <div className="col-md-6">
-                    <h3>Description</h3>
-                    <p>i>clicker is an award winning student response solution that allows you to easily transform your classroom into an active learning environment.</p>
-                    <h3>Details</h3>
-                    <ul>
-                        <li>Condition: Like New</li>
-                        <li>Used for one year</li>
-                        <li>Batteries included</li>
-                    </ul>
-                    <h3>Price: $35</h3>
-                    <button type="button" className="btn btn-primary item-buttons">Add to Watching</button>
-                    <button type="button" className="btn btn-primary item-buttons">Contact Seller</button>
-                </div>
-
-            </div>
-
-
             <div className="row">
 
                 <div className="col-md-12">
