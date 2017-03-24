@@ -24,6 +24,7 @@ else if (document.getElementById('homepage') !== null) {
   );
 }
 
+
 else if (document.getElementById('profilepage') !== null) {
   ReactDOM.render(
     <PROFILEPAGE />,
