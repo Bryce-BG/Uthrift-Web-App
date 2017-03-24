@@ -7,6 +7,7 @@ import PROFILEPAGE from './components/profilepage.js';
 import SEARCHPAGE from './components/searchpage.js';
 import CLASSPAGE from './components/classpage.js';
 import UI02 from './components/ui-02.js';
+import SUBMISSIONFORM from './components/submissionform/submissionform.js';
 
 // For each view conditionally determine which view to display
 // depending on if the ID is present in the HTML.
@@ -32,6 +33,7 @@ else if (document.getElementById('profilepage') !== null) {
   );
 }
 
+
 else if (document.getElementById('searchpage') !== null) {
   ReactDOM.render(
     <SEARCHPAGE />,
@@ -43,5 +45,10 @@ else if (document.getElementById('classpage') !== null) {
   ReactDOM.render(
     <CLASSPAGE />,
     document.getElementById('classpage')
+
+else if (document.getElementById('submissionform') !== null) {
+  ReactDOM.render(
+    <SUBMISSIONFORM />,
+    document.getElementById('submissionform')
   );
 }
