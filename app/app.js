@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import HOMEPAGE from './components/homepage.js';
 import PROFILEPAGE from './components/profilepage.js';
 import SEARCHPAGE from './components/searchpage.js';
+import CLASSPAGE from './components/classpage.js';
 import UI02 from './components/ui-02.js';
 
 // For each view conditionally determine which view to display
@@ -15,8 +16,6 @@ if (document.getElementById('ui-02') !== null) {
     document.getElementById('ui-02')
   );
 }
-
-
 
 else if (document.getElementById('homepage') !== null) {
   ReactDOM.render(
@@ -36,5 +35,12 @@ else if (document.getElementById('searchpage') !== null) {
   ReactDOM.render(
     <SEARCHPAGE />,
     document.getElementById('searchpage')
+  );
+}
+
+else if (document.getElementById('classpage') !== null) {
+  ReactDOM.render(
+    <CLASSPAGE />,
+    document.getElementById('classpage')
   );
 }
