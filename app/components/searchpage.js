@@ -1,7 +1,7 @@
 import React from 'react';
 import NAVBAR from './navbar';
-import SEARCHPAGINATION from './searchpagination';
 import SEARCHRESULTS from './searchresults';
+import SEARCHPAGINATION from './searchpagination';
 
 export default class SEARCHPAGE extends React.Component{
 	render(){
