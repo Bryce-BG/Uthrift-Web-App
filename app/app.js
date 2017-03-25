@@ -45,6 +45,8 @@ else if (document.getElementById('classpage') !== null) {
   ReactDOM.render(
     <CLASSPAGE />,
     document.getElementById('classpage')
+  );
+}
 
 else if (document.getElementById('submissionform') !== null) {
   ReactDOM.render(
