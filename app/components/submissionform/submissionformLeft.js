@@ -16,6 +16,7 @@ export default class SUBMISSIONFORMLEFT extends React.Component {
             <SUBMISSIONFORMPICTURE />
             <SUBMISSIONFORMDESCRIPTION />
             <SUBMISSIONFORMSUBMITBTN />
+            {/* submissionbtn isn't working right now */}
 
           </div>
         {/*<!--- End Left Side --->*/}
