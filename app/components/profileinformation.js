@@ -21,6 +21,7 @@ export default class PROFILEINFORMATION extends React.Component{
                 <div className="col-md-5 icon_shape">
                   <img src="img/avatar2.png" width="80%" />
                   <br />
+									<br />
                   <button type="button" className="btn btn-default">
                       Change
                   </button>
@@ -38,7 +39,7 @@ export default class PROFILEINFORMATION extends React.Component{
 
                   <div className="form-group row gap">
                     <div className="col-md-8">
-                      <input className="form-control" type="nickname" value="Eric" id="name" readonly />
+                      <input className="form-control" type="nickname" value={this.props.nickname} id="name" readonly />
                     </div>
                   </div>
 
@@ -53,7 +54,7 @@ export default class PROFILEINFORMATION extends React.Component{
 
                   <div className="form-group row gap">
                     <div className="col-md-8">
-                      <input className="form-control" type="password" value="123456789" id="password" readonly />
+                      <input className="form-control" type="password" value={this.props.password} id="password" readonly />
                     </div>
                   </div>
 
@@ -68,7 +69,7 @@ export default class PROFILEINFORMATION extends React.Component{
 
                   <div className="form-group row gap">
                     <div className="col-md-8">
-                      <input className="form-control" type="email" value="yixiangxu@umass.edu" id="email" readonly />
+                      <input className="form-control" type="email" value={this.props.email} id="email" readonly />
                     </div>
                   </div>
 
@@ -83,7 +84,7 @@ export default class PROFILEINFORMATION extends React.Component{
 
                   <div className="form-group row gap">
                     <div className="col-md-8">
-                      <input className="form-control" type="tel" value="(413)406-8347" id="tel" readonly />
+                      <input className="form-control" type="tel" value={this.props.tel} id="tel" readonly />
                     </div>
                   </div>
                 </div>
@@ -91,7 +92,7 @@ export default class PROFILEINFORMATION extends React.Component{
             </div>
           </div>
         </div>
-		  </div>
-	 )
+			</div>
+		)
  }
 }
