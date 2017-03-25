@@ -24,9 +24,9 @@ export default class CLASSPAGEBODY extends React.Component {
             <div className="col-md-8">
               <h2 className="page-header">Books</h2>
               <div className="row">
-                <ITEM description="How to own an interview" referance="img/book1.jpg" price = "18.00"/>
-                <ITEM description="Not as good as the internet" referance="img/book2.jpg" price = "21.00"/>
-                <ITEM description="Intro to $$$" referance="img/book3.jpg" price = "25.00"/>
+                <ITEM description="How to own an interview" reference="img/book1.jpg" price = "18.00"/>
+                <ITEM description="Not as good as the internet" reference="img/Books/8.png" price = "21.00"/>
+                <ITEM description="Intro to $$$" reference="img/book3.jpg" price = "25.00"/>
               </div>
             </div>
           </div>
@@ -37,7 +37,7 @@ export default class CLASSPAGEBODY extends React.Component {
             <div className="col-md-8">
               <h2 className="page-header">Tech</h2>
               <div className="row">
-                <ITEM description="Lecture prison key" referance="img/iclicker-profile.jpg" price = "98.00"/>
+                <ITEM description="Lecture prison key" reference="img/iclicker-profile.jpg" price = "98.00"/>
               </div>
             </div>
           </div>

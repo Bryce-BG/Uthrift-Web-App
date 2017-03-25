@@ -4,12 +4,12 @@ export default class ITEM extends React.Component
 {
   render() {
     return (
-      <div className = "col-md-4 portfolio-item">
+      <div className = "col-md-4">
           <a href="#">
-            <img src={this.props.referance} alt=""/>
+            <img src={this.props.reference} alt=""/>
           </a>
-          <h4 className="description"> {this.props.description} </h4>
-          <h3 className="price"> ${this.props.price} </h3>
+          <h5 className="description">{this.props.description}</h5>
+          <h4 className="price">${this.props.price}</h4>
           {/*<h3>{this.props.name}</h3>*/}
       </div>
     )
