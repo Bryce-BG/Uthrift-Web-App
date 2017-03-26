@@ -45,7 +45,7 @@ export default class HOMEPAGEBODY extends React.Component
         <br />
         <hr/ >
 
-        <h2>Trending items</h2>
+        <h2>Recomended items</h2>
         <div id="myCarousel2" className="carousel slide" data-ride="carousel">
 
             <ol className="carousel-indicators">
@@ -57,7 +57,7 @@ export default class HOMEPAGEBODY extends React.Component
 
             <div className="carousel-inner" role="listbox">
               <div className="item active col-md-offset-1">
-              <HOMEPAGECAROUSELITEM name="book1" referance="img/book1.jpg" price = "#1,000,000"/>
+              <HOMEPAGECAROUSELITEM name="book 50 bout bla" referance="img/book1.jpg" price = "#10,000,000"/>
               <HOMEPAGECAROUSELITEM name="book2" referance="img/book2.jpg" price = "$100,000"/>
               <HOMEPAGECAROUSELITEM name="book3" referance="img/book3.jpg" price = "$10,000"/>
               </div>
