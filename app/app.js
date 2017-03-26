@@ -5,11 +5,8 @@ import ReactDOM from 'react-dom';
 import HOMEPAGE from './components/homepage.js';
 import PROFILEPAGE from './components/profilepage.js';
 import SEARCHPAGE from './components/searchpage.js';
-<<<<<<< HEAD
 import ITEM from './components/item.js';
-=======
 import CLASSPAGE from './components/classpage.js';
->>>>>>> 989de6c727fc080bcbb195da3939fddca8c2ebb9
 import UI02 from './components/ui-02.js';
 import SUBMISSIONFORM from './components/submissionform/submissionform.js';
 
