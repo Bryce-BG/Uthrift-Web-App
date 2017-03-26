@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import HOMEPAGE from './components/homepage.js';
 import PROFILEPAGE from './components/profilepage.js';
 import SEARCHPAGE from './components/searchpage.js';
+import CLASSPAGE from './components/classpage.js';
 import UI02 from './components/ui-02.js';
 import SUBMISSIONFORM from './components/submissionform/submissionform.js';
 
@@ -16,7 +17,6 @@ if (document.getElementById('ui-02') !== null) {
     document.getElementById('ui-02')
   );
 }
-
 
 else if (document.getElementById('homepage') !== null) {
   ReactDOM.render(
@@ -41,6 +41,12 @@ else if (document.getElementById('searchpage') !== null) {
   );
 }
 
+else if (document.getElementById('classpage') !== null) {
+  ReactDOM.render(
+    <CLASSPAGE />,
+    document.getElementById('classpage')
+  );
+}
 
 else if (document.getElementById('submissionform') !== null) {
   ReactDOM.render(
