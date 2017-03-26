@@ -7,6 +7,21 @@ body {
   background-color: white;
 }
 
+.col-md-4 img {
+  display: block;
+  max-width:160px;
+  max-height:180px;
+  width: auto;
+  height: auto;
+  -webkit-box-shadow: 2px 2px 6px 2px rgba(0,0,0,0.44);
+  -moz-box-shadow: 2px 2px 6px 2px rgba(0,0,0,0.44);
+  box-shadow: 2px 2px 6px 2px rgba(0,0,0,0.44);
+}
+
+.description {
+    color:  #696969;
+}
+
 .item-label {
   padding-top: 30px;
   padding-left: 30px;
@@ -32,8 +47,4 @@ body {
   border: medium none;
   border-radius: 100;
   color: #fff;
-}
-
-.img-responsive {
-  max-height: 350px;
 }

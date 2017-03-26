@@ -1,82 +1,26 @@
 import React from 'react';
+import SEARCHITEM from './searchitem.js';
 
 export default class SEARCHRESULTS extends React.Component{
 	render(){
 		return(
 			<div>
+				<h1 className="page-header">Search Result
+					<small className="query">{this.props.query}</small>
+				</h1>
 				<div className="row">
-	                <div className="col-md-4 portfolio-item">
-	                    <a href="javascript:;" data-name="btnAddToFavorites" data-gid="92" className="fav-it">
-	                    	<i className="fa fa-heart-o"></i>
-	                    </a>
-	                    <a href="#">
-           					<img src="img/book1.jpg"/>
-                        </a>
-	                    <span className="glyphicon glyphicon-heart-empty"></span>
-	                    <p className = "des"> Item 1 Description </p>
-	                    <p className = "price"> $18.00 </p>
-	                </div>
-	                <div className="col-md-4 portfolio-item">
-	                    <a href="javascript:;" data-name="btnAddToFavorites" data-gid="92" className="fav-it">
-	                    	<i className="fa fa-heart-o"></i>
-	                    </a>
-	                    <a href="#">
-           					<img src="img/book2.jpg"/>
-                        </a>
-	                    <span className="glyphicon glyphicon-heart-empty"></span>
-	                    <p className = "des"> Item 2 Description </p>
-	                    <p className = "price"> $21.00 </p>
-	                </div>
-					<div className="col-md-4 portfolio-item">
-	                    <a href="javascript:;" data-name="btnAddToFavorites" data-gid="92" className="fav-it">
-	                    	<i className="fa fa-heart-o"></i>
-	                    </a>
-	                    <a href="#">
-           					<img src="img/book3.jpg"/>
-                        </a>
-	                    <span className="glyphicon glyphicon-heart-empty"></span>
-	                    <p className = "des"> Item 3 Description </p>
-	                    <p className = "price"> $25.00 </p>
-	                </div>	                
-            	</div>
-            	<hr/>
-            	<div className="row">
-	                <div className="col-md-4 portfolio-item">
-	                    <a href="javascript:;" data-name="btnAddToFavorites" data-gid="92" className="fav-it">
-	                    	<i className="fa fa-heart-o"></i>
-	                    </a>
-	                    <a href="#">
-           					<img src="img/book4.jpg"/>
-                        </a>
-	                    <span className="glyphicon glyphicon-heart-empty"></span>
-	                    <p className = "des"> Item 4 Description </p>
-	                    <p className = "price"> $7.50 </p>
-	                </div>
-	                <div className="col-md-4 portfolio-item">
-	                    <a href="javascript:;" data-name="btnAddToFavorites" data-gid="92" className="fav-it">
-	                    	<i className="fa fa-heart-o"></i>
-	                    </a>
-	                    <a href="#">
-           					<img src="img/book5.jpg"/>
-                        </a>
-	                    <span className="glyphicon glyphicon-heart-empty"></span>
-	                    <p className = "des"> Item 5 Description </p>
-	                    <p className = "price"> $5.00 </p>
-	                </div>
-					<div className="col-md-4 portfolio-item">
-	                    <a href="javascript:;" data-name="btnAddToFavorites" data-gid="92" className="fav-it">
-	                    	<i className="fa fa-heart-o"></i>
-	                    </a>
-	                    <a href="#">
-           					<img src="img/book6.jpg"/>
-                        </a>
-	                    <span className="glyphicon glyphicon-heart-empty"></span>
-	                    <p className = "des"> Item 6 Description </p>
-	                    <p className = "price"> $6.00 </p>
-	                </div>	                
-            	</div>
-            	<hr/>
+					<SEARCHITEM des="Item 1 Description" src="img/book1.jpg" price = "18.00"/>
+					<SEARCHITEM des="Item 2 Description" src="img/book2.jpg" price = "21.00"/>
+					<SEARCHITEM des="Item 3 Description" src="img/book3.jpg" price = "25.00"/>
+				</div>
+				<hr/>
+				<div className="row">
+					<SEARCHITEM des="Item 4 Description" src="img/book4.jpg" price = "7.50"/>
+					<SEARCHITEM des="Item 5 Description" src="img/book5.jpg" price = "5.00"/>
+					<SEARCHITEM des="Item 6 Description" src="img/book6.jpg" price = "6.00"/>
+        </div>
+        <hr/>
 			</div>
-	 )
+		)
  }
 }

@@ -20,7 +20,7 @@ export default class NAVBAR extends React.Component {
                              </div>
 
                              <div className="col-md-2" id = "catogory-Select" >
-                               <select name="catogories" className="form-control">
+                               <select name="catogories" className="form-control dropdown">
                                 <option value="Textbooks">Textbooks</option>
                                 <option value="Clothing">Clothing</option>
                                 <option value="Tech">Tech</option>

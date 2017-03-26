@@ -10,7 +10,7 @@ export default class HOMEPAGECAROUSELITEM extends React.Component
           <img className ="img-responsive" src={this.props.referance} alt= {this.props.name}/>
           <hr />
           <p>price: {this.props.price} </p>
-          <a href="#">Seller contact information</a>
+          <a href="#">Item Sellers</a>
       </div>
     )
   }
