@@ -27,6 +27,14 @@ body {
   margin-right: 8px;
 }
 
+.sp12{
+  margin-right: 12px;
+}
+
+.sp16 {
+  margin-right: 16px;
+}
+
 .sp32 {
   margin-right: 32px;
 }
@@ -73,4 +81,25 @@ width: auto;
 
 .form-control {
   margin-left: 0px !important;
+}
+
+.thin {
+  height: 23px !important;
+}
+
+.narrow {
+  width: 135px;
+}
+
+.top {
+  padding-top: 25px;
+  margin-bottom: 5px;
+}
+
+.right {
+  padding-right: 15px;
+}
+
+.left {
+  padding-left: 17px;
 }
