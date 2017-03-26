@@ -46,6 +46,8 @@ else if (document.getElementById('item') !== null) {
   ReactDOM.render(
     <ITEM />,
     document.getElementById('item')
+  );
+}
 
 else if (document.getElementById('classpage') !== null) {
   ReactDOM.render(
