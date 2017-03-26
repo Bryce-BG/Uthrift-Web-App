@@ -6,8 +6,8 @@ export default class SUBMISSIONFORMSUBMITBTN extends React.Component {
       <div>
         {/*<!--- Submit Button --->*/}
         <div className="form-group row">
-          <div className="col-md-3"></div>
-          <div className="col-md-3" htmlStyle="padding-left: 40px;">
+          <div className="col-md-3 sp24"></div>
+          <div className="col-md-3">
             <button type="submit" className="btn btn-primary">Post for Sale</button>
           </div>
         </div>
