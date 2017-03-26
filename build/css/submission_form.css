@@ -72,5 +72,5 @@ width: auto;
 
 
 .form-control {
-  padding-left: 0px;
+  margin-left: 0px !important;
 }
