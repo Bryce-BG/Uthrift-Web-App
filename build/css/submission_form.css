@@ -69,3 +69,8 @@ width: auto;
         color: #222;
         border-color: #222;
       }
+
+
+.form-control {
+  padding-left: 0px;
+}

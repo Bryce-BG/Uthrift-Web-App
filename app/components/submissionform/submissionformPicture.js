@@ -7,7 +7,7 @@ export default class SUBMISSIONFORMPICTURE extends React.Component {
     return (
       <div>
       {/*<!--- Start Upload Picture --->*/}
-        <img className = "photo-entry main-photo" src="img/war_peace2.jpg" width="100%"/>
+          <img className = "photo-entry main-photo" src="img/war_peace2.jpg" width="100%"/>
 
           <div className="photo-entry">
             <label htmlFor="photoUpload1">Upload Photo</label>

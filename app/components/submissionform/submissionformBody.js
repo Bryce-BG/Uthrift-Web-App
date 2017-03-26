@@ -1,5 +1,6 @@
 import React from 'react';
 import SUBMISSIONFORMLEFT from './submissionformLeft.js';
+import SUBMISSIONFORMRIGHT from './submissionformRight.js';
 
 
 export default class SUBMISSIONFORMBODY extends React.Component {
@@ -17,6 +18,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         <div className = "row">
 
           <SUBMISSIONFORMLEFT />
+          <SUBMISSIONFORMRIGHT />
 
 
         </div>
