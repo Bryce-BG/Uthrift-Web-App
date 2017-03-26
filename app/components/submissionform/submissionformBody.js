@@ -15,7 +15,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         </div>
         {/*<!-- End Heading -->*/}
 
-        <div className = "row">
+        <div className = "row bottom">
 
           <SUBMISSIONFORMLEFT />
           <SUBMISSIONFORMRIGHT />

@@ -100,6 +100,10 @@ width: auto;
   margin-bottom: 5px;
 }
 
+.bottom {
+  padding-bottom: 30px;
+}
+
 .right {
   padding-right: 15px;
 }
