@@ -17,9 +17,10 @@ export default class SUBMISSIONFORMBODY extends React.Component {
 
         <div className = "row bottom">
 
+          <form>
           <SUBMISSIONFORMLEFT />
           <SUBMISSIONFORMRIGHT />
-
+          </form>
 
         </div>
       </div>

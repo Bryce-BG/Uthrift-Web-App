@@ -33,6 +33,14 @@ export default class SUBMISSIONFORMDESCRIPTION extends React.Component {
             <textarea className="form-control textarea" id="conditionTextarea" rows="3" placeholder = "Describe the item's condition here... ex: Has light scratch marks."></textarea>
           </div>
           {/*<!--- End Main Submission Criteria --->*/}
+          
+          {/*<!--- Submit Button --->*/}
+          <div className="form-group row">
+            <div className="col-md-3 sp24"></div>
+            <div className="col-md-3">
+              <button type="submit" className="btn btn-primary">Post for Sale</button>
+            </div>
+          </div>
 
       </div>
     )
