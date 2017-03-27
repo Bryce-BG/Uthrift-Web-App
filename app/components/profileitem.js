@@ -11,7 +11,7 @@ export default class PROFILESELLINGHISTORY extends React.Component{
           <a href="#">{this.props.name}</a>
         </div>
         <div className="row">
-          Status: <font color={this.props.color}>Selling</font>
+          Status: <font color={this.props.color}>{this.props.status}</font>
         </div>
       </div>
     )

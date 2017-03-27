@@ -12,8 +12,8 @@ export default class PROFILESELLINGHISTORY extends React.Component{
             <div className="panel panel-default">
               <div className="panel-heading">SELLING/SOLD</div>
               <div className="panel-body">
-								<PROFILEITEM img="img/iclicker-profile.jpg" name="Iclicker" color="#FFFF00" />
-								<PROFILEITEM img="img/Lamp.jpg" name="LED Desk Lamp..." color="#7CFC00" />
+								<PROFILEITEM img="img/iclicker-profile.jpg" name="Iclicker" color="#fe0000" status = "Sold"/>
+								<PROFILEITEM img="img/Lamp.jpg" name="LED Desk Lamp..." color="#54a407" status = "Selling"/>
               </div>
             </div>
           </div>
