@@ -1,5 +1,5 @@
 import React from 'react';
-import PROFILESAVE from './profilesave';
+
 import PROFILEINFORMATION from './profileinformation';
 import PROFILESELLINGHISTORY from './profilesellinghistory';
 
@@ -12,8 +12,15 @@ export default class PROFILEPAGE extends React.Component{
           <PROFILESELLINGHISTORY />
         </div>
 
-        <PROFILESAVE />
-		  </div>
-	 )
+				<div className="button_shape">
+					<button type="button" className="btn btn-default">
+						Save
+					</button>
+				</div>
+
+
+
+		</div>
+	)
  }
 }
