@@ -1,6 +1,7 @@
 body{
     padding-top: 90px;
     background-color: lightgray;
+    margin-top: 30px;
 }
 
 .h1, .h2, .h3, h1, h2, h3{
@@ -16,7 +17,7 @@ body{
 }
 
 .content-contain {
-    
+
     background-color: white;
 }
 
