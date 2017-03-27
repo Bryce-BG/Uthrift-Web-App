@@ -3,7 +3,7 @@ import React from 'react';
 export default class NAVBAR extends React.Component {
   render() {
     return (
-      <div>
+      <div >
       <nav className="navbar navbar-default navbar-fixed-top">
           <div className="container" id ="navContainer">
               <div className="row row1">
