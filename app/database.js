@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Modify with your startup's name!
-var startupName = null;
+var startupName = "Uthrift";
 
 // Put your mock objects here, as in Workshop 4
 var initialData = {
@@ -33,6 +33,20 @@ var initialData = {
   "items":
   {
     "1":
+    {
+      "_id": 1,
+      "Title": "iclicker",
+      "Price": "10,000",
+      "Description": "this is an iclicker item",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Tech",
+      "photoRef": "img/iclicker.jpg",
+      "SellerID": "1"
+
+
+    }
+    "2":
     {
       "_id": 1,
       "Title": "iclicker",
