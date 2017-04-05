@@ -16,7 +16,7 @@ var initialData = {
       "LastName": "Doe",
       "Photo": "img/avatar.png",
       "trackList": [],
-      "sellingList": []
+      "sellingList": [4,5,6]
 
     },
     "2": {
@@ -27,7 +27,7 @@ var initialData = {
       "LastName": "Rando",
       "Photo": "img/avatar2.png",
       "trackList": [],
-      "sellingList": {1}
+      "sellingList": [1,2,3]
     }
   },
   "items":
@@ -43,22 +43,78 @@ var initialData = {
       "Category": "Tech",
       "photoRef": "img/iclicker.jpg",
       "SellerID": "1"
-
-
-    }
+    },
     "2":
     {
-      "_id": 1,
-      "Title": "iclicker",
-      "Price": "10,000",
-      "Description": "this is an iclicker item",
+      "_id": 2,
+      "Title": "Craking The Code",
+      "Price": "18.00",
+      "Description": "Item 1 Description",
       "Condition": "Brand New",
       "Sold": false,
-      "Category": "Tech",
-      "photoRef": "img/iclicker.jpg",
+      "Category": "Textbooks",
+      "photoRef": "img/book1.jpg",
       "SellerID": "1"
-
-
+    },
+    "3":
+    {
+      "_id": 3,
+      "Title": "Introductions to Algorithms",
+      "Price": "21.00",
+      "Description": "Item 2 Description",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Textbooks",
+      "photoRef": "img/book2.jpg",
+      "SellerID": "1"
+    },
+    "4":
+    {
+      "_id": 4,
+      "Title": "Artificial Intelligence",
+      "Price": "25.00",
+      "Description": "Item 3 Description",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Textbooks",
+      "photoRef": "img/book3.jpg",
+      "SellerID": "2"
+    },
+    "5":
+    {
+      "_id": 5,
+      "Title": "The Rules of Love",
+      "Price": "7.50",
+      "Description": "Item 4 Description",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Textbooks",
+      "photoRef": "img/book5.jpg",
+      "SellerID": "2"
+    },
+    "6":
+    {
+      "_id": 6,
+      "Title": "What I Wish I Knew When I was 20",
+      "Price": "5.00",
+      "Description": "Item 5 Description",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Textbooks",
+      "photoRef": "img/book5.jpg",
+      "SellerID": "2"
+    },
+    "7":
+    {
+      "_id": 7,
+      "Title": "Unlock Your Educational Potental",
+      "Price": "6.00",
+      "Description": "Item 6 Description",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Textbooks",
+      "photoRef": "img/book6.jpg",
+      "SellerID": "2"
     }
 
   }
