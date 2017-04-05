@@ -16,7 +16,7 @@ export default class NAVBAR extends React.Component {
               </div>
               <div className="row row2">
                              <div className="col-md-2">
-                                 <span className="largenav" id="largenavlogo"><img src="img/uthrift.png" alt="logo" /></span>
+                                 <a href="homepage.html"><span className="largenav" id="largenavlogo"><img src="img/uthrift.png" alt="logo" /></span></a>
                              </div>
 
 
@@ -27,6 +27,7 @@ export default class NAVBAR extends React.Component {
 
                                    <div className="col-md-3" id = "catogory-Select" >
                                      <select name="catogories" className="form-control dropdown">
+                                      <option value = "Cagogory">Select Catogory</option>
                                       <option value="Textbooks">Textbooks</option>
                                       <option value="Clothing">Clothing</option>
                                       <option value="Tech">Tech</option>

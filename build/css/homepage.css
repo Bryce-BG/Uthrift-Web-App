@@ -22,27 +22,6 @@ body
 
 
 
-/*navbar related styling*/
-
-.form-control {
-  border-radius: 0px;
-}
-.navbar-brand { /*to align the home image that for some reason won't center without custom css*/
-  margin-top:  -9px;
-}
-.navbar-right {
-  margin-right:10px;
-}
-/*end navbar styling */
-
-div.col-md-12{
-  background-color: #818c9e;
-  height: 300px;
-}
-div.col-md-3{
-  border: 1px solid black;
-  /*align-items: center;*/
-}
 
 /*carousel related css*/
 .carousel-control.right, .carousel-control.left {
