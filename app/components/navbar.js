@@ -19,22 +19,25 @@ export default class NAVBAR extends React.Component {
                                  <span className="largenav" id="largenavlogo"><img src="img/uthrift.png" alt="logo" /></span>
                              </div>
 
-                             <div className="col-md-2" id = "catogory-Select" >
-                               <select name="catogories" className="form-control dropdown">
-                                <option value="Textbooks">Textbooks</option>
-                                <option value="Clothing">Clothing</option>
-                                <option value="Tech">Tech</option>
-                                <option value="Events">Events</option>
-                                <option value="Furniture">Furniture</option>
-                                <option value="Miscellaneous">Miscellaneous</option>
-                              </select>
-                             </div>
 
-                             <div className="uthrift-navbar-search col-md-6" id="navSearch" >
+
+                             <div className="uthrift-navbar-search col-md-8" id="navSearch" >
 
                                  <form role="search" className="col-md-12" id = "searchForm">
 
-                                     <input className="uthrift-navbar-input col-md-11" type="text" placeholder="Search UThrift..." name="search"/>
+                                   <div className="col-md-3" id = "catogory-Select" >
+                                     <select name="catogories" className="form-control dropdown">
+                                      <option value="Textbooks">Textbooks</option>
+                                      <option value="Clothing">Clothing</option>
+                                      <option value="Tech">Tech</option>
+                                      <option value="Events">Events</option>
+                                      <option value="Furniture">Furniture</option>
+                                      <option value="Miscellaneous">Miscellaneous</option>
+                                    </select>
+                                   </div>
+
+
+                                     <input className="uthrift-navbar-input col-md-8" type="text" placeholder="Search UThrift..." name="search"/>
 
                                      <button className="uthrift-navbar-button col-md-1">
                                          <svg width="15px" height="15px">
