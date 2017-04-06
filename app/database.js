@@ -116,7 +116,22 @@ var initialData = {
       "photoRef": "img/book6.jpg",
       "SellerID": "2"
     }
+  },
 
+  "classes":
+  {
+    "1":
+    {
+      "_id": 1,
+      "title": "CS 326",
+      "description": "We teach you how to make facebook",
+      "instructor": "Tim Richards, First of his name",
+      "credits": "3",
+      "term": "Spring 2017",
+      "category": "Computer Science",
+      "textbookList": [4,5,6],
+      "techList": [1]
+    }
   },
   "recomendedItems": [1,1,1,1,1,1,1,1,1]
 };
@@ -143,6 +158,13 @@ export function readDocument(collection, id) {
   // Clone the data. We do this to model a database, where you receive a
   // *copy* of an object and not the object itself.
   return JSONClone(data[collection][id]);
+}
+
+//Semple's great way of pulling an array from the database
+export function getArray(collection) {
+ // Clone the data. We do this to model a database, where you receive a
+ // *copy* of an object and not the object itself.
+ return JSONClone(data[collection]);
 }
 
 /**
