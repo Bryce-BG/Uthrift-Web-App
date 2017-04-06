@@ -9,3 +9,5 @@ function emulateServerReturn(data, cb) {
     cb(data);
   }, 4);
 }
+
+getRecomendedItems()

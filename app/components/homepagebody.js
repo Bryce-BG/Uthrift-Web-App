@@ -1,8 +1,19 @@
 import React from 'react';
 import HOMEPAGECAROUSELITEM from './homepageCarouselItem.js';
-
+import import {getRecomendedItems} from '../server';
 export default class HOMEPAGEBODY extends React.Component
 {
+componentDidMount()
+{
+    getRecomendedItems(feedData);
+
+
+}
+
+
+
+
+
   render() {
     return (
       <div className="container content-contain" id="main-content">
