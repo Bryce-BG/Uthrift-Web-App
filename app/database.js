@@ -117,8 +117,8 @@ var initialData = {
       "SellerID": "2"
     }
 
-  }
-
+  },
+  "recomendedItems": [1,1,1,1,1,1,1,1,1]
 };
 
 var data = JSON.parse(localStorage.getItem(startupName));
