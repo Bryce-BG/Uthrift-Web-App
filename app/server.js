@@ -12,7 +12,8 @@ function emulateServerReturn(data, cb) {
 
 
 // Submit stuff from Submission Form
-export function submitItem(userID, location, contents, cb) {
+export function submitItem(userID, title, price, condition,
+  conditionDescription, category, categoryDescription) {
   // If we were implementing this for real on an actual server, we would check
   // that the user ID is correct & matches the authenticated user. But since
   // we're mocking it, we can be less strict.
@@ -24,12 +25,13 @@ export function submitItem(userID, location, contents, cb) {
     "_id": getArray('items').length + 1,
     "SellerID": userID,
     "postDate": time,
-    "Title": "iclicker",
-    "Price": "10,000",
-    "Description": "this is an iclicker item",
-    "Condition": "Brand New",
+    "Title": title,
+    "Price": price,
+    "Condition": condition,
+    "ConditionDescription": conditionDescription,
+    "Description": categoryDescription,
     "Sold": false,
-    "Category": "Tech",
+    "Category": category,
     "photoRef": "img/iclicker.jpg"
   };
 
@@ -38,5 +40,5 @@ export function submitItem(userID, location, contents, cb) {
   newItem = addDocument('items', newItem);
 
   // Return the newly-posted object.
-  emulateServerReturn(newItem, cb);
+  //emulateServerReturn(newItem, cb);
 }
