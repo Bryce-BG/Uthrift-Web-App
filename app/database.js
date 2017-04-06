@@ -116,7 +116,22 @@ var initialData = {
       "photoRef": "img/book6.jpg",
       "SellerID": "2"
     }
+  },
 
+  "classes":
+  {
+    "1":
+    {
+      "_id": 1,
+      "title": "CS 326",
+      "description": "We teach you how to make facebook",
+      "instrucotr": "Tim Richards, First of his name"
+      "credits": "3"
+      "term": "Spring 2017"
+      "category": "Computer Science",
+      "textbookList": [4,5,6]
+      "techList": [1]
+    }
   },
   "recomendedItems": [1,1,1,1,1,1,1,1,1]
 };
