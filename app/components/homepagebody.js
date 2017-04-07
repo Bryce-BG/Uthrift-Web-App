@@ -145,12 +145,13 @@ componentDidMount()
               </div>
 
               <div className="item col-md-offset-1">
-                {this.state.slide3.map((item) => {
+                {this.state.slide3.map((item, i) => {
                   return (
 
-                    <HOMEPAGECAROUSELITEM key = {6+item._id} name={item.title} referance={item.photoRef} price = {item.Price}/>
+                    <HOMEPAGECAROUSELITEM key = {6+i} name={item.title} referance={item.photoRef} price = {item.Price}/>
                   )
                 })}
+
               </div>
             </div>
 
