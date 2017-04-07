@@ -9,3 +9,9 @@ function emulateServerReturn(data, cb) {
     cb(data);
   }, 4);
 }
+
+export function getUserData(user){
+  var userData = readDocument('users', user);
+  userData.sellingList = userData.sellingList.map((itemId) => readDocument('items', itemId));
+  return(userData);
+}

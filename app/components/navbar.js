@@ -1,9 +1,11 @@
 import React from 'react';
+import RESET from '../database.js';
 
 export default class NAVBAR extends React.Component {
   render() {
     return (
       <div >
+        <RESET />
       <nav className="navbar navbar-default navbar-fixed-top">
           <div className="container" id ="navContainer">
               <div className="row row1">

@@ -7,7 +7,7 @@ export default class PROFILEPAGE extends React.Component{
 		return(
 			<div>
 				<NAVBAR />
-				<PROFILEPAGEBODY />
+				<PROFILEPAGEBODY userID="1"/>
 			</div>
 		)
  }
