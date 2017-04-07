@@ -10,6 +10,7 @@ function emulateServerReturn(data, cb) {
   }, 4);
 }
 
+<<<<<<< HEAD
 
 // Submit stuff from Submission Form
 export function submitItem(userID, title, price, condition,
@@ -41,4 +42,10 @@ export function submitItem(userID, title, price, condition,
 
   // Return the newly-posted object.
   emulateServerReturn(newItem, cb);
+=======
+export function getUserData(user){
+  var userData = readDocument('users', user);
+  userData.sellingList = userData.sellingList.map((itemId) => readDocument('items', itemId));
+  return(userData);
+>>>>>>> 3431627472f6d8e249e469ade4b01ad46ce66b93
 }

@@ -1,15 +1,18 @@
 import React from 'react';
+import {getUserData} from '../server';
 
 import PROFILEINFORMATION from './profileinformation';
 import PROFILESELLINGHISTORY from './profilesellinghistory';
 
 export default class PROFILEPAGE extends React.Component{
 	render(){
+		var userData = getUserData(this.props.userID);
+
 		return(
 			<div>
         <div className="container">
-          <PROFILEINFORMATION nickname="Eric" password="123456789" email="yixiangxu@umass.edu" tel="(413)406-8347"/>
-          <PROFILESELLINGHISTORY />
+          <PROFILEINFORMATION data={userData}/>
+          <PROFILESELLINGHISTORY data={userData}/>
         </div>
 
 				<div className="button_shape">
@@ -17,8 +20,6 @@ export default class PROFILEPAGE extends React.Component{
 						Save
 					</button>
 				</div>
-
-
 
 		</div>
 	)
