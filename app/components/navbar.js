@@ -1,6 +1,6 @@
 import React from 'react';
 //import {resetDatabase} from '../database.js'
-import ResetDatabase from '../database.js'
+//import ResetDatabase from '../database.js'
 
 export default class NAVBAR extends React.Component {
   render() {
@@ -10,7 +10,7 @@ export default class NAVBAR extends React.Component {
           <div className="container" id ="navContainer">
               <div className="row row1">
                   <ul className="largenav pull-right">
-                    <li className="upper-links"><a className="links" id="db-reset">Reset DB</a></li>
+                    <li id="db-reset"></li>
                       <li className="upper-links"><a className="links" href="#">Contact Us</a></li>
                       <li className="upper-links"><a className="links" href="#">Help</a></li>
                       <li className="upper-links"><a className="links" href="#">Sell</a></li>
@@ -60,6 +60,7 @@ export default class NAVBAR extends React.Component {
                          </div>
           </div>
       </nav>
+      <script src="../database.js"></script>
       </div>
 
     )
