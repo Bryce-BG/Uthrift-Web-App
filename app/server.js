@@ -7,14 +7,26 @@ import {readDocument, writeDocument, addDocument, getArray} from './database.js'
 function emulateServerReturn(data, cb) {
   setTimeout(() => {
     cb(data);
-  }, 4);
+  }, 1);
 }
 
 
-getRecomendedItems(cb )
+
+export function getRecomendedItems(cb)
 {
-  data =
-  emulateServerReturn(data, cb);
+
+  var recomendeditemIndexList= getArray('recomendedItems'); //get array for items
+  // console.log("item list is:");
+  // console.log(recomendeditemIndexList);
+  var recomendedItems = [];
+  for (var i = 0; i < 9; i++) {
+    recomendedItems[i] = readDocument("items", recomendeditemIndexList[i]); //actually get the items
+    // console.log(i);
+  }
+
+
+
+  emulateServerReturn(recomendedItems, cb);
 }
 
 
@@ -46,4 +58,10 @@ export function submitItem(userID, location, contents, cb) {
 
   // Return the newly-posted object.
   emulateServerReturn(newItem, cb);
+}
+
+export function getUserData(user){
+  var userData = readDocument('users', user);
+  userData.sellingList = userData.sellingList.map((itemId) => readDocument('items', itemId));
+  return(userData);
 }

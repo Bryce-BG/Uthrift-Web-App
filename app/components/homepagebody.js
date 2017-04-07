@@ -1,12 +1,46 @@
 import React from 'react';
 import HOMEPAGECAROUSELITEM from './homepageCarouselItem.js';
-import import {getRecomendedItems} from '../server';
+import  {getRecomendedItems} from '../server';
 export default class HOMEPAGEBODY extends React.Component
 {
+  constructor(props) {
+        super(props);
+        this.state = {
+          itemListr: []
+        };
+
+
+          // console.log("state is:");
+          // console.log(this.state);
+      }
+
 componentDidMount()
 {
-    getRecomendedItems(feedData);
 
+  // var callbackFunction = (itemList) => {
+  //
+  //           console.log("passed into theclalback was: ");
+  //           console.log( itemList);
+  //           console.log(this.state.itemListr);
+  //
+  //             this.setState({this.state.itemListr: itemList});
+  //           };
+
+
+  var callbackFunction = (itemList) => {
+
+            console.log("passed into theclalback was: ");
+            console.log( itemList);
+            this.setState({itemListr: itemList});
+            //
+            // console.log("new state itemlistr is: ");
+            // console.log(this.state);
+
+            };
+
+   getRecomendedItems(callbackFunction);
+    // console.log("itemlistr is")
+    // console.log(this.state.itemListr);
 
 }
 
@@ -68,6 +102,13 @@ componentDidMount()
 
             <div className="carousel-inner" role="listbox">
               <div className="item active col-md-offset-1">
+
+
+
+
+
+
+
               <HOMEPAGECAROUSELITEM name="book 50 bout bla" referance="img/book1.jpg" price = "#10,000,000"/>
               <HOMEPAGECAROUSELITEM name="book2" referance="img/book2.jpg" price = "$100,000"/>
               <HOMEPAGECAROUSELITEM name="book3" referance="img/book3.jpg" price = "$10,000"/>

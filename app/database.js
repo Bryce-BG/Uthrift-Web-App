@@ -14,10 +14,11 @@ var initialData = {
       "Cellphone": "987-654-3210",
       "FirstName": "John",
       "LastName": "Doe",
+      "NickName": "Someone",
       "Photo": "img/avatar.png",
       "trackList": [],
-      "sellingList": [4,5,6]
-
+      "sellingList": [4,5,6],
+      "Password": "123456"
     },
     "2": {
       "_id": 2,
@@ -25,9 +26,11 @@ var initialData = {
       "Cellphone": "012-345-5678",
       "FirstName": "Jane",
       "LastName": "Rando",
+      "NickName": "AnotherOne",
       "Photo": "img/avatar2.png",
       "trackList": [],
-      "sellingList": [1,2,3]
+      "sellingList": [1,2,3],
+      "Password": "233333"
     }
   },
   "items":
@@ -89,7 +92,7 @@ var initialData = {
       "Condition": "Brand New",
       "Sold": false,
       "Category": "Textbooks",
-      "photoRef": "img/book5.jpg",
+      "photoRef": "img/book4.jpg",
       "SellerID": "2"
     },
     "6":
@@ -195,6 +198,7 @@ export function addDocument(collectionName, newDoc) {
 /**
  * Reset our browser-local database.
  */
+
 export function resetDatabase() {
   localStorage.setItem(startupName, JSON.stringify(initialData));
   data = JSONClone(initialData);
@@ -203,10 +207,11 @@ export function resetDatabase() {
 /**
  * Reset database button.
  */
-class ResetDatabase extends React.Component {
+
+export default class ResetDatabase extends React.Component {
   render() {
     return (
-      <button className="btn btn-default" type="button" onClick={() => {
+      <button htmlStyle= "display: inline-block" className="btn btn-default" type="button" onClick={() => {
         resetDatabase();
         window.alert("Database reset! Refreshing the page now...");
         document.location.reload(false);
@@ -215,7 +220,8 @@ class ResetDatabase extends React.Component {
   }
 }
 
-ReactDOM.render(
+
+/*ReactDOM.render(
   <ResetDatabase />,
   document.getElementById('db-reset')
-);
+);*/

@@ -5,10 +5,10 @@ export default class PROFILESELLINGHISTORY extends React.Component{
 		return(
       <div className="col-md-2">
         <div className="row">
-          <a href="#"><img src={this.props.img} width="80" height="80" /></a>
+          <a href="#"><img src={this.props.img} width="100" height="100" /></a>
         </div>
-        <div className="row center">
-          <a href="#">{this.props.name}</a>
+        <div className="row">
+					<a href="#">{this.props.name}</a>
         </div>
         <div className="row">
           Status: <font color={this.props.color}>{this.props.status}</font>
