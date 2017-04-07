@@ -136,7 +136,7 @@ var initialData = {
       "techList": [1]
     }
   },
-  "recomendedItems": [1,1,1,1,1,1,1,1,1]
+  "recomendedItems": [1,2,3,4,5,6,7,1,1]
 };
 
 var data = JSON.parse(localStorage.getItem(startupName));
