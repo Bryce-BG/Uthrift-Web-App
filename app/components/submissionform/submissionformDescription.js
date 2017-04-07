@@ -42,12 +42,12 @@ export default class SUBMISSIONFORMDESCRIPTION extends React.Component {
     // <textarea> element. The textarea's `value` is the entire contents of
     // what the user has typed in so far.
     if (e.target.id == "titleInput"){
-      this.setState({title: e.target.titleVal});
+      this.setState({title: e.target.value});
       console.log("title");
-      console.log(e.target.titleVal);
+      console.log(e.target.value);
     }
     if (e.target.id == "conditionTextarea"){
-      this.setState({conDesc: e.target.conDesc});
+      this.setState({conDesc: e.target.value});
       console.log("condition");
     }
     if (e.target.id == "costInput"){
@@ -63,7 +63,7 @@ export default class SUBMISSIONFORMDESCRIPTION extends React.Component {
           <div className="form-group">
             <label htmlFor="titleInput">Title</label>
             <input type="text" className="form-control" id="titleInput" placeholder="ex. War and Peace"
-              titleVal={this.state.value} onChange={(e) => this.handleChange(e)}/>
+              value={this.state.value} onChange={(e) => this.handleChange(e)}/>
           </div>
 
           <label htmlFor="costInput">Cost</label>

@@ -13,7 +13,7 @@ function emulateServerReturn(data, cb) {
 
 // Submit stuff from Submission Form
 export function submitItem(userID, title, price, condition,
-  conditionDescription, category, categoryDescription) {
+  conditionDescription, category, categoryDescription, cb) {
   // If we were implementing this for real on an actual server, we would check
   // that the user ID is correct & matches the authenticated user. But since
   // we're mocking it, we can be less strict.
@@ -40,5 +40,5 @@ export function submitItem(userID, title, price, condition,
   newItem = addDocument('items', newItem);
 
   // Return the newly-posted object.
-  //emulateServerReturn(newItem, cb);
+  emulateServerReturn(newItem, cb);
 }
