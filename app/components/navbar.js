@@ -17,8 +17,8 @@ export default class NAVBAR extends React.Component {
                   <ul className="largenav pull-right">
                       <li className="upper-links"><a className="links" href="contact.html">Contact Us</a></li>
                       <li className="upper-links"><a className="links" href="help.html">Help</a></li>
-                      <li className="upper-links"><a className="links" href="#">Sell</a></li>
-          
+
+                      <li className="upper-links"><Link to={"/submitItem/" + this.props.user}>sell item</Link></li>
                       <li className="upper-links"><Link to={"/profile/" + this.props.user}>Profile</Link></li>
 
                   </ul>

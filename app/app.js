@@ -67,11 +67,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import HOMEPAGE from './components/homepage.js';
 import PROFILEPAGE from './components/profilepage.js';
+import SUBMISSIONFORM from './components/submissionform/submissionform.js';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router'
 
 class ProfilePage extends React.Component {
   render() {
     return <PROFILEPAGE user={1} />;
+  }
+}
+
+class SubmitItem extends React.Component {
+  render() {
+    return <SUBMISSIONFORM user={1} />;
   }
 }
 
@@ -94,6 +101,7 @@ ReactDOM.render((
     <Route path="/" component={App}>
       <IndexRoute component={HomePage} />
       <Route path="profile/:id" component={ProfilePage} />
+      <Route path="submitItem/:id" component={SubmitItem} />
     </Route>
   </Router>
 ),document.getElementById('homepage'));
