@@ -12,11 +12,11 @@ function emulateServerReturn(data, cb) {
 
 export function getRecomendedItems(cb)
 {
-  var recomendeditemIndexList= getArray('recomendedItems'); //get array for items
+  var recomendeditemIndexList= getArray('recomendedItems2'); //get array for items
   //console.log("item list is:");
   //console.log(recomendeditemIndexList);
-  var recomendedItems = new Array(9);
-  for (var i = 2; i < 7; i++) {
+  var recomendedItems = new Array(3);
+  for (var i = 1; i < 3; i++) {
     //console.log("looking for: " + i + " with value of  " + recomendeditemIndexList[i]);
     recomendedItems[i] = readDocument("items", recomendeditemIndexList[i]); //actually get the items
      //console.log("actual result: ")
