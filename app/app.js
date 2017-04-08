@@ -50,7 +50,7 @@ else if (document.getElementById('item') !== null) {
 
 else if (document.getElementById('classpage') !== null) {
   ReactDOM.render(
-    <CLASSPAGE UserID = {loggedInUserid}/>,
+    <CLASSPAGE classID = {loggedInUserid}/>,
     document.getElementById('classpage')
   );
 }

@@ -1,15 +1,34 @@
 import React from 'react';
 import CLASSITEM from './classitem.js';
 import CLASSINFO from './classinfo.js';
+import {getClassData} from '../server';
 
 export default class CLASSPAGEBODY extends React.Component {
-  render() {
-    return(
 
+  constructor(props) {
+        super(props);
+        this.state = {
+          textbookList: [],
+          techList: []
+        };
+      }
+
+componentDidMount()
+{
+        console.log(this.props.classID);
+  getClassData(this.props.classID, (classData) => {
+    this.setState(classData);
+  });
+}
+
+  render() {
+    console.log(this.props.classID);
+    console.log(this.state);
+    return(
     <div className="container content-contain">
-      <CLASSINFO title = "CS 326" description ="This class teaches students how to
-       git gud. Those who don't git good will be thrown into the pits of
-       Government contracting." instructor= "No Man" credits="4" term="Spring 2017"/>
+      <CLASSINFO title = {this.state.title} description ={this.state.description}
+        instructor= {this.state.instructor} credits={this.state.credits}
+        term={this.state.term}/>
       <div className="row">
         <ul className="nav nav-tabs nav-justified">
           <li className="active"><a data-toggle="tab" href="#Material">Course Material</a></li>
@@ -23,10 +42,12 @@ export default class CLASSPAGEBODY extends React.Component {
             <div className="col-md-2"></div>
             <div className="col-md-8">
               <h2 className="page-header">Books</h2>
-              <div className="row">
-                <CLASSITEM description="How to own an interview" reference="img/book1.jpg" price = "18.00"/>
-                <CLASSITEM description="Not as good as the internet" reference="img/book2.jpg" price = "21.00"/>
-                <CLASSITEM description="Intro to $$$" reference="img/book3.jpg" price = "25.00"/>
+              <div className="row">{
+                this.state.textbookList.map((item, i) => {
+                  return (
+                    <CLASSITEM key={i} item={this.state.textbookList[i]}/>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -36,8 +57,12 @@ export default class CLASSPAGEBODY extends React.Component {
             </div>
             <div className="col-md-8">
               <h2 className="page-header">Tech</h2>
-              <div className="row">
-                <CLASSITEM description="Lecture prison key" reference="img/iclicker-profile.jpg" price = "98.00"/>
+              <div className="row">{
+                this.state.techList.map((item, i) => {
+                  return (
+                    <CLASSITEM key={i} item={this.state.techList[i]}/>
+                  );
+                })}
               </div>
             </div>
           </div>

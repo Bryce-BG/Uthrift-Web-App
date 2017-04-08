@@ -80,3 +80,11 @@ export function updateUserData(data){
   userData.Photo = data.Photo;
   writeDocument('users', userData);
 }
+
+export function getClassData(classID, cb) {
+    console.log(classID);
+  var classData = readDocument('classes', classID);
+  classData.textbookList = classData.textbookList.map((itemId) => readDocument('items', itemId));
+  classData.techList = classData.techList.map((itemId) => readDocument('items', itemId));
+  emulateServerReturn(classData, cb);
+}
