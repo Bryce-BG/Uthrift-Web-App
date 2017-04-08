@@ -2,15 +2,10 @@ import React from 'react';
 import PROFILEITEM from './profileitem';
 
 export default class PROFILESELLINGHISTORY extends React.Component{
-	constructor(props) {
-    super(props);
-    this.state = props.data;
-  }
-
 	checkSoldStatus(){
 		var status = [];
-		for(var i = 0; i < this.state.sellingList.length; i++){
-			if(this.state.sellingList[i].Sold){
+		for(var i = 0; i < this.props.data.sellingList.length; i++){
+			if(this.props.data.sellingList[i].Sold){
 				status.push("#fe0000");
 				status.push("Sold");
 			}
@@ -34,9 +29,9 @@ export default class PROFILESELLINGHISTORY extends React.Component{
             <div className="panel panel-default">
               <div className="panel-heading">SELLING/SOLD</div>
               <div className="panel-body">
-								{this.state.sellingList.map((items, i) => {
+								{this.props.data.sellingList.map((items, i) => {
 									return(
-										<PROFILEITEM img={this.state.sellingList[i].photoRef} name={this.state.sellingList[i].Title} color={statusOfItem[i * 2]} status={statusOfItem[i * 2 + 1]}/>
+										<PROFILEITEM key={i} img={this.props.data.sellingList[i].photoRef} name={this.props.data.sellingList[i].Title} color={statusOfItem[i * 2]} status={statusOfItem[i * 2 + 1]}/>
 									)
 								})}
               </div>
