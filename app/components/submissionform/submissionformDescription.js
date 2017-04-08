@@ -1,5 +1,5 @@
 import React from 'react';
-//import {submitItem} from '../../server';
+import {submitItem} from '../../server';
 
 export default class SUBMISSIONFORMDESCRIPTION extends React.Component {
 
@@ -18,41 +18,27 @@ export default class SUBMISSIONFORMDESCRIPTION extends React.Component {
    * Triggers the `onPost` prop if the post isn't empty, and clears
    * the component.
    */
-  handlePost(e) {
-    // Prevent the event from "bubbling" up the DOM tree.
-    e.preventDefault();
-    // Trim whitespace from beginning + end of entry.
-    var title_ = this.state.title;
-    if (title_ !== "") {
-      console.log(title_);
+
+    handleSaveClick(clickEvent){
+      clickEvent.preventDefault();
+      if (clickEvent.button == 0){
+        submitItem(this.state);
+      }
+    }
       // submitItem(userID, title, price, condition, conditionDescription, category, categoryDescription, photoRef, cb)
       //submitItem(1, title_, title_, title_, title_, title_, title_);
-      this.setState({title: "", conDesc: "", cost: ""});
-    }
-  }
 
-  /**
-   * Called when the user types a character into the status update box.
-   * @param e An Event object.
-   */
   handleChange(e) {
     // Prevent the event from "bubbling" up the DOM tree.
     e.preventDefault();
-    // e.target is the React Virtual DOM target of the input event -- the
-    // <textarea> element. The textarea's `value` is the entire contents of
-    // what the user has typed in so far.
     if (e.target.id == "titleInput"){
       this.setState({title: e.target.value});
-      console.log("title");
-      console.log(e.target.value);
     }
     if (e.target.id == "conditionTextarea"){
-      this.setState({conDesc: e.target.condDesc});
-      console.log("condition");
+      this.setState({conDesc: e.target.value});
     }
     if (e.target.id == "costInput"){
-      this.setState({cost: e.target.cost});
-      console.log("cost");
+      this.setState({cost: e.target.value});
     }
   }
 
@@ -63,7 +49,7 @@ export default class SUBMISSIONFORMDESCRIPTION extends React.Component {
           <div className="form-group">
             <label htmlFor="titleInput">Title</label>
             <input type="text" className="form-control" id="titleInput" placeholder="ex. War and Peace"
-              value={this.state.value} onChange={(e) => this.handleChange(e)}/>
+              value={this.state.title} onChange={(e) => this.handleChange(e)} />
           </div>
 
           <label htmlFor="costInput">Cost</label>
@@ -95,7 +81,7 @@ export default class SUBMISSIONFORMDESCRIPTION extends React.Component {
           <div className="form-group row">
             <div className="col-md-3 sp24"></div>
             <div className="col-md-3">
-              <button type="submit" className="btn btn-primary" onClick={(e) => this.handlePost(e)}>Post for Sale</button>
+              <button type="submit" className="btn btn-primary" onClick={(e) => this.handleSaveClick(e)}>Post for Sale</button>
             </div>
           </div>
 

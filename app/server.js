@@ -34,36 +34,41 @@ export function getRecomendedItems(cb)
 
 
 // Submit stuff from Submission Form
-export function submitItem(userID, title, price, condition,
-  conditionDescription, category, categoryDescription, cb) {
-  // If we were implementing this for real on an actual server, we would check
-  // that the user ID is correct & matches the authenticated user. But since
-  // we're mocking it, we can be less strict.
-
-  // Get the current UNIX time.
+export function submitItem(data){
+  var userData = readDocument('items', data._id);
   var time = new Date().getTime();
-  // The new item submission. The database will assign the ID for us.
-  var newItem = {
-    "_id": getArray('items').length + 1,
-    "SellerID": userID,
-    "postDate": time,
-    "Title": title,
-    "Price": price,
-    "Condition": condition,
-    "ConditionDescription": conditionDescription,
-    "Description": categoryDescription,
-    "Sold": false,
-    "Category": category,
-    "photoRef": "img/iclicker.jpg"
-  };
-
-  // Add the status update to the database.
-  // Returns the status update w/ an ID assigned.
-  newItem = addDocument('items', newItem);
-
-  // Return the newly-posted object.
-  emulateServerReturn(newItem, cb);
+  
+  userData._id = getArray('items').length + 1;
+  userData.postDate = time;
+  userData.title = data.FirstName;
+  userData.price = data.LastName;
+  userData.condition = data.NickName;
+  userData.conditionDescription = data.Email;
+  userData.category = data.Password;
+  userData.categoryDescription = data.Photo;
+  userData.photoRef = "img/iclicker.jpg";
+  userData.sold = false;
+  userData.sellerId = data.Cellphone;
+  writeDocument('items', userData);
 }
+
+//export function submitItem(userID, title, price, condition,
+//  conditionDescription, category, categoryDescription, cb) {
+//  var time = new Date().getTime();
+//  var newItem = {
+//    "_id": getArray('items').length + 1,
+//    "SellerID": userID,
+//    "postDate": time,
+//    "Title": title,
+//    "Price": price,
+//    "Condition": condition,
+//    "ConditionDescription": conditionDescription,
+//    "Description": categoryDescription,
+//    "Sold": false,
+//    "Category": category,
+//    "photoRef": "img/iclicker.jpg"
+//  };
+//}
 
 export function getUserData(user, cb){
   var userData = readDocument('users', user);
