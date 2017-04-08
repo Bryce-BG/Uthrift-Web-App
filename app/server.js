@@ -35,20 +35,20 @@ export function getRecomendedItems(cb)
 
 // Submit stuff from Submission Form
 export function submitItem(data){
-  var userData = readDocument('items', data._id);
+  var userData = readDocument('items', 1);
   var time = new Date().getTime();
-  
-  userData._id = getArray('items').length + 1;
+
+  userData._id = (Object.keys(getArray('items')).length) + 1;
   userData.postDate = time;
-  userData.title = data.FirstName;
-  userData.price = data.LastName;
-  userData.condition = data.NickName;
-  userData.conditionDescription = data.Email;
-  userData.category = data.Password;
-  userData.categoryDescription = data.Photo;
+  userData.title = data.title;
+  userData.price = data.title;
+  userData.condition = data.title;
+  userData.conditionDescription = data.title;
+  userData.category = data.title;
+  userData.categoryDescription = data.title;
   userData.photoRef = "img/iclicker.jpg";
   userData.sold = false;
-  userData.sellerId = data.Cellphone;
+  userData.sellerId = 1;
   writeDocument('items', userData);
 }
 

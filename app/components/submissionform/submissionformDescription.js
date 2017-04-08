@@ -18,11 +18,13 @@ export default class SUBMISSIONFORMDESCRIPTION extends React.Component {
    * Triggers the `onPost` prop if the post isn't empty, and clears
    * the component.
    */
-
     handleSaveClick(clickEvent){
       clickEvent.preventDefault();
-      if (clickEvent.button == 0){
-        submitItem(this.state);
+      if (this.state.title.trim() != ""){
+        console.log("post");
+        if (clickEvent.button == 0){
+          submitItem(this.state);
+        }
       }
     }
       // submitItem(userID, title, price, condition, conditionDescription, category, categoryDescription, photoRef, cb)

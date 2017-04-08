@@ -38,14 +38,16 @@ var initialData = {
     "1":
     {
       "_id": 1,
-      "Title": "iclicker",
-      "Price": "10,000",
-      "Description": "this is an iclicker item",
-      "Condition": "Brand New",
-      "Sold": false,
-      "Category": "Tech",
+      "postDate": "",
+      "title": "iclicker",
+      "price": "10,000",
+      "condition": "Brand New",
+      "conditionDescription": "Tech",
+      "category": "Tech",
+      "categoryDescription": "Tech",
       "photoRef": "img/iclicker.jpg",
-      "SellerID": "1"
+      "sold": false,
+      "sellerId": "1"
     },
     "2":
     {
