@@ -70,6 +70,7 @@ import PROFILEPAGE from './components/profilepage.js';
 import SUBMISSIONFORM from './components/submissionform/submissionform.js';
 import SEARCHPAGE from './components/searchpage.js';
 import CLASSPAGE from './components/classpage.js';
+import ITEM from './components/item.js';
 import { IndexRoute, Router, Route, browserHistory } from 'react-router'
 
 class ProfilePage extends React.Component {
@@ -102,6 +103,11 @@ class ClassPage extends React.Component {
     return <CLASSPAGE user={1} />;
   }
 }
+class ItemPage extends React.Component {
+  render() {
+    return <ITEM user={1} />;
+  }
+}
 
 class App extends React.Component {
   render() {
@@ -119,6 +125,7 @@ ReactDOM.render((
       <Route path="submitItem/:id" component={SubmitItem} />
       <Route path="searchPage/:id" component={SearchPage} />
       <Route path="classPage/:id" component={ClassPage} />
+      <Route path="itemPage/:id" component={ItemPage} />
     </Route>
   </Router>
 ),document.getElementById('homepage'));
