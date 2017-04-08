@@ -132,7 +132,7 @@ var initialData = {
       "credits": "3",
       "term": "Spring 2017",
       "category": "Computer Science",
-      "textbookList": [2,3,4],
+      "textbookList": [4,5,6],
       "techList": [1]
     }
   },

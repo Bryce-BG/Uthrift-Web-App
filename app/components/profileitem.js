@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class PROFILESELLINGHISTORY extends React.Component{
+export default class PROFILEITEM extends React.Component{
 	render(){
 		return(
       <div className="col-md-2">

@@ -1,6 +1,6 @@
 import React from 'react';
 import RESET from '../database.js';
-{/*import {Link} from 'react-router';*/}
+import {Link} from 'react-router';
 
 
 export default class NAVBAR extends React.Component {
@@ -18,7 +18,7 @@ export default class NAVBAR extends React.Component {
                       <li className="upper-links"><a className="links" href="contact.html">Contact Us</a></li>
                       <li className="upper-links"><a className="links" href="help.html">Help</a></li>
                       <li className="upper-links"><a className="links" href="#">Sell</a></li>
-                      <li className="upper-links"><a className="links" href="#">Profile</a></li>
+                      <li className="upper-links"><Link to={"/profile/" + this.props.user}>Profile</Link></li>
                       {/*<li className="upper-links"><Link to="account">Account Info</Link> </li>*/}
 
                   </ul>
@@ -27,7 +27,7 @@ export default class NAVBAR extends React.Component {
               <div className="row row2">
 
                              <div className="col-md-2">
-                                 <a href="homepage.html"><span className="largenav" id="largenavlogo"><img src="img/uthrift.png" alt="logo" /></span></a>
+                                 <Link to={"http://localhost:8080/"}><span className="largenav" id="largenavlogo"><img src="img/uthrift.png" alt="logo" /></span></Link>
                              </div>
 
 
