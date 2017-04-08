@@ -47,7 +47,7 @@ export default class SUBMISSIONFORMDESCRIPTION extends React.Component {
       console.log(e.target.value);
     }
     if (e.target.id == "conditionTextarea"){
-      this.setState({conDesc: e.target.value});
+      this.setState({conDesc: e.target.condDesc});
       console.log("condition");
     }
     if (e.target.id == "costInput"){

@@ -10,7 +10,6 @@ export default class NAVBAR extends React.Component {
           <div className="container" id ="navContainer">
               <div className="row row1">
                   <ul className="largenav pull-right">
-                    <li id="db-reset"></li>
                       <li className="upper-links"><a className="links" href="#">Contact Us</a></li>
                       <li className="upper-links"><a className="links" href="#">Help</a></li>
                       <li className="upper-links"><a className="links" href="#">Sell</a></li>
