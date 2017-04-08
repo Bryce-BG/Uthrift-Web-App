@@ -45,6 +45,7 @@ export default class NAVBAR extends React.Component {
                                       <option value="Events">Events</option>
                                       <option value="Furniture">Furniture</option>
                                       <option value="Miscellaneous">Miscellaneous</option>
+                                      <option value="Classes">Classes</option>
                                     </select>
                                    </div>
 
