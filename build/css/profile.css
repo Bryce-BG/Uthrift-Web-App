@@ -2,6 +2,9 @@ body {
   padding-top: 120px;
 }
 
+.gap-button{
+  margin-left: 50px;
+}
 .gap{
   margin-bottom: 20px;
 }
@@ -17,4 +20,30 @@ body {
 
 .green{
   background:#0f0;
+}
+
+.icon_shape{
+  text-align: center;
+  margin: auto;
+  padding-bottom: 10px;
+  padding-top: 30px;
+}
+
+.gap-btw{
+  padding-left: 15px;
+}
+
+.tittle_shape{
+  border: none;
+  font-size: 10px
+}
+
+.button_shape{
+  text-align: center;
+  margin: auto;
+  padding-top: 7px;
+}
+
+.center{
+  text-align: center;
 }
