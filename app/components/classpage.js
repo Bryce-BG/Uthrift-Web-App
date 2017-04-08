@@ -4,7 +4,7 @@ import CLASSPAGEBODY from './classpagebody.js';
 
 export default class CLASSPAGE extends React.Component {
   render() {
-    console.log(this.props.classID);
+    //console.log(this.props.classID);
     return (
       <div>
         <NAVBAR />

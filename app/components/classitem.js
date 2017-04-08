@@ -4,7 +4,7 @@ import React from 'react';
 export default class CLASSITEM extends React.Component{
 
   render() {
-    console.log(this.props);
+    //console.log(this.props);
     return (
       <div className = "col-md-4">
           <a href="#">

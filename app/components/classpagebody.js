@@ -15,15 +15,15 @@ export default class CLASSPAGEBODY extends React.Component {
 
 componentDidMount()
 {
-        console.log(this.props.classID);
+      //  console.log(this.props.classID);
   getClassData(this.props.classID, (classData) => {
     this.setState(classData);
   });
 }
 
   render() {
-    console.log(this.props.classID);
-    console.log(this.state);
+    //console.log(this.props.classID);
+    //console.log(this.state);
     return(
     <div className="container content-contain">
       <CLASSINFO title = {this.state.title} description ={this.state.description}
