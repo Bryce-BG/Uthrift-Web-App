@@ -152,6 +152,13 @@ function JSONClone(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
+//Semple's great way of pulling an array from the database
+export function getArray(collection) {
+ // Clone the data. We do this to model a database, where you receive a
+ // *copy* of an object and not the object itself.
+ return JSONClone(data[collection]);
+}
+
 /**
  * Emulates reading a "document" from a NoSQL database.
  * Doesn't do any tricky document joins, as we will cover that in the latter

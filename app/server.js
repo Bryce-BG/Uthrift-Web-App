@@ -1,4 +1,4 @@
-import {readDocument, writeDocument, addDocument} from './database.js';
+import {readDocument, writeDocument, addDocument, getArray} from './database.js';
 
 /**
  * Emulates how a REST call is *asynchronous* -- it calls your function back
@@ -8,6 +8,22 @@ function emulateServerReturn(data, cb) {
   setTimeout(() => {
     cb(data);
   }, 4);
+}
+
+export function getRecomendedItems(cb)
+{
+  var recomendeditemIndexList= getArray('recomendedItems'); //get array for items
+  //console.log("item list is:");
+  //console.log(recomendeditemIndexList);
+  var recomendedItems = new Array(9);
+  for (var i = 2; i < 7; i++) {
+    //console.log("looking for: " + i + " with value of  " + recomendeditemIndexList[i]);
+    recomendedItems[i] = readDocument("items", recomendeditemIndexList[i]); //actually get the items
+     //console.log("actual result: ")
+     //console.log(recomendedItems[i]);
+  }
+//console.log("size of recomended item list: " + recomendedItems.length);
+  emulateServerReturn(recomendedItems, cb);
 }
 
 export function getUserData(user, cb){
