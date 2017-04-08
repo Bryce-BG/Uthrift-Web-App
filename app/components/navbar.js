@@ -1,5 +1,7 @@
 import React from 'react';
 import RESET from '../database.js';
+{/*import {Link} from 'react-router';*/}
+
 
 export default class NAVBAR extends React.Component {
   render() {
@@ -16,7 +18,8 @@ export default class NAVBAR extends React.Component {
                       <li className="upper-links"><a className="links" href="#">Contact Us</a></li>
                       <li className="upper-links"><a className="links" href="#">Help</a></li>
                       <li className="upper-links"><a className="links" href="#">Sell</a></li>
-                      <li className="upper-links"><a className="links" href="#">My Profile</a></li>
+                      {/*<li className="upper-links"><Link to="account">Account Info</Link> </li>*/}
+
                   </ul>
 
               </div>

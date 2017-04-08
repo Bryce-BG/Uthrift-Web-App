@@ -20,14 +20,14 @@ export function getRecomendedItems(cb)
   // console.log(recomendeditemIndexList);
   var recomendedItems = new Array(9);
   for (var i = 0; i < 9; i++) {
-    console.log("looking for: " + i + " with value of  " + recomendeditemIndexList[i]);
+    //console.log("looking for: " + i + " with value of  " + recomendeditemIndexList[i]);
     recomendedItems[i] = readDocument("items", recomendeditemIndexList[i]); //actually get the items
-     console.log("actual result: ")
-     console.log(recomendedItems[i]);
+     //console.log("actual result: ")
+     //console.log(recomendedItems[i]);
   }
 
 
-console.log("size of recomended item list: " + recomendedItems.length);
+//console.log("size of recomended item list: " + recomendedItems.length);
 
   emulateServerReturn(recomendedItems, cb);
 }

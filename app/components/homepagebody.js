@@ -48,11 +48,11 @@ componentDidMount()
             tempSlide3[i-6] = itemList[i];
           }
           this.setState({slide3: tempSlide3})
-          console.log("slide 3 is");
-          console.log(this.state.slide3);
-
-          console.log("state is:");
-          console.log(this.state);
+          // console.log("slide 3 is");
+          // console.log(this.state.slide3);
+          //
+          // console.log("state is:");
+          // console.log(this.state);
 
             };
 

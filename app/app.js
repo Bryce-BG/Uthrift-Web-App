@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+
 // Each major browser view user interface must be imported.
 import HOMEPAGE from './components/homepage.js';
 import PROFILEPAGE from './components/profilepage.js';
@@ -13,9 +14,13 @@ import SUBMISSIONFORM from './components/submissionform/submissionform.js';
 // depending on if the ID is present in the HTML.
 
 
+
+const loggedInUserid= "1";
+
+
 if (document.getElementById('homepage') !== null) {
   ReactDOM.render(
-    <HOMEPAGE />,
+    <HOMEPAGE UserID = {loggedInUserid} />,
     document.getElementById('homepage')
   );
 }
@@ -23,7 +28,7 @@ if (document.getElementById('homepage') !== null) {
 
 else if (document.getElementById('profilepage') !== null) {
   ReactDOM.render(
-    <PROFILEPAGE />,
+    <PROFILEPAGE UserID = {loggedInUserid} />,
     document.getElementById('profilepage')
   );
 }
@@ -31,28 +36,28 @@ else if (document.getElementById('profilepage') !== null) {
 
 else if (document.getElementById('searchpage') !== null) {
   ReactDOM.render(
-    <SEARCHPAGE />,
+    <SEARCHPAGE UserID = {loggedInUserid}/>,
     document.getElementById('searchpage')
   );
 }
 
 else if (document.getElementById('item') !== null) {
   ReactDOM.render(
-    <ITEM />,
+    <ITEM UserID = {loggedInUserid}/>,
     document.getElementById('item')
   );
 }
 
 else if (document.getElementById('classpage') !== null) {
   ReactDOM.render(
-    <CLASSPAGE />,
+    <CLASSPAGE UserID = {loggedInUserid}/>,
     document.getElementById('classpage')
   );
 }
 
 else if (document.getElementById('submissionform') !== null) {
   ReactDOM.render(
-    <SUBMISSIONFORM />,
+    <SUBMISSIONFORM UserID = {loggedInUserid}/>,
     document.getElementById('submissionform')
   );
 }
