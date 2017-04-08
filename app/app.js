@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import ReactDOM from 'react-dom';
 
 
@@ -50,7 +50,7 @@ else if (document.getElementById('item') !== null) {
 
 else if (document.getElementById('classpage') !== null) {
   ReactDOM.render(
-    <CLASSPAGE classID = {loggedInUserid}/>,
+    <CLASSPAGE UserID = {loggedInUserid}/>,
     document.getElementById('classpage')
   );
 }
@@ -60,4 +60,40 @@ else if (document.getElementById('submissionform') !== null) {
     <SUBMISSIONFORM UserID = {loggedInUserid}/>,
     document.getElementById('submissionform')
   );
+}*/
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import HOMEPAGE from './components/homepage.js';
+import PROFILEPAGE from './components/profilepage.js';
+import { IndexRoute, Router, Route, browserHistory } from 'react-router'
+
+class ProfilePage extends React.Component {
+  render() {
+    return <PROFILEPAGE user={1} />;
+  }
 }
+
+class HomePage extends React.Component {
+  render() {
+    return <HOMEPAGE user={1} />;
+  }
+}
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>{this.props.children}</div>
+    )
+  }
+}
+
+ReactDOM.render((
+  <Router history={browserHistory}>
+    <Route path="/" component={App}>
+      <IndexRoute component={HomePage} />
+      <Route path="profile/:id" component={ProfilePage} />
+    </Route>
+  </Router>
+),document.getElementById('homepage'));
