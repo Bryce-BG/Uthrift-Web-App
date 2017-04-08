@@ -18,8 +18,14 @@ export default class NAVBAR extends React.Component {
                       <li className="upper-links"><a className="links" href="contact.html">Contact Us</a></li>
                       <li className="upper-links"><a className="links" href="help.html">Help</a></li>
 
+                        <li className="upper-links"><Link to={"/searchPage/" + this.props.user}>searchPage</Link></li>
+                        <li className="upper-links"><Link to={"/classPage/" + this.props.user}>Classpage</Link></li>
+
+
+
                       <li className="upper-links"><Link to={"/submitItem/" + this.props.user}>sell item</Link></li>
                       <li className="upper-links"><Link to={"/profile/" + this.props.user}>Profile</Link></li>
+
 
                   </ul>
 
