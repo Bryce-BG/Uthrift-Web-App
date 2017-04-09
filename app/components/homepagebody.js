@@ -1,8 +1,71 @@
 import React from 'react';
 import HOMEPAGECAROUSELITEM from './homepageCarouselItem.js';
-
+import  {getRecomendedItems} from '../server';
 export default class HOMEPAGEBODY extends React.Component
 {
+
+
+  constructor(props) {
+        super(props);
+        this.state = {
+          itemListr: [],
+          slide1: new Array(3),
+          slide2: new Array(3),
+          slide3: new Array(3)
+        };
+
+
+          // console.log("state is:");
+          // console.log(this.state);
+      }
+
+componentDidMount()
+{
+
+
+// console.log("init state");
+//   console.log(this.state);
+  var callbackFunction = (itemList) => {
+
+            // console.log("passed into the callback was: ");
+            // console.log( itemList);
+            this.setState({itemListr: itemList});
+          var tempSlide1 = new Array(3);
+          for (var i = 0; i < 3; i++) {
+            tempSlide1[i] = itemList[i];
+          }
+          this.setState({slide1: tempSlide1})
+
+
+          var tempSlide2 = new Array(3);
+          for (var i = 3; i < 6; i++) {
+            tempSlide2[i-3] = itemList[i];
+          }
+          this.setState({slide2: tempSlide2})
+
+          var tempSlide3 = new Array(3);
+          for (var i = 6; i < 9; i++) {
+            tempSlide3[i-6] = itemList[i];
+          }
+          this.setState({slide3: tempSlide3})
+          // console.log("slide 3 is");
+          // console.log(this.state.slide3);
+          //
+          // console.log("state is:");
+          // console.log(this.state);
+
+            };
+
+   getRecomendedItems(callbackFunction);
+    // console.log("itemlistr is")
+    // console.log(this.state.itemListr);
+
+}
+
+
+
+
+
   render() {
     return (
       <div className="container content-contain" id="main-content">
@@ -57,21 +120,38 @@ export default class HOMEPAGEBODY extends React.Component
 
             <div className="carousel-inner" role="listbox">
               <div className="item active col-md-offset-1">
-              <HOMEPAGECAROUSELITEM name="book 50 bout bla" referance="img/book1.jpg" price = "#10,000,000"/>
-              <HOMEPAGECAROUSELITEM name="book2" referance="img/book2.jpg" price = "$100,000"/>
-              <HOMEPAGECAROUSELITEM name="book3" referance="img/book3.jpg" price = "$10,000"/>
+
+
+                {this.state.slide1.map((item) => {
+                  return (
+
+                    <HOMEPAGECAROUSELITEM key = {item._id} name={item.title} referance={item.photoRef} price = {item.Price}/>
+                  )
+                })}
+
+
+
+
+
               </div>
 
               <div className="item col-md-offset-1">
-              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "$10,000"/>
-              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "$10,000"/>
-              <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "$10,000"/>
+                {this.state.slide2.map((item) => {
+                  return (
+
+                    <HOMEPAGECAROUSELITEM key = {3+item._id} name={item.title} referance={item.photoRef} price = {item.Price}/>
+                  )
+                })}
               </div>
 
               <div className="item col-md-offset-1">
-                <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "$10,000"/>
-                <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "$10,000"/>
-                <HOMEPAGECAROUSELITEM name="Iclicker" referance="img/iclicker.jpg" price = "$10,000"/>
+                {this.state.slide3.map((item, i) => {
+                  return (
+
+                    <HOMEPAGECAROUSELITEM key = {6+i} name={item.title} referance={item.photoRef} price = {item.Price}/>
+                  )
+                })}
+
               </div>
             </div>
 

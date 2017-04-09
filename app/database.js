@@ -18,7 +18,10 @@ var initialData = {
       "Photo": "img/avatar.png",
       "trackList": [],
       "sellingList": [4,5,6],
-      "Password": "123456"
+      "Password": "123456",
+      "searchGory": "Textbooks",
+      "searchTerm": ""
+
     },
     "2": {
       "_id": 2,
@@ -30,7 +33,9 @@ var initialData = {
       "Photo": "img/avatar2.png",
       "trackList": [],
       "sellingList": [1,2,3],
-      "Password": "233333"
+      "Password": "233333",
+      "searchGory": "Textbooks",
+      "searchTerm": ""
     }
   },
   "items":
@@ -132,12 +137,11 @@ var initialData = {
       "credits": "3",
       "term": "Spring 2017",
       "category": "Computer Science",
-      "textbookList": [4,5,6],
+      "textbookList": [2,3,4],
       "techList": [1]
     }
   },
-  "recomendedItems": [1,1,1,1,1,1,1,1,1],
-  "recomendedItems2": [2,3,4,5,6,7,1,1,1]
+  "recomendedItems": [1,2,3,4,5,6,7,1,1]
 };
 
 var data = JSON.parse(localStorage.getItem(startupName));
@@ -169,6 +173,13 @@ export function readDocument(collection, id) {
   // Clone the data. We do this to model a database, where you receive a
   // *copy* of an object and not the object itself.
   return JSONClone(data[collection][id]);
+}
+
+//Semple's great way of pulling an array from the database
+export function getArray(collection) {
+ // Clone the data. We do this to model a database, where you receive a
+ // *copy* of an object and not the object itself.
+ return JSONClone(data[collection]);
 }
 
 /**
@@ -212,7 +223,7 @@ export function resetDatabase() {
 export default class ResetDatabase extends React.Component {
   render() {
     return (
-      <button className="btn btn-default" type="button" onClick={() => {
+      <button htmlStyle= "display: inline-block" className="btn btn-default" type="button" onClick={() => {
         resetDatabase();
         window.alert("Database reset! Refreshing the page now...");
         document.location.reload(false);
