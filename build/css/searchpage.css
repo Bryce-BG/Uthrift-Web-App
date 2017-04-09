@@ -4,6 +4,10 @@ body{
     background: #eff0f2;
 }
 
+.query {
+  padding-left: 20px;
+}
+
 .content-contain {
     background-color: white;
 }

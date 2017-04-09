@@ -13,7 +13,7 @@ export default class SEARCHPAGE extends React.Component{
 						<div className="col-md-2">
 						</div>
 						<div className="col-md-7">
-							<SEARCHRESULTS query=" Books on how to hack life"/>
+							<SEARCHRESULTS user={this.props.user}/>
 							<SEARCHPAGINATION />
 						</div>
 						<div className="col-md-2 ">

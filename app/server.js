@@ -57,7 +57,9 @@ export function getSearch(search, cb) {
         index+=1;
       }
  }
- searchResults = refinedList; // for now
+ if (searchResults.length < 2) {
+   searchResults = refinedList; // for now
+ }
  emulateServerReturn(searchResults, cb);
 }
 

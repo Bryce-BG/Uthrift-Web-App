@@ -20,7 +20,7 @@ var initialData = {
       "sellingList": [4,5,6],
       "Password": "123456",
       "searchGory": "Textbooks",
-      "searchTerm": ""
+      "searchTerm": "Books on how to hack life"
 
     },
     "2": {
