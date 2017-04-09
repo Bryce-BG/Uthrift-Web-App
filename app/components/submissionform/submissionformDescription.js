@@ -21,7 +21,6 @@ export default class SUBMISSIONFORMDESCRIPTION extends React.Component {
     handleSaveClick(clickEvent){
       clickEvent.preventDefault();
       if (this.state.title.trim() != ""){
-        console.log("post");
         if (clickEvent.button == 0){
           submitItem(this.state);
         }
