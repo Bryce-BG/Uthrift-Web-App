@@ -41,11 +41,11 @@ export function submitItem(data){
   userData._id = (Object.keys(getArray('items')).length) + 1;
   userData.postDate = time;
   userData.title = data.title;
-  userData.price = data.title;
-  userData.condition = data.title;
-  userData.conditionDescription = data.title;
-  userData.category = data.title;
-  userData.categoryDescription = data.title;
+  userData.price = data.price;
+  userData.condition = data.condition;
+  userData.conditionDescription = data.conDesc;
+  userData.category = data.category;
+  userData.categoryDescription = data.categoryDescription;
   userData.photoRef = "img/iclicker.jpg";
   userData.sold = false;
   userData.sellerId = 1;
