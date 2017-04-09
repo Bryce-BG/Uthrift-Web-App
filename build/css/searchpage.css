@@ -7,7 +7,7 @@ body{
 .content-contain {
     background-color: white;
 }
-.col-md-4 > img {
+.col-md-4 img {
   display: block;
   max-width:160px;
   max-height:180px;
