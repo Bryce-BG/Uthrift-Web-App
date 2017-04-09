@@ -139,6 +139,18 @@ var initialData = {
       "category": "Computer Science",
       "textbookList": [2,3,4],
       "techList": [1]
+    },
+    "2":
+    {
+      "_id": 2,
+      "title": "CS Test",
+      "description": "This is just a test",
+      "instructor": "No Man",
+      "credits": "6",
+      "term": "Spring 2017",
+      "category": "Abstract",
+      "textbookList": [4,5,6],
+      "techList": [1]
     }
   },
   "recomendedItems": [1,2,3,4,5,6,7,1,1]

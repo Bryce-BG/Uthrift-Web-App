@@ -13,13 +13,25 @@ export default class CLASSPAGEBODY extends React.Component {
         };
       }
 
-componentDidMount()
-{
+  refresh() {
+    getClassData(this.props.classID, (classData) => {
+      this.setState(classData);
+    });
+  }
+
+  componentDidMount()
+  {
       //  console.log(this.props.classID);
-  getClassData(this.props.classID, (classData) => {
-    this.setState(classData);
-  });
-}
+      this.refresh();
+  }
+
+  componentDidUpdate (prevProps) {
+    // respond to parameter change in scenario 3
+    let oldId = prevProps.classID
+    let newId = this.props.classID
+    if (newId !== oldId)
+      this.refresh();
+  }
 
   render() {
     //console.log(this.props.classID);
@@ -45,7 +57,7 @@ componentDidMount()
               <div className="row">{
                 this.state.textbookList.map((item, i) => {
                   return (
-                    <CLASSITEM key={i} item={this.state.textbookList[i]}/>
+                    <CLASSITEM key={this.state.textbookList[i]._id} item={this.state.textbookList[i]}/>
                   );
                 })}
               </div>
