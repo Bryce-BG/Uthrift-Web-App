@@ -32,6 +32,30 @@ export function getRecomendedItems(cb)
   emulateServerReturn(recomendedItems, cb);
 }
 
+export function getSearch(search, cb) {
+  var itemList= getArray('items'); //get array for items
+  var refinedList = [];
+  var index = 0;
+  if (search[0] !== "") {
+    for (var i = 1; i < itemList.length; i++) { //loop through and see only add items that have the correct category.
+      if (itemList[i].category === search[0]) {
+          refinedList[index] = itemList[i];
+          index+=1;
+        }
+      }
+  }
+  //take the list of all items with correct category and then try to narrow them down further by applying hte search filter
+  var searchResults = [];
+  index = 0; //reset to 0 for next search
+  for (var i = 1; i < refinedList.length; i++) {
+    if (refinedList[i].Title === search[1] || refinedList[i]._id === search[1]) {
+        searchResults[index] = refinedList[i];
+        index+=1;
+      }
+  console.log("testing");
+ }
+ emulateServerReturn(searchResults, cb);
+}
 
 // Submit stuff from Submission Form
 export function submitItem(userID, location, contents, cb) {
