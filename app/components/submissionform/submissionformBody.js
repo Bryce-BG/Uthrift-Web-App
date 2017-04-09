@@ -14,10 +14,21 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         condition: "",
         conDesc: "",
         category: "",
-        categoryDescription: ""
+        categoryDescription: "",
+        categoryDescription01: "",
+        categoryDescription02: "",
+        categoryDescription03: "",
+        categoryDescription04: "",
+        categoryDescription05: "",
+        categoryDescription06: ""
       };
     }
 
+
+    save(){
+    console.log(this.state.categoryDescription + "=catdesc4");
+        submitItem(this.state);
+    }
     /**
      * Called when the user clicks the 'post' button.
      * Triggers the `onPost` prop if the post isn't empty, and clears
@@ -25,9 +36,36 @@ export default class SUBMISSIONFORMBODY extends React.Component {
      */
       handleSaveClick(clickEvent){
         clickEvent.preventDefault();
+        console.log(this.state.categoryDescription01);
+        if (this.state.categoryDescription01 != ""){
+          console.log(this.state.categoryDescription + "=catdesc");
+          this.setState({categoryDescription: this.state.categoryDescription01}, () => {console.log(this.state)});
+          console.log(this.state.categoryDescription + "=catdesc2");
+        }
+        if (this.state.categoryDescription02 != ""){
+          if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription02});  }
+          else {this.setState({categoryDescription: this.state.categoryDescription02});}
+        }
+        if (this.state.categoryDescription03 != ""){
+          if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription03});  }
+          else {this.setState({categoryDescription: this.state.categoryDescription03});}
+        }
+        if (this.state.categoryDescription04 != ""){
+          if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription04});  }
+          else {this.setState({categoryDescription: this.state.categoryDescription04});}
+        }
+        if (this.state.categoryDescription05 != ""){
+          if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription05});  }
+          else {this.setState({categoryDescription: this.state.categoryDescription05});}
+        }
+        if (this.state.categoryDescription06 != ""){
+          if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription06});  }
+          else {this.setState({categoryDescription: this.state.categoryDescription06});}
+        }
         if (this.state.title.trim() != ""){
           if (clickEvent.button == 0){
-            submitItem(this.state);
+            this.setState({}, this.save);
+
           }
         }
       }
@@ -68,22 +106,23 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         this.setState({category: this.state.category + e.target.value});
       }
       if (e.target.id == "textbookTextarea"){
-        this.setState({categoryDescription: this.state.categoryDescription + e.target.value});
+        this.setState({categoryDescription01: e.target.value});
+        console.log(this.state.categoryDescription01);
       }
       if (e.target.id == "clothingTextarea"){
-        this.setState({categoryDescription: this.state.categoryDescription + e.target.value});
+        this.setState({categoryDescription02: e.target.value});
       }
       if (e.target.id == "eventTextarea"){
-        this.setState({categoryDescription: this.state.categoryDescription + e.target.value});
+        this.setState({categoryDescription03: e.target.value});
       }
       if (e.target.id == "techTextarea"){
-        this.setState({categoryDescription: this.state.categoryDescription + e.target.value});
+        this.setState({categoryDescription04: e.target.value});
       }
       if (e.target.id == "furnitureTextarea"){
-        this.setState({categoryDescription: this.state.categoryDescription + e.target.value});
+        this.setState({categoryDescription05: e.target.value});
       }
       if (e.target.id == "miscTextarea"){
-        this.setState({categoryDescription: this.state.categoryDescription + e.target.value});
+        this.setState({categoryDescription06: e.target.value});
       }
     }
 
