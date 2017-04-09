@@ -24,9 +24,43 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       };
     }
 
+    callback(){
+      console.log("callback");
+      console.log(this.state);
+      this.update();
+    }
+
+    update(){
+      if (this.state.categoryDescription01 != ""){
+        this.setState({categoryDescription: this.state.categoryDescription01, categoryDescription01: ""}, this.callback);
+      }
+      else if (this.state.categoryDescription02 != ""){
+        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription02, categoryDescription02: ""}, this.callback);  }
+//          else {this.setState({categoryDescription: this.state.categoryDescription02}, this.callback);}
+      }
+      else if (this.state.categoryDescription03 != ""){
+        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription03, categoryDescription03: ""}, this.callback);  }
+//          else {this.setState({categoryDescription: this.state.categoryDescription03}, this.callback);}
+      }
+      else if (this.state.categoryDescription04 != ""){
+        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription04, categoryDescription04: ""}, this.callback);  }
+//          else {this.setState({categoryDescription: this.state.categoryDescription04}, this.callback);}
+      }
+      else if (this.state.categoryDescription05 != ""){
+        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription05, categoryDescription05: ""}, this.callback);  }
+//          else {this.setState({categoryDescription: this.state.categoryDescription05}, this.callback);}
+      }
+      else if (this.state.categoryDescription06 != ""){
+        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription06, categoryDescription06: ""}, this.callback);  }
+//          else {this.setState({categoryDescription: this.state.categoryDescription06}, this.callback);}
+      }
+      else if (this.state.title.trim() != ""){
+          this.setState({}, this.save);
+      }
+    }
 
     save(){
-    console.log(this.state.categoryDescription + "=catdesc4");
+    console.log(this.state);
         submitItem(this.state);
     }
     /**
@@ -36,38 +70,9 @@ export default class SUBMISSIONFORMBODY extends React.Component {
      */
       handleSaveClick(clickEvent){
         clickEvent.preventDefault();
-        console.log(this.state.categoryDescription01);
-        if (this.state.categoryDescription01 != ""){
-          console.log(this.state.categoryDescription + "=catdesc");
-          this.setState({categoryDescription: this.state.categoryDescription01}, () => {console.log(this.state)});
-          console.log(this.state.categoryDescription + "=catdesc2");
-        }
-        if (this.state.categoryDescription02 != ""){
-          if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription02});  }
-          else {this.setState({categoryDescription: this.state.categoryDescription02});}
-        }
-        if (this.state.categoryDescription03 != ""){
-          if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription03});  }
-          else {this.setState({categoryDescription: this.state.categoryDescription03});}
-        }
-        if (this.state.categoryDescription04 != ""){
-          if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription04});  }
-          else {this.setState({categoryDescription: this.state.categoryDescription04});}
-        }
-        if (this.state.categoryDescription05 != ""){
-          if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription05});  }
-          else {this.setState({categoryDescription: this.state.categoryDescription05});}
-        }
-        if (this.state.categoryDescription06 != ""){
-          if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription06});  }
-          else {this.setState({categoryDescription: this.state.categoryDescription06});}
-        }
-        if (this.state.title.trim() != ""){
           if (clickEvent.button == 0){
-            this.setState({}, this.save);
-
+            this.update();
           }
-        }
       }
         // submitItem(userID, title, price, condition, conditionDescription, category, categoryDescription, photoRef, cb)
         //submitItem(1, title_, title_, title_, title_, title_, title_);
@@ -107,7 +112,6 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       }
       if (e.target.id == "textbookTextarea"){
         this.setState({categoryDescription01: e.target.value});
-        console.log(this.state.categoryDescription01);
       }
       if (e.target.id == "clothingTextarea"){
         this.setState({categoryDescription02: e.target.value});
