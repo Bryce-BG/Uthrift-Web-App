@@ -18,7 +18,10 @@ var initialData = {
       "Photo": "img/avatar.png",
       "trackList": [],
       "sellingList": [4,5,6],
-      "Password": "123456"
+      "Password": "123456",
+      "searchGory": "Textbooks",
+      "searchTerm": ""
+
     },
     "2": {
       "_id": 2,
@@ -30,7 +33,9 @@ var initialData = {
       "Photo": "img/avatar2.png",
       "trackList": [],
       "sellingList": [1,2,3],
-      "Password": "233333"
+      "Password": "233333",
+      "searchGory": "Textbooks",
+      "searchTerm": ""
     }
   },
   "items":

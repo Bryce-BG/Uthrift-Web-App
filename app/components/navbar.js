@@ -70,7 +70,7 @@ constructor()
 
                                    <div className="col-md-3" id = "catogory-Select" >
                                      <select id="categories" className="form-control dropdown">
-                                      <option value = "Default">Select Category</option>
+                                      <option value = "">Select Category</option>
                                       <option value="Textbooks">Textbooks</option>
                                       <option value="Clothing">Clothing</option>
                                       <option value="Tech">Tech</option>
