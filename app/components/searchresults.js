@@ -7,8 +7,8 @@ export default class SEARCHRESULTS extends React.Component{
     super(props);
     this.state = {
 			itemListr: [],
-      slide1: new Array(3),
-      slide2: new Array(3)
+      row1: new Array(3),
+      row2: new Array(3)
     };
   }
 
@@ -19,13 +19,13 @@ export default class SEARCHRESULTS extends React.Component{
 			for (var i = 0; i < 3; i++) {
 				tempSlide1[i] = itemList[i];
 			}
-			this.setState({slide1: tempSlide1})
+			this.setState({row1: tempSlide1})
 
 			var tempSlide2 = new Array(3);
 			for (var i = 3; i < 6; i++) {
 				tempSlide2[i-3] = itemList[i];
 			}
-			this.setState({slide2: tempSlide2})
+			this.setState({row2: tempSlide2})
 		};
 		getRecomendedItems(callbackFunction);
 	}
@@ -37,9 +37,9 @@ export default class SEARCHRESULTS extends React.Component{
 					<small className="query">{this.props.query}</small>
 				</h1>
 				<div className="row">
-					{this.state.slide1.map((item,j) => {
+					{this.state.row1.map((item,j) => {
 						return (
-							<SEARCHITEM key = {j} des={item.title} src={item.photoRef} price = {item.Price}/>
+							<SEARCHITEM key = {j} des={item.Description} src={item.photoRef} price = {item.Price + 100}/>
 						)
 					})}
 					//<SEARCHITEM des="Item 1 Description" src="img/book1.jpg" price = "18.00"/>
@@ -48,9 +48,14 @@ export default class SEARCHRESULTS extends React.Component{
 				</div>
 				<hr/>
 				<div className="row">
-					<SEARCHITEM des="Item 4 Description" src="img/book4.jpg" price = "18.00"/>
-					<SEARCHITEM des="Item 5 Description" src="img/book5.jpg" price = "18.00"/>
-					<SEARCHITEM des="Item 6 Description" src="img/book6.jpg" price = "18.00"/>
+					{this.state.row2.map((item,j) => {
+						return (
+							<SEARCHITEM key = {j} des={item.Description} src={item.photoRef} price = {item.Price + 100}/>
+						)
+					})}
+					//<SEARCHITEM des="Item 4 Description" src="img/book4.jpg" price = "18.00"/>
+					//<SEARCHITEM des="Item 5 Description" src="img/book5.jpg" price = "18.00"/>
+					//<SEARCHITEM des="Item 6 Description" src="img/book6.jpg" price = "18.00"/>
         </div>
         <hr/>
 			</div>
