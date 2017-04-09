@@ -1,5 +1,6 @@
 import React from 'react';
 // import {getItemData} from '../server';
+//import {Link} from 'react-router';
 
 export default class CLASSITEM extends React.Component{
 
@@ -7,7 +8,7 @@ export default class CLASSITEM extends React.Component{
     //console.log(this.props);
     return (
       <div className = "col-md-4">
-          <a href="#">
+          <a href={"#/classPage/" + 2}>
             <img src={this.props.item.photoRef} alt=""/>
           </a>
           <h5 className="description">{this.props.item.Description}</h5>

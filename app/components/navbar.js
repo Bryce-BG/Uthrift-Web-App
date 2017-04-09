@@ -63,7 +63,7 @@ constructor()
 
                       {/*dummy links*/}
                         <li className="upper-links"><Link to={"/itemPage/" + this.props.user}>Item Page</Link></li>
-                        <li className="upper-links"><Link to={"/classPage/" + this.props.user}>Classpage</Link></li>
+                        <li className="upper-links"><Link to={"/classPage/" + 1}>Classpage</Link></li>
 
 
 
