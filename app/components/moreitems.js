@@ -15,8 +15,8 @@ export default class MOREITEMS extends React.Component {
         <div className="row">
 
           <div className="col-md-12">
-            <div className="panel panel-default">
-              <div className="panel-heading">More by the seller</div>
+
+              <h3 className="page-header"> More by the seller</h3>
               <div className="panel-body">
 								{this.props.data.sellingList.map((items, i) => {
 									return(
@@ -28,7 +28,7 @@ export default class MOREITEMS extends React.Component {
           </div>
         </div>
       </div>
-			</div>
+
 		)
 
   }
