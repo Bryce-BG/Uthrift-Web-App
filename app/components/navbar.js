@@ -4,6 +4,30 @@ import {Link} from 'react-router';
 
 
 export default class NAVBAR extends React.Component {
+
+constructor()
+{
+  super()
+  this.state = {
+    category: "",
+    value :""
+
+
+  }
+}
+
+  handleChange(e) {
+    e.preventDefault();
+    var se = document.getElementById("categories").value; //get the currently selected value from SELECT for the category
+
+
+
+     this.setState({category: se,
+                    value : e.target.value});
+
+  }
+
+
   render() {
     return (
       <div >
@@ -17,7 +41,8 @@ export default class NAVBAR extends React.Component {
                   <ul className="largenav pull-right">
                       <li className="upper-links"><a className="links" href="contact.html">Contact Us</a></li>
                       <li className="upper-links"><a className="links" href="help.html">Help</a></li>
-                      
+
+                      {/*dummy links*/}
                         <li className="upper-links"><Link to={"/itemPage/" + this.props.user}>Item Page</Link></li>
                         <li className="upper-links"><Link to={"/searchPage/" + this.props.user}>searchPage</Link></li>
                         <li className="upper-links"><Link to={"/classPage/" + this.props.user}>Classpage</Link></li>
@@ -44,8 +69,8 @@ export default class NAVBAR extends React.Component {
                                  <form role="search" className="col-md-12" id = "searchForm">
 
                                    <div className="col-md-3" id = "catogory-Select" >
-                                     <select name="catogories" className="form-control dropdown">
-                                      <option value = "Category">Select Category</option>
+                                     <select id="categories" className="form-control dropdown">
+                                      <option value = "Default">Select Category</option>
                                       <option value="Textbooks">Textbooks</option>
                                       <option value="Clothing">Clothing</option>
                                       <option value="Tech">Tech</option>
@@ -57,7 +82,7 @@ export default class NAVBAR extends React.Component {
                                    </div>
 
 
-                                     <input className="uthrift-navbar-input col-md-8" value = "" type="text" placeholder="Search UThrift..." name="search"/>
+                                     <input className="uthrift-navbar-input col-md-8"  type="text" placeholder="Search UThrift..." name="search"  value={this.state.value} onChange={(e) => this.handleChange(e)} />
 
                                      <button className="uthrift-navbar-button col-md-1" >
                                          <svg width="15px" height="15px">
