@@ -14,6 +14,7 @@ export default class CLASSPAGEBODY extends React.Component {
       }
 
   refresh() {
+
     getClassData(this.props.classID, (classData) => {
       this.setState(classData);
     });
@@ -21,7 +22,6 @@ export default class CLASSPAGEBODY extends React.Component {
 
   componentDidMount()
   {
-      //  console.log(this.props.classID);
       this.refresh();
   }
 
