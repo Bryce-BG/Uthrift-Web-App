@@ -37,9 +37,13 @@ export function getSearch(search, cb) {
   var refinedList = [];
   var index = 0;
   if (search[0] !== "") {
-    for (var i = 1; i < itemList.length; i++) { //loop through and see only add items that have the correct category.
-      if (itemList[i].category === search[0]) {
-          refinedList[index] = itemList[i];
+    var itemlistArray = Object.values(itemList);
+    var itemListLength = itemlistArray.length;
+    for (var i = 1; i < itemListLength+1; i++) { //loop through and see only add items that have the correct category.
+      var itemArray = Object.values(itemList[i]);
+      //console.log(itemArray);
+      if (itemArray[6] === search[0]) {
+          refinedList[index] = itemArray;
           index+=1;
         }
       }
@@ -52,8 +56,8 @@ export function getSearch(search, cb) {
         searchResults[index] = refinedList[i];
         index+=1;
       }
-  console.log("testing");
  }
+ searchResults = refinedList; // for now
  emulateServerReturn(searchResults, cb);
 }
 

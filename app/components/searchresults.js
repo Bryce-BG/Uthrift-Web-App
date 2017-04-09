@@ -7,18 +7,26 @@ export default class SEARCHRESULTS extends React.Component{
     super(props);
     this.state = {
 			itemListr: [],
-      row1: new Array(3)
+      row1: new Array(3),
+			row2: new Array(3)
     };
   }
 
 	componentDidMount() {
 		var callbackFunction = (itemList) => {
       this.setState({itemListr: itemList});
+			console.log(itemList);
       var tempSlide1 = new Array(3);
       for (var i = 0; i < 3; i++) {
         tempSlide1[i] = itemList[i];
 			}
 			this.setState({row1: tempSlide1})
+
+			var tempSlide2 = new Array(3);
+			for (var i = 3; i < 6; i++) {
+				tempSlide2[i] = itemList[i];
+			}
+			this.setState({row2: tempSlide2})
 		};
 		getSearch(["Textbooks",""],callbackFunction);
 	}
@@ -30,11 +38,19 @@ export default class SEARCHRESULTS extends React.Component{
 					<small className="query">{this.props.query}</small>
 				</h1>
 				<div className="row">
-
+					{this.state.row1.map((item) => {
+						return (
+							<SEARCHITEM key = {item} des={item[1]} src={item[7]} price = {item[2]}/>
+						)
+					})}
 				</div>
 				<hr/>
 				<div className="row">
-					<SEARCHITEM des="Item 4 Description" src="img/book4.jpg" price = "18.00"/>
+					{this.state.row2.map((item) => {
+						return (
+							<SEARCHITEM key = {item} des={item[1]} src={item[7]} price = {item[2]}/>
+						)
+					})}
         </div>
         <hr/>
 			</div>
