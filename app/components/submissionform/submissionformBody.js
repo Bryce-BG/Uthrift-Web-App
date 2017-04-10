@@ -14,6 +14,8 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         price: "",
         condition: "",
         conDesc: "",
+        subject: "",
+        courseNumber: "",
         category: "",
           txtbxchked: false,
           clothbxchked: false,
@@ -173,29 +175,43 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       if (e.target.id == "conditionTextarea"){
         this.setState({conDesc: e.target.value});
       }
+
+
+      if (e.target.id == "subjectSelect"){
+        if (e.target.value != "Choose..."){
+          this.setState({subject: e.target.value});
+        }
+      }
+      if (e.target.id == "courseNumber"){
+        this.setState({courseNumber: e.target.value});
+      }
+
+
       if (e.target.id == "textbookTextarea"){
         this.setState({categoryDescription01: e.target.value});
       }
-        if (e.target.id == "author"){
-          this.setState({categoryDescription01a: e.target.value});
-        }
-        if (e.target.id == "edition"){
-          this.setState({categoryDescription01b: e.target.value});
-        }
+          if (e.target.id == "author"){
+            this.setState({categoryDescription01a: e.target.value});
+          }
+          if (e.target.id == "edition"){
+            this.setState({categoryDescription01b: e.target.value});
+          }
+
       if (e.target.id == "clothingTextarea"){
         this.setState({categoryDescription02: e.target.value});
       }
-        if (e.target.id == "clotheSelect"){
-          if (e.target.value != "Choose..."){
-            this.setState({categoryDescription02a: e.target.value});
+          if (e.target.id == "clotheSelect"){
+            if (e.target.value != "Choose..."){
+              this.setState({categoryDescription02a: e.target.value});
+            }
           }
-        }
-        if (e.target.id == "clotheNumber"){
-            this.setState({categoryDescription02b: e.target.value});
-        }
-        if (e.target.id == "clotheDetail"){
-            this.setState({categoryDescription02c: e.target.value});
-        }
+          if (e.target.id == "clotheNumber"){
+              this.setState({categoryDescription02b: e.target.value});
+          }
+          if (e.target.id == "clotheDetail"){
+              this.setState({categoryDescription02c: e.target.value});
+          }
+
       if (e.target.id == "eventTextarea"){
         this.setState({categoryDescription03: e.target.value});
       }
@@ -248,7 +264,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
 
       handleChangePhoto(e) {
         //would use this to upload new image but because of database size restrictions, it just changes it to iclicker
-        this.setState({ photoReftemp: "img/" + e.target.value.substr(11) });
+        this.setState({ photoReftemp: "img/" + e.target.value.substr(12) }); //Note: the target used a backslash at the start instead of a forward slash. (if substr(11) instead of 12.)
         this.setState({ photoRef: "img/iclicker.jpg"});
       }
 
@@ -348,18 +364,18 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   </div>
                   <div className = "form-group-row">
                     <label className = "sp8" htmlFor="courseSelect">Course Subject:</label>
-                    <select className="custom-select sp16" id="subjectSelect">
+                    <select className="custom-select sp16" id="subjectSelect" value={this.state.subjectSelect} onChange={(e) => this.handleChange(e)} >
                       <option selected>Choose...</option>
-                      <option value="1">Accounting</option>
-                      <option value="2">Aerospace Studies</option>
-                      <option value="3">Animal Science</option>
-                      <option value="4">Anthropology</option>
-                      <option value="5">Arabic</option>
-                      <option value="6">Community Health (see PUBHLTH)</option>
+                      <option>Accounting</option>
+                      <option>Aerospace Studies</option>
+                      <option>Animal Science</option>
+                      <option>Anthropology</option>
+                      <option>Arabic</option>
+                      <option>Community Health (see PUBHLTH)</option>
                     </select>
                     <label className = "sp8" htmlFor="courseSelect">Course Number:</label> {/*}<!--- Note: This does not allow for course number that include letters like 197U. Search criteria should simply be 197 in this example --->*/}
                     <div className="pull-right right">
-                      <input type="number" min = "0" step = "1" className="custom-select narrow" id="courseNumber" placeholder="000"/>
+                      <input type="number" min = "0" step = "1" className="custom-select narrow" id="courseNumber" placeholder="000" value={this.state.courseNumber} onChange={(e) => this.handleChange(e)} />
                     </div>
                     <h1 className="page-header"></h1>
                   </div>
@@ -421,9 +437,9 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                         <div className="col-md-4">
                           <select className="custom-select" id="clotheSelect" value={this.state.clotheSelect} onChange={(e) => this.handleChange(e)} >
                             <option selected>Choose...</option>
-                            <option value="1">Small</option>
-                            <option value="2">Medium</option>
-                            <option value="3">Large</option>
+                            <option>Small</option>
+                            <option>Medium</option>
+                            <option>Large</option>
                           </select>
                         </div>
                         <div className="col-md-2">
