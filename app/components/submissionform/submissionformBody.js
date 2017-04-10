@@ -4,7 +4,8 @@ import {submitItem} from '../../server';
 
 export default class SUBMISSIONFORMBODY extends React.Component {
 
-
+  // submitItem(userID, title, price, condition,
+  //   conditionDescription, category, categoryDescription, photoRef, cb)
     constructor(props) {
       super(props);
       this.state = {
@@ -15,67 +16,65 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         conDesc: "",
         category: "",
         categoryDescription: "",
-        categoryDescription01: "",
+        categoryDescription01: "", //These are used for later combining together to form one categoryDescription
         categoryDescription02: "",
         categoryDescription03: "",
         categoryDescription04: "",
         categoryDescription05: "",
-        categoryDescription06: ""
+        categoryDescription06: "",
+        txtbxchked: false
       };
     }
 
+    //Only way I could figure out how to beat react's asynchronous property when trying to update categoryDescription
     callback(){
-      console.log("callback");
-      console.log(this.state);
       this.update();
     }
 
+    //Checks all the category description fields for input and combines those inputs together
     update(){
       if (this.state.categoryDescription01 != ""){
         this.setState({categoryDescription: this.state.categoryDescription01, categoryDescription01: ""}, this.callback);
       }
       else if (this.state.categoryDescription02 != ""){
         if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription02, categoryDescription02: ""}, this.callback);  }
-//          else {this.setState({categoryDescription: this.state.categoryDescription02}, this.callback);}
+          else {this.setState({categoryDescription: this.state.categoryDescription02, categoryDescription02: ""}, this.callback);}
       }
       else if (this.state.categoryDescription03 != ""){
         if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription03, categoryDescription03: ""}, this.callback);  }
-//          else {this.setState({categoryDescription: this.state.categoryDescription03}, this.callback);}
+          else {this.setState({categoryDescription: this.state.categoryDescription03, categoryDescription03: ""}, this.callback);}
       }
       else if (this.state.categoryDescription04 != ""){
         if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription04, categoryDescription04: ""}, this.callback);  }
-//          else {this.setState({categoryDescription: this.state.categoryDescription04}, this.callback);}
+          else {this.setState({categoryDescription: this.state.categoryDescription04, categoryDescription04: ""}, this.callback);}
       }
       else if (this.state.categoryDescription05 != ""){
         if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription05, categoryDescription05: ""}, this.callback);  }
-//          else {this.setState({categoryDescription: this.state.categoryDescription05}, this.callback);}
+          else {this.setState({categoryDescription: this.state.categoryDescription05, categoryDescription05: ""}, this.callback);}
       }
       else if (this.state.categoryDescription06 != ""){
         if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription06, categoryDescription06: ""}, this.callback);  }
-//          else {this.setState({categoryDescription: this.state.categoryDescription06}, this.callback);}
+          else {this.setState({categoryDescription: this.state.categoryDescription06, categoryDescription06: ""}, this.callback);}
       }
+
+      //Saves the new item to the database
       else if (this.state.title.trim() != ""){
           this.setState({}, this.save);
       }
     }
 
     save(){
-    console.log(this.state);
+      console.log(this.state);
         submitItem(this.state);
     }
-    /**
-     * Called when the user clicks the 'post' button.
-     * Triggers the `onPost` prop if the post isn't empty, and clears
-     * the component.
-     */
+
+    //User clicks post:
       handleSaveClick(clickEvent){
         clickEvent.preventDefault();
           if (clickEvent.button == 0){
             this.update();
           }
       }
-        // submitItem(userID, title, price, condition, conditionDescription, category, categoryDescription, photoRef, cb)
-        //submitItem(1, title_, title_, title_, title_, title_, title_);
 
     handleChange(e) {
       // Prevent the event from "bubbling" up the DOM tree.
@@ -87,7 +86,9 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         this.setState({price: e.target.value});
       }
       if (e.target.id == "conditionSelect"){
-        this.setState({condition: e.target.value});
+        if (e.target.value != "Choose..."){
+          this.setState({condition: e.target.value});
+        }
       }
       if (e.target.id == "conditionTextarea"){
         this.setState({conDesc: e.target.value});
@@ -128,6 +129,10 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       if (e.target.id == "miscTextarea"){
         this.setState({categoryDescription06: e.target.value});
       }
+    }
+
+    handleCheckboxChange(e) {
+      this.setState({txtbxchked: e.target.checked});
     }
 
   render() {
@@ -246,7 +251,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   <h3 htmlStyle ="margin-bottom: 25px;">Select Applicable Categories</h3>
                   {/*<!--- Start Textbook --->*/}
                   <label className="form-check-label categoryEntry" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
-                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Textbook" value={this.state.text} onChange={(e) => this.handleChange(e)} /> Textbook
+                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Textbook" checked={this.state.txtbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Textbook
                   </label>
                   <div className="row">
                     <div className="col-md-6">
