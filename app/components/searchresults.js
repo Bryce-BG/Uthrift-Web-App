@@ -1,23 +1,66 @@
 import React from 'react';
 import SEARCHITEM from './searchitem.js';
+import  {getUserData, getSearch} from '../server';
 
 export default class SEARCHRESULTS extends React.Component{
+	constructor(props) {
+    super(props);
+    this.state = {
+			itemListr: [],
+      row1: new Array(3),
+			row2: new Array(3),
+			searchArray: new Array(2)
+    };
+  }
+
+	componentDidMount() {
+		var callbackFunction2 = (itemList) => {
+			var tempArray = new Array(2);
+			tempArray[0] = itemList["searchGory"];
+			tempArray[1] = itemList["searchTerm"];
+			this.setState({searchArray: tempArray});
+			//console.log(this.state.searchArray);
+		};
+		getUserData(this.props.user,callbackFunction2);
+
+		var callbackFunction = (itemList) => {
+      this.setState({itemListr: itemList});
+			//console.log(itemList);
+      var tempSlide1 = new Array(3);
+      for (var i = 0; i < 3; i++) {
+        tempSlide1[i] = itemList[i];
+			}
+			this.setState({row1: tempSlide1})
+
+			var tempSlide2 = new Array(3);
+			for (var i = 3; i < 6; i++) {
+				tempSlide2[i] = itemList[i];
+			}
+			this.setState({row2: tempSlide2})
+		};
+		getSearch(["Textbooks",""],callbackFunction);
+	}
+
 	render(){
 		return(
 			<div>
 				<h1 className="page-header">Search Result
-					<small className="query">{this.props.query}</small>
+					<small className="query">{this.state.searchArray[1]}</small>
 				</h1>
 				<div className="row">
-					<SEARCHITEM des="Item 1 Description" src="img/book1.jpg" price = "18.00"/>
-					<SEARCHITEM des="Item 2 Description" src="img/book2.jpg" price = "21.00"/>
-					<SEARCHITEM des="Item 3 Description" src="img/book3.jpg" price = "25.00"/>
+					{this.state.row1.map((item) => {
+						return (
+							<SEARCHITEM key = {item} des={item[3]} src={item[7]} price = {item[2]}/>
+						)
+					})}
 				</div>
 				<hr/>
 				<div className="row">
-					<SEARCHITEM des="Item 4 Description" src="img/book4.jpg" price = "7.50"/>
-					<SEARCHITEM des="Item 5 Description" src="img/book5.jpg" price = "5.00"/>
-					<SEARCHITEM des="Item 6 Description" src="img/book6.jpg" price = "6.00"/>
+					{this.state.row2.map((item) => {
+						return (
+							<SEARCHITEM key = {item} des={item[3]} src={item[7]} price = {item[2]}/>
+						)
+					})}
         </div>
         <hr/>
 			</div>

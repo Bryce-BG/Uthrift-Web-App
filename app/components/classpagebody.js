@@ -13,13 +13,23 @@ export default class CLASSPAGEBODY extends React.Component {
         };
       }
 
-componentDidMount()
-{
-      //  console.log(this.props.classID);
-  getClassData(this.props.classID, (classData) => {
-    this.setState(classData);
-  });
-}
+  refresh() {
+    getClassData(this.props.classID, (classData) => {
+      this.setState(classData);
+    });
+  }
+
+  componentDidMount(){
+      this.refresh();
+  }
+
+  componentDidUpdate (prevProps) {
+    // respond to parameter change in scenario 3
+    let oldId = prevProps.classID
+    let newId = this.props.classID
+    if (newId !== oldId)
+      this.refresh();
+  }
 
   render() {
     //console.log(this.props.classID);
@@ -42,10 +52,10 @@ componentDidMount()
             <div className="col-md-2"></div>
             <div className="col-md-8">
               <h2 className="page-header">Books</h2>
-              <div className="row">{
+              <div className="item-row row">{
                 this.state.textbookList.map((item, i) => {
                   return (
-                    <CLASSITEM key={i} item={this.state.textbookList[i]}/>
+                    <CLASSITEM key={this.state.textbookList[i]._id} item={this.state.textbookList[i]}/>
                   );
                 })}
               </div>
@@ -57,7 +67,7 @@ componentDidMount()
             </div>
             <div className="col-md-8">
               <h2 className="page-header">Tech</h2>
-              <div className="row">{
+              <div className="item-row row">{
                 this.state.techList.map((item, i) => {
                   return (
                     <CLASSITEM key={i} item={this.state.techList[i]}/>

@@ -32,6 +32,36 @@ export function getRecomendedItems(cb)
   emulateServerReturn(recomendedItems, cb);
 }
 
+export function getSearch(search, cb) {
+  var itemList= getArray('items'); //get array for items
+  var refinedList = [];
+  var index = 0;
+  if (search[0] !== "") {
+    var itemlistArray = Object.values(itemList);
+    var itemListLength = itemlistArray.length;
+    for (var i = 1; i < itemListLength+1; i++) { //loop through and see only add items that have the correct category.
+      var itemArray = Object.values(itemList[i]);
+      //console.log(itemArray);
+      if (itemArray[6] === search[0]) {
+          refinedList[index] = itemArray;
+          index+=1;
+        }
+      }
+  }
+  //take the list of all items with correct category and then try to narrow them down further by applying hte search filter
+  var searchResults = [];
+  index = 0; //reset to 0 for next search
+  for (var i = 1; i < refinedList.length; i++) {
+    if (refinedList[i].Title === search[1] || refinedList[i]._id === search[1]) {
+        searchResults[index] = refinedList[i];
+        index+=1;
+      }
+ }
+ if (searchResults.length < 2) {
+   searchResults = refinedList; // for now
+ }
+ emulateServerReturn(searchResults, cb);
+}
 
 // Submit stuff from Submission Form
 export function submitItem(data){
@@ -88,10 +118,25 @@ export function updateUserData(data){
   writeDocument('users', userData);
 }
 
+export function updateSearchUserData(data, userID){
+  var userData = readDocument('users', userID);
+  userData.searchGory = data.searchGory;
+  userData.searchTerm = data.searchTerm;
+  writeDocument('users', userData);
+}
+
+
+
+
 export function getClassData(classID, cb) {
     //console.log(classID);
   var classData = readDocument('classes', classID);
   classData.textbookList = classData.textbookList.map((itemId) => readDocument('items', itemId));
   classData.techList = classData.techList.map((itemId) => readDocument('items', itemId));
   emulateServerReturn(classData, cb);
+}
+
+export function getItemInfo(itemID, cb) {
+  var itemdata = readDocument('items', itemID);
+  emulateServerReturn(itemdata, cb);
 }
