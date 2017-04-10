@@ -15,14 +15,19 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         condition: "",
         conDesc: "",
         category: "",
+        txtbxchked: false,
+          clothbxchked: false,
+          techbxchked: false,
+          eventbxchked: false,
+          furnbxchked: false,
+          miscbxchked: false,
         categoryDescription: "",
-        categoryDescription01: "", //These are used for later combining together to form one categoryDescription
-        categoryDescription02: "",
-        categoryDescription03: "",
-        categoryDescription04: "",
-        categoryDescription05: "",
-        categoryDescription06: "",
-        txtbxchked: false
+          categoryDescription01: "", //These are used for later combining together to form one categoryDescription
+          categoryDescription02: "",
+          categoryDescription03: "",
+          categoryDescription04: "",
+          categoryDescription05: "",
+          categoryDescription06: ""
       };
     }
 
@@ -31,8 +36,9 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       this.update();
     }
 
-    //Checks all the category description fields for input and combines those inputs together
+    //Checks all the category and category description fields for input and combines those inputs together
     update(){
+      //Combines all category descriptions together
       if (this.state.categoryDescription01 != ""){
         this.setState({categoryDescription: this.state.categoryDescription01, categoryDescription01: ""}, this.callback);
       }
@@ -55,6 +61,16 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       else if (this.state.categoryDescription06 != ""){
         if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription06, categoryDescription06: ""}, this.callback);  }
           else {this.setState({categoryDescription: this.state.categoryDescription06, categoryDescription06: ""}, this.callback);}
+      }
+
+      //category checkboxes are combined together if they are checked
+      else if (this.state.txtbxchked == true){
+        if (this.state.category != ""){this.setState({category: this.state.category + ",Clothing", clothbxchked: false}, this.callback);}
+        else {this.setState({category: "Clothing", clothbxchked: false}, this.callback);}
+      }
+      else if (this.state.clothbxchked == true){
+        if (this.state.category != ""){this.setState({category: this.state.category + ",Clothing", clothbxchked: false}, this.callback);}
+        else {this.setState({category: "Clothing", clothbxchked: false}, this.callback);}
       }
 
       //Saves the new item to the database
@@ -93,24 +109,6 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       if (e.target.id == "conditionTextarea"){
         this.setState({conDesc: e.target.value});
       }
-      if (e.target.id == "Textbook"){
-        this.setState({category: this.state.category + e.target.value});
-      }
-      if (e.target.id == "Clothing"){
-        this.setState({category: this.state.category + e.target.value});
-      }
-      if (e.target.id == "Tech"){
-        this.setState({category: this.state.category + e.target.value});
-      }
-      if (e.target.id == "Events"){
-        this.setState({category: this.state.category + e.target.value});
-      }
-      if (e.target.id == "Furniture"){
-        this.setState({category: this.state.category + e.target.value});
-      }
-      if (e.target.id == "Miscellaneous"){
-        this.setState({category: this.state.category + e.target.value});
-      }
       if (e.target.id == "textbookTextarea"){
         this.setState({categoryDescription01: e.target.value});
       }
@@ -132,7 +130,24 @@ export default class SUBMISSIONFORMBODY extends React.Component {
     }
 
     handleCheckboxChange(e) {
-      this.setState({txtbxchked: e.target.checked});
+      if (e.target.id == "Textbook"){
+        this.setState({txtbxchked: e.target.checked});
+      }
+      if (e.target.id == "Clothing"){
+        this.setState({clothbxchked: e.target.checked});
+      }
+      if (e.target.id == "Tech"){
+        this.setState({techbxchked: e.target.checked});
+      }
+      if (e.target.id == "Events"){
+        this.setState({eventbxchked: e.target.checked});
+      }
+      if (e.target.id == "Furniture"){
+        this.setState({furnbxchked: e.target.checked});
+      }
+      if (e.target.id == "Miscellaneous"){
+        this.setState({miscbxchked: e.target.checked});
+      }
     }
 
   render() {
@@ -289,7 +304,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   <hr />
                   {/*<!--- Start Clothing --->*/}
                   <label className="form-check-label" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
-                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Clothing" value={this.state.text} onChange={(e) => this.handleChange(e)}/> Clothing
+                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Clothing" checked={this.state.clothbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Clothing
                   </label>
                   <div className="row">
                     <div className="col-md-6">
@@ -344,7 +359,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   <hr />
                   {/*<!--- Start Tech --->*/}
                   <label className="form-check-label" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
-                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Tech" value={this.state.text} onChange={(e) => this.handleChange(e)}/> Tech
+                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Tech" checked={this.state.techbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Tech
                   </label>
                     <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
                     <div className="left">
@@ -354,7 +369,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   <hr />
                   {/*<!--- Start Events --->*/}
                   <label className="form-check-label" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
-                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Events" value={this.state.text} onChange={(e) => this.handleChange(e)}/> Events
+                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Events" checked={this.state.eventbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Events
                   </label>
                     <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
                     <div className="left">
@@ -364,7 +379,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   <hr />
                   {/*<!--- Start Furniture --->*/}
                   <label className="form-check-label" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
-                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Furniture"  value={this.state.text} onChange={(e) => this.handleChange(e)}/> Furniture
+                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Furniture" checked={this.state.furnbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Furniture
                   </label>
                     <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
                     <div className="left">
@@ -374,7 +389,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   <hr />
                   {/*<!--- Start Misc --->*/}
                   <label className="form-check-label" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
-                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Miscellaneous" value={this.state.text} onChange={(e) => this.handleChange(e)}/> Miscellaneous
+                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Miscellaneous" checked={this.state.miscbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Miscellaneous
                   </label>
                   <div className="left">
                     <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
