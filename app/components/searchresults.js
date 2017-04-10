@@ -14,6 +14,7 @@ export default class SEARCHRESULTS extends React.Component{
   }
 
 	componentDidMount() {
+		window.scrollTo(0, 0);
 		var callbackFunction2 = (itemList) => {
 			var tempArray = new Array(2);
 			tempArray[0] = itemList["searchGory"];

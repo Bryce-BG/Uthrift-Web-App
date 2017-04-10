@@ -21,7 +21,7 @@ export default class HOMEPAGEBODY extends React.Component
 
 componentDidMount()
 {
-
+  window.scrollTo(0, 0);
 
 // console.log("init state");
 //   console.log(this.state);
