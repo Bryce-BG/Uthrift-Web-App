@@ -74,6 +74,9 @@ export function submitItem(data){
   userData.price = data.price;
   userData.condition = data.condition;
   userData.conditionDescription = data.conDesc;
+  userData.classRelated = data.classRelated;
+  userData.subject = data.subject;
+  userData.courseNumber = data.courseNumber;
   userData.category = data.category;
   userData.categoryDescription = data.categoryDescription;
   userData.photoRef = "img/iclicker.jpg";

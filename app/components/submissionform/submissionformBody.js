@@ -28,8 +28,8 @@ export default class SUBMISSIONFORMBODY extends React.Component {
           categoryDescription01: "", //These are used for later combining together to form one categoryDescription
           categoryDescription01a: "",
           categoryDescription01b: "",
-          categoryDescription01c: "",
-          cover: false,
+          hardcover: false,
+          paperback: false,
         categoryDescription02: "",
           categoryDescription02a: "",
           categoryDescription02b: "",
@@ -63,6 +63,12 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         }
         else if (this.state.categoryDescription01b.trim() != ""){
           this.setState({categoryDescription: this.state.categoryDescription + "Edition: " + this.state.categoryDescription01b.trim() + "   ", categoryDescription01b: ""}, this.callback);
+        }
+        else if (this.state.hardcover == true){
+          this.setState({categoryDescription: this.state.categoryDescription + "Hardcover   ", hardcover: false}, this.callback);
+        }
+        else if (this.state.paperback == true){
+          this.setState({categoryDescription: this.state.categoryDescription + "Paperback   ", paperback: false}, this.callback);
         }
       else if (this.state.categoryDescription01.trim() != ""){
         this.setState({categoryDescription: this.state.categoryDescription + this.state.categoryDescription01.trim(), categoryDescription01: ""}, this.callback);
@@ -147,9 +153,9 @@ export default class SUBMISSIONFORMBODY extends React.Component {
     }
 
     save(){
-      console.log(this.state);
+    //  console.log(this.state);
         submitItem(this.state);
-      //  window.location.reload();
+        window.location.reload();
     }
 
     //User clicks post:
@@ -229,6 +235,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
     }
 
     handleCheckboxChange(e) {
+      //class related radio btns
       if (e.target.id == "radioYes"){
         this.setState({classRelated: e.target.checked});
       }
@@ -236,7 +243,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         this.setState({classRelated: !e.target.checked});
       }
 
-
+      //categories
       if (e.target.id == "Textbook"){
         this.setState({txtbxchked: e.target.checked});
       }
@@ -256,7 +263,15 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         this.setState({miscbxchked: e.target.checked});
       }
 
+      //hardcover/paperback radio btns
+      if (e.target.id == "hard"){
+        this.setState({hardcover: e.target.checked});
+      }
+      if (e.target.id == "paper"){
+        this.setState({paperback: e.target.checked});
+      }
 
+      //clothing size checkboxes
       if (e.target.id == "adult"){
         this.setState({adult: e.target.checked});
       }
@@ -420,10 +435,10 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                       </div>
                     <div className = "form-check form-check-inline" htmlStyle ="padding-left: 15px; padding-top: 4px;">
                         <label className="form-check-label sp16">
-                          <input className="form-check-input" type="radio" name="bookCoverOptions" id="hard" value="option1"/> Hardcover
+                          <input className="form-check-input" type="radio" name="bookCoverOptions" id="hard" checked={this.state.hard} onChange={(e) => this.handleCheckboxChange(e)}/> Hardcover
                         </label>
                         <label className="form-check-label">
-                          <input className="form-check-input" type="radio" name="bookCoverOptions" id="paper" value="option2"/> Paperback
+                          <input className="form-check-input" type="radio" name="bookCoverOptions" id="paper" checked={this.state.paper} onChange={(e) => this.handleCheckboxChange(e)}/> Paperback
                         </label>
                     </div>
                     </div>
