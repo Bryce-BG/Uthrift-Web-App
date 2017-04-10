@@ -14,8 +14,9 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         price: "",
         condition: "",
         conDesc: "",
-        subject: "",
-        courseNumber: "",
+        classRelated: false,
+          subject: "",
+          courseNumber: "",
         category: "",
           txtbxchked: false,
           clothbxchked: false,
@@ -25,18 +26,19 @@ export default class SUBMISSIONFORMBODY extends React.Component {
           miscbxchked: false,
         categoryDescription: "",
           categoryDescription01: "", //These are used for later combining together to form one categoryDescription
-            categoryDescription01a: "",
-            categoryDescription01b: "",
-            categoryDescription01c: "",
-          categoryDescription02: "",
-            categoryDescription02a: "",
-            categoryDescription02b: "",
-            categoryDescription02c: "",
-            categoryDescription02d: "",
-              adult: false,
-              child: false,
-              man: false,
-              woman: false,
+          categoryDescription01a: "",
+          categoryDescription01b: "",
+          categoryDescription01c: "",
+          cover: false,
+        categoryDescription02: "",
+          categoryDescription02a: "",
+          categoryDescription02b: "",
+          categoryDescription02c: "",
+          categoryDescription02d: "",
+            adult: false,
+            child: false,
+            man: false,
+            woman: false,
           categoryDescription03: "",
           categoryDescription04: "",
           categoryDescription05: "",
@@ -227,6 +229,14 @@ export default class SUBMISSIONFORMBODY extends React.Component {
     }
 
     handleCheckboxChange(e) {
+      if (e.target.id == "radioYes"){
+        this.setState({classRelated: e.target.checked});
+      }
+      if (e.target.id == "radioNo"){
+        this.setState({classRelated: !e.target.checked});
+      }
+
+
       if (e.target.id == "Textbook"){
         this.setState({txtbxchked: e.target.checked});
       }
@@ -356,10 +366,10 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   <div className = "form-check form-check-inline top">
                       <label className = "sp8">Is this item class-related?</label>
                       <label className="form-check-label sp8" htmlFor = "classRelated">
-                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="radioYes" value="option1"/> Yes
+                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="radioYes" checked={this.state.crYes} onChange={(e) => this.handleCheckboxChange(e)}/> Yes
                       </label>
                       <label className="form-check-label sp50" htmlFor = "classRelated">
-                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="radioNo" value="option2"/> No
+                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="radioNo" checked={this.state.crNo} onChange={(e) => this.handleCheckboxChange(e)}/> No
                       </label>
                   </div>
                   <div className = "form-group-row">
