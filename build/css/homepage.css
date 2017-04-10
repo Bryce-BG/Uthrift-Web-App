@@ -1,18 +1,9 @@
-body
- {
-  padding-top: 90px; /*make it so the nav bar is not sitting on top of the content*/
-  background-color: #eff0f2;
 
-
-}
 .content-contain {
 
     background-color: white;
 }
-#main-content { /*make is so that we ahve a bit of a space between the navbar and the actual page conetnt.*/
-  margin-top: 30px;
 
-}
 
 .col-md-3 > img{
   max-width:150px;

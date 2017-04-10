@@ -57,7 +57,9 @@ export function getSearch(search, cb) {
         index+=1;
       }
  }
- searchResults = refinedList; // for now
+ if (searchResults.length < 2) {
+   searchResults = refinedList; // for now
+ }
  emulateServerReturn(searchResults, cb);
 }
 
@@ -109,10 +111,25 @@ export function updateUserData(data){
   writeDocument('users', userData);
 }
 
+export function updateSearchUserData(data, userID){
+  var userData = readDocument('users', userID);
+  userData.searchGory = data.searchGory;
+  userData.searchTerm = data.searchTerm;
+  writeDocument('users', userData);
+}
+
+
+
+
 export function getClassData(classID, cb) {
     //console.log(classID);
   var classData = readDocument('classes', classID);
   classData.textbookList = classData.textbookList.map((itemId) => readDocument('items', itemId));
   classData.techList = classData.techList.map((itemId) => readDocument('items', itemId));
   emulateServerReturn(classData, cb);
+}
+
+export function getItemInfo(itemID, cb) {
+  var itemdata = readDocument('items', itemID);
+  emulateServerReturn(itemdata, cb);
 }

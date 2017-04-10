@@ -1,7 +1,7 @@
 import React from 'react';
 import RESET from '../database.js';
 import {Link} from 'react-router';
-import {updateUserData, getUserData} from '../server';
+import {updateUserData, getUserData, updateSearchUserData} from '../server';
 
 
 export default class NAVBAR extends React.Component {
@@ -27,27 +27,36 @@ constructor()
      this.setState({category: se,
                     value : e.target.value});
 
+
+
   }
 
 
-  handleSearchClick(clickEvent){
-		clickEvent.preventDefault();
-		if (clickEvent.button == 0){
+  handleSearchClick(e){
+		e.preventDefault();
+
+		if (e.button == 0){
+
       var callbackFunction = (userData) => {
 			this.setState({user: userData});
 		}
-		getUserData(this.props.userID, callbackFunction);
+		getUserData(this.props.user, callbackFunction);
 
-    this.state.user.searchGory = this.state.category;
-    this.state.user.searchTerm = this.state.value;
+    updateSearchUserData
+    var data = {
+       searchGory: this.state.category,
+       searchTerm: this.state.value
+    };
+
+		updateSearchUserData(data, this.props.user);
 
 
-		updateUserData(this.state.user);
 		}
 	}
 
 
   render() {
+
     return (
       <div >
 
@@ -101,15 +110,15 @@ constructor()
 
 
                                      <input className="uthrift-navbar-input col-md-8"  type="text" placeholder="Search UThrift..." name="search"  value={this.state.value} onChange={(e) => this.handleChange(e)} />
+                                    <Link to={"/searchPage/" + this.props.user}>
+                                     <button className="uthrift-navbar-button col-md-1" onCLick = {(e) => this.handleSearchClick(e)}  >
 
-                                     <button className="uthrift-navbar-button col-md-1" onCLick ={(e) => this.handleSearchClick(e)}  >
-                                        <Link to={"/searchPage/" + this.props.user}>
                                          <svg width="15px" height="15px">
                                              <path d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "></path>
                                          </svg>
-                                         </Link>
-                                     </button>
 
+                                     </button>
+                                     </Link>
                                  </form>
                              </div>
                              <div className="cart largenav col-md-2">

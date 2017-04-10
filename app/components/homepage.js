@@ -7,11 +7,11 @@ import HOMEPAGEBODY from './homepagebody.js';
 export default class HOMEPAGE extends React.Component {
   //console.log("props passed in are:" + this.props);
   render() {
-    
+
     return (
       <div>
 
-        <NAVBAR  UserID = {this.props.UserID} />
+        <NAVBAR  user = {this.props.user} />
 
         <HOMEPAGEBODY />
 
