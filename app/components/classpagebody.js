@@ -14,14 +14,12 @@ export default class CLASSPAGEBODY extends React.Component {
       }
 
   refresh() {
-
     getClassData(this.props.classID, (classData) => {
       this.setState(classData);
     });
   }
 
-  componentDidMount()
-  {
+  componentDidMount(){
       this.refresh();
   }
 

@@ -8,7 +8,7 @@ export default class CLASSITEM extends React.Component{
     //console.log(this.props);
     return (
       <div className = "classitem col-md-4">
-          <a href={"#/classPage/" + 2}>
+          <a href={"#/ItemPage/" + this.props.item._id}>
             <img src={this.props.item.photoRef} alt=""/>
           </a>
           <h5 className="description">{this.props.item.Description}</h5>

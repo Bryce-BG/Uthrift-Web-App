@@ -12,8 +12,8 @@ export default class CLASSINFO extends React.Component
         </div>
         <div className="col-md-7">
         <p className="class-description">{this.props.description}
-         <br/><br/> Professor: {this.props.instructor}
-         <br/> Credits: {this.props.credits} <br/> Year: {this.props.term}
+         <br/><br/> Instructor: {this.props.instructor}
+         <br/> Credits: {this.props.credits} <br/> Term: {this.props.term}
         </p>
         </div>
       </div>
