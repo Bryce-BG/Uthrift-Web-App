@@ -40,7 +40,9 @@ export default class SUBMISSIONFORMBODY extends React.Component {
           categoryDescription05: "",
           categoryDescription06: "",
 
-          boolean: false //for looping purposes
+          boolean: false, //for looping purposes
+          photoRef: "img/war_peace.jpg", //This will normally save the info of the photo here, but will not store it to the database because the database can only hold 5mb so instead loads iclicker image when changed
+          photoReftemp: "" //so that handlePhoto can take in parameter event e
       };
     }
 
@@ -243,6 +245,15 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       }
     }
 
+
+      handleChangePhoto(e) {
+        //would use this to upload new image but because of database size restrictions, it just changes it to iclicker
+        this.setState({ photoReftemp: "img/" + e.target.value.substr(11) });
+        this.setState({ photoRef: "img/iclicker.jpg"});
+      }
+
+
+
   render() {
     return (
       <div className = "container content-contain">
@@ -262,11 +273,11 @@ export default class SUBMISSIONFORMBODY extends React.Component {
               <div className = "col-md-4 sp42 left-column">
 
                 {/*<!--- Start Upload Picture --->*/}
-                    <img className = "photo-entry main-photo" src="img/war_peace2.jpg" width="100%"/>
+                    <img className = "photo-entry main-photo" src={this.state.photoRef} width="100%"/>
 
                     <div className="photo-entry center">
                       <label htmlFor="photoUpload1">Upload Photo</label>
-                      <input type="file" className="form-control-file" id="photoUpload1" aria-describedby="fileHelp"/>
+                      <input type="file" className="form-control-file" id="photoUpload1" aria-describedby="fileHelp" onChange={(e) => this.handleChangePhoto(e)}/>
                     </div>
 
                     <label htmlFor="photoUpload2">OR drag and drop files below:</label>
