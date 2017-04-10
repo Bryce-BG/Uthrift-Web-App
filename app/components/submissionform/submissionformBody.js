@@ -34,7 +34,9 @@ export default class SUBMISSIONFORMBODY extends React.Component {
           categoryDescription03: "",
           categoryDescription04: "",
           categoryDescription05: "",
-          categoryDescription06: ""
+          categoryDescription06: "",
+
+          boolean: false //for looping purposes
       };
     }
 
@@ -45,7 +47,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
 
     //Checks all the category and category description fields for input and combines those inputs together
     update(){
-      //Combines all category descriptions together
+      //Combines all category descriptions together (tabbed code blocks are sub items)
         if (this.state.categoryDescription01a.trim() != ""){
           this.setState({categoryDescription: "Author: " + this.state.categoryDescription01a.trim() + "   ", categoryDescription01a: ""}, this.callback);
         }
@@ -55,10 +57,23 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       else if (this.state.categoryDescription01.trim() != ""){
         this.setState({categoryDescription: this.state.categoryDescription + this.state.categoryDescription01.trim(), categoryDescription01: ""}, this.callback);
       }
+
+        else if (this.state.categoryDescription != "" && this.state.boolean == false && (this.state.categoryDescription02 != "" || this.state.categoryDescription02a != "" || this.state.categoryDescription02b != "" || this.state.categoryDescription02c != "" || this.state.categoryDescription02d != "")){
+          this.setState({categoryDescription: this.state.categoryDescription + " || ", boolean: true}, this.callback);
+        }
+        else if (this.state.categoryDescription02a != ""){
+          this.setState({categoryDescription: this.state.categoryDescription + "Size: " + this.state.categoryDescription02a + "   ", categoryDescription02a: "", boolean: true}, this.callback);
+        }
+        else if (this.state.categoryDescription02b != ""){
+          this.setState({categoryDescription: this.state.categoryDescription + "Size: " + this.state.categoryDescription02b + "   ", categoryDescription02b: "", boolean: true}, this.callback);
+        }
+        else if (this.state.categoryDescription02c.trim() != ""){
+          this.setState({categoryDescription: this.state.categoryDescription + "Size: " + this.state.categoryDescription02c.trim() + "   ", categoryDescription02c: "", boolean: true}, this.callback);
+        }
       else if (this.state.categoryDescription02.trim() != ""){
-        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription02.trim(), categoryDescription02: ""}, this.callback);  }
-          else {this.setState({categoryDescription: this.state.categoryDescription02.trim(), categoryDescription02: ""}, this.callback);}
+        this.setState({categoryDescription: this.state.categoryDescription + this.state.categoryDescription02.trim(), categoryDescription02: "", boolean: true}, this.callback);
       }
+
       else if (this.state.categoryDescription03.trim() != ""){
         if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription03.trim(), categoryDescription03: ""}, this.callback);  }
           else {this.setState({categoryDescription: this.state.categoryDescription03.trim(), categoryDescription03: ""}, this.callback);}
@@ -150,6 +165,17 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       if (e.target.id == "clothingTextarea"){
         this.setState({categoryDescription02: e.target.value});
       }
+        if (e.target.id == "clotheSelect"){
+          if (e.target.value != "Choose..."){
+            this.setState({categoryDescription02a: e.target.value});
+          }
+        }
+        if (e.target.id == "clotheNumber"){
+            this.setState({categoryDescription02b: e.target.value});
+        }
+        if (e.target.id == "clotheDetail"){
+            this.setState({categoryDescription02c: e.target.value});
+        }
       if (e.target.id == "eventTextarea"){
         this.setState({categoryDescription03: e.target.value});
       }
@@ -350,7 +376,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                           <label htmlStyle ="padding-left: 15px;">Size:</label>
                         </div>
                         <div className="col-md-4">
-                          <select className="custom-select">
+                          <select className="custom-select" id="clotheSelect" value={this.state.clotheSelect} onChange={(e) => this.handleChange(e)} >
                             <option selected>Choose...</option>
                             <option value="1">Small</option>
                             <option value="2">Medium</option>
@@ -361,7 +387,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                           <label htmlStyle ="padding-left: 5px;">OR</label>
                         </div>
                         <div className="col-md-4">
-                          <input type="number" className = "form-control thin" placeholder="00" />
+                          <input type="number" className = "form-control thin" placeholder="00" id="clotheNumber" value={this.state.clotheNumber} onChange={(e) => this.handleChange(e)}  />
                         </div>
                       </div>
                       <div className="row" htmlStyle ="padding-top:4px;">
@@ -369,7 +395,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                           <label htmlStyle ="padding-left: 20px;">OR</label>
                         </div>
                         <div className="col-md-10">
-                          <input type="text" className = "form-control thin" placeholder="ex. 32 waist, 32 length" />
+                          <input type="text" className = "form-control thin" placeholder="ex. 32 waist, 32 length" id="clotheDetail" value={this.state.clotheDetail} onChange={(e) => this.handleChange(e)}  />
                         </div>
                       </div>
                     <div className = "form-check form-check-inline" htmlStyle ="padding-left: 15px; padding-top: 4px;">
