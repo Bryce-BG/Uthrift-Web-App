@@ -65,12 +65,27 @@ export default class SUBMISSIONFORMBODY extends React.Component {
 
       //category checkboxes are combined together if they are checked
       else if (this.state.txtbxchked == true){
-        if (this.state.category != ""){this.setState({category: this.state.category + ",Clothing", clothbxchked: false}, this.callback);}
-        else {this.setState({category: "Clothing", clothbxchked: false}, this.callback);}
+        this.setState({category: "Textbook", txtbxchked: false}, this.callback);
       }
       else if (this.state.clothbxchked == true){
         if (this.state.category != ""){this.setState({category: this.state.category + ",Clothing", clothbxchked: false}, this.callback);}
         else {this.setState({category: "Clothing", clothbxchked: false}, this.callback);}
+      }
+      else if (this.state.techbxchked == true){
+        if (this.state.category != ""){this.setState({category: this.state.category + ",Tech", techbxchked: false}, this.callback);}
+        else {this.setState({category: "Tech", techbxchked: false}, this.callback);}
+      }
+      else if (this.state.eventbxchked == true){
+        if (this.state.category != ""){this.setState({category: this.state.category + ",Events", eventbxchked: false}, this.callback);}
+        else {this.setState({category: "Events", eventbxchked: false}, this.callback);}
+      }
+      else if (this.state.furnbxchked == true){
+        if (this.state.category != ""){this.setState({category: this.state.category + ",Furniture", furnbxchked: false}, this.callback);}
+        else {this.setState({category: "Furniture", furnbxchked: false}, this.callback);}
+      }
+      else if (this.state.miscbxchked == true){
+        if (this.state.category != ""){this.setState({category: this.state.category + ",Miscellaneous", miscbxchked: false}, this.callback);}
+        else {this.setState({category: "Miscellaneous", miscbxchked: false}, this.callback);}
       }
 
       //Saves the new item to the database
@@ -82,6 +97,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
     save(){
       console.log(this.state);
         submitItem(this.state);
+        window.location.reload();
     }
 
     //User clicks post:
