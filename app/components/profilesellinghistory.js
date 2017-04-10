@@ -31,7 +31,7 @@ export default class PROFILESELLINGHISTORY extends React.Component{
               <div className="panel-body">
 								{this.props.data.sellingList.map((items, i) => {
 									return(
-										<PROFILEITEM key={i} img={this.props.data.sellingList[i].photoRef} name={this.props.data.sellingList[i].Title} color={statusOfItem[i * 2]} status={statusOfItem[i * 2 + 1]}/>
+										<PROFILEITEM key={i} id = {this.props.data.sellingList[i]._id} img={this.props.data.sellingList[i].photoRef} name={this.props.data.sellingList[i].Title} color={statusOfItem[i * 2]} status={statusOfItem[i * 2 + 1]}/>
 									)
 								})}
               </div>

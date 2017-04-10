@@ -4,15 +4,11 @@
     background-color: white;
 }
 
-
-.col-md-3 > img{
+.col-md-3 img{
   max-width:150px;
   max-height:150px;
   margin: 0 auto;
 }
-
-
-
 
 /*carousel related css*/
 .carousel-control.right, .carousel-control.left {

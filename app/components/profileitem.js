@@ -5,7 +5,7 @@ export default class PROFILESELLINGHISTORY extends React.Component{
 		return(
       <div className="col-md-2">
         <div className="row">
-          <a href="#"><img src={this.props.img} width="100" height="100" /></a>
+          <a href={"#/ItemPage/" + this.props.id}><img src={this.props.img} width="100" height="100" /></a>
         </div>
         <div className="row">
 					<a href="#">{this.props.name}</a>

@@ -21,7 +21,7 @@ export default class HOMEPAGEBODY extends React.Component
 
 componentDidMount()
 {
-
+  window.scrollTo(0, 0);
 
 // console.log("init state");
 //   console.log(this.state);
@@ -125,7 +125,7 @@ componentDidMount()
                 {this.state.slide1.map((item) => {
                   return (
 
-                    <HOMEPAGECAROUSELITEM  item = {item} key = {item._id} name={item.Title} referance={item.photoRef} price = {item.Price}/>
+                    <HOMEPAGECAROUSELITEM  item = {item} key = {item._id} id={item._id} name={item.Title} referance={item.photoRef} price = {item.Price}/>
                   )
                 })}
 
@@ -139,7 +139,7 @@ componentDidMount()
                 {this.state.slide2.map((item) => {
                   return (
 
-                    <HOMEPAGECAROUSELITEM key = {3+item._id} name={item.Title} referance={item.photoRef} price = {item.Price}/>
+                    <HOMEPAGECAROUSELITEM key = {3+item._id} id={item._id} name={item.Title} referance={item.photoRef} price = {item.Price}/>
                   )
                 })}
               </div>
@@ -148,7 +148,7 @@ componentDidMount()
                 {this.state.slide3.map((item, i) => {
                   return (
 
-                    <HOMEPAGECAROUSELITEM key = {6+i} name={item.Title} referance={item.photoRef} price = {item.Price}/>
+                    <HOMEPAGECAROUSELITEM key = {6+i} id={item._id} name={item.Title} referance={item.photoRef} price = {item.Price}/>
                   )
                 })}
 
