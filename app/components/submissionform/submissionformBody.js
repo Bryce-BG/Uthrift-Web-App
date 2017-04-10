@@ -39,28 +39,28 @@ export default class SUBMISSIONFORMBODY extends React.Component {
     //Checks all the category and category description fields for input and combines those inputs together
     update(){
       //Combines all category descriptions together
-      if (this.state.categoryDescription01 != ""){
-        this.setState({categoryDescription: this.state.categoryDescription01, categoryDescription01: ""}, this.callback);
+      if (this.state.categoryDescription01.trim() != ""){
+        this.setState({categoryDescription: this.state.categoryDescription01.trim(), categoryDescription01: ""}, this.callback);
       }
-      else if (this.state.categoryDescription02 != ""){
-        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription02, categoryDescription02: ""}, this.callback);  }
-          else {this.setState({categoryDescription: this.state.categoryDescription02, categoryDescription02: ""}, this.callback);}
+      else if (this.state.categoryDescription02.trim() != ""){
+        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription02.trim(), categoryDescription02: ""}, this.callback);  }
+          else {this.setState({categoryDescription: this.state.categoryDescription02.trim(), categoryDescription02: ""}, this.callback);}
       }
-      else if (this.state.categoryDescription03 != ""){
-        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription03, categoryDescription03: ""}, this.callback);  }
-          else {this.setState({categoryDescription: this.state.categoryDescription03, categoryDescription03: ""}, this.callback);}
+      else if (this.state.categoryDescription03.trim() != ""){
+        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription03.trim(), categoryDescription03: ""}, this.callback);  }
+          else {this.setState({categoryDescription: this.state.categoryDescription03.trim(), categoryDescription03: ""}, this.callback);}
       }
-      else if (this.state.categoryDescription04 != ""){
-        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription04, categoryDescription04: ""}, this.callback);  }
-          else {this.setState({categoryDescription: this.state.categoryDescription04, categoryDescription04: ""}, this.callback);}
+      else if (this.state.categoryDescription04.trim() != ""){
+        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription04.trim(), categoryDescription04: ""}, this.callback);  }
+          else {this.setState({categoryDescription: this.state.categoryDescription04.trim(), categoryDescription04: ""}, this.callback);}
       }
-      else if (this.state.categoryDescription05 != ""){
-        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription05, categoryDescription05: ""}, this.callback);  }
-          else {this.setState({categoryDescription: this.state.categoryDescription05, categoryDescription05: ""}, this.callback);}
+      else if (this.state.categoryDescription05.trim() != ""){
+        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription05.trim(), categoryDescription05: ""}, this.callback);  }
+          else {this.setState({categoryDescription: this.state.categoryDescription05.trim(), categoryDescription05: ""}, this.callback);}
       }
-      else if (this.state.categoryDescription06 != ""){
-        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription06, categoryDescription06: ""}, this.callback);  }
-          else {this.setState({categoryDescription: this.state.categoryDescription06, categoryDescription06: ""}, this.callback);}
+      else if (this.state.categoryDescription06.trim() != ""){
+        if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription06.trim(), categoryDescription06: ""}, this.callback);  }
+          else {this.setState({categoryDescription: this.state.categoryDescription06.trim(), categoryDescription06: ""}, this.callback);}
       }
 
       //category checkboxes are combined together if they are checked
@@ -89,7 +89,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       }
 
       //Saves the new item to the database
-      else if (this.state.title.trim() != ""){
+      else if (this.state.title.trim() != "" && this.state.price != ""){
           this.setState({}, this.save);
       }
     }
