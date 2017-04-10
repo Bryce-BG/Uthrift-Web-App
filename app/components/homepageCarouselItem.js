@@ -12,7 +12,9 @@ export default class HOMEPAGECAROUSELITEM extends React.Component
     return (
       <div className = "col-md-3 middle-carousel-item">
           <h3>{this.props.name}</h3>
-          <img className ="img-responsive" src={this.props.referance} alt= {this.props.name}/>
+            <a href={"#/ItemPage/" + this.props.id}>
+              <img className ="img-responsive" src={this.props.referance} alt= {this.props.name}/>
+            </a>
           <hr />
           <p>price: ${this.props.price} </p>
 
