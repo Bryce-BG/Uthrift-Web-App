@@ -3,6 +3,7 @@ import NAVBAR from './navbar.js';
 import ITEMHERO from './itemhero.js';
 import MOREITEMS from './moreitems.js';
 import {getUserData} from '../server';
+import {getItemInfo} from '../server';
 
 
 
@@ -20,8 +21,8 @@ export default class ITEM extends React.Component {
       "Photo": "",
       "trackList": [],
       "sellingList": [],
-      "Password": ""
-    
+      "Password": "",
+      "viewingItem": ""
     };
   }
 
@@ -29,7 +30,9 @@ export default class ITEM extends React.Component {
 			var callbackFunction = (userData) => {
 			this.setState(userData);
 		}
+
 		getUserData(this.props.user, callbackFunction);
+
 	}
 
 
@@ -40,8 +43,6 @@ export default class ITEM extends React.Component {
         <ITEMHERO name="i>clicker" itembigpic="img/dummy-item-main.jpg"/>
 
         <MOREITEMS data={this.state} itemscat="More by Seller"/>
-
-
 
       </div>
     )

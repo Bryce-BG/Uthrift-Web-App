@@ -9,7 +9,6 @@ export default class ITEMDESCRIPTION extends React.Component {
           <h3>Details</h3>
           <ul>
               <li>Condition: {this.props.condition}</li>
-              <li>{this.props.extrainfo}</li>
           </ul>
           <h3>Price: {this.props.price}</h3>
           <h3>Seller: {this.props.seller}</h3>
