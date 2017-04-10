@@ -23,7 +23,14 @@ export default class SUBMISSIONFORMBODY extends React.Component {
           miscbxchked: false,
         categoryDescription: "",
           categoryDescription01: "", //These are used for later combining together to form one categoryDescription
+            categoryDescription01a: "",
+            categoryDescription01b: "",
+            categoryDescription01c: "",
           categoryDescription02: "",
+            categoryDescription02a: "",
+            categoryDescription02b: "",
+            categoryDescription02c: "",
+            categoryDescription02d: "",
           categoryDescription03: "",
           categoryDescription04: "",
           categoryDescription05: "",
@@ -39,8 +46,14 @@ export default class SUBMISSIONFORMBODY extends React.Component {
     //Checks all the category and category description fields for input and combines those inputs together
     update(){
       //Combines all category descriptions together
-      if (this.state.categoryDescription01.trim() != ""){
-        this.setState({categoryDescription: this.state.categoryDescription01.trim(), categoryDescription01: ""}, this.callback);
+        if (this.state.categoryDescription01a.trim() != ""){
+          this.setState({categoryDescription: "Author: " + this.state.categoryDescription01a.trim() + "   ", categoryDescription01a: ""}, this.callback);
+        }
+        else if (this.state.categoryDescription01b.trim() != ""){
+          this.setState({categoryDescription: this.state.categoryDescription + "Edition: " + this.state.categoryDescription01b.trim() + "   ", categoryDescription01b: ""}, this.callback);
+        }
+      else if (this.state.categoryDescription01.trim() != ""){
+        this.setState({categoryDescription: this.state.categoryDescription + this.state.categoryDescription01.trim(), categoryDescription01: ""}, this.callback);
       }
       else if (this.state.categoryDescription02.trim() != ""){
         if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription02.trim(), categoryDescription02: ""}, this.callback);  }
@@ -97,7 +110,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
     save(){
       console.log(this.state);
         submitItem(this.state);
-        window.location.reload();
+      //  window.location.reload();
     }
 
     //User clicks post:
@@ -128,6 +141,12 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       if (e.target.id == "textbookTextarea"){
         this.setState({categoryDescription01: e.target.value});
       }
+        if (e.target.id == "author"){
+          this.setState({categoryDescription01a: e.target.value});
+        }
+        if (e.target.id == "edition"){
+          this.setState({categoryDescription01b: e.target.value});
+        }
       if (e.target.id == "clothingTextarea"){
         this.setState({categoryDescription02: e.target.value});
       }
@@ -291,7 +310,8 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                           <label htmlStyle ="padding-left: 15px;">Author:</label>
                         </div>
                         <div className="col-md-9 pull-right">
-                          <input type="text" className = "form-control thin" placeholder="ex. Leo Tolstoy" />
+                          <input type="text" className = "form-control thin" placeholder="ex. Leo Tolstoy" id="author"
+                            value={this.state.author} onChange={(e) => this.handleChange(e)} />
                         </div>
                       </div>
                       <div className="row" htmlStyle ="padding-top:4px;">
@@ -299,7 +319,8 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                           <label htmlStyle ="padding-left: 15px;">Edition:</label>
                         </div>
                         <div className="col-md-9">
-                          <input type="number" className = "form-control thin" placeholder="00" />
+                          <input type="number" className = "form-control thin" placeholder="00" id="edition"
+                            value={this.state.edition} onChange={(e) => this.handleChange(e)} />
                         </div>
                       </div>
                     <div className = "form-check form-check-inline" htmlStyle ="padding-left: 15px; padding-top: 4px;">
