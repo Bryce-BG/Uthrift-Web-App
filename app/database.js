@@ -20,8 +20,8 @@ var initialData = {
       "sellingList": [4,5,6],
       "Password": "123456",
       "searchGory": "Textbooks",
-      "searchTerm": "Books on how to hack life"
-
+      "searchTerm": "Books on how to hack life",
+      "viewingItem": 1
     },
     "2": {
       "_id": 2,
@@ -35,7 +35,8 @@ var initialData = {
       "sellingList": [1,2,3],
       "Password": "233333",
       "searchGory": "Textbooks",
-      "searchTerm": ""
+      "searchTerm": "",
+      "viewingItem": 1
     }
   },
   "items":

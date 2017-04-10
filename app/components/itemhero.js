@@ -21,7 +21,8 @@ export default class ITEMHERO extends React.Component {
 
               <ITEMDESCRIPTION
                 descriptionparagraph="iclicker is an award winning student response solution that allows you to easily transform your classroom into an active learning environment."
-                 condition="Like New" extrainfo="Batteries included" price="$35"
+                 condition="Like New" price="$35" seller="John Doe" sellerEmail="john@doe.com"
+                 sellerPhone="1800JOHNDOE"
               />
 
           </div>

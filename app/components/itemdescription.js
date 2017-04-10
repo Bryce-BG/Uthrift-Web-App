@@ -9,11 +9,11 @@ export default class ITEMDESCRIPTION extends React.Component {
           <h3>Details</h3>
           <ul>
               <li>Condition: {this.props.condition}</li>
-              <li>{this.props.extrainfo}</li>
           </ul>
           <h3>Price: {this.props.price}</h3>
-          <button type="button" className="btn btn-primary item-buttons">Add to Watching</button>
-          <button type="button" className="btn btn-primary item-buttons">Contact Seller</button>
+          <h3>Seller: {this.props.seller}</h3>
+          <p><strong>Phone:</strong> {this.props.sellerPhone}</p>
+          <p><strong>Email:</strong> {this.props.sellerEmail}</p>
       </div>
     )
   }

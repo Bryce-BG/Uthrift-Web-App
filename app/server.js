@@ -128,3 +128,8 @@ export function getClassData(classID, cb) {
   classData.techList = classData.techList.map((itemId) => readDocument('items', itemId));
   emulateServerReturn(classData, cb);
 }
+
+export function getItemInfo(itemID, cb) {
+  var itemdata = readDocument('items', itemID);
+  emulateServerReturn(itemdata, cb);
+}
