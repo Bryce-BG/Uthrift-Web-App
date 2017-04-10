@@ -111,6 +111,16 @@ export function updateUserData(data){
   writeDocument('users', userData);
 }
 
+export function updateSearchUserData(data, userID){
+  var userData = readDocument('users', userID);
+  userData.searchGory = data.searchGory;
+  userData.searchTerm = data.searchTerm;
+  writeDocument('users', userData);
+}
+
+
+
+
 export function getClassData(classID, cb) {
     //console.log(classID);
   var classData = readDocument('classes', classID);
