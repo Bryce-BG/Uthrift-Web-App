@@ -15,7 +15,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         condition: "",
         conDesc: "",
         category: "",
-        txtbxchked: false,
+          txtbxchked: false,
           clothbxchked: false,
           techbxchked: false,
           eventbxchked: false,
@@ -31,6 +31,10 @@ export default class SUBMISSIONFORMBODY extends React.Component {
             categoryDescription02b: "",
             categoryDescription02c: "",
             categoryDescription02d: "",
+              adult: false,
+              child: false,
+              man: false,
+              woman: false,
           categoryDescription03: "",
           categoryDescription04: "",
           categoryDescription05: "",
@@ -58,7 +62,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         this.setState({categoryDescription: this.state.categoryDescription + this.state.categoryDescription01.trim(), categoryDescription01: ""}, this.callback);
       }
 
-        else if (this.state.categoryDescription != "" && this.state.boolean == false && (this.state.categoryDescription02 != "" || this.state.categoryDescription02a != "" || this.state.categoryDescription02b != "" || this.state.categoryDescription02c != "" || this.state.categoryDescription02d != "")){
+        else if (this.state.categoryDescription != "" && this.state.boolean == false && (this.state.adult == true || this.state.child == true || this.state.man == true || this.state.woman == true || this.state.categoryDescription02 != "" || this.state.categoryDescription02a != "" || this.state.categoryDescription02b != "" || this.state.categoryDescription02c != "" || this.state.categoryDescription02d != "")){
           this.setState({categoryDescription: this.state.categoryDescription + " || ", boolean: true}, this.callback);
         }
         else if (this.state.categoryDescription02a != ""){
@@ -70,6 +74,18 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         else if (this.state.categoryDescription02c.trim() != ""){
           this.setState({categoryDescription: this.state.categoryDescription + "Size: " + this.state.categoryDescription02c.trim() + "   ", categoryDescription02c: "", boolean: true}, this.callback);
         }
+          else if (this.state.adult == true){
+            this.setState({categoryDescription: this.state.categoryDescription + "Adult's   ", adult: false, boolean: true}, this.callback);
+          }
+          else if (this.state.child == true){
+            this.setState({categoryDescription: this.state.categoryDescription + "Children's   ", child: false, boolean: true}, this.callback);
+          }
+          else if (this.state.man == true){
+            this.setState({categoryDescription: this.state.categoryDescription + "Men's   ", man: false, boolean: true}, this.callback);
+          }
+          else if (this.state.woman == true){
+            this.setState({categoryDescription: this.state.categoryDescription + "Women's   ", woman: false, boolean: true}, this.callback);
+          }
       else if (this.state.categoryDescription02.trim() != ""){
         this.setState({categoryDescription: this.state.categoryDescription + this.state.categoryDescription02.trim(), categoryDescription02: "", boolean: true}, this.callback);
       }
@@ -90,6 +106,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         if (this.state.categoryDescription != ""){this.setState({categoryDescription: this.state.categoryDescription + " || " + this.state.categoryDescription06.trim(), categoryDescription06: ""}, this.callback);  }
           else {this.setState({categoryDescription: this.state.categoryDescription06.trim(), categoryDescription06: ""}, this.callback);}
       }
+
 
       //category checkboxes are combined together if they are checked
       else if (this.state.txtbxchked == true){
@@ -115,6 +132,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         if (this.state.category != ""){this.setState({category: this.state.category + ",Miscellaneous", miscbxchked: false}, this.callback);}
         else {this.setState({category: "Miscellaneous", miscbxchked: false}, this.callback);}
       }
+
 
       //Saves the new item to the database
       else if (this.state.title.trim() != "" && this.state.price != ""){
@@ -208,6 +226,20 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       }
       if (e.target.id == "Miscellaneous"){
         this.setState({miscbxchked: e.target.checked});
+      }
+
+
+      if (e.target.id == "adult"){
+        this.setState({adult: e.target.checked});
+      }
+      if (e.target.id == "child"){
+        this.setState({child: e.target.checked});
+      }
+      if (e.target.id == "man"){
+        this.setState({man: e.target.checked});
+      }
+      if (e.target.id == "woman"){
+        this.setState({woman: e.target.checked});
       }
     }
 
@@ -400,16 +432,16 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                       </div>
                     <div className = "form-check form-check-inline" htmlStyle ="padding-left: 15px; padding-top: 4px;">
                         <label className="form-check-label sp12">
-                          <input className="form-check-input" type="checkbox" name="clothingOptions" id="adult" value="option1"/> Adult
+                          <input className="form-check-input" type="checkbox" name="clothingOptions" id="adult" checked={this.state.adult} onChange={(e) => this.handleCheckboxChange(e)}/> Adult
                         </label>
                         <label className="form-check-label sp42">
-                          <input className="form-check-input" type="checkbox" name="clothingOptions" id="child" value="option2"/> Child
+                          <input className="form-check-input" type="checkbox" name="clothingOptions" id="child" checked={this.state.child} onChange={(e) => this.handleCheckboxChange(e)}/> Child
                         </label>
                         <label className="form-check-label sp12">
-                          <input className="form-check-input" type="checkbox" name="clothingOptions" id="mens" value="option2"/> Mens
+                          <input className="form-check-input" type="checkbox" name="clothingOptions" id="man"  checked={this.state.man} onChange={(e) => this.handleCheckboxChange(e)}/> Mens
                         </label>
                         <label className="form-check-label">
-                          <input className="form-check-input" type="checkbox" name="clothingOptions" id="womens" value="option2"/> Womens
+                          <input className="form-check-input" type="checkbox" name="clothingOptions" id="woman"  checked={this.state.woman} onChange={(e) => this.handleCheckboxChange(e)}/> Womens
                         </label>
                     </div>
                     </div>
