@@ -28,18 +28,25 @@ export default class ITEM extends React.Component {
 
   refresh() {
     window.scrollTo(0,0);
+    var callbackFunction = (userData) => {
+      this.setState(userData);
+    }
+
+    getUserDataItem(this.props.id, this.props.user, callbackFunction);
   }
 
 	componentDidMount(){
-			var callbackFunction = (userData) => {
-			this.setState(userData);
-		}
-
-		getUserDataItem(this.props.id, this.props.user, callbackFunction);
     this.refresh();
 
 	}
 
+  componentDidUpdate (prevProps) {
+    // respond to parameter change in scenario 3
+    let oldId = prevProps.id
+    let newId = this.props.id
+    if (newId !== oldId)
+      this.refresh();
+  }
 
   render() {
     return (
