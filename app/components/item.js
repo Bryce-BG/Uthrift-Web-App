@@ -28,31 +28,31 @@ export default class ITEM extends React.Component {
 
   refresh() {
     window.scrollTo(0,0);
-    var callbackFunction = (userData) => {
-    this.setState(userData);
-    }
-
-    getUserDataItem(this.props.id, this.props.user, callbackFunction);
   }
 
 	componentDidMount(){
-		// 	var callbackFunction = (userData) => {
-		// 	this.setState(userData);
-		// }
-    //
-		// getUserDataItem(this.props.id, this.props.user, callbackFunction);
+			var callbackFunction = (userData) => {
+			this.setState(userData);
+		}
+
+		getUserDataItem(this.props.id, this.props.user, callbackFunction);
     this.refresh();
 
 	}
 
 
   render() {
-    console.log(this.state.viewingItem);
     return (
       <div>
         <NAVBAR  />
-        // <ITEMHERO name={this.state.viewingItem.Title} itembigpic={this.state.viewingItem.photoRef}/>
-        <ITEMHERO item={this.state.viewingItem}/>
+        <ITEMHERO name={this.state.viewingItem.Title} itembigpic={this.state.viewingItem.photoRef}
+          descriptionparagraph={this.state.viewingItem.Description}
+          condition={this.state.viewingItem.Condition}
+          price={this.state.viewingItem.Price}
+          seller={this.state.FirstName}
+          sellerEmail={this.state.Email}
+          sellerPhone={this.state.Cellphone}
+          />
 
         <MOREITEMS data={this.state} itemscat="More by Seller"/>
 
