@@ -46,7 +46,7 @@ export default class SEARCHRESULTS extends React.Component{
 		return(
 			<div>
 				<h1 className="page-header">Search Result
-					<small className="query">{this.state.searchArray[1]}</small>
+					<small className="query">"{this.props.searchTerm}"</small>
 				</h1>
 				<div className="row">
 					{this.state.row1.map((item) => {
