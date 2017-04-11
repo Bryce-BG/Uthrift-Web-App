@@ -15,9 +15,11 @@ export default class CLASSPAGEBODY extends React.Component {
 
   refresh() {
     window.scrollTo(0, 0);
-    getClassData(this.props.classID, (classData) => {
-      this.setState(classData);
-    });
+
+    var callbackFunction = (userData) => {
+      this.setState(userData);
+    }
+    getClassData(this.props.classID, callbackFunction);
   }
 
   componentDidMount(){
