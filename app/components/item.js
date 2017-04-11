@@ -44,7 +44,8 @@ export default class ITEM extends React.Component {
   render() {
     return (
       <div>
-        <NAVBAR  />
+
+        <NAVBAR user = {this.props.user}/>
         <ITEMHERO name={this.state.viewingItem.Title} itembigpic={this.state.viewingItem.photoRef}
           descriptionparagraph={this.state.viewingItem.Description}
           condition={this.state.viewingItem.Condition}

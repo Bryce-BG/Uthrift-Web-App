@@ -229,7 +229,7 @@ export function resetDatabase() {
 export default class ResetDatabase extends React.Component {
   render() {
     return (
-      <button htmlStyle= "display: inline-block" className="btn btn-default" type="button" onClick={() => {
+      <button  className="btn btn-default" id = "reset-button" type="button" onClick={() => {
         resetDatabase();
         window.alert("Database reset! Refreshing the page now...");
         document.location.reload(false);
