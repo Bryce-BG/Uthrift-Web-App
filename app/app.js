@@ -94,7 +94,9 @@ class HomePage extends React.Component {
 
 class SearchPage extends React.Component {
   render() {
-    return <SEARCHPAGE user={1} />;
+
+
+    return <SEARCHPAGE user={1} searchCategory={this.props.params.searchCategory} searchTerm = {this.props.params.searchTerm}/>;
   }
 }
 
@@ -123,7 +125,7 @@ ReactDOM.render((
       <IndexRoute component={HomePage} />
       <Route path="profile/:id" component={ProfilePage} />
       <Route path="submitItem/:id" component={SubmitItem} />
-      <Route path="searchPage/:id" component={SearchPage} />
+      <Route path="searchPage/:id/:searchCategory/:searchTerm" component={SearchPage} />
       <Route path="classPage/:id" component={ClassPage} />
       <Route path="itemPage/:id" component={ItemPage} />
     </Route>
