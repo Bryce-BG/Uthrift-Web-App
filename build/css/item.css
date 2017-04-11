@@ -45,3 +45,8 @@ body{
 .item-buttons:after, .item-buttons:active, .item-buttons:visited, .item-buttons:hover {
     background-color: #1D9304;
 }
+
+.big-picture{
+  height: 380px;
+  width: 400px;
+}

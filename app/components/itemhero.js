@@ -1,5 +1,5 @@
 import React from 'react';
-import ITEMDESCRIPTION from './itemdescription.js';
+//import ITEMDESCRIPTION from './itemdescription.js';
 
 export default class ITEMHERO extends React.Component {
   render() {
@@ -16,14 +16,23 @@ export default class ITEMHERO extends React.Component {
           <div className="row">
 
               <div className="col-md-6">
-                  <img className="img-responsive" src={this.props.itembigpic} alt="" />
+                  <img className="img-responsive big-picture" src={this.props.itembigpic} alt="" />
               </div>
 
-              <ITEMDESCRIPTION
-                descriptionparagraph="iclicker is an award winning student response solution that allows you to easily transform your classroom into an active learning environment."
-                 condition="Like New" price="$35" seller="John Doe" sellerEmail="john@doe.com"
-                 sellerPhone="1800JOHNDOE"
-              />
+              <div className="col-md-6">
+                  <h3>Description</h3>
+                  <p>{this.props.descriptionparagraph}</p>
+                  <h3>Details</h3>
+                  <ul>
+                      <li>Condition: {this.props.condition}</li>
+                  </ul>
+                  <h3>Price: {this.props.price}</h3>
+                  <h3>Seller: {this.props.seller}</h3>
+                  <p><strong>Phone:</strong> {this.props.sellerPhone}</p>
+                  <p><strong>Email:</strong> {this.props.sellerEmail}</p>
+              </div>
+
+
 
           </div>
         </div>
