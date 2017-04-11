@@ -9,14 +9,14 @@ export default class ITEMHERO extends React.Component {
 
           <div className="row">
               <div className="col-md-12">
-                  <h1 className="page-header">{this.props.name}</h1>
+                  <h1 className="page-header">{this.props.item.Title}</h1>
               </div>
           </div>
 
           <div className="row">
 
               <div className="col-md-6">
-                  <img className="img-responsive" src={this.props.itembigpic} alt="" />
+                  <img className="img-responsive big-picture" src={this.props.item.photoRef} alt="" />
               </div>
 
               <ITEMDESCRIPTION

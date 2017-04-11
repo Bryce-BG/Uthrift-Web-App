@@ -2,8 +2,8 @@ import React from 'react';
 import NAVBAR from './navbar.js';
 import ITEMHERO from './itemhero.js';
 import MOREITEMS from './moreitems.js';
-import {getUserData} from '../server';
-import {getItemInfo} from '../server';
+import {getUserDataItem} from '../server';
+// import {getItemInfo} from '../server';
 
 
 
@@ -26,21 +26,33 @@ export default class ITEM extends React.Component {
     };
   }
 
-	componentDidMount(){
-			var callbackFunction = (userData) => {
-			this.setState(userData);
-		}
+  refresh() {
+    window.scrollTo(0,0);
+    var callbackFunction = (userData) => {
+    this.setState(userData);
+    }
 
-		getUserData(this.props.user, callbackFunction);
+    getUserDataItem(this.props.id, this.props.user, callbackFunction);
+  }
+
+	componentDidMount(){
+		// 	var callbackFunction = (userData) => {
+		// 	this.setState(userData);
+		// }
+    //
+		// getUserDataItem(this.props.id, this.props.user, callbackFunction);
+    this.refresh();
 
 	}
 
 
   render() {
+    console.log(this.state.viewingItem);
     return (
       <div>
         <NAVBAR  />
-        <ITEMHERO name="i>clicker" itembigpic="img/dummy-item-main.jpg"/>
+        // <ITEMHERO name={this.state.viewingItem.Title} itembigpic={this.state.viewingItem.photoRef}/>
+        <ITEMHERO item={this.state.viewingItem}/>
 
         <MOREITEMS data={this.state} itemscat="More by Seller"/>
 
