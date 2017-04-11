@@ -39,7 +39,7 @@ export default class ITEM extends React.Component {
   render() {
     return (
       <div>
-        <NAVBAR  />
+        <NAVBAR  user = {this.props.user} />
         <ITEMHERO name="i>clicker" itembigpic="img/dummy-item-main.jpg"/>
 
         <MOREITEMS data={this.state} itemscat="More by Seller"/>
