@@ -8,7 +8,7 @@ export default class CLASSPAGE extends React.Component {
     return (
       <div>
         <NAVBAR />
-        <CLASSPAGEBODY classID={this.props.user}/>
+        <CLASSPAGEBODY classID={this.props.id}/>
       </div>
     )
   }

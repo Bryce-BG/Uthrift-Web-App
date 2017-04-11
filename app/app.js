@@ -100,12 +100,12 @@ class SearchPage extends React.Component {
 
 class ClassPage extends React.Component {
   render() {
-    return <CLASSPAGE user={1} />;
+    return <CLASSPAGE user={1} id={this.props.params.id}/>;
   }
 }
 class ItemPage extends React.Component {
   render() {
-    return <ITEM user={1} />;
+    return <ITEM user={1} id={this.props.params.id}/>;
   }
 }
 
