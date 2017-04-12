@@ -137,7 +137,7 @@ var initialData = {
       "instructor": "Tim Richards, First of his name",
       "credits": "3",
       "term": "Spring 2017",
-      "category": "Computer Science",
+      "subject": "Computer Science",
       "textbookList": [2,3,4],
       "techList": [1]
     },
@@ -149,7 +149,7 @@ var initialData = {
       "instructor": "No Man",
       "credits": "6",
       "term": "Spring 2017",
-      "category": "Abstract",
+      "subject": "Abstract",
       "textbookList": [4,5,6],
       "techList": [1]
     }
