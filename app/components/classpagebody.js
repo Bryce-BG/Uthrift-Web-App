@@ -15,9 +15,11 @@ export default class CLASSPAGEBODY extends React.Component {
 
   refresh() {
     window.scrollTo(0, 0);
-    getClassData(this.props.classID, (classData) => {
-      this.setState(classData);
-    });
+
+    var callbackFunction = (userData) => {
+      this.setState(userData);
+    }
+    getClassData(this.props.classID, callbackFunction);
   }
 
   componentDidMount(){
@@ -39,7 +41,7 @@ export default class CLASSPAGEBODY extends React.Component {
     <div className="container content-contain">
       <CLASSINFO title = {this.state.title} description ={this.state.description}
         instructor= {this.state.instructor} credits={this.state.credits}
-        term={this.state.term}/>
+        term={this.state.term} subject={this.state.subject} user={this.props.UserID}/>
       <div className="row">
         <ul className="nav nav-tabs nav-justified">
           <li className="active"><a data-toggle="tab" href="#Material">Course Material</a></li>

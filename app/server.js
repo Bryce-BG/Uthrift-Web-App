@@ -143,3 +143,12 @@ export function getItemInfo(itemID, cb) {
   var itemdata = readDocument('items', itemID);
   emulateServerReturn(itemdata, cb);
 }
+
+export function getUserDataItem(id, user, cb) {
+  var userData = readDocument('users', user);
+  var itemData = readDocument('items', id);
+  userData.sellingList = userData.sellingList.map((itemId) => readDocument('items', itemId));
+  userData.viewingItem = itemData;
+
+  emulateServerReturn(userData, cb);
+}

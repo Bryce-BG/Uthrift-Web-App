@@ -27,3 +27,8 @@ div.middle-carousel-item{ /*add space between the div items in the carousel*/
     margin: 0 auto;
     height: 400px;
 }
+
+#reset-button{
+  background-color: red;
+  border: 2px solid black;
+}
