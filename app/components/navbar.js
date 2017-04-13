@@ -11,8 +11,8 @@ constructor()
   super()
   this.state = {
     user: {},
-    category: "",
-    searchTerm :""
+    category: " ",
+    searchTerm :" "
 
 
   }
@@ -71,7 +71,6 @@ constructor()
                       <li className="upper-links"><a className="links" href="help.html">Help</a></li>
 
                       {/*dummy links*/}
-                        <li className="upper-links"><Link to={"/itemPage/" + this.props.user}>Item Page</Link></li>
                         <li className="upper-links"><Link to={"/classPage/" + 1}>Classpage</Link></li>
 
 
@@ -97,7 +96,7 @@ constructor()
 
                                    <div className="col-md-3" id = "catogory-Select" >
                                      <select id="categories" className="form-control dropdown">
-                                      <option value = "">Select Category</option>
+                                      <option value = " ">Select Category</option>
                                       <option value="Textbooks">Textbooks</option>
                                       <option value="Clothing">Clothing</option>
                                       <option value="Tech">Tech</option>
