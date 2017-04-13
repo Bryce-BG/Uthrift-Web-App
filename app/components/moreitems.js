@@ -13,7 +13,10 @@ export default class MOREITEMS extends React.Component {
                   <div className="panel-body">
                     {this.props.data.sellingList.map((items, i) => {
                       return(
-                      <SUBITEM key={i} id={this.props.data.sellingList[i]._id} subitemimgsrc={this.props.data.sellingList[i].photoRef} subitemname={this.props.data.sellingList[i].Title} subitemcondition= {this.props.data.sellingList[i].Condition}/>
+                        <SUBITEM key={i} id={this.props.data.sellingList[i]._id}
+                          subitemimgsrc={this.props.data.sellingList[i].photoRef}
+                          subitemname={this.props.data.sellingList[i].Title}
+                          subitemcondition= {this.props.data.sellingList[i].Condition}/>
                       )
                     })}
                   </div>
