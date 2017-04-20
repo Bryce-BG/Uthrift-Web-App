@@ -17,7 +17,7 @@ var initialData = {
       "NickName": "Someone",
       "Photo": "img/avatar.png",
       "trackList": [],
-      "sellingList": [4,5,6],
+      "sellingList": [4,5,6,7],
       "Password": "123456",
       "searchGory": "Textbooks",
       "searchTerm": "Books on how to hack life",
@@ -51,7 +51,7 @@ var initialData = {
       "Sold": false,
       "Category": "Tech",
       "photoRef": "img/iclicker.jpg",
-      "SellerId": "1"
+      "SellerId": "2"
     },
     "2":
     {
@@ -63,7 +63,7 @@ var initialData = {
       "Sold": false,
       "Category": "Textbooks",
       "photoRef": "img/book1.jpg",
-      "SellerID": "1"
+      "SellerID": "2"
     },
     "3":
     {
@@ -75,7 +75,7 @@ var initialData = {
       "Sold": false,
       "Category": "Textbooks",
       "photoRef": "img/book2.jpg",
-      "SellerID": "1"
+      "SellerID": "2"
     },
     "4":
     {
@@ -87,7 +87,7 @@ var initialData = {
       "Sold": false,
       "Category": "Textbooks",
       "photoRef": "img/book3.jpg",
-      "SellerID": "2"
+      "SellerID": "1"
     },
     "5":
     {
@@ -99,7 +99,7 @@ var initialData = {
       "Sold": false,
       "Category": "Textbooks",
       "photoRef": "img/book4.jpg",
-      "SellerID": "2"
+      "SellerID": "1"
     },
     "6":
     {
@@ -111,7 +111,7 @@ var initialData = {
       "Sold": false,
       "Category": "Textbooks",
       "photoRef": "img/book5.jpg",
-      "SellerID": "2"
+      "SellerID": "1"
     },
     "7":
     {
@@ -123,7 +123,7 @@ var initialData = {
       "Sold": false,
       "Category": "Textbooks",
       "photoRef": "img/book6.jpg",
-      "SellerID": "2"
+      "SellerID": "1"
     }
   },
 
