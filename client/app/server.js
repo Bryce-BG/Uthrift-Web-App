@@ -1,9 +1,21 @@
 import {readDocument, writeDocument, getArray} from './database.js';
+var token = 'eyJpZCI6MX0=';
 
 /**
  * Emulates how a REST call is *asynchronous* -- it calls your function back
  * some time in the future with data.
  */
+
+ export function getClassData(classID, cb) {
+
+   // We don't need to send a body, so pass in 'undefined' for the body.
+   sendXHR('GET', '/class/' + classID, undefined, (xhr) => {
+  // Call the callback with the data.
+  cb(JSON.parse(xhr.responseText));
+  });
+
+ }
+
  function sendXHR(verb, resource, body, cb) {
    var xhr = new XMLHttpRequest();
    xhr.open(verb, resource);
