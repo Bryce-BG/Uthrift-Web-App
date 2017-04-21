@@ -34,7 +34,7 @@
        // The server may have included some response text with details concerning
        // the error.
        var responseText = xhr.responseText;
-       UthriftError('Could not ' + verb + " " + resource + ": Received " + statusCode + " " + statusText + ": " + responseText);
+       UthriftError('Could not ' + verb + " " + resource + ": Received " + statusCode + " "); // + statusText + ": " + responseText);
      }
    });
 
