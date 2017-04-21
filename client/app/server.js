@@ -86,7 +86,7 @@ function emulateServerReturn(data, cb) {
 export function getRecomendedItems(cb)
 {
 
-sendXHR('GET', '/recomendedItems', undefined, (xhr) => {
+sendXHR('GET', '/recomendedItems/1', undefined, (xhr) => {
   // Call the callback with the data.
   cb(JSON.parse(xhr.responseText));
 });
