@@ -204,16 +204,6 @@ export function updateSearchUserData(data, userID){
 }
 
 
-
-
-export function getClassData(classID, cb) {
-    //console.log(classID);
-  var classData = readDocument('classes', classID);
-  classData.textbookList = classData.textbookList.map((itemId) => readDocument('items', itemId));
-  classData.techList = classData.techList.map((itemId) => readDocument('items', itemId));
-  emulateServerReturn(classData, cb);
-}
-
 export function getItemInfo(itemID, cb) {
   var itemdata = readDocument('items', itemID);
   emulateServerReturn(itemdata, cb);

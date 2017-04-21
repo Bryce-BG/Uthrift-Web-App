@@ -40,7 +40,7 @@ var getArray = database.getArray;
  /**
  * Get the class data.
  */
-app.get('/user/:classPage/feed', function(req, res) {
+app.get('/classPage/:id', function(req, res) {
   var classID = req.params.classID;
 
     res.send(getClassData(userid));
