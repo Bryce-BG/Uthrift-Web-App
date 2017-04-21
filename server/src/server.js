@@ -46,7 +46,7 @@ app.get('/recomendedItems', function(req, res) {
 });
 
 
-export function getRecomendedItems()
+function getRecomendedItems()
 {
 
   var recomendeditemIndexList= getArray('recomendedItems'); //get array for items
@@ -97,4 +97,11 @@ app.post('/resetdb', function(req, res) {
   database.resetDatabase();
   // res.send() sends an empty response with status code 200
   res.send();
+});
+
+
+
+// Starts the server on port 3000!
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
 });
