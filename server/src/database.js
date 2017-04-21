@@ -245,6 +245,18 @@ function deleteDocument(collectionName, id) {
 }
 module.exports.deleteDocument = deleteDocument;
 
+
+//Semple's great way of pulling an array from the database
+export function getArray(collection) {
+ // Clone the data. We do this to model a database, where you receive a
+ // *copy* of an object and not the object itself.
+ return JSONClone(data[collection]);
+}
+module.exports.getArray = getArray;
+
+
+
+
 /**
  * Returns an entire object collection.
  */
