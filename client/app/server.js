@@ -145,18 +145,18 @@ export function submitItem(data){
 
   userData._id = (Object.keys(getArray('items')).length) + 1;
   userData.postDate = time;
-  userData.title = data.title;
-  userData.price = data.price;
-  userData.condition = data.condition;
-  userData.conditionDescription = data.conDesc;
+  userData.Title = data.title;
+  userData.Price = data.price;
+  userData.Condition = data.condition;
+  userData.Description = data.conDesc;
   userData.classRelated = data.classRelated;
   userData.subject = data.subject;
   userData.courseNumber = data.courseNumber;
-  userData.category = data.category;
+  userData.Category = data.category;
   userData.categoryDescription = data.categoryDescription;
   userData.photoRef = "img/iclicker.jpg";
-  userData.sold = false;
-  userData.sellerId = 1;
+  userData.Sold = false;
+  userData.SellerId = 1;
   writeDocument('items', userData);
 }
 
