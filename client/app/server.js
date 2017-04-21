@@ -5,7 +5,7 @@
   export function getClassData(classID, cb) {
 
     // We don't need to send a body, so pass in 'undefined' for the body.
-    sendXHR('GET', '/class/' + classID, undefined, (xhr) => {
+    sendXHR('GET', '/classPage/' + classID, undefined, (xhr) => {
    // Call the callback with the data.
    cb(JSON.parse(xhr.responseText));
    });

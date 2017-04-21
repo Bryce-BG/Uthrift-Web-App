@@ -5,8 +5,6 @@ var express = require('express');
 
 var bodyParser = require('body-parser'); //import body parser
 
-
-
 // Creates an Express server.
 var app = express();
 app.use(express.static('../client/build'));
@@ -26,7 +24,25 @@ var writeDocument = database.writeDocument;
 var addDocument = database.addDocument;
 var readDocument = database.readDocument;
 
+/**
+ * Get the feed data for a particular user.
+ */
+ function getClassData(classID) {
+   //console.log(classID);
+   var classData = readDocument('classes', classID);
+   classData.textbookList = classData.textbookList.map((itemId) => readDocument('items', itemId));
+   classData.techList = classData.techList.map((itemId) => readDocument('items', itemId));
+   return(classData);
+ }
 
+ /**
+ * Get the class data.
+ */
+app.get('/user/:classPage/feed', function(req, res) {
+  var classID = req.params.classID;
+
+    res.send(getClassData(userid));
+});
 
 app.get('/recomendedItems', function(req, res) {
   var userid = req.params.userid;
