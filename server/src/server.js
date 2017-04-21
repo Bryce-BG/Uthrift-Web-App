@@ -46,7 +46,7 @@ app.get('/classPage/:id', function(req, res) {
     res.send(getClassData(userid));
 });
 
-app.get('/recomendedItems', function(req, res) {
+app.get('/recomendedItems/:userid', function(req, res) {
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   // userid is a string. We need it to be a number.
