@@ -32,27 +32,7 @@ constructor()
   }
 
 
-  // handleSearchClick(e){
-	// 	e.preventDefault();
-  //
-	// 	if (e.button == 0){
-  //
-  //     var callbackFunction = (userData) => {
-	// 		this.setState({user: userData});
-	// 	}
-	// 	getUserData(this.props.user, callbackFunction);
-  //
-  //   updateSearchUserData
-  //   var data = {
-  //      searchGory: this.state.category,
-  //      searchTerm: this.state.value
-  //   };
-  //
-	// 	updateSearchUserData(data, this.props.user);
-  //
-  //
-	// 	}
-	// }
+
 
 
   render() {
@@ -67,14 +47,8 @@ constructor()
               <div className="row row1">
 
                   <ul className="largenav pull-right">
-                      <li className="upper-links"><a className="links" href="contact.html">Contact Us</a></li>
-                      <li className="upper-links"><a className="links" href="help.html">Help</a></li>
 
-                      {/*dummy links*/}
-                        <li className="upper-links"><Link to={"/classPage/" + 1}>Classpage</Link></li>
-
-
-
+                      <li className="upper-links"><Link to={"/classPage/" + this.props.user}>Classpage</Link></li>
                       <li className="upper-links"><Link to={"/submitItem/" + this.props.user}>sell item</Link></li>
                       <li className="upper-links"><Link to={"/profile/" + this.props.user}>Profile</Link></li>
 
