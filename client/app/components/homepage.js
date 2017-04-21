@@ -1,5 +1,5 @@
 import React from 'react';
-import NAVBAR from './navbar.js';
+
 import HOMEPAGEBODY from './homepagebody.js';
 
 
@@ -10,9 +10,6 @@ export default class HOMEPAGE extends React.Component {
 
     return (
       <div>
-
-        <NAVBAR  user = {this.props.user} />
-
         <HOMEPAGEBODY />
 
       </div>

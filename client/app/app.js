@@ -62,7 +62,6 @@ else if (document.getElementById('submissionform') !== null) {
   );
 }*/
 
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import HOMEPAGE from './components/homepage.js';
@@ -71,7 +70,9 @@ import SUBMISSIONFORM from './components/submissionform/submissionform.js';
 import SEARCHPAGE from './components/searchpage.js';
 import CLASSPAGE from './components/classpage.js';
 import ITEM from './components/item.js';
-import { IndexRoute, Router, Route, browserHistory } from 'react-router'
+import NAVBAR from './components/navbar.js'; //new import
+import ErrorBanner from './components/errorbanner';
+import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 
 class ProfilePage extends React.Component {
   render() {
@@ -113,8 +114,14 @@ class ItemPage extends React.Component {
 
 class App extends React.Component {
   render() {
+
+    var user = 1;
     return (
-      <div>{this.props.children}</div>
+
+      <div>
+        <NAVBAR  user = {user} />
+        <ErrorBanner />
+        {this.props.children}</div>
     )
   }
 }
