@@ -86,13 +86,8 @@ function emulateServerReturn(data, cb) {
 }
 
 
-export function getFeedData(user, cb) {
-  // We don't need to send a body, so pass in 'undefined' for the body.
-  sendXHR('GET', '/user/4/feed', undefined, (xhr) => {
-    // Call the callback with the data.
-    cb(JSON.parse(xhr.responseText));
-  });
-}
+
+
 export function getRecomendedItems(cb)
 {
 
@@ -131,9 +126,9 @@ export function getSearch(search, cb) {
   //take the list of all items with correct category and then try to narrow them down further by applying hte search filter
   var searchResults = [];
   index = 0; //reset to 0 for next search
-  for (var i = 1; i < refinedList.length; i++) {
-    if (refinedList[i].Title === search[1] || refinedList[i]._id === search[1]) {
-        searchResults[index] = refinedList[i];
+  for (var ie = 1; i < refinedList.length; ie++) {
+    if (refinedList[ie].Title === search[1] || refinedList[ie]._id === search[1]) {
+        searchResults[index] = refinedList[ie];
         index+=1;
       }
  }

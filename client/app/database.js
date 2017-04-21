@@ -5,158 +5,158 @@ import React from 'react';
 var startupName = "Uthrift";
 
 // Put your mock objects here, as in Workshop 4
-var initialData = {
-  "users": {
-
-    "1": {
-      "_id": 1,
-      "Email": "johndoe@umass.edu",
-      "Cellphone": "987-654-3210",
-      "FirstName": "John",
-      "LastName": "Doe",
-      "NickName": "Someone",
-      "Photo": "img/avatar.png",
-      "trackList": [],
-      "sellingList": [4,5,6,7],
-      "Password": "123456",
-      "searchGory": "Textbooks",
-      "searchTerm": "Books on how to hack life",
-      "viewingItem": 1
-    },
-    "2": {
-      "_id": 2,
-      "Email": "janerando@umass.edu",
-      "Cellphone": "012-345-5678",
-      "FirstName": "Jane",
-      "LastName": "Rando",
-      "NickName": "AnotherOne",
-      "Photo": "img/avatar2.png",
-      "trackList": [],
-      "sellingList": [1,2,3],
-      "Password": "233333",
-      "searchGory": "Textbooks",
-      "searchTerm": "",
-      "viewingItem": 1
-    }
-  },
-  "items":
-  {
-    "1":
-    {
-      "_id": 1,
-      "Title": "iclicker",
-      "Price": "10,000",
-      "Description": "Class Prison Key",
-      "Condition": "Brand New",
-      "Sold": false,
-      "Category": "Tech",
-      "photoRef": "img/iclicker.jpg",
-      "SellerId": "2"
-    },
-    "2":
-    {
-      "_id": 2,
-      "Title": "Craking The Code",
-      "Price": "18.00",
-      "Description": "Item 1 Description",
-      "Condition": "Brand New",
-      "Sold": false,
-      "Category": "Textbooks",
-      "photoRef": "img/book1.jpg",
-      "SellerID": "2"
-    },
-    "3":
-    {
-      "_id": 3,
-      "Title": "Introductions to Algorithms",
-      "Price": "21.00",
-      "Description": "Item 2 Description",
-      "Condition": "Brand New",
-      "Sold": false,
-      "Category": "Textbooks",
-      "photoRef": "img/book2.jpg",
-      "SellerID": "2"
-    },
-    "4":
-    {
-      "_id": 4,
-      "Title": "Artificial Intelligence",
-      "Price": "25.00",
-      "Description": "Item 3 Description",
-      "Condition": "Brand New",
-      "Sold": false,
-      "Category": "Textbooks",
-      "photoRef": "img/book3.jpg",
-      "SellerID": "1"
-    },
-    "5":
-    {
-      "_id": 5,
-      "Title": "The Rules of Love",
-      "Price": "7.50",
-      "Description": "Item 4 Description",
-      "Condition": "Brand New",
-      "Sold": false,
-      "Category": "Textbooks",
-      "photoRef": "img/book4.jpg",
-      "SellerID": "1"
-    },
-    "6":
-    {
-      "_id": 6,
-      "Title": "What I Wish I Knew When I was 20",
-      "Price": "5.00",
-      "Description": "Item 5 Description",
-      "Condition": "Brand New",
-      "Sold": false,
-      "Category": "Textbooks",
-      "photoRef": "img/book5.jpg",
-      "SellerID": "1"
-    },
-    "7":
-    {
-      "_id": 7,
-      "Title": "Unlock Your Educational Potental",
-      "Price": "6.00",
-      "Description": "Item 6 Description",
-      "Condition": "Brand New",
-      "Sold": false,
-      "Category": "Textbooks",
-      "photoRef": "img/book6.jpg",
-      "SellerID": "1"
-    }
-  },
-
-  "classes":
-  {
-    "1":
-    {
-      "_id": 1,
-      "title": "CS 326",
-      "description": "We teach you how to make facebook",
-      "instructor": "Tim Richards, First of his name",
-      "credits": "3",
-      "term": "Spring 2017",
-      "subject": "Computer Science",
-      "textbookList": [2,3,4],
-      "techList": [1]
-    },
-    "2":
-    {
-      "_id": 2,
-      "title": "CS Test",
-      "description": "This is just a test",
-      "instructor": "No Man",
-      "credits": "6",
-      "term": "Spring 2017",
-      "subject": "Abstract",
-      "textbookList": [4,5,6],
-      "techList": [1]
-    }
-  },
-  "recomendedItems": [1,2,3,4,5,6,7,1,1]
-};
-
+// var initialData = {
+//   "users": {
+//
+//     "1": {
+//       "_id": 1,
+//       "Email": "johndoe@umass.edu",
+//       "Cellphone": "987-654-3210",
+//       "FirstName": "John",
+//       "LastName": "Doe",
+//       "NickName": "Someone",
+//       "Photo": "img/avatar.png",
+//       "trackList": [],
+//       "sellingList": [4,5,6,7],
+//       "Password": "123456",
+//       "searchGory": "Textbooks",
+//       "searchTerm": "Books on how to hack life",
+//       "viewingItem": 1
+//     },
+//     "2": {
+//       "_id": 2,
+//       "Email": "janerando@umass.edu",
+//       "Cellphone": "012-345-5678",
+//       "FirstName": "Jane",
+//       "LastName": "Rando",
+//       "NickName": "AnotherOne",
+//       "Photo": "img/avatar2.png",
+//       "trackList": [],
+//       "sellingList": [1,2,3],
+//       "Password": "233333",
+//       "searchGory": "Textbooks",
+//       "searchTerm": "",
+//       "viewingItem": 1
+//     }
+//   },
+//   "items":
+//   {
+//     "1":
+//     {
+//       "_id": 1,
+//       "Title": "iclicker",
+//       "Price": "10,000",
+//       "Description": "Class Prison Key",
+//       "Condition": "Brand New",
+//       "Sold": false,
+//       "Category": "Tech",
+//       "photoRef": "img/iclicker.jpg",
+//       "SellerId": "2"
+//     },
+//     "2":
+//     {
+//       "_id": 2,
+//       "Title": "Craking The Code",
+//       "Price": "18.00",
+//       "Description": "Item 1 Description",
+//       "Condition": "Brand New",
+//       "Sold": false,
+//       "Category": "Textbooks",
+//       "photoRef": "img/book1.jpg",
+//       "SellerID": "2"
+//     },
+//     "3":
+//     {
+//       "_id": 3,
+//       "Title": "Introductions to Algorithms",
+//       "Price": "21.00",
+//       "Description": "Item 2 Description",
+//       "Condition": "Brand New",
+//       "Sold": false,
+//       "Category": "Textbooks",
+//       "photoRef": "img/book2.jpg",
+//       "SellerID": "2"
+//     },
+//     "4":
+//     {
+//       "_id": 4,
+//       "Title": "Artificial Intelligence",
+//       "Price": "25.00",
+//       "Description": "Item 3 Description",
+//       "Condition": "Brand New",
+//       "Sold": false,
+//       "Category": "Textbooks",
+//       "photoRef": "img/book3.jpg",
+//       "SellerID": "1"
+//     },
+//     "5":
+//     {
+//       "_id": 5,
+//       "Title": "The Rules of Love",
+//       "Price": "7.50",
+//       "Description": "Item 4 Description",
+//       "Condition": "Brand New",
+//       "Sold": false,
+//       "Category": "Textbooks",
+//       "photoRef": "img/book4.jpg",
+//       "SellerID": "1"
+//     },
+//     "6":
+//     {
+//       "_id": 6,
+//       "Title": "What I Wish I Knew When I was 20",
+//       "Price": "5.00",
+//       "Description": "Item 5 Description",
+//       "Condition": "Brand New",
+//       "Sold": false,
+//       "Category": "Textbooks",
+//       "photoRef": "img/book5.jpg",
+//       "SellerID": "1"
+//     },
+//     "7":
+//     {
+//       "_id": 7,
+//       "Title": "Unlock Your Educational Potental",
+//       "Price": "6.00",
+//       "Description": "Item 6 Description",
+//       "Condition": "Brand New",
+//       "Sold": false,
+//       "Category": "Textbooks",
+//       "photoRef": "img/book6.jpg",
+//       "SellerID": "1"
+//     }
+//   },
+//
+//   "classes":
+//   {
+//     "1":
+//     {
+//       "_id": 1,
+//       "title": "CS 326",
+//       "description": "We teach you how to make facebook",
+//       "instructor": "Tim Richards, First of his name",
+//       "credits": "3",
+//       "term": "Spring 2017",
+//       "subject": "Computer Science",
+//       "textbookList": [2,3,4],
+//       "techList": [1]
+//     },
+//     "2":
+//     {
+//       "_id": 2,
+//       "title": "CS Test",
+//       "description": "This is just a test",
+//       "instructor": "No Man",
+//       "credits": "6",
+//       "term": "Spring 2017",
+//       "subject": "Abstract",
+//       "textbookList": [4,5,6],
+//       "techList": [1]
+//     }
+//   },
+//   "recomendedItems": [1,2,3,4,5,6,7,1,1]
+// };
+var initialData = {};
 var data = JSON.parse(localStorage.getItem(startupName));
 if (data === null) {
   data = JSONClone(initialData);
