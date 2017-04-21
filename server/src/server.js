@@ -40,10 +40,10 @@ var getArray = database.getArray;
  /**
  * Get the class data.
  */
-app.get('/classPage/:id', function(req, res) {
+app.get('/classPage/:classID', function(req, res) {
   var classID = req.params.classID;
 
-    res.send(getClassData(userid));
+    res.send(getClassData(classID));
 });
 
 app.get('/recomendedItems/:userid', function(req, res) {
