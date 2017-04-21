@@ -13,7 +13,7 @@ app.use(express.static('../client/build'));
 app.use(bodyParser.text());
 app.use(bodyParser.json());
 
-module.exports.getFeedData = getFeedData;
+
 
 // Defines what happens when it receives the `GET /` request
 // app.get('/', function (req, res) {
@@ -25,6 +25,8 @@ var database = require('./database.js');
 var writeDocument = database.writeDocument;
 var addDocument = database.addDocument;
 var readDocument = database.readDocument;
+var getArray = database.getArray;
+
 
 
 
