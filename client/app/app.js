@@ -71,7 +71,7 @@ import SEARCHPAGE from './components/searchpage.js';
 import CLASSPAGE from './components/classpage.js';
 import ITEM from './components/item.js';
 import NAVBAR from './components/navbar.js'; //new import
-import ErrorBanner from './components/errorbanner';
+import ErrorBanner from './components/ErrorBanner.js'
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 
 class ProfilePage extends React.Component {
@@ -115,13 +115,34 @@ class ItemPage extends React.Component {
 class App extends React.Component {
   render() {
 
-    var user = 1;
+    var loggedinuser = 1;
     return (
-
       <div>
-        <NAVBAR  user = {user} />
-        <ErrorBanner />
-        {this.props.children}</div>
+        <NAVBAR user={loggedinuser} />
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <ErrorBanner />
+            </div>
+          </div>
+          <div className="row">
+
+            {this.props.children}
+
+          </div>
+        </div>
+
+      </div>
+
+      // <div>
+      // <div>
+      //   <NAVBAR  user = {loggedinuser} />
+      // </div>
+      // <div>
+      //   <ErrorBanner />
+      // </div>
+      //
+      // </div>
     )
   }
 }
