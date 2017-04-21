@@ -143,7 +143,8 @@ export function submitItem(data){
   var userData = readDocument('items', 1);
   var time = new Date().getTime();
 
-  userData._id = (Object.keys(getArray('items')).length) + 1;
+  var itemID = (Object.keys(getArray('items')).length) + 1;
+  userData._id = itemID;
   userData.postDate = time;
   userData.Title = data.title;
   userData.Price = data.price;
@@ -158,6 +159,10 @@ export function submitItem(data){
   userData.Sold = false;
   userData.SellerId = 1;
   writeDocument('items', userData);
+
+  //Update selling list by copying seller profile and adding item # to array
+  var userInfo = readDocument('users', 1);
+  userInfo.sellingList.push(itemID);
 }
 
 //export function submitItem(userID, title, price, condition,
