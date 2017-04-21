@@ -1,5 +1,5 @@
 import React from 'react';
-import RESET from '../database.js';
+import RESET from './resetdatabase.js'; //now calling the seperate reset function
 import {Link} from 'react-router';
 
 
