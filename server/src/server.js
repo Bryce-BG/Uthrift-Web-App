@@ -1,70 +1,50 @@
 // Implement your server in this file.
 // We should be able to run your server with node src/server.js
 
-function sendXHR(verb, resource, body, cb) {
-  var xhr = new XMLHttpRequest();
-  xhr.open(verb, resource);
-  xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+var express = require('express');
 
-  // The below comment tells ESLint that FacebookError is a global.
-  // Otherwise, ESLint would complain about it! (See what happens in Atom if
-  // you remove the comment...)
-  /* global UthriftError */
+var bodyParser = require('body-parser'); //import body parser
 
-  // Response received from server. It could be a failure, though!
-  xhr.addEventListener('load', function() {
-    var statusCode = xhr.status;
-    var statusText = xhr.statusText;
-    if (statusCode >= 200 && statusCode < 300) {
-      // Success: Status code is in the [200, 300) range.
-      // Call the callback with the final XHR object.
-      cb(xhr);
-    } else {
-      // Client or server error.
-      // The server may have included some response text with details concerning
-      // the error.
-      var responseText = xhr.responseText;
-      UthriftError('Could not ' + verb + " " + resource + ": Received " + statusCode + " " + statusText + ": " + responseText);
-    }
-  });
 
-  // Time out the request if it takes longer than 10,000
-  // milliseconds (10 seconds)
-  xhr.timeout = 10000;
 
-  // Network failure: Could not connect to server.
-  xhr.addEventListener('error', function() {
-    UthriftError('Could not ' + verb + " " + resource + ": Could not connect to the server.");
-  });
+// Creates an Express server.
+var app = express();
+app.use(express.static('../client/build'));
+app.use(bodyParser.text());
+app.use(bodyParser.json());
 
-  // Network failure: request took too long to complete.
-  xhr.addEventListener('timeout', function() {
-    UthriftError('Could not ' + verb + " " + resource +  ": Request timed out.");
-  });
+module.exports.getFeedData = getFeedData;
 
-  switch (typeof(body)) {
-    case 'undefined':
-      // No body to send.
-      xhr.send();
-      break;
-    case 'string':
-      // Tell the server we are sending text.
-      xhr.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
-      xhr.send(body);
-      break;
-    case 'object':
-      // Tell the server we are sending JSON.
-      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-      // Convert body into a JSON string.
-      xhr.send(JSON.stringify(body));
-      break;
-    default:
-      throw new Error('Unknown body type: ' + typeof(body));
+// Defines what happens when it receives the `GET /` request
+// app.get('/', function (req, res) {
+//   res.send('Hello World!');
+// });
+
+var database = require('./database.js');
+
+var writeDocument = database.writeDocument;
+var addDocument = database.addDocument;
+var readDocument = database.readDocument;
+
+
+
+app.get('/recomendedItems', function(req, res) {
+  var userid = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  // userid is a string. We need it to be a number.
+  // Parameters are always strings.
+  var useridNumber = parseInt(userid, 10);
+  if (fromUser === useridNumber) {
+    // Send response.
+    res.send(getRecomendedItems()); //INDUCING ERROR when commented out
+  } else {
+    // 401: Unauthorized request.
+    res.status(401).end();
   }
-}
+});
 
 
-export function getRecomendedItems(cb)
+export function getRecomendedItems()
 {
 
   var recomendeditemIndexList= getArray('recomendedItems'); //get array for items
@@ -83,3 +63,36 @@ export function getRecomendedItems(cb)
 
   emulateServerReturn(recomendedItems, cb);
 }
+
+
+
+function getUserIdFromToken(authorizationLine) {
+  try {
+    // Cut off "Bearer " from the header value.
+    var token = authorizationLine.slice(7);
+    // Convert the base64 string to a UTF-8 string.
+    var regularString = new Buffer(token, 'base64').toString('utf8');
+    // Convert the UTF-8 string into a JavaScript object.
+    var tokenObj = JSON.parse(regularString);
+    var id = tokenObj['id'];
+    // Check that id is a number.
+    if (typeof id === 'number') {
+      return id;
+    } else {
+      // Not a number. Return -1, an invalid ID.
+      return -1;
+    }
+  } catch (e) {
+    // Return an invalid ID.
+    return -1;
+  }
+}
+
+// Reset database.
+app.post('/resetdb', function(req, res) {
+  console.log("Resetting database...");
+  // This is a debug route, so don't do any validation.
+  database.resetDatabase();
+  // res.send() sends an empty response with status code 200
+  res.send();
+});

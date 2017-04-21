@@ -4,6 +4,8 @@ import {readDocument, writeDocument, getArray} from './database.js';
  * Emulates how a REST call is *asynchronous* -- it calls your function back
  * some time in the future with data.
  */
+
+ var token = 'eyJpZCI6MX0='
  function sendXHR(verb, resource, body, cb) {
    var xhr = new XMLHttpRequest();
    xhr.open(verb, resource);
@@ -79,19 +81,30 @@ function emulateServerReturn(data, cb) {
 }
 
 
-
+export function getFeedData(user, cb) {
+  // We don't need to send a body, so pass in 'undefined' for the body.
+  sendXHR('GET', '/user/4/feed', undefined, (xhr) => {
+    // Call the callback with the data.
+    cb(JSON.parse(xhr.responseText));
+  });
+}
 export function getRecomendedItems(cb)
 {
 
-  var recomendeditemIndexList= getArray('recomendedItems'); //get array for items
+sendXHR('GET', '/recomendedItems', undefined, (xhr) => {
+  // Call the callback with the data.
+  cb(JSON.parse(xhr.responseText));
+});
 
-  var recomendedItems = new Array(9);
-  for (var i = 0; i < 9; i++) {
-
-    recomendedItems[i] = readDocument("items", recomendeditemIndexList[i]); //actually get the items
-    }
-
-  emulateServerReturn(recomendedItems, cb);
+  // var recomendeditemIndexList= getArray('recomendedItems'); //get array for items
+  //
+  // var recomendedItems = new Array(9);
+  // for (var i = 0; i < 9; i++) {
+  //
+  //   recomendedItems[i] = readDocument("items", recomendeditemIndexList[i]); //actually get the items
+  //   }
+  //
+  // emulateServerReturn(recomendedItems, cb);
 }
 
 export function getSearch(search, cb) {
