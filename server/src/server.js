@@ -61,7 +61,7 @@ export function getRecomendedItems()
 
 //console.log("size of recomended item list: " + recomendedItems.length);
 
-  emulateServerReturn(recomendedItems, cb);
+  return recomendedItems;
 }
 
 
