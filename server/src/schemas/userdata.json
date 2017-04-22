@@ -1,0 +1,65 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {},
+    "id": "http://example.com/example.json",
+    "properties": {
+        "Cellphone": {
+            "id": "/properties/Cellphone",
+            "type": "string"
+        },
+        "Email": {
+            "id": "/properties/Email",
+            "type": "string"
+        },
+        "FirstName": {
+            "id": "/properties/FirstName",
+            "type": "string"
+        },
+        "LastName": {
+            "id": "/properties/LastName",
+            "type": "string"
+        },
+        "NickName": {
+            "id": "/properties/NickName",
+            "type": "string"
+        },
+        "Password": {
+            "id": "/properties/Password",
+            "type": "string"
+        },
+        "Photo": {
+            "id": "/properties/Photo",
+            "type": "string"
+        },
+        "_id": {
+            "id": "/properties/_id",
+            "type": "integer"
+        },
+        "searchGory": {
+            "id": "/properties/searchGory",
+            "type": "string"
+        },
+        "searchTerm": {
+            "id": "/properties/searchTerm",
+            "type": "string"
+        },
+        "sellingList": {
+            "id": "/properties/sellingList",
+            "items": {
+                "id": "/properties/sellingList/items",
+                "type": "integer"
+            },
+            "type": "array"
+        },
+        "trackList": {
+            "id": "/properties/trackList",
+            "items": {},
+            "type": "array"
+        },
+        "viewingItem": {
+            "id": "/properties/viewingItem",
+            "type": "integer"
+        }
+    },
+    "type": "object"
+}
