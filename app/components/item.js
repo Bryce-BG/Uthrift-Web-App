@@ -2,69 +2,97 @@ import React from 'react';
 import NAVBAR from './navbar.js';
 import ITEMHERO from './itemhero.js';
 import MOREITEMS from './moreitems.js';
-import {getUserDataItem} from '../server';
+import {
+    getUserDataItem
+} from '../server';
 // import {getItemInfo} from '../server';
 
 
 
 export default class ITEM extends React.Component {
 
-  constructor(props) {
-    super(props);
-		this.state = {
-			"_id": "",
-      "Email": "",
-      "Cellphone": "",
-      "FirstName": "",
-      "LastName": "",
-      "NickName": "",
-      "Photo": "",
-      "trackList": [],
-      "sellingList": [],
-      "Password": "",
-      "viewingItem": ""
-    };
-  }
-
-  refresh() {
-    window.scrollTo(0,0);
-    var callbackFunction = (userData) => {
-      this.setState(userData);
+    constructor(props) {
+        super(props);
+        this.state = {
+            "_id": "",
+            "Email": "",
+            "Cellphone": "",
+            "FirstName": "",
+            "LastName": "",
+            "NickName": "",
+            "Photo": "",
+            "trackList": [],
+            "sellingList": [],
+            "Password": "",
+            "viewingItem": ""
+        };
     }
 
-    getUserDataItem(this.props.id, this.props.user, callbackFunction);
-  }
+    refresh() {
+        window.scrollTo(0, 0);
+        var callbackFunction = (userData) => {
+            this.setState(userData);
+        }
 
-	componentDidMount(){
-    this.refresh();
+        getUserDataItem(this.props.id, this.props.user, callbackFunction);
+    }
 
-	}
+    componentDidMount() {
+        this.refresh();
 
-  componentDidUpdate (prevProps) {
-    // respond to parameter change in scenario 3
-    let oldId = prevProps.id
-    let newId = this.props.id
-    if (newId !== oldId)
-      this.refresh();
-  }
+    }
 
-  render() {
-    return (
-      <div>
+    componentDidUpdate(prevProps) {
+        // respond to parameter change in scenario 3
+        let oldId = prevProps.id
+        let newId = this.props.id
+        if (newId !== oldId)
+            this.refresh();
+    }
 
-        <NAVBAR user = {this.props.user}/>
-        <ITEMHERO name={this.state.viewingItem.Title} itembigpic={this.state.viewingItem.photoRef}
-          descriptionparagraph={this.state.viewingItem.Description}
-          condition={this.state.viewingItem.Condition}
-          price={this.state.viewingItem.Price}
-          seller={this.state.FirstName}
-          sellerEmail={this.state.Email}
-          sellerPhone={this.state.Cellphone}
-          />
+    render() {
+        return ( <
+            div >
 
-        <MOREITEMS data={this.state} itemscat="More by Seller"/>
+            <
+            NAVBAR user = {
+                this.props.user
+            }
+            /> <
+            ITEMHERO name = {
+                this.state.viewingItem.Title
+            }
+            itembigpic = {
+                this.state.viewingItem.photoRef
+            }
+            descriptionparagraph = {
+                this.state.viewingItem.Description
+            }
+            condition = {
+                this.state.viewingItem.Condition
+            }
+            price = {
+                this.state.viewingItem.Price
+            }
+            seller = {
+                this.state.FirstName
+            }
+            sellerEmail = {
+                this.state.Email
+            }
+            sellerPhone = {
+                this.state.Cellphone
+            }
+            />
 
-      </div>
-    )
-  }
+            <
+            MOREITEMS data = {
+                this.state
+            }
+            itemscat = "More by Seller" / >
+
+            <
+            /div>
+        )
+    }
 }
