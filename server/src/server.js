@@ -51,10 +51,14 @@ app.get('/classPage/:classID', function(req, res) {
   var refinedList = [];
   var index = 0;
   if (search[0] !== "") {
-    var itemlistArray = Object.values(itemList);
+    //console.log(itemList);
+    //var itemlistArray = Object.values(itemList);
+    var itemlistArray = Object.keys(itemList).map(function(key) {return itemList[key];});
+    console.log(itemlistArray);
     var itemListLength = itemlistArray.length;
     for (var i = 1; i < itemListLength+1; i++) { //loop through and see only add items that have the correct category.
-      var itemArray = Object.values(itemList[i]);
+      //var itemArray = Object.values(itemList[i]);
+      var itemArray = Object.keys(itemList[i]).map(function(key) {return itemList[i][key];});
       //console.log(itemArray);
       if (itemArray[6] === search[0]) {
           refinedList[index] = itemArray;
