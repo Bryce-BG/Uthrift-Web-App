@@ -39,7 +39,7 @@ export default class SEARCHRESULTS extends React.Component{
 			}
 			this.setState({row2: tempSlide2})
 		};
-		getSearch(this.props.category, this.props.searchTerm,callbackFunction);
+		getSearch(this.props.category, this.props.searchTerm, callbackFunction);
 	}
 
 	render(){
