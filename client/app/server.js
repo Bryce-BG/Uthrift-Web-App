@@ -107,37 +107,6 @@ sendXHR('GET', '/recomendedItems/1', undefined, (xhr) => {
   // emulateServerReturn(recomendedItems, cb);
 }
 
-export function getSearch(search, cb) {
-  var itemList= getArray('items'); //get array for items
-  var refinedList = [];
-  var index = 0;
-  if (search[0] !== "") {
-    var itemlistArray = Object.values(itemList);
-    var itemListLength = itemlistArray.length;
-    for (var i = 1; i < itemListLength+1; i++) { //loop through and see only add items that have the correct category.
-      var itemArray = Object.values(itemList[i]);
-      //console.log(itemArray);
-      if (itemArray[6] === search[0]) {
-          refinedList[index] = itemArray;
-          index+=1;
-        }
-      }
-  }
-  //take the list of all items with correct category and then try to narrow them down further by applying hte search filter
-  var searchResults = [];
-  index = 0; //reset to 0 for next search
-  for (var ie = 1; i < refinedList.length; ie++) {
-    if (refinedList[ie].Title === search[1] || refinedList[ie]._id === search[1]) {
-        searchResults[index] = refinedList[ie];
-        index+=1;
-      }
- }
- if (searchResults.length < 2) {
-   searchResults = refinedList; // for now
- }
- emulateServerReturn(searchResults, cb);
-}
-
 // Submit stuff from Submission Form
 export function submitItem(data){
   var userData = readDocument('items', 1);

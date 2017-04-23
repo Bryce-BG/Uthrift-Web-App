@@ -46,6 +46,45 @@ app.get('/classPage/:classID', function(req, res) {
     res.send(getClassData(classID));
 });
 
+ function getSearch(search, cb) {
+  var itemList= getArray('items'); //get array for items
+  var refinedList = [];
+  var index = 0;
+  if (search[0] !== "") {
+    var itemlistArray = Object.values(itemList);
+    var itemListLength = itemlistArray.length;
+    for (var i = 1; i < itemListLength+1; i++) { //loop through and see only add items that have the correct category.
+      var itemArray = Object.values(itemList[i]);
+      //console.log(itemArray);
+      if (itemArray[6] === search[0]) {
+          refinedList[index] = itemArray;
+          index+=1;
+        }
+      }
+  }
+
+  //take the list of all items with correct category and then try to narrow them down further by applying hte search filter
+  var searchResults = [];
+  index = 0; //reset to 0 for next search
+  for (var ie = 1; i < refinedList.length; ie++) {
+    if (refinedList[ie].Title === search[1] || refinedList[ie]._id === search[1]) {
+        searchResults[index] = refinedList[ie];
+        index+=1;
+      }
+ }
+ if (searchResults.length < 2) {
+   searchResults = refinedList; // for now
+ }
+ return (searchResults);
+}
+
+
+  app.get('/search/', function(req, res) {
+    var search = req.body;
+
+      res.send(getSearch(search));
+  });
+
 app.get('/recomendedItems/:userid', function(req, res) {
   var userid = req.params.userid;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
