@@ -11,6 +11,14 @@
    });
  }
 
+ export function getSearch(cat, term, cb) {
+   // We don't need to send a body, so pass in 'undefined' for the body.
+   sendXHR('GET', '/searchPage/' + cat + '/' + term, undefined, (xhr) => {
+  // Call the callback with the data.
+  cb(JSON.parse(xhr.responseText));
+  });
+}
+
  function sendXHR(verb, resource, body, cb) {
    var xhr = new XMLHttpRequest();
    xhr.open(verb, resource);

@@ -46,7 +46,7 @@ app.get('/classPage/:classID', function(req, res) {
     res.send(getClassData(classID));
 });
 
- function getSearch(search, cb) {
+ function getSearch(search) {
   var itemList= getArray('items'); //get array for items
   var refinedList = [];
   var index = 0;
@@ -79,10 +79,15 @@ app.get('/classPage/:classID', function(req, res) {
 }
 
 
-  app.get('/search/', function(req, res) {
-    var search = req.body;
-
-      res.send(getSearch(search));
+  app.get('/searchPage/:cat/:term', function(req, res) {
+    console.log(req.params.cat);
+    console.log(req.params.term);
+    var cat = req.params.cat;
+    var term = req.params.term;
+    var search = [cat, term]
+    //console.log(req.params.term);
+    //var searchArray = [req.params.cat, ""]
+    res.send(getSearch(search));
   });
 
 app.get('/recomendedItems/:userid', function(req, res) {
