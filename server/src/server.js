@@ -106,6 +106,51 @@ function getUserIdFromToken(authorizationLine) {
   }
 }
 
+function getUserData(user){
+  var userData = readDocument('users', user);
+  userData.sellingList = userData.sellingList.map((itemId) => readDocument('items', itemId));
+  return userData;
+}
+
+//Get User data
+app.get('/profile/:userid', function(req, res) {
+  var userid = req.params.userid;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  var useridNumber = parseInt(userid, 10);
+  if (fromUser === useridNumber) {
+    res.send(getUserData(userid));
+  } else {
+    res.status(401).end();
+  }
+});
+
+function updateUserData(userId, cellphone, firstname, lastname, nickname, email, password, photo){
+  var userData = readDocument('users', userId);
+  userData.Cellphone = cellphone;
+  userData.FirstName = firstname;
+  userData.LastName = lastname;
+  userData.NickName = nickname;
+  userData.Email = email;
+  userData.Password = password;
+  userData.Photo = photo;
+  writeDocument('users', userData);
+}
+
+var UserDataSchema = require('./schemas/userdata.json');
+var validate = require('express-jsonschema').validate;
+
+//Update user information
+app.put('/profile', validate({ body:  UserDataSchema }), function(req, res) {
+  var body = req.body;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  if (fromUser === body.userId) {
+    updateUserData(body.userId, body.cellphone, body.firstname, body.lastname, body.nickname, body.email, body.password, body.photo);
+    res.send(getUserData(body.userId));
+  } else {
+    res.status(401).end();
+  }
+});
+
 // Reset database.
 app.post('/resetdb', function(req, res) {
   console.log("Resetting database...");
