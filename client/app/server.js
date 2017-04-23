@@ -34,7 +34,7 @@
        // The server may have included some response text with details concerning
        // the error.
        var responseText = xhr.responseText;
-       UthriftError('Could not ' + verb + " " + resource + ": Received " + statusCode + " " + statusText + ": " + responseText);
+       UthriftError('Could not ' + verb + " " + resource + ": Received " + statusCode + " "); // + statusText + ": " + responseText);
      }
    });
 
@@ -148,21 +148,24 @@ export function submitItem(data){
 //}
 
 export function getUserData(user, cb){
-  var userData = readDocument('users', user);
-  userData.sellingList = userData.sellingList.map((itemId) => readDocument('items', itemId));
-  emulateServerReturn(userData, cb);
+  sendXHR('GET', '/profile/' + user, undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
-export function updateUserData(data){
-  var userData = readDocument('users', data._id);
-  userData.Cellphone = data.Cellphone;
-  userData.FirstName = data.FirstName;
-  userData.LastName = data.LastName;
-  userData.NickName = data.NickName;
-  userData.Email = data.Email;
-  userData.Password = data.Password;
-  userData.Photo = data.Photo;
-  writeDocument('users', userData);
+export function updateUserData(data, cb){
+  sendXHR('PUT', '/profile', {
+    userId: data._id,
+    firstname: data.FirstName,
+    lastname: data.LastName,
+    nickname: data.NickName,
+    email: data.Email,
+    password: data.Password,
+    cellphone: data.Cellphone,
+    photo: data.Photo
+  },(xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function updateSearchUserData(data, userID){

@@ -6,7 +6,7 @@ import React from 'react';
 export default class ResetDatabase extends React.Component {
   render() {
     return (
-      <button className="btn btn-default" type="button" onClick={() => {
+      <button className="btn btn-default" id = "reset-button" type="button" onClick={() => {
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/resetdb');
         xhr.addEventListener('load', function() {
