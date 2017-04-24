@@ -3,6 +3,7 @@ import React from 'react';
 
 export default class ITEMHERO extends React.Component {
   render() {
+      console.log(this.props);
     return (
       <div>
         <div className="container content-contain">

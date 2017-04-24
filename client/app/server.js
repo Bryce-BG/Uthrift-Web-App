@@ -185,15 +185,13 @@ export function updateSearchUserData(data, userID){
 
 
 export function getItemInfo(itemID, cb) {
-  var itemdata = readDocument('items', itemID);
-  emulateServerReturn(itemdata, cb);
+  sendXHR('GET', '/ItemPage/' + itemID, undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
 export function getUserDataItem(id, user, cb) {
-  var userData = readDocument('users', user);
-  var itemData = readDocument('items', id);
-  userData.sellingList = userData.sellingList.map((itemId) => readDocument('items', itemId));
-  userData.viewingItem = itemData;
-
-  emulateServerReturn(userData, cb);
+  sendXHR('GET', '/ItemPage/' + user +'/'+ id, undefined, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
 }
