@@ -231,13 +231,13 @@ function submitItem(title, price, condition, conDesc, classRelated,
 var ItemsSchema = require('./schemas/items.json');
 
 //no idea what vvv this file path is supposed to be
-app.put('/submissionForm', validate({ body:  ItemsSchema }), function(req, res) {
+app.put('/submissionForm/', validate({ body:  ItemsSchema }), function(req, res) {
   var body = req.body;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   if (fromUser === body.sellerId) {
     submitItem(body.Title, body.Price, body.Condition, body.Description, body.classRelated, body.subject,
       body.courseNumber, body.Category, body.categoryDescription, body.photoRef, body.Sold, body.SellerId);
-    res.send(getUserData(body.___Id));
+    res.send(getUserData(body.SellerId));
   } else {
     res.status(401).end();
   }
