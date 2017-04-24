@@ -199,6 +199,35 @@ app.put('/profile', validate({ body:  UserDataSchema }), function(req, res) {
   }
 });
 
+function getItemInfo(itemID) {
+  var itemdata = readDocument('items', itemID);
+  return itemdata;
+}
+
+function getUserDataItem(id, user) {
+  var userData = readDocument('users', user);
+  var itemData = readDocument('items', id);
+  userData.sellingList = userData.sellingList.map((itemId) => readDocument('items', itemId));
+  userData.viewingItem = itemData;
+
+  return userData;
+}
+
+app.get('/ItemPage/:itemID', function(req, res) {
+    var itemID = req.params.itemID;
+
+    res.send(getItemInfo(itemID));
+});
+
+app.get('/ItemPage/:userID/:itemID', function(req,res){
+    //var itemID = req.params.itemID;
+    var userID = req.params.userID;
+    console.log(itemID);
+    console.log(userID);
+    res.send(getUserData(userID));
+
+});
+
 // Reset database.
 app.post('/resetdb', function(req, res) {
   console.log("Resetting database...");
@@ -207,6 +236,7 @@ app.post('/resetdb', function(req, res) {
   // res.send() sends an empty response with status code 200
   res.send();
 });
+
 
 
 

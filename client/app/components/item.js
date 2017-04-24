@@ -55,10 +55,6 @@ export default class ITEM extends React.Component {
             div >
 
             <
-            NAVBAR user = {
-                this.props.user
-            }
-            /> <
             ITEMHERO name = {
                 this.state.viewingItem.Title
             }
