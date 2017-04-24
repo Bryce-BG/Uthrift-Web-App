@@ -199,6 +199,52 @@ app.put('/profile', validate({ body:  UserDataSchema }), function(req, res) {
   }
 });
 
+
+//submission form junk
+function submitItem(title, price, condition, conDesc, classRelated,
+    subject, courseNumber, category, categoryDescription, photoRef, sold, sellerId){
+  var itemData = readDocument('items', 1);
+  var time = new Date().getTime();
+
+  var itemID = (Object.keys(getArray('items')).length) + 1;
+  itemData._id = itemID; //not sure if this should be itemData.itemId because the json has itemId instead of _id
+  itemData.postDate = time;
+  itemData.Title = title;
+  itemData.Price = price;
+  itemData.Condition = condition;
+  itemData.Description = conDesc;
+  itemData.classRelated = classRelated;
+  itemData.subject = subject;
+  itemData.courseNumber = courseNumber;
+  itemData.Category = category;
+  itemData.categoryDescription = categoryDescription;
+  itemData.photoRef = "img/iclicker.jpg";
+  itemData.Sold = sold;
+  itemData.SellerId = sellerId;
+  writeDocument('items', itemData);
+
+  //Update selling list by copying seller profile and adding item # to array
+  var userInfo = readDocument('users', sellerId);
+  userInfo.sellingList.push(itemID);
+}
+
+var ItemsSchema = require('./schemas/items.json');
+
+app.put('/submissionForm', validate({ body:  ItemsSchema }), function(req, res) {
+  var body = req.body;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  if (fromUser === body.sellerId) {
+    submitItem(body.Title, body.Price, body.Condition, body.Description, body.classRelated, body.subject,
+      body.courseNumber, body.Category, body.categoryDescription, body.photoRef, body.Sold, body.SellerId);
+    res.send(getUserData(body.___Id));
+  } else {
+    res.status(401).end();
+  }
+});
+
+
+
+
 // Reset database.
 app.post('/resetdb', function(req, res) {
   console.log("Resetting database...");

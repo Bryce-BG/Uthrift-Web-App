@@ -115,6 +115,7 @@ sendXHR('GET', '/recomendedItems/1', undefined, (xhr) => {
   // emulateServerReturn(recomendedItems, cb);
 }
 
+/**
 // Submit stuff from Submission Form
 export function submitItem(data){
   var userData = readDocument('items', 1);
@@ -140,25 +141,33 @@ export function submitItem(data){
   //Update selling list by copying seller profile and adding item # to array
   var userInfo = readDocument('users', 1);
   userInfo.sellingList.push(itemID);
+} */
+// Submit stuff from Submission Form
+export function submitItem(data, cb){
+  sendXHR('PUT', '/submissionForm/', {
+    itemId: data._id, //not sure what the userId is supposed to be. (don't want to mix it up with itemId)
+    postDate: new Date().getTime(),
+    Title: data.Title,
+    Price: data.Price,
+    Condition: data.Condition,
+    Description: data.Description,
+    classRelated: data.classRelated,
+    subject: data.subject,
+    courseNumber: data.courseNumber,
+    Category: data.Category,
+    categoryDescription: data.categoryDescription,
+    photoRef: data.photoRef,
+    Sold: data.Sold,
+    SellerId: data.SellerId
+  }, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
+  //Update selling list by copying seller profile and adding item # to array
+  var userInfo = readDocument('users', 1);
+  userInfo.sellingList.push(data._id);
 }
 
-//export function submitItem(userID, title, price, condition,
-//  conditionDescription, category, categoryDescription, cb) {
-//  var time = new Date().getTime();
-//  var newItem = {
-//    "_id": getArray('items').length + 1,
-//    "SellerID": userID,
-//    "postDate": time,
-//    "Title": title,
-//    "Price": price,
-//    "Condition": condition,
-//    "ConditionDescription": conditionDescription,
-//    "Description": categoryDescription,
-//    "Sold": false,
-//    "Category": category,
-//    "photoRef": "img/iclicker.jpg"
-//  };
-//}
+
 
 export function getUserData(user, cb){
   sendXHR('GET', '/profile/' + user, undefined, (xhr) => {

@@ -3,10 +3,6 @@
   "id": "/",
   "type": "object",
   "properties": {
-    "userId": {
-      "id": "userId",
-      "type": "integer"
-    },
     "itemId": {
       "id": "itemId",
       "type": "integer"
