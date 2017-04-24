@@ -13,7 +13,7 @@ export default class SEARCHRESULTS extends React.Component{
     };
   }
 
-	componentDidMount() {
+	refresh() {
 		window.scrollTo(0, 0);
 		var callbackFunction2 = (itemList) => {
 			var tempArray = new Array(2);
@@ -41,6 +41,17 @@ export default class SEARCHRESULTS extends React.Component{
 		};
 		getSearch(this.props.category, this.props.searchTerm, callbackFunction);
 	}
+
+	componentDidMount(){
+      this.refresh();
+  }
+  componentDidUpdate (prevProps) {
+    // respond to parameter change in scenario 3
+    let oldId = prevProps.category
+    let newId = this.props.category
+    if (newId !== oldId)
+      this.refresh();
+  }
 
 	render(){
 		return(
