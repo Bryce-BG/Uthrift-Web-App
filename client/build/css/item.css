@@ -50,3 +50,19 @@ body{
   height: 380px;
   width: 400px;
 }
+
+
+.profile-item-setsize{
+  height: 180px;
+  width: 110px;
+  padding-left: 15px;
+  margin-bottom: 20px;
+  margin-left: 8px;
+
+
+}
+
+
+#selling-container{
+  padding-top: 30px;
+}
