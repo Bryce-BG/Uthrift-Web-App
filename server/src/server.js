@@ -221,10 +221,7 @@ app.get('/ItemPage/:itemID', function(req, res) {
 
 app.get('/ItemPage/:userID/:itemID', function(req,res){
     //var itemID = req.params.itemID;
-    var userID = req.params.userID;
-    console.log(itemID);
-    console.log(userID);
-    res.send(getUserData(userID));
+    res.send(getUserDataItem(req.params.itemID, req.params.userID));
 
 });
 
