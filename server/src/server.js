@@ -226,6 +226,7 @@ var itemData = {
   addDocument('items', itemData);
   writeDocument('items', itemData);
 
+  console.log(getArray('items'));
   //Update selling list by copying seller profile and adding item # to array
   var userInfo = readDocument('users', sellerId);
   userInfo.sellingList.push(itemID);
