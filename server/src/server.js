@@ -230,6 +230,7 @@ function submitItem(title, price, condition, conDesc, classRelated,
 
 var ItemsSchema = require('./schemas/items.json');
 
+//no idea what vvv this file path is supposed to be
 app.put('/submissionForm', validate({ body:  ItemsSchema }), function(req, res) {
   var body = req.body;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
