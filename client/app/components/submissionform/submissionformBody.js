@@ -316,15 +316,15 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                 {/*<!--- Start Upload Picture --->*/}
                     <img className = "photo-entry main-photo" src={this.state.photoRef} width="100%"/>
 
-                    <div className="photo-entry center">
+                    <div className="photo-entry categoryEntry">
                       <label htmlFor="photoUpload1">Upload Photo</label>
                       <input type="file" className="form-control-file" id="photoUpload1" aria-describedby="fileHelp" onChange={(e) => this.handleChangePhoto(e)}/>
                     </div>
 
-                    <label htmlFor="photoUpload2">OR drag and drop files below:</label>
+                  {/* }  <label htmlFor="photoUpload2">OR drag and drop files below:</label>
                     <div className="upload-drop-zone" id="photoUpload2">
                       Just drag and drop files here
-                    </div>
+                    </div> */}
                   {/*  <!--- End Upload Picture --->*/}
 
                   {/*  <!--- Start Main Submission Criteria --->*/}
