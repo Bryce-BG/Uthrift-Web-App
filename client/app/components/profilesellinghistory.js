@@ -26,14 +26,20 @@ export default class PROFILESELLINGHISTORY extends React.Component{
           <div className="col-md-2">
           </div>
           <div className="col-md-8">
-            <div className="panel panel-default">
+            <div className="panel panel-default" >
               <div className="panel-heading">SELLING/SOLD</div>
-              <div className="panel-body">
+              <div className="panel-body " id = "selling-container">
+
 								{this.props.data.sellingList.map((items, i) => {
+
+
 									return(
+
+
 										<PROFILEITEM key={i} id = {this.props.data.sellingList[i]._id} img={this.props.data.sellingList[i].photoRef} name={this.props.data.sellingList[i].Title} color={statusOfItem[i * 2]} status={statusOfItem[i * 2 + 1]}/>
 									)
 								})}
+
               </div>
             </div>
           </div>
