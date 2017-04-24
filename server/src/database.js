@@ -1,10 +1,4 @@
-import React from 'react';
-//import ReactDOM from 'react-dom';
-
-// Modify with your startup's name!
-var startupName = "Uthrift";
-
-// Put your mock objects here, as in Workshop 4
+// Your startup's initial mock objects go here
 var initialData = {
   "users": {
 
@@ -17,7 +11,7 @@ var initialData = {
       "NickName": "Someone",
       "Photo": "img/avatar.png",
       "trackList": [],
-      "sellingList": [4,5,6],
+      "sellingList": [4,5,6,7],
       "Password": "123456",
       "searchGory": "Textbooks",
       "searchTerm": "Books on how to hack life",
@@ -51,7 +45,7 @@ var initialData = {
       "Sold": false,
       "Category": "Tech",
       "photoRef": "img/iclicker.jpg",
-      "SellerId": "1"
+      "SellerId": "2"
     },
     "2":
     {
@@ -63,7 +57,7 @@ var initialData = {
       "Sold": false,
       "Category": "Textbooks",
       "photoRef": "img/book1.jpg",
-      "SellerID": "1"
+      "SellerID": "2"
     },
     "3":
     {
@@ -75,7 +69,7 @@ var initialData = {
       "Sold": false,
       "Category": "Textbooks",
       "photoRef": "img/book2.jpg",
-      "SellerID": "1"
+      "SellerID": "2"
     },
     "4":
     {
@@ -87,7 +81,7 @@ var initialData = {
       "Sold": false,
       "Category": "Textbooks",
       "photoRef": "img/book3.jpg",
-      "SellerID": "2"
+      "SellerID": "1"
     },
     "5":
     {
@@ -99,7 +93,7 @@ var initialData = {
       "Sold": false,
       "Category": "Textbooks",
       "photoRef": "img/book4.jpg",
-      "SellerID": "2"
+      "SellerID": "1"
     },
     "6":
     {
@@ -111,7 +105,7 @@ var initialData = {
       "Sold": false,
       "Category": "Textbooks",
       "photoRef": "img/book5.jpg",
-      "SellerID": "2"
+      "SellerID": "1"
     },
     "7":
     {
@@ -123,7 +117,7 @@ var initialData = {
       "Sold": false,
       "Category": "Textbooks",
       "photoRef": "img/book6.jpg",
-      "SellerID": "2"
+      "SellerID": "1"
     }
   },
 
@@ -157,8 +151,23 @@ var initialData = {
   "recomendedItems": [1,2,3,4,5,6,7,1,1]
 };
 
-var data = JSON.parse(localStorage.getItem(startupName));
-if (data === null) {
+var data;
+// If 'true', the in-memory object representing the database has changed,
+// and we should flush it to disk.
+var updated = false;
+// Pull in Node's file system and path modules.
+var fs = require('fs'),
+  path = require('path');
+
+try {
+  // ./database.json may be missing. The comment below prevents ESLint from
+  // complaining about it.
+  // Read more about configuration comments at the following URL:
+  // http://eslint.org/docs/user-guide/configuring#configuring-rules
+  /* eslint "node/no-missing-require": "off" */
+  data = require('./database.json');
+} catch (e) {
+  // ./database.json is missing. Use the seed data defined above
   data = JSONClone(initialData);
 }
 
@@ -170,41 +179,50 @@ function JSONClone(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
-//Semple's great way of pulling an array from the database
-export function getArray(collection) {
- // Clone the data. We do this to model a database, where you receive a
- // *copy* of an object and not the object itself.
- return JSONClone(data[collection]);
-}
-
 /**
  * Emulates reading a "document" from a NoSQL database.
  * Doesn't do any tricky document joins, as we will cover that in the latter
  * half of the course. :)
  */
-export function readDocument(collection, id) {
+function readDocument(collection, id) {
   // Clone the data. We do this to model a database, where you receive a
   // *copy* of an object and not the object itself.
+  var collectionObj = data[collection];
+  if (!collectionObj) {
+    throw new Error(`Object collection ${collection} does not exist in the database!`);
+  }
+  var obj = collectionObj[id];
+  if (obj === undefined) {
+    throw new Error(`Object ${id} does not exist in object collection ${collection} in the database!`);
+  }
   return JSONClone(data[collection][id]);
 }
+module.exports.readDocument = readDocument;
 
 /**
  * Emulates writing a "document" to a NoSQL database.
  */
-export function writeDocument(collection, changedDocument) {
+function writeDocument(collection, changedDocument) {
   var id = changedDocument._id;
+  if (id === undefined) {
+    throw new Error(`You cannot write a document to the database without an _id! Use AddDocument if this is a new object.`);
+  }
   // Store a copy of the object into the database. Models a database's behavior.
   data[collection][id] = JSONClone(changedDocument);
   // Update our 'database'.
-  localStorage.setItem(startupName, JSON.stringify(data));
+  updated = true;
 }
+module.exports.writeDocument = writeDocument;
 
 /**
  * Adds a new document to the NoSQL database.
  */
-export function addDocument(collectionName, newDoc) {
+function addDocument(collectionName, newDoc) {
   var collection = data[collectionName];
   var nextId = Object.keys(collection).length;
+  if (newDoc.hasOwnProperty('_id')) {
+    throw new Error(`You cannot add a document that already has an _id. addDocument is for new documents that do not have an ID yet.`);
+  }
   while (collection[nextId]) {
     nextId++;
   }
@@ -212,34 +230,55 @@ export function addDocument(collectionName, newDoc) {
   writeDocument(collectionName, newDoc);
   return newDoc;
 }
+module.exports.addDocument = addDocument;
 
 /**
- * Reset our browser-local database.
+ * Deletes a document from an object collection.
  */
-
-export function resetDatabase() {
-  localStorage.setItem(startupName, JSON.stringify(initialData));
-  data = JSONClone(initialData);
-}
-
-/**
- * Reset database button.
- */
-
-export default class ResetDatabase extends React.Component {
-  render() {
-    return (
-      <button  className="btn btn-default" id = "reset-button" type="button" onClick={() => {
-        resetDatabase();
-        window.alert("Database reset! Refreshing the page now...");
-        document.location.reload(false);
-      }}>Reset Mock DB</button>
-    );
+function deleteDocument(collectionName, id) {
+  var collection = data[collectionName];
+  if (!collection[id]) {
+    throw new Error(`Collection ${collectionName} lacks an item with id ${id}!`);
   }
+  delete collection[id];
+  updated = true;
 }
+module.exports.deleteDocument = deleteDocument;
 
 
-/*ReactDOM.render(
-  <ResetDatabase />,
-  document.getElementById('db-reset')
-);*/
+//Semple's great way of pulling an array from the database
+function getArray(collection) {
+ // Clone the data. We do this to model a database, where you receive a
+ // *copy* of an object and not the object itself.
+ return JSONClone(data[collection]);
+}
+module.exports.getArray = getArray;
+
+
+
+
+/**
+ * Returns an entire object collection.
+ */
+function getCollection(collectionName) {
+  return JSONClone(data[collectionName]);
+}
+module.exports.getCollection = getCollection;
+
+/**
+ * Reset the database.
+ */
+function resetDatabase() {
+  data = JSONClone(initialData);
+  updated = true;
+}
+module.exports.resetDatabase = resetDatabase;
+
+// Periodically updates the database on the hard drive
+// when changed.
+setInterval(function() {
+  if (updated) {
+    fs.writeFileSync(path.join(__dirname, 'database.json'), JSON.stringify(data), { encoding: 'utf8' });
+    updated = false;
+  }
+}, 200);
