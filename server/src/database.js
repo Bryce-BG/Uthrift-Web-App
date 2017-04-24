@@ -276,16 +276,16 @@ var initialData = {
       "photoRef": "img/Lamp.jpg",
       "SellerId": "2"
     },
-    "23":
+    "21":
     {
-      "_id": 23,
-      "Title": "Phone Protection",
-      "Price": "3",
-      "Description": "Save Our Earth",
+      "_id": 21,
+      "Title": "Big Data",
+      "Price": "5",
+      "Description": "Data Science Talk",
       "Condition": "Brand New",
       "Sold": false,
       "Category": "Events",
-      "photoRef": "img/tech4.jpg",
+      "photoRef": "img/tech2.jpg",
       "SellerId": "2"
     },
     "22":
@@ -300,16 +300,16 @@ var initialData = {
       "photoRef": "img/tech3.jpg",
       "SellerId": "2"
     },
-    "21":
+    "23":
     {
-      "_id": 21,
-      "Title": "Big Data",
-      "Price": "5",
-      "Description": "Data Science Talk",
+      "_id": 23,
+      "Title": "Phone Protection",
+      "Price": "3",
+      "Description": "Save Our Earth",
       "Condition": "Brand New",
       "Sold": false,
       "Category": "Events",
-      "photoRef": "img/tech2.jpg",
+      "photoRef": "img/tech4.jpg",
       "SellerId": "2"
     },
     "24":
