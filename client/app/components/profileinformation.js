@@ -39,6 +39,8 @@ export default class PROFILEINFORMATION extends React.Component{
 		clickEvent.preventDefault();
 		if (clickEvent.button == 0){
 			updateUserData(this.state);
+			window.alert("Saved new user info");
+			document.location.reload(false);
 		}
 	}
 

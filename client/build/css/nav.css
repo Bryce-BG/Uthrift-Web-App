@@ -101,13 +101,13 @@ body {
 .dropdown{
     height: 43px !important;
     border-radius: 0px !important;
-    margin-left: 20px !important;
+    margin-left: 40px !important;
 }
 
 #catogory-Select
 {
   margin-right: 0px;
-  padding-right: 25px;
+  padding-right: 5px;
   display: inline-block;
 
 

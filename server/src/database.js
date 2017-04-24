@@ -11,7 +11,7 @@ var initialData = {
       "NickName": "Someone",
       "Photo": "img/avatar.png",
       "trackList": [],
-      "sellingList": [4,5,6,7],
+      "sellingList": [4,5,6,7,8,9,10,11,12,13,19,20,25,33,34,35,36,39,40,41,42],
       "Password": "123456",
       "searchGory": "Textbooks",
       "searchTerm": "Books on how to hack life",
@@ -26,7 +26,7 @@ var initialData = {
       "NickName": "AnotherOne",
       "Photo": "img/avatar2.png",
       "trackList": [],
-      "sellingList": [1,2,3],
+      "sellingList": [1,2,3,14,15,16,17,18,21,22,23,24,26,27,28,29,30,31,32,37,38],
       "Password": "233333",
       "searchGory": "Textbooks",
       "searchTerm": "",
@@ -117,6 +117,427 @@ var initialData = {
       "Sold": false,
       "Category": "Textbooks",
       "photoRef": "img/book6.jpg",
+      "SellerID": "1"
+    },
+    "8":
+    {
+      "_id": 8,
+      "Title": "Dress",
+      "Price": "6.00",
+      "Description": "Classy Dress",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Clothing",
+      "photoRef": "img/dress.jpg",
+      "SellerID": "1"
+    }
+    ,
+    "9":
+    {
+      "_id": 9,
+      "Title": "SKirt",
+      "Price": "6.00",
+      "Description": "Shining Skirt",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Clothing",
+      "photoRef": "img/skirt.jpg",
+      "SellerID": "1"
+    },
+    "10":
+    {
+      "_id": 10,
+      "Title": "Jacket",
+      "Price": "6.00",
+      "Description": "Old Jacket",
+      "Condition": "Used",
+      "Sold": false,
+      "Category": "Clothing",
+      "photoRef": "img/clothing3.png",
+      "SellerID": "1"
+    },
+    "11":
+    {
+      "_id": 11,
+      "Title": "Bomber Jacket",
+      "Price": "6.00",
+      "Description": "Savy Bomber Jacket",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Clothing",
+      "photoRef": "img/clothing4.jpg",
+      "SellerID": "1"
+    },
+    "12":
+    {
+      "_id": 12,
+      "Title": "UMass Hoodie",
+      "Price": "6.00",
+      "Description": "ZooMass Swag",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Clothing",
+      "photoRef": "img/clothing5.jpg",
+      "SellerID": "1"
+    },
+    "13":
+    {
+      "_id": 13,
+      "Title": "Jacket",
+      "Price": "66.00",
+      "Description": "New Jacket",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Clothing",
+      "photoRef": "img/clothing3.png",
+      "SellerID": "1"
+    },
+    "14":
+    {
+      "_id": 14,
+      "Title": "lamp",
+      "Price": "10",
+      "Description": "Lighting Life",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Tech",
+      "photoRef": "img/Lamp.jpg",
+      "SellerId": "2"
+    },
+    "15":
+    {
+      "_id": 15,
+      "Title": "USB",
+      "Price": "5",
+      "Description": "Saves Your Data",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Tech",
+      "photoRef": "img/tech2.jpg",
+      "SellerId": "2"
+    },
+    "16":
+    {
+      "_id": 16,
+      "Title": "Earphones",
+      "Price": "1",
+      "Description": "Help U Concentrate",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Tech",
+      "photoRef": "img/tech3.jpg",
+      "SellerId": "2"
+    },
+    "17":
+    {
+      "_id": 17,
+      "Title": "Phone Case",
+      "Price": "9",
+      "Description": "Saves U Ton",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Tech",
+      "photoRef": "img/tech4.jpg",
+      "SellerId": "2"
+    },
+    "18":
+    {
+      "_id": 18,
+      "Title": "Master Clicker",
+      "Price": "10,000",
+      "Description": "Hack Your Score",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Tech",
+      "photoRef": "img/iclicker.jpg",
+      "SellerId": "2"
+    },
+    "19":
+    {
+      "_id": 19,
+      "Title": "Cuddle Up",
+      "Price": "1",
+      "Description": "Be Warm Friends",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Events",
+      "photoRef": "img/clothing3.png",
+      "SellerID": "1"
+    },
+    "20":
+    {
+      "_id": 20,
+      "Title": "Study",
+      "Price": "0",
+      "Description": "Study a Ton!",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Events",
+      "photoRef": "img/Lamp.jpg",
+      "SellerId": "2"
+    },
+    "21":
+    {
+      "_id": 21,
+      "Title": "Big Data",
+      "Price": "5",
+      "Description": "Data Science Talk",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Events",
+      "photoRef": "img/tech2.jpg",
+      "SellerId": "2"
+    },
+    "22":
+    {
+      "_id": 22,
+      "Title": "Listen Up",
+      "Price": "1",
+      "Description": "Concentrate",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Events",
+      "photoRef": "img/tech3.jpg",
+      "SellerId": "2"
+    },
+    "23":
+    {
+      "_id": 23,
+      "Title": "Phone Protection",
+      "Price": "3",
+      "Description": "Save Our Earth",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Events",
+      "photoRef": "img/tech4.jpg",
+      "SellerId": "2"
+    },
+    "24":
+    {
+      "_id": 24,
+      "Title": "Click and Hack",
+      "Price": "10,000",
+      "Description": "Hack into Moodle!",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Events",
+      "photoRef": "img/iclicker.jpg",
+      "SellerId": "2"
+    },
+    "25":
+    {
+      "_id": 25,
+      "Title": "Cuddle Up",
+      "Price": "1",
+      "Description": "Be Warm Friends",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Miscellaneous",
+      "photoRef": "img/clothing3.png",
+      "SellerID": "1"
+    },
+    "26":
+    {
+      "_id": 26,
+      "Title": "Study",
+      "Price": "0",
+      "Description": "Study a Ton!",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Miscellaneous",
+      "photoRef": "img/Lamp.jpg",
+      "SellerId": "2"
+    },
+    "27":
+    {
+      "_id": 27,
+      "Title": "Phone Protection",
+      "Price": "3",
+      "Description": "Save Our Earth",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Miscellaneous",
+      "photoRef": "img/tech4.jpg",
+      "SellerId": "2"
+    },
+    "28":
+    {
+      "_id": 28,
+      "Title": "Listen Up",
+      "Price": "1",
+      "Description": "Concentrate",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Miscellaneous",
+      "photoRef": "img/tech3.jpg",
+      "SellerId": "2"
+    },
+    "29":
+    {
+      "_id": 29,
+      "Title": "Big Data",
+      "Price": "5",
+      "Description": "Data Science Talk",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Miscellaneous",
+      "photoRef": "img/tech2.jpg",
+      "SellerId": "2"
+    },
+    "30":
+    {
+      "_id": 30,
+      "Title": "Click and Hack",
+      "Price": "10,000",
+      "Description": "Hack into Moodle!",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Miscellaneous",
+      "photoRef": "img/iclicker.jpg",
+      "SellerId": "2"
+    },
+    "31":
+    {
+      "_id": 31,
+      "Title": "Craking The Code",
+      "Price": "18.00",
+      "Description": "CS187 Basic Coding",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Classes",
+      "photoRef": "img/book1.jpg",
+      "SellerID": "2"
+    },
+    "32":
+    {
+      "_id": 32,
+      "Title": "Introductions to Algorithms",
+      "Price": "21.00",
+      "Description": "CS311 Algorithms",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Classes",
+      "photoRef": "img/book2.jpg",
+      "SellerID": "2"
+    },
+    "33":
+    {
+      "_id": 33,
+      "Title": "Artificial Intelligence",
+      "Price": "25.00",
+      "Description": "CS383 AI",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Classes",
+      "photoRef": "img/book3.jpg",
+      "SellerID": "1"
+    },
+    "34":
+    {
+      "_id": 34,
+      "Title": "The Rules of Love",
+      "Price": "7.50",
+      "Description": "COLL200 Love",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Classes",
+      "photoRef": "img/book4.jpg",
+      "SellerID": "1"
+    },
+    "35":
+    {
+      "_id": 35,
+      "Title": "What I Wish I Knew When I was 20",
+      "Price": "5.00",
+      "Description": "COLL102 Life Advices",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Classes",
+      "photoRef": "img/book5.jpg",
+      "SellerID": "1"
+    },
+    "36":
+    {
+      "_id": 36,
+      "Title": "Unlock Your Educational Potental",
+      "Price": "6.00",
+      "Description": "COLL 101 Education",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Classes",
+      "photoRef": "img/book6.jpg",
+      "SellerID": "1"
+    },
+    "37":
+    {
+      "_id": 37,
+      "Title": "Bed",
+      "Price": "49.00",
+      "Description": "Cozy Bed",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Furniture",
+      "photoRef": "img/furniture.jpg",
+      "SellerID": "2"
+    },
+    "38":
+    {
+      "_id": 38,
+      "Title": "Bunk",
+      "Price": "51.00",
+      "Description": "Space Efficient Bunk",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Furniture",
+      "photoRef": "img/furniture.jpg",
+      "SellerID": "2"
+    },
+    "39":
+    {
+      "_id": 39,
+      "Title": "High Chair",
+      "Price": "20.00",
+      "Description": "High Chair for Babies",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Furniture",
+      "photoRef": "img/furniture.jpg",
+      "SellerID": "1"
+    },
+    "40":
+    {
+      "_id": 40,
+      "Title": "Chair",
+      "Price": "10.50",
+      "Description": "Chair for Sitting",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Furniture",
+      "photoRef": "img/furniture.jpg",
+      "SellerID": "1"
+    },
+    "41":
+    {
+      "_id": 41,
+      "Title": "Bookshelf",
+      "Price": "15.00",
+      "Description": "Used Bookshelf",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Furniture",
+      "photoRef": "img/furniture.jpg",
+      "SellerID": "1"
+    },
+    "42":
+    {
+      "_id": 42,
+      "Title": "Bookshelf",
+      "Price": "36.00",
+      "Description": "Sturdy Bookshelf",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Furniture",
+      "photoRef": "img/furniture.jpg",
       "SellerID": "1"
     }
   },
