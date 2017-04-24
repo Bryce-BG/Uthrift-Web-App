@@ -32,3 +32,7 @@ div.middle-carousel-item{ /*add space between the div items in the carousel*/
   background-color: red;
   border: 2px solid black;
 }
+
+#myCarousel{
+  margin-top: 40px;
+}
