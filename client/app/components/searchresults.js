@@ -49,7 +49,7 @@ export default class SEARCHRESULTS extends React.Component{
     // respond to parameter change in scenario 3
     let oldId = prevProps.category
     let newId = this.props.category
-    if (newId !== oldId)
+    if (newId !== oldId || prevProps.searchTerm !== this.props.searchTerm)
       this.refresh();
   }
 
@@ -62,7 +62,7 @@ export default class SEARCHRESULTS extends React.Component{
 				<div className="row">
 					{this.state.row1.map((item) => {
 						return (
-							<SEARCHITEM key = {item} id={item[0]} des={item[3]} src={item[7]} price = {item[2]}/>
+							<SEARCHITEM key = {item} id={item[0]} des={item[1]} src={item[7]} price = {item[2]}/>
 						)
 					})}
 				</div>
@@ -70,7 +70,7 @@ export default class SEARCHRESULTS extends React.Component{
 				<div className="row">
 					{this.state.row2.map((item) => {
 						return (
-							<SEARCHITEM key = {item} id={item[0]} des={item[3]} src={item[7]} price = {item[2]}/>
+							<SEARCHITEM key = {item} id={item[0]} des={item[1]} src={item[7]} price = {item[2]}/>
 						)
 					})}
         </div>
