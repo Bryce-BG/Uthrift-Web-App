@@ -50,7 +50,7 @@ var initialData = {
     "2":
     {
       "_id": 2,
-      "Title": "Craking The Code",
+      "Title": "Cracking The Code",
       "Price": "18.00",
       "Description": "Item 1 Description",
       "Condition": "Brand New",
@@ -135,7 +135,7 @@ var initialData = {
     "9":
     {
       "_id": 9,
-      "Title": "SKirt",
+      "Title": "Skirt",
       "Price": "6.00",
       "Description": "Shining Skirt",
       "Condition": "Brand New",

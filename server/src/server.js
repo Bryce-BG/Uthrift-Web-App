@@ -70,15 +70,29 @@ app.get('/classPage/:classID', function(req, res) {
   //take the list of all items with correct category and then try to narrow them down further by applying hte search filter
   var searchResults = [];
   index = 0; //reset to 0 for next search
-  for (var ie = 1; i < refinedList.length; ie++) {
-    if (refinedList[ie].Title === search[1] || refinedList[ie]._id === search[1]) {
+  for (var ie = 0; ie < refinedList.length; ie++) {
+    if (refinedList[ie][1].indexOf(search[1]) !== -1) {
         searchResults[index] = refinedList[ie];
         index+=1;
       }
  }
- if (searchResults.length < 2) {
-   searchResults = refinedList; // for now
- }
+ console.log(searchResults);
+ //console.log(index);
+ while (index < 6) {
+   //console.log("here");
+   for (var ie2 = 0; ie2 < refinedList.length; ie2++) {
+     //console.log(typeof(refinedList));
+     if (refinedList[ie2][2].indexOf(search[1]) === -1) {
+        searchResults[index] = refinedList[ie2];
+         index+=1;
+       }
+    }
+    //index += 1;
+  }
+  console.log(searchResults);
+ //if (searchResults.length < 2) {
+   //searchResults = refinedList; // for now
+ //}
  return (searchResults);
 }
 

@@ -47,12 +47,18 @@ export default class SEARCHRESULTS extends React.Component{
   }
   componentDidUpdate (prevProps) {
     // respond to parameter change in scenario 3
+<<<<<<< HEAD
     let oldCat = prevProps.category
     let newCat = this.props.category
 		let oldItem = prevProps.searchTerm
 		let newItem = this.props.searchTerm
 
     if (oldCat !== newCat || oldItem !== newItem)
+=======
+    let oldId = prevProps.category
+    let newId = this.props.category
+    if (newId !== oldId || prevProps.searchTerm !== this.props.searchTerm)
+>>>>>>> Yiii-Branch
       this.refresh();
   }
 
@@ -65,7 +71,7 @@ export default class SEARCHRESULTS extends React.Component{
 				<div className="row">
 					{this.state.row1.map((item) => {
 						return (
-							<SEARCHITEM key = {item} id={item[0]} des={item[3]} src={item[7]} price = {item[2]}/>
+							<SEARCHITEM key = {item} id={item[0]} des={item[1]} src={item[7]} price = {item[2]}/>
 						)
 					})}
 				</div>
@@ -73,7 +79,7 @@ export default class SEARCHRESULTS extends React.Component{
 				<div className="row">
 					{this.state.row2.map((item) => {
 						return (
-							<SEARCHITEM key = {item} id={item[0]} des={item[3]} src={item[7]} price = {item[2]}/>
+							<SEARCHITEM key = {item} id={item[0]} des={item[1]} src={item[7]} price = {item[2]}/>
 						)
 					})}
         </div>
