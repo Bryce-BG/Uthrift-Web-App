@@ -82,7 +82,7 @@ app.get('/classPage/:classID', function(req, res) {
    //console.log("here");
    for (var ie2 = 0; ie2 < refinedList.length; ie2++) {
      //console.log(typeof(refinedList));
-     if (refinedList[ie2][2].indexOf(search[1]) === -1) {
+     if (refinedList[ie2][1].indexOf(search[1]) === -1) {
         searchResults[index] = refinedList[ie2];
          index+=1;
        }
