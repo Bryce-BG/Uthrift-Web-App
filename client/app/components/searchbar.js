@@ -1,4 +1,5 @@
 import React from 'react';
+import Router from 'react'
 
 export default class SEARCHBAR extends React.Component {
   constructor(props) {
@@ -7,10 +8,14 @@ export default class SEARCHBAR extends React.Component {
       searchTerm: " ",
       category: " "
     }
+    contextTypes: {
+      router: React.PropTypes.object.isRequired
+    }
   }
 
   handleSearchButtonClick(e) {
     e.preventDefault();
+    console.log(this.state);
     this.search();
   }
 
@@ -19,9 +24,9 @@ export default class SEARCHBAR extends React.Component {
       var se = document.getElementById("categories").value;
       this.setState({
         category: se
+      }, function () {
+        this._reactInternalInstance._context.history.push({ pathname: "/searchPage/" + this.props.user + "/" + this.state.category +  "/"  + this.state.searchTerm });
       });
-
-      this.context.router.push({ pathname: "/searchPage/" + this.props.user + "/" + this.state.category +  "/"  + this.state.searchTerm });
     }
   }
 
@@ -48,11 +53,9 @@ export default class SEARCHBAR extends React.Component {
     }
   }
 
+
   render() {
-    // HTML forms are special: Hitting 'enter' in an input box in a form
-    // submits the form to the server with a POST command and refreshes
-    // the page as a default action. The onSubmit handler below prevents that
-    // from happening.
+
     return (
       <div className="uthrift-navbar-search col-md-8" id="navSearch" >
         <form role="search" className="col-md-12" id = "searchForm">
@@ -74,7 +77,6 @@ export default class SEARCHBAR extends React.Component {
                   <path d="M11.618 9.897l4.224 4.212c.092.09.1.23.02.312l-1.464 1.46c-.08.08-.222.072-.314-.02L9.868 11.66M6.486 10.9c-2.42 0-4.38-1.955-4.38-4.367 0-2.413 1.96-4.37 4.38-4.37s4.38 1.957 4.38 4.37c0 2.412-1.96 4.368-4.38 4.368m0-10.834C2.904.066 0 2.96 0 6.533 0 10.105 2.904 13 6.486 13s6.487-2.895 6.487-6.467c0-3.572-2.905-6.467-6.487-6.467 "></path>
               </svg>
             </button>
-          </Link>
         </form>
       </div>
     );
@@ -82,6 +84,6 @@ export default class SEARCHBAR extends React.Component {
 }
 
 // Tell React-Router that SearchBar needs to use the router dynamically.
-SEARCHBAR.contextTypes = {
+/*SEARCHBAR.contextTypes = {
   router: React.PropTypes.object.isRequired
-};
+};*/
