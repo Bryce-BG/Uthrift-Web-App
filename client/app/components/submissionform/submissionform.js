@@ -9,7 +9,7 @@ export default class SUBMISSIONFORM extends React.Component {
       <div>
 
 
-        <SUBMISSIONFORMBODY />
+        <SUBMISSIONFORMBODY user = {this.props.user}/>
 
       </div>
 

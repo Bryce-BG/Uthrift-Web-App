@@ -46,7 +46,8 @@ export default class SUBMISSIONFORMBODY extends React.Component {
 
           boolean: false, //for looping purposes
           photoRef: "img/war_peace.jpg", //This will normally save the info of the photo here, but will not store it to the database because the database can only hold 5mb so instead loads iclicker image when changed
-          photoReftemp: "" //so that handlePhoto can take in parameter event e
+          photoReftemp: "", //so that handlePhoto can take in parameter event e
+          SellerId: this.props.user
       };
     }
 

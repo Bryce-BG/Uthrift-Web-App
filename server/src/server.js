@@ -239,10 +239,11 @@ var itemData = {
 };
 
 var itemInfo = getArray('items');
+console.log("pizza");
 itemInfo.push(itemData);
 writeDocument('items', itemInfo);
 
-  console.log(getArray('items'));
+//  console.log(getArray('items'));
   //Update selling list by copying seller profile and adding item # to array
   var userInfo = readDocument('users', sellerId);
   userInfo.sellingList.push(itemID);
