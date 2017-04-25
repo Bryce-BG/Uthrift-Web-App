@@ -144,9 +144,9 @@ export function submitItem(data){
 } */
 // Submit stuff from Submission Form
 export function submitItem(data, cb){
-  console.log("socks");
+  console.log(data);
   sendXHR('POST', '/submissionForm', { //No idea what the file path is supposed to be here.
-    itemId: data._id, //not sure what the userId is supposed to be. (don't want to mix it up with itemId)
+    //itemId: data._id, //not sure what the userId is supposed to be. (don't want to mix it up with itemId)
     postDate: new Date().getTime(),
     Title: data.title,
     Price: data.price,
@@ -157,7 +157,7 @@ export function submitItem(data, cb){
     courseNumber: data.courseNumber,
     Category: data.category,
     categoryDescription: data.categoryDescription,
-    photoRef: data.photoRef,
+    photoRef: "img/iclicker.jpg",
     Sold: false,
     SellerId: data.SellerId
   }, (xhr) => {

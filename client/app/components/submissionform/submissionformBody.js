@@ -155,8 +155,11 @@ export default class SUBMISSIONFORMBODY extends React.Component {
 
     save(){
     //  console.log(this.state);
-        submitItem(this.state);
-        window.location.reload();
+        submitItem(this.state, () => {
+      // Database is now updated. Refresh the feed.
+      this.refresh();
+    });
+        //window.location.reload();
     }
 
     //User clicks post:

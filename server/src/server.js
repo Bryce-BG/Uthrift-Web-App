@@ -218,11 +218,9 @@ function submitItem(title, price, condition, conDesc, classRelated,
   //var itemData = readDocument('items', 1);
   var time = new Date().getTime();
 
-console.log("server/src submitItem");
-
   var itemID = (Object.keys(getArray('items')).length) + 1;
 var itemData = {
-  "_id": itemID, //not sure if this should be itemData.itemId because the json has itemId instead of _id
+  "itemId": itemID, //not sure if this should be itemData.itemId because the json has itemId instead of _id
   "postDate": time,
   "Title": title,
   "Price": price,
