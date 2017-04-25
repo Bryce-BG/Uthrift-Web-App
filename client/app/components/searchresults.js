@@ -47,18 +47,12 @@ export default class SEARCHRESULTS extends React.Component{
   }
   componentDidUpdate (prevProps) {
     // respond to parameter change in scenario 3
-<<<<<<< HEAD
     let oldCat = prevProps.category
     let newCat = this.props.category
 		let oldItem = prevProps.searchTerm
 		let newItem = this.props.searchTerm
 
     if (oldCat !== newCat || oldItem !== newItem)
-=======
-    let oldId = prevProps.category
-    let newId = this.props.category
-    if (newId !== oldId || prevProps.searchTerm !== this.props.searchTerm)
->>>>>>> Yiii-Branch
       this.refresh();
   }
 
