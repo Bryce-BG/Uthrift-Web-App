@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "/",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "id": "userId",
+      "type": "integer"
+    },
+    "firstname": {
+      "id": "firstname",
+      "type": "string"
+    },
+    "lastname": {
+      "id": "lastname",
+      "type": "string"
+    },
+    "nickname": {
+      "id": "nickname",
+      "type": "string"
+    },
+    "email": {
+      "id": "email",
+      "type": "string"
+    },
+    "password": {
+      "id": "password",
+      "type": "string"
+    },
+    "cellphone": {
+      "id": "cellphone",
+      "type": "string"
+    },
+    "photo": {
+      "id": "photo",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "userId"
+  ]
+}
