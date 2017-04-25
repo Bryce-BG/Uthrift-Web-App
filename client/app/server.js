@@ -144,7 +144,8 @@ export function submitItem(data){
 } */
 // Submit stuff from Submission Form
 export function submitItem(data, cb){
-  sendXHR('POST', '/submissionForm/', { //No idea what the file path is supposed to be here.
+  console.log(data);
+  sendXHR('POST', '/submissionForm', { //No idea what the file path is supposed to be here.
     itemId: data._id, //not sure what the userId is supposed to be. (don't want to mix it up with itemId)
     postDate: new Date().getTime(),
     Title: data.Title,

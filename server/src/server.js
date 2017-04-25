@@ -218,6 +218,8 @@ function submitItem(title, price, condition, conDesc, classRelated,
   //var itemData = readDocument('items', 1);
   var time = new Date().getTime();
 
+console.log("server/src submitItem");
+
   var itemID = (Object.keys(getArray('items')).length) + 1;
 var itemData = {
   "_id": itemID, //not sure if this should be itemData.itemId because the json has itemId instead of _id
@@ -235,22 +237,26 @@ var itemData = {
   "Sold": sold,
   "SellerId": sellerId
 };
-  addDocument('items', itemData);
-  writeDocument('items', itemData);
+
+var itemInfo = getArray('items');
+itemInfo.push(itemData);
+writeDocument('items', itemInfo);
 
   console.log(getArray('items'));
   //Update selling list by copying seller profile and adding item # to array
   var userInfo = readDocument('users', sellerId);
   userInfo.sellingList.push(itemID);
+  writeDocument('users', userInfo);
 }
 
 var ItemsSchema = require('./schemas/items.json');
 
 //no idea what vvv this file path is supposed to be
-app.post('/submissionForm/', validate({ body:  ItemsSchema }), function(req, res) {
+app.post('/submissionForm', validate({ body:  ItemsSchema }), function(req, res) {
+  console.log("serever/src app.post subform");
   var body = req.body;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
-  if (fromUser === body.sellerId) {
+  if (fromUser === body.SellerId) {
     var newItem = submitItem(body.Title, body.Price, body.Condition, body.Description, body.classRelated, body.subject,
       body.courseNumber, body.Category, body.categoryDescription, body.photoRef, body.Sold, body.SellerId);
     res.send(newItem); //not sure what this should be
