@@ -17,7 +17,7 @@
     },
     "Price": {
       "id": "Price",
-      "type": "integer"
+      "type": "string"
     },
     "Condition": {
       "id": "Condition",
@@ -37,7 +37,7 @@
     },
     "courseNumber": {
       "id": "courseNumber",
-      "type": "integer"
+      "type": "string"
     },
     "Category": {
       "id": "Category",
