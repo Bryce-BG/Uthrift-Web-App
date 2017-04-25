@@ -13,7 +13,7 @@ export default class SEARCHRESULTS extends React.Component{
     };
   }
 
-	componentDidMount() {
+	refresh() {
 		window.scrollTo(0, 0);
 		var callbackFunction2 = (itemList) => {
 			var tempArray = new Array(2);
@@ -42,6 +42,20 @@ export default class SEARCHRESULTS extends React.Component{
 		getSearch(this.props.category, this.props.searchTerm, callbackFunction);
 	}
 
+	componentDidMount(){
+      this.refresh();
+  }
+  componentDidUpdate (prevProps) {
+    // respond to parameter change in scenario 3
+    let oldCat = prevProps.category
+    let newCat = this.props.category
+		let oldItem = prevProps.searchTerm
+		let newItem = this.props.searchTerm
+
+    if (oldCat !== newCat || oldItem !== newItem)
+      this.refresh();
+  }
+
 	render(){
 		return(
 			<div>
@@ -51,7 +65,7 @@ export default class SEARCHRESULTS extends React.Component{
 				<div className="row">
 					{this.state.row1.map((item) => {
 						return (
-							<SEARCHITEM key = {item} id={item[0]} des={item[3]} src={item[7]} price = {item[2]}/>
+							<SEARCHITEM key = {item} id={item[0]} des={item[1]} src={item[7]} price = {item[2]}/>
 						)
 					})}
 				</div>
@@ -59,7 +73,7 @@ export default class SEARCHRESULTS extends React.Component{
 				<div className="row">
 					{this.state.row2.map((item) => {
 						return (
-							<SEARCHITEM key = {item} id={item[0]} des={item[3]} src={item[7]} price = {item[2]}/>
+							<SEARCHITEM key = {item} id={item[0]} des={item[1]} src={item[7]} price = {item[2]}/>
 						)
 					})}
         </div>

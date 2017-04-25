@@ -54,7 +54,7 @@ app.get('/classPage/:classID', function(req, res) {
     //console.log(itemList);
     //var itemlistArray = Object.values(itemList);
     var itemlistArray = Object.keys(itemList).map(function(key) {return itemList[key];});
-    console.log(itemlistArray);
+    //console.log(itemlistArray);
     var itemListLength = itemlistArray.length;
     for (var i = 1; i < itemListLength+1; i++) { //loop through and see only add items that have the correct category.
       //var itemArray = Object.values(itemList[i]);
@@ -70,26 +70,38 @@ app.get('/classPage/:classID', function(req, res) {
   //take the list of all items with correct category and then try to narrow them down further by applying hte search filter
   var searchResults = [];
   index = 0; //reset to 0 for next search
-  for (var ie = 1; i < refinedList.length; ie++) {
-    if (refinedList[ie].Title === search[1] || refinedList[ie]._id === search[1]) {
+  for (var ie = 0; ie < refinedList.length; ie++) {
+    if (refinedList[ie][1].indexOf(search[1]) !== -1) {
         searchResults[index] = refinedList[ie];
         index+=1;
       }
  }
- if (searchResults.length < 2) {
-   searchResults = refinedList; // for now
- }
+ console.log(searchResults);
+ //console.log(index);
+ while (index < 6) {
+   //console.log("here");
+   for (var ie2 = 0; ie2 < refinedList.length; ie2++) {
+     //console.log(typeof(refinedList));
+     if (refinedList[ie2][1].indexOf(search[1]) === -1) {
+        searchResults[index] = refinedList[ie2];
+         index+=1;
+       }
+    }
+    //index += 1;
+  }
+  console.log(searchResults);
+ //if (searchResults.length < 2) {
+   //searchResults = refinedList; // for now
+ //}
  return (searchResults);
 }
 
 
   app.get('/searchPage/:cat/:term', function(req, res) {
-    console.log(req.params.cat);
-    console.log(req.params.term);
+    //console.log(req);
     var cat = req.params.cat;
     var term = req.params.term;
     var search = [cat, term]
-    //console.log(req.params.term);
     //var searchArray = [req.params.cat, ""]
     res.send(getSearch(search));
   });
@@ -249,6 +261,31 @@ app.post('/submissionForm/', validate({ body:  ItemsSchema }), function(req, res
 
 
 
+function getItemInfo(itemID) {
+  var itemdata = readDocument('items', itemID);
+  return itemdata;
+}
+
+function getUserDataItem(id, user) {
+  var userData = readDocument('users', user);
+  var itemData = readDocument('items', id);
+  userData.sellingList = userData.sellingList.map((itemId) => readDocument('items', itemId));
+  userData.viewingItem = itemData;
+
+  return userData;
+}
+
+app.get('/ItemPage/:itemID', function(req, res) {
+    var itemID = req.params.itemID;
+
+    res.send(getItemInfo(itemID));
+});
+
+app.get('/ItemPage/:userID/:itemID', function(req,res){
+    //var itemID = req.params.itemID;
+    res.send(getUserDataItem(req.params.itemID, req.params.userID));
+
+});
 
 // Reset database.
 app.post('/resetdb', function(req, res) {
@@ -258,6 +295,7 @@ app.post('/resetdb', function(req, res) {
   // res.send() sends an empty response with status code 200
   res.send();
 });
+
 
 
 
