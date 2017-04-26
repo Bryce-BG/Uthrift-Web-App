@@ -60,7 +60,5 @@
       "type": "integer"
     }
   },
-  "additionalProperties": false,
-  "required": [
-  ]
+  "additionalProperties": false
 }
