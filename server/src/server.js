@@ -51,13 +51,14 @@ function getSearch(cat, term) {
   var category = cat.toLowerCase();
   // Search the user's feed.
   var itemList= getArray('items');
+  console.log(getArray('items')); //DEBUG
   var itemlistArray = Object.keys(itemList).map(function(key) {return itemList[key];}); //convert into array
 
   var searchResults = (itemlistArray.filter((item) => {
     console.log(item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1));
     return item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1);
   }));
-  console.log(searchResults);
+  
 return searchResults;
 }
 
@@ -202,36 +203,36 @@ app.put('/profile', validate({ body:  UserDataSchema }), function(req, res) {
 function xxsubmitItem(title, price, condition, conDesc, classRelated,
     subject, courseNumber, category, categoryDescription, photoRef, sold, sellerId){
   //var itemData = readDocument('items', 1);
-  var time = new Date().getTime();
+  // var time = new Date().getTime();
 
   var itemID = (Object.keys(getArray('items')).length) + 1;
-var itemData = {
-  "itemId": itemID, //not sure if this should be itemData.itemId because the json has itemId instead of _id
-  "postDate": time,
-  "Title": title,
-  "Price": price,
-  "Condition": condition,
-  "Description": conDesc,
-  "classRelated": classRelated,
-  "subject": subject,
-  "courseNumber": courseNumber,
-  "Category": category,
-  "categoryDescription": categoryDescription,
-  "photoRef": "img/iclicker.jpg",
-  "Sold": sold,
-  "SellerId": sellerId
-};
+  var itemData = {
 
-var itemInfo = getArray('items');
-console.log(itemData);
-itemInfo.itemID = itemData;
-addDocument('items', itemInfo);
+    //"postDate": time,
+    "Title": title,
+    "Price": price,
+    "Condition": condition,
+    "Description": categoryDescription,
+    "Sold": sold,
+    "Category": category,
+    "photoRef": "img/iclicker.jpg",
+    "SellerId": "" + sellerId
+  };
 
-//  console.log(getArray('items'));
-  //Update selling list by copying seller profile and adding item # to array
-  var userInfo = readDocument('users', sellerId);
-  userInfo.sellingList.push(itemID);
-  writeDocument('users', userInfo);
+  //var itemInfo = getArray('items');
+
+  //itemInfo.itemID = itemData;
+
+  addDocument('items', itemData);
+
+  //  console.log(getArray('items'));
+    //Update selling list by copying seller profile and adding item # to array
+    var userInfo = readDocument('users', sellerId);
+    userInfo.sellingList.push(itemID);
+
+    console.log(getArray('items'));
+  return itemData;
+
 }
 
 var ItemsSchema = require('./schemas/items.json');
@@ -243,6 +244,9 @@ app.post('/submissionForm', validate({ body:  ItemsSchema }), function(req, res)
   if (fromUser === body.SellerId) {
     var newItem = xxsubmitItem(body.Title, body.Price, body.Condition, body.Description, body.classRelated, body.subject,
       body.courseNumber, body.Category, body.categoryDescription, body.photoRef, body.Sold, body.SellerId);
+
+
+
     res.send(newItem); //not sure what this should be
   } else {
     res.status(401).end();

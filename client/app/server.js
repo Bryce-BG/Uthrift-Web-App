@@ -168,6 +168,8 @@ export function submitItem(data, cb){
     Sold: false,
     SellerId: data.SellerId
   }, (xhr) => {
+    console.log("hi");
+    console.log(JSON.parse(xhr.responseText));
     cb(JSON.parse(xhr.responseText));
   });
   //Update selling list by copying seller profile and adding item # to array
