@@ -123,45 +123,58 @@ sendXHR('GET', '/recomendedItems/1', undefined, (xhr) => {
   // emulateServerReturn(recomendedItems, cb);
 }
 
+/**
 // Submit stuff from Submission Form
 export function submitItem(data){
   var userData = readDocument('items', 1);
   var time = new Date().getTime();
 
-  userData._id = (Object.keys(getArray('items')).length) + 1;
+  var itemID = (Object.keys(getArray('items')).length) + 1;
+  userData._id = itemID;
   userData.postDate = time;
-  userData.title = data.title;
-  userData.price = data.price;
-  userData.condition = data.condition;
-  userData.conditionDescription = data.conDesc;
+  userData.Title = data.title;
+  userData.Price = data.price;
+  userData.Condition = data.condition;
+  userData.Description = data.conDesc;
   userData.classRelated = data.classRelated;
   userData.subject = data.subject;
   userData.courseNumber = data.courseNumber;
-  userData.category = data.category;
+  userData.Category = data.category;
   userData.categoryDescription = data.categoryDescription;
   userData.photoRef = "img/iclicker.jpg";
-  userData.sold = false;
-  userData.sellerId = 1;
+  userData.Sold = false;
+  userData.SellerId = 1;
   writeDocument('items', userData);
+
+  //Update selling list by copying seller profile and adding item # to array
+  var userInfo = readDocument('users', 1);
+  userInfo.sellingList.push(itemID);
+} */
+// Submit stuff from Submission Form
+export function submitItem(data, cb){
+  sendXHR('POST', '/submissionForm', { //No idea what the file path is supposed to be here.
+    itemId: data.itemId, //not sure what the userId is supposed to be. (don't want to mix it up with itemId)
+    postDate: new Date().getTime(),
+    Title: data.title,
+    Price: data.price,
+    Condition: data.condition,
+    Description: data.conDesc,
+    classRelated: data.classRelated,
+    subject: data.subject,
+    courseNumber: data.courseNumber,
+    Category: data.category,
+    categoryDescription: data.categoryDescription,
+    photoRef: "img/iclicker.jpg",
+    Sold: false,
+    SellerId: data.SellerId
+  }, (xhr) => {
+    cb(JSON.parse(xhr.responseText));
+  });
+  //Update selling list by copying seller profile and adding item # to array
+
 }
 
-//export function submitItem(userID, title, price, condition,
-//  conditionDescription, category, categoryDescription, cb) {
-//  var time = new Date().getTime();
-//  var newItem = {
-//    "_id": getArray('items').length + 1,
-//    "SellerID": userID,
-//    "postDate": time,
-//    "Title": title,
-//    "Price": price,
-//    "Condition": condition,
-//    "ConditionDescription": conditionDescription,
-//    "Description": categoryDescription,
-//    "Sold": false,
-//    "Category": category,
-//    "photoRef": "img/iclicker.jpg"
-//  };
-//}
+
 
 export function getUserData(user, cb){
   sendXHR('GET', '/profile/' + user, undefined, (xhr) => {

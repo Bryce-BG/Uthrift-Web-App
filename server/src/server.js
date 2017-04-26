@@ -197,6 +197,60 @@ app.put('/profile', validate({ body:  UserDataSchema }), function(req, res) {
   }
 });
 
+
+//submission form junk
+function xxsubmitItem(title, price, condition, conDesc, classRelated,
+    subject, courseNumber, category, categoryDescription, photoRef, sold, sellerId){
+  //var itemData = readDocument('items', 1);
+  var time = new Date().getTime();
+
+  var itemID = (Object.keys(getArray('items')).length) + 1;
+var itemData = {
+  "itemId": itemID, //not sure if this should be itemData.itemId because the json has itemId instead of _id
+  "postDate": time,
+  "Title": title,
+  "Price": price,
+  "Condition": condition,
+  "Description": conDesc,
+  "classRelated": classRelated,
+  "subject": subject,
+  "courseNumber": courseNumber,
+  "Category": category,
+  "categoryDescription": categoryDescription,
+  "photoRef": "img/iclicker.jpg",
+  "Sold": sold,
+  "SellerId": sellerId
+};
+
+var itemInfo = getArray('items');
+console.log(itemData);
+itemInfo.itemID = itemData;
+addDocument('items', itemInfo);
+
+//  console.log(getArray('items'));
+  //Update selling list by copying seller profile and adding item # to array
+  var userInfo = readDocument('users', sellerId);
+  userInfo.sellingList.push(itemID);
+  writeDocument('users', userInfo);
+}
+
+var ItemsSchema = require('./schemas/items.json');
+
+//no idea what vvv this file path is supposed to be
+app.post('/submissionForm', validate({ body:  ItemsSchema }), function(req, res) {
+  var body = req.body;
+  var fromUser = getUserIdFromToken(req.get('Authorization'));
+  if (fromUser === body.SellerId) {
+    var newItem = xxsubmitItem(body.Title, body.Price, body.Condition, body.Description, body.classRelated, body.subject,
+      body.courseNumber, body.Category, body.categoryDescription, body.photoRef, body.Sold, body.SellerId);
+    res.send(newItem); //not sure what this should be
+  } else {
+    res.status(401).end();
+  }
+});
+
+
+
 function getItemInfo(itemID) {
   var itemdata = readDocument('items', itemID);
   return itemdata;

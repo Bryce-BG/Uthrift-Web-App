@@ -46,7 +46,8 @@ export default class SUBMISSIONFORMBODY extends React.Component {
 
           boolean: false, //for looping purposes
           photoRef: "img/war_peace.jpg", //This will normally save the info of the photo here, but will not store it to the database because the database can only hold 5mb so instead loads iclicker image when changed
-          photoReftemp: "" //so that handlePhoto can take in parameter event e
+          photoReftemp: "", //so that handlePhoto can take in parameter event e
+          SellerId: this.props.user
       };
     }
 
@@ -154,8 +155,11 @@ export default class SUBMISSIONFORMBODY extends React.Component {
 
     save(){
     //  console.log(this.state);
-        submitItem(this.state);
-        window.location.reload();
+        submitItem(this.state, () => {
+      // Database is now updated. Refresh the feed.
+      this.refresh();
+    });
+        //window.location.reload();
     }
 
     //User clicks post:
@@ -316,15 +320,15 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                 {/*<!--- Start Upload Picture --->*/}
                     <img className = "photo-entry main-photo" src={this.state.photoRef} width="100%"/>
 
-                    <div className="photo-entry center">
+                    <div className="photo-entry categoryEntry">
                       <label htmlFor="photoUpload1">Upload Photo</label>
                       <input type="file" className="form-control-file" id="photoUpload1" aria-describedby="fileHelp" onChange={(e) => this.handleChangePhoto(e)}/>
                     </div>
 
-                    <label htmlFor="photoUpload2">OR drag and drop files below:</label>
+                  {/* }  <label htmlFor="photoUpload2">OR drag and drop files below:</label>
                     <div className="upload-drop-zone" id="photoUpload2">
                       Just drag and drop files here
-                    </div>
+                    </div> */}
                   {/*  <!--- End Upload Picture --->*/}
 
                   {/*  <!--- Start Main Submission Criteria --->*/}

@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "/",
+  "type": "object",
+  "properties": {
+    "itemId": {
+      "id": "itemId",
+      "type": "integer"
+    },
+    "postDate": {
+      "id": "postDate",
+      "type": "integer"
+    },
+    "Title": {
+      "id": "Title",
+      "type": "string"
+    },
+    "Price": {
+      "id": "Price",
+      "type": "string"
+    },
+    "Condition": {
+      "id": "Condition",
+      "type": "string"
+    },
+    "Description": {
+      "id": "Description",
+      "type": "string"
+    },
+    "classRelated": {
+      "id": "classRelated",
+      "type": "boolean"
+    },
+    "subject": {
+      "id": "subject",
+      "type": "string"
+    },
+    "courseNumber": {
+      "id": "courseNumber",
+      "type": "string"
+    },
+    "Category": {
+      "id": "Category",
+      "type": "string"
+    },
+    "categoryDescription": {
+      "id": "categoryDescription",
+      "type": "string"
+    },
+    "photoRef": {
+      "id": "photoRef",
+      "type": "string"
+    },
+    "Sold": {
+      "id": "Sold",
+      "type": "boolean"
+    },
+    "SellerId": {
+      "id": "SellerId",
+      "type": "integer"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+  ]
+}
