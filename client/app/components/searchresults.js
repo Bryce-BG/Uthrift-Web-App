@@ -52,8 +52,9 @@ export default class SEARCHRESULTS extends React.Component{
 		let oldItem = prevProps.searchTerm
 		let newItem = this.props.searchTerm
 
-    if (oldCat !== newCat || oldItem !== newItem)
+    if (oldCat !== newCat || oldItem !== newItem){
       this.refresh();
+		}
   }
 
 	render(){
