@@ -20,7 +20,7 @@ export default class SEARCHBAR extends React.Component {
   }
 
   search() {
-    if (this.state.searchTerm !== "") {
+    if (this.state.searchTerm.trim() !== "") {
       var se = document.getElementById("categories").value;
       this.setState({
         category: se

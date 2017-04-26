@@ -76,7 +76,7 @@ app.get('/classPage/:classID', function(req, res) {
         index+=1;
       }
  }
- console.log(searchResults);
+ //console.log(searchResults);
  //console.log(index);
  while (index < 6) {
    //console.log("here");
@@ -89,7 +89,7 @@ app.get('/classPage/:classID', function(req, res) {
     }
     //index += 1;
   }
-  console.log(searchResults);
+  //console.log(searchResults);
  //if (searchResults.length < 2) {
    //searchResults = refinedList; // for now
  //}
