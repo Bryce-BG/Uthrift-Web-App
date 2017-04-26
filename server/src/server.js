@@ -67,9 +67,30 @@ return searchResults;
     var cat = req.params.cat;
     var term = req.params.term;
 
-
     res.send(getSearch(cat, term));
   });
+
+
+  function getClassSearch(term) {
+    var queryText = term.toLowerCase();
+
+    // Search the user's feed.
+    var classList= getArray('classes');
+    var classListArray = Object.keys(classList).map(function(key) {return classList[key];}); //convert into array
+
+    var searchResults = (classListArray.filter((item) => {
+      return item.title.toLowerCase().indexOf(queryText) !== -1  || item.subject.toLowerCase().indexOf(queryText) !== -1;
+    }));
+  return searchResults;
+  }
+
+    // for class searches
+    app.get('/searchPage/:term', function(req, res) {
+      //console.log(req);
+      var term = req.params.term;
+
+      res.send(getClassSearch(term));
+    });
 
 app.get('/recomendedItems/:userid', function(req, res) {
   var userid = req.params.userid;

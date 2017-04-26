@@ -5,8 +5,8 @@ export default class SEARCHBAR extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchTerm: " ",
-      category: " "
+      searchTerm: "",
+      category: ""
     }
     contextTypes: {
       router: React.PropTypes.object.isRequired

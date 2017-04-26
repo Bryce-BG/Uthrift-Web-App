@@ -1,6 +1,6 @@
 import React from 'react';
 import SEARCHITEM from './searchitem.js';
-import  {getUserData, getSearch} from '../server';
+import  {getUserData, getSearch, getClassSearch} from '../server';
 
 export default class SEARCHRESULTS extends React.Component{
 	constructor(props) {
@@ -28,7 +28,11 @@ export default class SEARCHRESULTS extends React.Component{
       this.setState({itemListr: itemList});
 
 		};
-		getSearch(this.props.category, this.props.searchTerm, callbackFunction);
+
+		if(this.props.category === "Classes")
+			getClassSearch(this.props.searchTerm, callbackFunction);
+		else
+			getSearch(this.props.category, this.props.searchTerm, callbackFunction);
 
 	}
 
