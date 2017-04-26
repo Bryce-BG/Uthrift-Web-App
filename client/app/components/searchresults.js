@@ -1,5 +1,6 @@
 import React from 'react';
 import SEARCHITEM from './searchitem.js';
+import SEARCHCLASS from './searchclass.js';
 import  {getUserData, getSearch, getClassSearch} from '../server';
 
 export default class SEARCHRESULTS extends React.Component{
@@ -14,6 +15,18 @@ export default class SEARCHRESULTS extends React.Component{
   }
 
 	refresh() {
+		if (this.props.category === "Classes")
+		{
+			document.getElementById("classes").style.visibility = "visible";
+			document.getElementById("items").style.visibility = "hidden";
+		}
+		else {
+			document.getElementById("classes").style.visibility = "hidden";
+			document.getElementById("items").style.visibility = "visible";
+		}
+
+
+
 		window.scrollTo(0, 0);
 		var callbackFunction2 = (itemList) => {
 			var tempArray = new Array(2);
@@ -30,10 +43,16 @@ export default class SEARCHRESULTS extends React.Component{
 		};
 
 		if(this.props.category === "Classes")
+		{
+			document.getElementById("items").style.visibility = "hidden";
 			getClassSearch(this.props.searchTerm, callbackFunction);
-		else
-			getSearch(this.props.category, this.props.searchTerm, callbackFunction);
 
+		}
+		else
+		{
+			document.getElementById("classes").style.visibility = "hidden";
+			getSearch(this.props.category, this.props.searchTerm, callbackFunction);
+		}
 	}
 
 	componentDidMount(){
@@ -45,6 +64,16 @@ export default class SEARCHRESULTS extends React.Component{
     let newCat = this.props.category
 		let oldItem = prevProps.searchTerm
 		let newItem = this.props.searchTerm
+		if (this.props.category === "Classes")
+		{
+			document.getElementById("classes").style.visibility = "visible";
+			document.getElementById("items").style.visibility = "hidden";
+		}
+		else {
+			document.getElementById("classes").style.visibility = "hidden";
+			document.getElementById("items").style.visibility = "visible";
+		}
+
 
     if (oldCat !== newCat || oldItem !== newItem){
       this.refresh();
@@ -57,16 +86,26 @@ export default class SEARCHRESULTS extends React.Component{
 				<h1 className="page-header">Search Result
 					<small className="query">"{this.props.searchTerm}" in Category "{this.props.category}"</small>
 				</h1>
-				<div className="row">
+				<div className="row" id = "items">
 					{this.state.itemListr.map((items, i) => {
 
 
 						return(
 
-							<SEARCHITEM key = {i} id={this.state.itemListr[i]._id} des={this.state.itemListr[i].Title} src={this.state.itemListr[i].photoRef} price = {this.state.itemListr[i].Price}/>
+							<SEARCHITEM key = {i} id={this.state.itemListr[i]._id} des={this.state.itemListr[i].Title} src={this.state.itemListr[i].photoRef} price = {"$" + this.state.itemListr[i].Price}/>
 						)
 					})}
+				</div>
 
+					<div className="row" id = "classes">
+						{this.state.itemListr.map((items, i) => {
+
+
+							return(
+
+								<SEARCHCLASS key = {i} id={this.state.itemListr[i]._id} title={this.state.itemListr[i].title} src={this.state.itemListr[i].Photo} />
+							)
+						})}
 
 
 

@@ -20,7 +20,7 @@ render() {
         <div className="container" id ="navContainer">
           <div className="row row1">
             <ul className="largenav pull-right">
-              <li className="upper-links"><Link to={"/classPage/" + this.props.user}>Classpage</Link></li>
+    
                 <li className="upper-links"><Link to={"/submitItem/" + this.props.user}>sell item</Link></li>
                   <li className="upper-links"><Link to={"/profile/" + this.props.user}>Profile</Link></li>
             </ul>
