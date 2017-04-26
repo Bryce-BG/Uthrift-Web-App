@@ -206,7 +206,7 @@ function xxsubmitItem(title, price, condition, conDesc, classRelated,
 
   var itemID = (Object.keys(getArray('items')).length) + 1;
 var itemData = {
-  "itemId": itemID, //not sure if this should be itemData.itemId because the json has itemId instead of _id
+  //"_id": itemID, //not sure if this should be itemData.itemId because the json has itemId instead of _id
   "postDate": time,
   "Title": title,
   "Price": price,
@@ -222,16 +222,20 @@ var itemData = {
   "SellerId": sellerId
 };
 
-var itemInfo = getArray('items');
-console.log(itemData);
-itemInfo.itemID = itemData;
-addDocument('items', itemInfo);
+//var itemInfo = getArray('items');
+//itemInfo.itemID = itemData;
+addDocument('items', itemData);
 
 //  console.log(getArray('items'));
   //Update selling list by copying seller profile and adding item # to array
   var userInfo = readDocument('users', sellerId);
   userInfo.sellingList.push(itemID);
   writeDocument('users', userInfo);
+
+  var itemInfo = getArray('items');
+  console.log(itemInfo);
+
+  return itemData;
 }
 
 var ItemsSchema = require('./schemas/items.json');
