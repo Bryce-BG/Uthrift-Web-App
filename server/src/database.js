@@ -554,7 +554,8 @@ var initialData = {
       "term": "Spring 2017",
       "subject": "Computer Science",
       "textbookList": [2,3,4],
-      "techList": [1]
+      "techList": [1],
+      "Photo": "img/class.png"
     },
     "2":
     {
@@ -564,9 +565,10 @@ var initialData = {
       "instructor": "No Man",
       "credits": "6",
       "term": "Spring 2017",
-      "subject": "Abstract",
+      "subject": "Computer Science",
       "textbookList": [4,5,6],
-      "techList": [1]
+      "techList": [1],
+      "Photo": "img/class.png"
     }
   },
   "recomendedItems": [1,2,3,4,5,6,7,1,1]
