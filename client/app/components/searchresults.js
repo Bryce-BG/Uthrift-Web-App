@@ -26,20 +26,10 @@ export default class SEARCHRESULTS extends React.Component{
 
 		var callbackFunction = (itemList) => {
       this.setState({itemListr: itemList});
-			//console.log(itemList);
-      var tempSlide1 = new Array(3);
-      for (var i = 0; i < 3; i++) {
-        tempSlide1[i] = itemList[i];
-			}
-			this.setState({row1: tempSlide1})
 
-			var tempSlide2 = new Array(3);
-			for (var i = 3; i < 6; i++) {
-				tempSlide2[i] = itemList[i];
-			}
-			this.setState({row2: tempSlide2})
 		};
 		getSearch(this.props.category, this.props.searchTerm, callbackFunction);
+
 	}
 
 	componentDidMount(){
@@ -64,21 +54,21 @@ export default class SEARCHRESULTS extends React.Component{
 					<small className="query">"{this.props.searchTerm}" in Category "{this.props.category}"</small>
 				</h1>
 				<div className="row">
-					{this.state.row1.map((item) => {
-						return (
-							<SEARCHITEM key = {item} id={item[0]} des={item[1]} src={item[7]} price = {item[2]}/>
+					{this.state.itemListr.map((items, i) => {
+
+
+						return(
+
+							<SEARCHITEM key = {i} id={this.state.itemListr[i]._id} des={this.state.itemListr[i].Title} src={this.state.itemListr[i].photoRef} price = {this.state.itemListr[i].Price}/>
 						)
 					})}
+
+
+
+
 				</div>
 				<hr/>
-				<div className="row">
-					{this.state.row2.map((item) => {
-						return (
-							<SEARCHITEM key = {item} id={item[0]} des={item[1]} src={item[7]} price = {item[2]}/>
-						)
-					})}
-        </div>
-        <hr/>
+
 			</div>
 		)
  }

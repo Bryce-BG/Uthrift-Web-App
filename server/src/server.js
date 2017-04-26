@@ -46,54 +46,19 @@ app.get('/classPage/:classID', function(req, res) {
     res.send(getClassData(classID));
 });
 
- function getSearch(search) {
-  var itemList= getArray('items'); //get array for items
-  var refinedList = [];
-  var index = 0;
-  if (search[0] !== "") {
-    //console.log(itemList);
-    //var itemlistArray = Object.values(itemList);
-    var itemlistArray = Object.keys(itemList).map(function(key) {return itemList[key];});
-    //console.log(itemlistArray);
-    var itemListLength = itemlistArray.length;
-    for (var i = 1; i < itemListLength+1; i++) { //loop through and see only add items that have the correct category.
-      //var itemArray = Object.values(itemList[i]);
-      var itemArray = Object.keys(itemList[i]).map(function(key) {return itemList[i][key];});
-      //console.log(itemArray);
-      if (itemArray[6] === search[0]) {
-          refinedList[index] = itemArray;
-          index+=1;
-        }
-      }
-  }
+function getSearch(cat, term) {
+  var queryText = term.toLowerCase();
+  var category = cat.toLowerCase();
+  // Search the user's feed.
+  var itemList= getArray('items');
+  var itemlistArray = Object.keys(itemList).map(function(key) {return itemList[key];}); //convert into array
 
-  //take the list of all items with correct category and then try to narrow them down further by applying hte search filter
-  var searchResults = [];
-  index = 0; //reset to 0 for next search
-  for (var ie = 0; ie < refinedList.length; ie++) {
-    if (refinedList[ie][1].indexOf(search[1]) !== -1) {
-        searchResults[index] = refinedList[ie];
-        index+=1;
-      }
- }
- //console.log(searchResults);
- //console.log(index);
- while (index < 6) {
-   //console.log("here");
-   for (var ie2 = 0; ie2 < refinedList.length; ie2++) {
-     //console.log(typeof(refinedList));
-     if (refinedList[ie2][1].indexOf(search[1]) === -1) {
-        searchResults[index] = refinedList[ie2];
-         index+=1;
-       }
-    }
-    //index += 1;
-  }
-  //console.log(searchResults);
- //if (searchResults.length < 2) {
-   //searchResults = refinedList; // for now
- //}
- return (searchResults);
+  var searchResults = (itemlistArray.filter((item) => {
+    console.log(item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1));
+    return item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1);
+  }));
+  console.log(searchResults);
+return searchResults;
 }
 
 
@@ -101,9 +66,9 @@ app.get('/classPage/:classID', function(req, res) {
     //console.log(req);
     var cat = req.params.cat;
     var term = req.params.term;
-    var search = [cat, term]
-    //var searchArray = [req.params.cat, ""]
-    res.send(getSearch(search));
+
+
+    res.send(getSearch(cat, term));
   });
 
 app.get('/recomendedItems/:userid', function(req, res) {
