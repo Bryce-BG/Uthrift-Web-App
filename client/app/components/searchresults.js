@@ -1,6 +1,6 @@
 import React from 'react';
 import SEARCHITEM from './searchitem.js';
-import  {getUserData, getSearch} from '../server';
+import  {getUserData, getSearch, getClassSearch} from '../server';
 
 export default class SEARCHRESULTS extends React.Component{
 	constructor(props) {
@@ -26,20 +26,14 @@ export default class SEARCHRESULTS extends React.Component{
 
 		var callbackFunction = (itemList) => {
       this.setState({itemListr: itemList});
-			//console.log(itemList);
-      var tempSlide1 = new Array(3);
-      for (var i = 0; i < 3; i++) {
-        tempSlide1[i] = itemList[i];
-			}
-			this.setState({row1: tempSlide1})
 
-			var tempSlide2 = new Array(3);
-			for (var i = 3; i < 6; i++) {
-				tempSlide2[i] = itemList[i];
-			}
-			this.setState({row2: tempSlide2})
 		};
-		getSearch(this.props.category, this.props.searchTerm, callbackFunction);
+
+		if(this.props.category === "Classes")
+			getClassSearch(this.props.searchTerm, callbackFunction);
+		else
+			getSearch(this.props.category, this.props.searchTerm, callbackFunction);
+
 	}
 
 	componentDidMount(){
@@ -52,8 +46,9 @@ export default class SEARCHRESULTS extends React.Component{
 		let oldItem = prevProps.searchTerm
 		let newItem = this.props.searchTerm
 
-    if (oldCat !== newCat || oldItem !== newItem)
+    if (oldCat !== newCat || oldItem !== newItem){
       this.refresh();
+		}
   }
 
 	render(){
@@ -63,21 +58,21 @@ export default class SEARCHRESULTS extends React.Component{
 					<small className="query">"{this.props.searchTerm}" in Category "{this.props.category}"</small>
 				</h1>
 				<div className="row">
-					{this.state.row1.map((item) => {
-						return (
-							<SEARCHITEM key = {item} id={item[0]} des={item[1]} src={item[7]} price = {item[2]}/>
+					{this.state.itemListr.map((items, i) => {
+
+
+						return(
+
+							<SEARCHITEM key = {i} id={this.state.itemListr[i]._id} des={this.state.itemListr[i].Title} src={this.state.itemListr[i].photoRef} price = {this.state.itemListr[i].Price}/>
 						)
 					})}
+
+
+
+
 				</div>
 				<hr/>
-				<div className="row">
-					{this.state.row2.map((item) => {
-						return (
-							<SEARCHITEM key = {item} id={item[0]} des={item[1]} src={item[7]} price = {item[2]}/>
-						)
-					})}
-        </div>
-        <hr/>
+
 			</div>
 		)
  }
