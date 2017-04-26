@@ -213,7 +213,7 @@ app.put('/profile', validate({ body:  UserDataSchema }), function(req, res) {
 
 
 //submission form junk
-function submitItem(title, price, condition, conDesc, classRelated,
+function xxsubmitItem(title, price, condition, conDesc, classRelated,
     subject, courseNumber, category, categoryDescription, photoRef, sold, sellerId){
   //var itemData = readDocument('items', 1);
   var time = new Date().getTime();
@@ -237,9 +237,9 @@ var itemData = {
 };
 
 var itemInfo = getArray('items');
-console.log("pizza");
-itemInfo.push(itemData);
-writeDocument('items', itemInfo);
+console.log(itemData);
+itemInfo.itemID = itemData;
+addDocument('items', itemInfo);
 
 //  console.log(getArray('items'));
   //Update selling list by copying seller profile and adding item # to array
@@ -252,11 +252,10 @@ var ItemsSchema = require('./schemas/items.json');
 
 //no idea what vvv this file path is supposed to be
 app.post('/submissionForm', validate({ body:  ItemsSchema }), function(req, res) {
-  console.log("serever/src app.post subform");
   var body = req.body;
   var fromUser = getUserIdFromToken(req.get('Authorization'));
   if (fromUser === body.SellerId) {
-    var newItem = submitItem(body.Title, body.Price, body.Condition, body.Description, body.classRelated, body.subject,
+    var newItem = xxsubmitItem(body.Title, body.Price, body.Condition, body.Description, body.classRelated, body.subject,
       body.courseNumber, body.Category, body.categoryDescription, body.photoRef, body.Sold, body.SellerId);
     res.send(newItem); //not sure what this should be
   } else {
