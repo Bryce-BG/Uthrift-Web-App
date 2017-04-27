@@ -89,21 +89,6 @@ export function getClassSearch(term, cb) {
    }
  }
 
-
-
-
-
-
-
-function emulateServerReturn(data, cb) {
-  setTimeout(() => {
-    cb(data);
-  }, 1);
-}
-
-
-
-
 export function getRecomendedItems(cb)
 {
 

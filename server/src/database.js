@@ -539,6 +539,19 @@ var initialData = {
       "Category": "Furniture",
       "photoRef": "img/furniture.jpg",
       "SellerID": "1"
+    },
+
+    "43":
+    {
+      "_id": 43,
+      "Title": "Sushi",
+      "Price": "9999.00",
+      "Description": "Rice + fish + Tender, love and care",
+      "Condition": "Brand New",
+      "Sold": false,
+      "Category": "Miscellaneous",
+      "photoRef": "img/sushi.jpg",
+      "SellerID": "1"
     }
   },
 

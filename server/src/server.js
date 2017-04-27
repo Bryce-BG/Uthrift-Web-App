@@ -49,15 +49,27 @@ app.get('/classPage/:classID', function(req, res) {
 function getSearch(cat, term) {
   var queryText = term.toLowerCase();
   var category = cat.toLowerCase();
+  var searchResults;
   // Search the user's feed.
   var itemList= getArray('items');
-  console.log(getArray('items')); //DEBUG
+  //console.log(getArray('items')); //DEBUG
   var itemlistArray = Object.keys(itemList).map(function(key) {return itemList[key];}); //convert into array
 
-  var searchResults = (itemlistArray.filter((item) => {
-    console.log(item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1));
-    return item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1);
-  }));
+  console.log(category);
+  if(category.trim() === "all")
+  {
+    searchResults = (itemlistArray.filter((item) => {
+      //console.log(item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1));
+      return (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1);
+    }));
+  }
+
+  else{
+    searchResults = (itemlistArray.filter((item) => {
+      //console.log(item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1));
+      return item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1);
+    }));
+  }
 
 return searchResults;
 }

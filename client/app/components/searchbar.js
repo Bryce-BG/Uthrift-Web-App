@@ -61,7 +61,7 @@ export default class SEARCHBAR extends React.Component {
         <form role="search" className="col-md-12" id = "searchForm">
           <div className="col-md-3" id = "catogory-Select" >
             <select id="categories" className="form-control dropdown">
-              <option value = " ">Select Category</option>
+              <option value = "All">Select Category</option>
               <option value="Textbooks">Textbooks</option>
               <option value="Clothing">Clothing</option>
               <option value="Tech">Tech</option>
