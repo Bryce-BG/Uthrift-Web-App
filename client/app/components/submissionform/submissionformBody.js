@@ -123,7 +123,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
 
       //category checkboxes are combined together if they are checked
       else if (this.state.txtbxchked == true){
-        this.setState({category: "Textbook", txtbxchked: false}, this.callback);
+        this.setState({category: "Textbooks", txtbxchked: false}, this.callback);
       }
       else if (this.state.clothbxchked == true){
         if (this.state.category != ""){this.setState({category: this.state.category + ",Clothing", clothbxchked: false}, this.callback);}
@@ -158,7 +158,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         submitItem(this.state, () => {
       // Database is now updated. Refresh the feed.
     });
-        //window.location.reload();
+        window.location.reload();
     }
 
     //User clicks post:
