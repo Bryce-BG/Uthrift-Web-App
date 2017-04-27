@@ -58,7 +58,7 @@ function getSearch(cat, term) {
     console.log(item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1));
     return item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1);
   }));
-  
+
 return searchResults;
 }
 
@@ -212,7 +212,7 @@ function xxsubmitItem(title, price, condition, conDesc, classRelated,
     "Title": title,
     "Price": price,
     "Condition": condition,
-    "Description": categoryDescription,
+    "Description": conDesc,
     "Sold": sold,
     "Category": category,
     "photoRef": "img/iclicker.jpg",

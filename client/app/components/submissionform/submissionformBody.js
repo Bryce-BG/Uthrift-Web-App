@@ -159,7 +159,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       // Database is now updated. Refresh the feed.
       //this.refresh();
     });
-        //window.location.reload();
+        window.location.reload();
     }
 
     //User clicks post:
@@ -358,7 +358,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                     </div>
                     <div className="form-group form-entry">
                       <label className = "sr-only" htmlFor="conditionTextarea">Condition Description</label>
-                      <textarea className="form-control textarea" id="conditionTextarea" rows="3" placeholder = "Describe the item's condition here... ex: Has light scratch marks."
+                      <textarea className="form-control textarea" id="conditionTextarea" rows="3" placeholder = "Describe the item here..."
                         value={this.state.conDesc} onChange={(e) => this.handleChange(e)} />
                     </div>
                     {/*<!--- End Main Submission Criteria --->*/}
@@ -417,7 +417,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   <label className="form-check-label categoryEntry" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
                     <input className="form-check-input" type="checkbox" name="categoryOptions" id="Textbook" checked={this.state.txtbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Textbook
                   </label>
-                  <div className="row">
+    {/*              <div className="row">
                     <div className="col-md-6">
                       <div className="row">
                         <div className="col-md-2">
@@ -450,14 +450,14 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                       <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
                       <textarea className="form-control textarea" id="textbookTextarea" rows="3" placeholder = "Describe the item here..." value={this.state.textbookDesc} onChange={(e) => this.handleChange(e)} ></textarea>
                     </div>
-                  </div>
+                  </div>*/}
                   {/*<!--- End Textbook --->*/}
                   <hr />
                   {/*<!--- Start Clothing --->*/}
                   <label className="form-check-label" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
                     <input className="form-check-input" type="checkbox" name="categoryOptions" id="Clothing" checked={this.state.clothbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Clothing
                   </label>
-                  <div className="row">
+    {/*               <div className="row">
                     <div className="col-md-6">
                       <div className="row">
                         <div className="col-md-2">
@@ -505,47 +505,47 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                       <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
                       <textarea className="form-control textarea" id="clothingTextarea" rows="3" placeholder = "Describe the item here..." value={this.state.clothingDesc} onChange={(e) => this.handleChange(e)} ></textarea>
                     </div>
-                  </div>
+                  </div>*/}
                   {/*<!--- End Clothing --->*/}
                   <hr />
                   {/*<!--- Start Tech --->*/}
                   <label className="form-check-label" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
                     <input className="form-check-input" type="checkbox" name="categoryOptions" id="Tech" checked={this.state.techbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Tech
                   </label>
-                    <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
+  {/*                   <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
                     <div className="left">
                       <textarea className="form-control textarea" id="techTextarea" rows="3" placeholder = "Describe the item here..." value={this.state.techDesc} onChange={(e) => this.handleChange(e)} ></textarea>
-                    </div>
+                    </div>*/}
                   {/*<!--- End Tech --->*/}
                   <hr />
                   {/*<!--- Start Events --->*/}
                   <label className="form-check-label" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
                     <input className="form-check-input" type="checkbox" name="categoryOptions" id="Events" checked={this.state.eventbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Events
                   </label>
-                    <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
+    {/*                 <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
                     <div className="left">
                       <textarea className="form-control textarea" id="eventTextarea" rows="3" placeholder = "Describe the item here..." value={this.state.eventsDesc} onChange={(e) => this.handleChange(e)} ></textarea>
-                    </div>
+                    </div>*/}
                 {/*<!--- End Events --->*/}
                   <hr />
                   {/*<!--- Start Furniture --->*/}
                   <label className="form-check-label" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
                     <input className="form-check-input" type="checkbox" name="categoryOptions" id="Furniture" checked={this.state.furnbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Furniture
                   </label>
-                    <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
+    {/*                 <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
                     <div className="left">
                       <textarea className="form-control textarea" id="furnitureTextarea" rows="3" placeholder = "Describe the item here..." value={this.state.furnitureDesc} onChange={(e) => this.handleChange(e)} ></textarea>
-                    </div>
+                    </div>*/}
                 {/*<!--- End Furniture --->*/}
                   <hr />
                   {/*<!--- Start Misc --->*/}
                   <label className="form-check-label" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
                     <input className="form-check-input" type="checkbox" name="categoryOptions" id="Miscellaneous" checked={this.state.miscbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Miscellaneous
                   </label>
-                  <div className="left">
+    {/*               <div className="left">
                     <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
                       <textarea className="form-control textarea" id="miscTextarea" rows="3" placeholder = "Describe the item here..." value={this.state.miscDesc} onChange={(e) => this.handleChange(e)} ></textarea>
-                    </div>
+                    </div>*/}
                 {/*<!--- End Misc --->*/}
                 </div>
 
