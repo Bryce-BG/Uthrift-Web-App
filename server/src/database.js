@@ -546,7 +546,7 @@ var initialData = {
       "_id": 43,
       "Title": "Sushi",
       "Price": "9999.00",
-      "Description": "Rice + fish + Tender, love and care",
+      "Description": "Rice + Fish + Tender, love and care",
       "Condition": "Brand New",
       "Sold": false,
       "Category": "Miscellaneous",
