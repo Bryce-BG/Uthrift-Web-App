@@ -1,12 +1,9 @@
 var ObjectID = require('mongodb').ObjectID;
 
-
 var databaseName = "uthrift";
-
 
 var initialData = {
   "users": {
-
     "1": {
       "_id": new ObjectID("000000000000000000000001"),
       "Email": "johndoe@umass.edu",
@@ -31,7 +28,7 @@ var initialData = {
       "Photo": "img/avatar2.png",
       "trackList": [],
       "sellingList": [new ObjectID("000000000000000000000001"),new ObjectID("000000000000000000000002"),new ObjectID("000000000000000000000003"),new ObjectID("000000000000000000000014"),new ObjectID("000000000000000000000015"),new ObjectID("000000000000000000000016"),new ObjectID("000000000000000000000017"),new ObjectID("000000000000000000000018"),new ObjectID("000000000000000000000021"),new ObjectID("000000000000000000000022"),
-      new ObjectID("000000000000000000000023"),new ObjectID("000000000000000000000024"),new ObjectID("000000000000000000000026"),new ObjectID("000000000000000000000027"),new ObjectID("000000000000000000000028"),new ObjectID("0000000000000000000000029"),new ObjectID("000000000000000000000030"),new ObjectID("000000000000000000000031"),new ObjectID("000000000000000000000032"),new ObjectID("000000000000000000000037"),new ObjectID("000000000000000000000038")],
+      new ObjectID("000000000000000000000023"),new ObjectID("000000000000000000000024"),new ObjectID("000000000000000000000026"),new ObjectID("000000000000000000000027"),new ObjectID("000000000000000000000028"),new ObjectID("000000000000000000000029"),new ObjectID("000000000000000000000030"),new ObjectID("000000000000000000000031"),new ObjectID("000000000000000000000032"),new ObjectID("000000000000000000000037"),new ObjectID("000000000000000000000038")],
       "Password": "233333",
       "viewingItem": new ObjectID("000000000000000000000001")
     }
@@ -631,6 +628,29 @@ function resetCollection(db, name, cb) {
   });
 }
 
+// Check if called directly via 'node', or required() as a module.
+// http://stackoverflow.com/a/6398335
+if(require.main === module) {
+  // Called directly, via 'node src/resetdatabase.js'.
+  // Connect to the database, and reset it!
+  var MongoClient = require('mongodb').MongoClient;
+  var url = 'mongodb://localhost:27017/' + databaseName;
+  MongoClient.connect(url, function(err, db) {
+    if (err) {
+      throw new Error("Could not connect to database: " + err);
+    } else {
+      console.log("Resetting database...");
+      resetDatabase(db, function() {
+        console.log("Database reset!");
+        // Close the database connection so NodeJS closes.
+        db.close();
+      });
+    }
+  });
+} else {
+  // require()'d.  Export the function.
+  module.exports = resetDatabase;
+}
 
 function addIndexes(db, cb) {
   db.collection('feedItems').createIndex({ "contents.contents": "text" }, null, cb);
