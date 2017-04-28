@@ -265,8 +265,6 @@ MongoClient.connect(url, function(err, db) {
     return recomendedItems;
   }
 
-
-
   function getUserIdFromToken(authorizationLine) {
     try {
       // Cut off "Bearer " from the header value.
