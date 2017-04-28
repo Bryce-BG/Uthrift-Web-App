@@ -40,26 +40,77 @@ MongoClient.connect(url, function(err, db) {
   app.use(express.static('../client/build'));
   app.use('/mongo_express', mongo_express(mongo_express_config));
 
+  function getItemInfo(itemID, callback) {
+    db.collection('items').findOne({
+      _id: itemID
+    }, function(err, item) {
+      // console.log("item: ");
+      // console.log(item);
+      if (err) {
+        // An error occurred.
+        return callback(err);
+      } else if (item === null) {
+          // Feed item not found!
+          return callback(null, null);
+        }
+      callback(null, item);
+    });
+  }
+
   // Get class data
   function getClassData(classID, callback) {
-
     db.collection('classes').findOne({
       _id: classID
     }, function(err, classData) {
         if (err) {
-          // An error occurred.
           return callback(err);
-        } else if (feedItem === null) {
-          // Feed item not found!
+        } else if (classData === null) {
           return callback(null, null);
         }
+        var Textbooks = [];
+        var Tech = [];
 
-      // //console.log(classID);
-      // var classData = readDocument('classes', classID);
-      // classData.textbookList = classData.textbookList.map((itemId) => readDocument('items', itemId));
-      // classData.techList = classData.techList.map((itemId) => readDocument('items', itemId));
-      // return(classData);
-      callback(null, feedData);
+        function processBooks(i) {
+          getItemInfo(classData.textbookList[i], function(err, item) {
+            if (err) {
+              callback(err);
+            } else {
+              Textbooks.push(item);
+              if (Textbooks.length === classData.textbookList.length) {
+                classData.textbookList = Textbooks;
+                if (classData.techList.length === 0) {
+                  callback(null, classData);
+                } else {
+                  processTech(0);
+                }
+              } else {
+                processBooks(i + 1);
+              }
+            }
+          });
+        }
+
+        function processTech(i) {
+          getItemInfo(classData.techList[i], function(err, item) {
+            if (err) {
+              callback(err);
+            } else {
+              Tech.push(item);
+              if (Tech.length === classData.techList.length) {
+                classData.techList = Tech;
+                callback(null, classData);
+              } else {
+                processTech(i + 1);
+              }
+            }
+          });
+        }
+
+        if (classData.textbookList.length === 0) {
+          callback(null, classData);
+        } else {
+          processBooks(0);
+        }
     });
   }
 
@@ -68,7 +119,8 @@ MongoClient.connect(url, function(err, db) {
 
     var classID = req.params.classID;
 
-    getClassData(new ObjectID(classID), function(err, classData) {
+    // change this when other parts use DB
+    getClassData(new ObjectID("000000000000000000000001"), function(err, classData) {
       if (err) {
         // A database error happened.
         // Internal Error: 500.
@@ -301,13 +353,6 @@ MongoClient.connect(url, function(err, db) {
       res.status(401).end();
     }
   });
-
-
-
-  function getItemInfo(itemID) {
-    var itemdata = readDocument('items', itemID);
-    return itemdata;
-  }
 
   function getUserDataItem(id, user) {
     var userData = readDocument('users', user);
