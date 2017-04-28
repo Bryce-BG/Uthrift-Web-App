@@ -62,55 +62,55 @@ MongoClient.connect(url, function(err, db) {
     db.collection('classes').findOne({
       _id: classID
     }, function(err, classData) {
-        if (err) {
-          return callback(err);
-        } else if (classData === null) {
-          return callback(null, null);
-        }
-        var Textbooks = [];
-        var Tech = [];
+      if (err) {
+        return callback(err);
+      } else if (classData === null) {
+        return callback(null, null);
+      }
+      var Textbooks = [];
+      var Tech = [];
 
-        function processBooks(i) {
-          getItemInfo(classData.textbookList[i], function(err, item) {
-            if (err) {
-              callback(err);
-            } else {
-              Textbooks.push(item);
-              if (Textbooks.length === classData.textbookList.length) {
-                classData.textbookList = Textbooks;
-                if (classData.techList.length === 0) {
-                  callback(null, classData);
-                } else {
-                  processTech(0);
-                }
-              } else {
-                processBooks(i + 1);
-              }
-            }
-          });
-        }
-
-        function processTech(i) {
-          getItemInfo(classData.techList[i], function(err, item) {
-            if (err) {
-              callback(err);
-            } else {
-              Tech.push(item);
-              if (Tech.length === classData.techList.length) {
-                classData.techList = Tech;
+      function processBooks(i) {
+        getItemInfo(classData.textbookList[i], function(err, item) {
+          if (err) {
+            callback(err);
+          } else {
+            Textbooks.push(item);
+            if (Textbooks.length === classData.textbookList.length) {
+              classData.textbookList = Textbooks;
+              if (classData.techList.length === 0) {
                 callback(null, classData);
               } else {
-                processTech(i + 1);
+                processTech(0);
               }
+            } else {
+              processBooks(i + 1);
             }
-          });
-        }
+          }
+        });
+      }
 
-        if (classData.textbookList.length === 0) {
-          callback(null, classData);
-        } else {
-          processBooks(0);
-        }
+      function processTech(i) {
+        getItemInfo(classData.techList[i], function(err, item) {
+          if (err) {
+            callback(err);
+          } else {
+            Tech.push(item);
+            if (Tech.length === classData.techList.length) {
+              classData.techList = Tech;
+              callback(null, classData);
+            } else {
+              processTech(i + 1);
+            }
+          }
+        });
+      }
+
+      if (classData.textbookList.length === 0) {
+        callback(null, classData);
+      } else {
+        processBooks(0);
+      }
     });
   }
 
@@ -120,7 +120,7 @@ MongoClient.connect(url, function(err, db) {
     var classID = req.params.classID;
 
     // change this when other parts use DB
-    getClassData(new ObjectID("000000000000000000000001"), function(err, classData) {
+    getClassData(new ObjectID(classID), function(err, classData) {
       if (err) {
         // A database error happened.
         // Internal Error: 500.
@@ -164,35 +164,70 @@ MongoClient.connect(url, function(err, db) {
   }
 
 
-    app.get('/searchPage/:cat/:term', function(req, res) {
-      //console.log(req);
-      var cat = req.params.cat;
-      var term = req.params.term;
+  app.get('/searchPage/:cat/:term', function(req, res) {
+    //console.log(req);
+    var cat = req.params.cat;
+    var term = req.params.term;
 
-      res.send(getSearch(cat, term));
+    res.send(getSearch(cat, term));
+  });
+
+  function sendDatabaseError(res, err) {
+    res.status(500).send("A database error occurred: " + err);
+  }
+  // function getClassSearch(term, callback) {
+  //
+  // }
+
+  // for class searches
+  app.get('/searchPage/:term', function(req, res) {
+    //console.log(req);
+    var term = req.params.term;
+    //res.send(getClassSearch(term));
+    var queryText = term.toLowerCase();
+
+    // Look for feed items within the feed that contain queryText.
+    db.collection('classes').find({
+      $text: {
+        $search: queryText
+      }
+    }).toArray(function(err, items) {
+      if (err) {
+        return sendDatabaseError(res, err);
+      }
+
+      // Resolve all of the feed items.
+      var resolvedItems = [];
+      var errored = false;
+      function onResolve(err, item) {
+        if (errored) {
+          return;
+        } else if (err) {
+          errored = true;
+          sendDatabaseError(res, err);
+        } else {
+          resolvedItems.push(item);
+          if (resolvedItems.length === items.length) {
+            // Send resolved items to the client!
+            res.send(resolvedItems);
+          }
+        }
+      }
+
+      // Resolve all of the matched feed items in parallel.
+      for (var i = 0; i < items.length; i++) {
+        // Would be more efficient if we had a separate helper that
+        // resolved feed items from their objects and not their IDs.
+        // Not a big deal in our small applications, though.
+        getClassData(items[i]._id, onResolve);
+      }
+
+      // Special case: No results.
+      if (items.length === 0) {
+        res.send([]);
+      }
     });
-
-
-    function getClassSearch(term) {
-      var queryText = term.toLowerCase();
-
-      // Search the user's feed.
-      var classList= getArray('classes');
-      var classListArray = Object.keys(classList).map(function(key) {return classList[key];}); //convert into array
-
-      var searchResults = (classListArray.filter((item) => {
-        return item.title.toLowerCase().indexOf(queryText) !== -1  || item.subject.toLowerCase().indexOf(queryText) !== -1;
-      }));
-    return searchResults;
-    }
-
-      // for class searches
-      app.get('/searchPage/:term', function(req, res) {
-        //console.log(req);
-        var term = req.params.term;
-
-        res.send(getClassSearch(term));
-      });
+  });
 
   app.get('/recomendedItems/:userid', function(req, res) {
     var userid = req.params.userid;

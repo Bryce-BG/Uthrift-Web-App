@@ -587,10 +587,6 @@ var initialData = {
   "recomendedItems": [new ObjectID("000000000000000000000001"),new ObjectID("000000000000000000000002"),new ObjectID("000000000000000000000003"),new ObjectID("000000000000000000000004"),new ObjectID("000000000000000000000005"),new ObjectID("000000000000000000000006"),new ObjectID("000000000000000000000007"),new ObjectID("000000000000000000000001"),new ObjectID("000000000000000000000001")]
 };
 
-
-
-
-
 function resetDatabase(db, cb) {
   // The code below is a bit complex, but it basically emulates a
   // "for" loop over asynchronous operations.
@@ -653,5 +649,6 @@ if(require.main === module) {
 }
 
 function addIndexes(db, cb) {
-  db.collection('feedItems').createIndex({ "contents.contents": "text" }, null, cb);
+  db.collection('classes').createIndex({ "title": "text" }, null, cb);
+  db.collection('classes').createIndex({ "subject": "text" }, null, cb);
 }
