@@ -287,10 +287,32 @@ MongoClient.connect(url, function(err, db) {
     }
   }
 
-  function getUserData(user){
-    var userData = readDocument('users', user);
-    userData.sellingList = userData.sellingList.map((itemId) => readDocument('items', itemId));
-    return userData;
+  function getUserData(user, callback){
+    db.collection('users').findOne({ _id: user}, function(err,userData){
+      if (err) {
+        return callback(err);
+      }
+
+      var len = userData.sellingList.length;
+      var sell = [];
+      if (len === 0){
+        callback(null, userData);
+      }else{
+        for (var i = 0; i < len; i ++){
+          db.collection('items').findOne({_id: new ObjectID(userData.sellingList[i])}, function(err, item){
+            if (err) {
+              return callback(err);
+            }
+            sell.push(item);
+            if (sell.length === len){
+              userData.sellingList = sell;
+              callback(null, userData);
+            }
+
+          });
+        }
+      }
+    });
   }
 
   //Get User data
@@ -299,22 +321,38 @@ MongoClient.connect(url, function(err, db) {
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     var useridNumber = parseInt(userid, 10);
     if (fromUser === useridNumber) {
-      res.send(getUserData(userid));
+      getUserData(new ObjectID(userid), function(err, userData) {
+        if (err) {
+          res.status(500).send("Database error: " + err);
+        } else if (userData === null) {
+          res.status(400).send("Could not look up feed for user " + userid);
+        } else {
+          res.send(userData);
+        }
+      });
     } else {
       res.status(401).end();
     }
   });
 
-  function updateUserData(userId, cellphone, firstname, lastname, nickname, email, password, photo){
-    var userData = readDocument('users', userId);
-    userData.Cellphone = cellphone;
-    userData.FirstName = firstname;
-    userData.LastName = lastname;
-    userData.NickName = nickname;
-    userData.Email = email;
-    userData.Password = password;
-    userData.Photo = photo;
-    writeDocument('users', userData);
+
+  function updateUserData(userId, cellphone, firstname, lastname, nickname, email, password, photo, callback){
+    db.collection('users').updateOne({_id: userId},
+      {
+        $set:{
+          "Cellphone": cellphone,
+          "FirstName": firstname,
+          "LastName": lastname,
+          "NickName": nickname,
+          "Email": email,
+          "Password": password,
+          "Photo": photo
+        }
+      }, function(err){
+      if (err) {
+        return callback(err);
+      }
+    });
   }
 
   var UserDataSchema = require('./schemas/userdata.json');
@@ -324,9 +362,15 @@ MongoClient.connect(url, function(err, db) {
   app.put('/profile', validate({ body:  UserDataSchema }), function(req, res) {
     var body = req.body;
     var fromUser = getUserIdFromToken(req.get('Authorization'));
-    if (fromUser === body.userId) {
-      updateUserData(body.userId, body.cellphone, body.firstname, body.lastname, body.nickname, body.email, body.password, body.photo);
-      res.send(getUserData(body.userId));
+    if (fromUser === parseInt(body.userId)) {
+      updateUserData(new ObjectID(body.userId), body.cellphone, body.firstname, body.lastname, body.nickname, body.email, body.password, body.photo, function(err){
+        if (err) {
+          res.status(500).send("A database error occurred: " + err);
+        } else {
+          res.status(201);
+          res.send(getUserData(new ObjectID(body.userId)));
+        }
+      });
     } else {
       res.status(401).end();
     }

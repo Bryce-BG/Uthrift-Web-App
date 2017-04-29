@@ -12,7 +12,7 @@ import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 
 class ProfilePage extends React.Component {
   render() {
-    return <PROFILEPAGE user={1} />;
+    return <PROFILEPAGE user={"000000000000000000000001"} />;
   }
 }
 
