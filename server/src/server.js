@@ -127,35 +127,7 @@ MongoClient.connect(url, function(err, db) {
     });
   });
 
-  function getSearch(cat, term) {
-    var queryText = term.toLowerCase();
-    var category = cat.toLowerCase();
-    var searchResults;
-    // Search the user's feed.
-    var itemList= getArray('items');
-    //console.log(getArray('items')); //DEBUG
-    var itemlistArray = Object.keys(itemList).map(function(key) {return itemList[key];}); //convert into array
-
-    console.log(category);
-    if(category.trim() === "all")
-    {
-      searchResults = (itemlistArray.filter((item) => {
-        //console.log(item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1));
-        return (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1);
-      }));
-    }
-
-    else{
-      searchResults = (itemlistArray.filter((item) => {
-        //console.log(item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1));
-        return item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1);
-      }));
-    }
-
-  return searchResults;
-  }
-
-
+  // for searching items
   app.get('/searchPage/:cat/:term', function(req, res) {
     //console.log(req);
     var term = req.params.term;
@@ -189,7 +161,7 @@ MongoClient.connect(url, function(err, db) {
         }
       }
       // Resolve all of the matched feed items in parallel.
-      console.log(items);
+      //console.log(items);
       for (var i = 0; i < items.length; i++) {
         // Would be more efficient if we had a separate helper that
         // resolved feed items from their objects and not their IDs.
