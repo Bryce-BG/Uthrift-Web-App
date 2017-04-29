@@ -356,7 +356,7 @@ MongoClient.connect(url, function(err, db) {
   app.put('/profile', validate({ body:  UserDataSchema }), function(req, res) {
     var body = req.body;
     var fromUser = getUserIdFromToken(req.get('Authorization'));
-    if (fromUser === parseInt(body.userId)) {
+    if (fromUser === body.userId) {
       updateUserData(new ObjectID(body.userId), body.cellphone, body.firstname, body.lastname, body.nickname, body.email, body.password, body.photo, function(err){
         if (err) {
           res.status(500).send("A database error occurred: " + err);
