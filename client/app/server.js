@@ -1,5 +1,5 @@
 
- var token = 'eyJpZCI6MX0='
+ var token = 'eyJpZCI6IjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMSJ9='
 
 
   export function getClassData(classID, cb) {

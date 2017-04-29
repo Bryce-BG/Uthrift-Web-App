@@ -25,18 +25,6 @@ export default class SEARCHRESULTS extends React.Component{
 			document.getElementById("items").style.visibility = "visible";
 		}
 
-
-
-		window.scrollTo(0, 0);
-		var callbackFunction2 = (itemList) => {
-			var tempArray = new Array(2);
-			tempArray[0] = itemList["searchGory"];
-			tempArray[1] = itemList["searchTerm"];
-			this.setState({searchArray: tempArray});
-			//console.log(this.state.searchArray);
-		};
-		getUserData(this.props.user,callbackFunction2);
-
 		var callbackFunction = (itemList) => {
       this.setState({itemListr: itemList});
 

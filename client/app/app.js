@@ -10,21 +10,23 @@ import NAVBAR from './components/navbar.js'; //new import
 import ErrorBanner from './components/ErrorBanner.js'
 import { IndexRoute, Router, Route, browserHistory } from 'react-router';
 
+var user = "000000000000000000000001";
+
 class ProfilePage extends React.Component {
   render() {
-    return <PROFILEPAGE user={"000000000000000000000001"} />;
+    return <PROFILEPAGE user={user}/>;
   }
 }
 
 class SubmitItem extends React.Component {
   render() {
-    return <SUBMISSIONFORM user={1} />;
+    return <SUBMISSIONFORM user={user} />;
   }
 }
 
 class HomePage extends React.Component {
   render() {
-    return <HOMEPAGE user={1} />;
+    return <HOMEPAGE user={user} />;
   }
 }
 
@@ -33,28 +35,28 @@ class SearchPage extends React.Component {
   render() {
 
 
-    return <SEARCHPAGE user={1} searchCategory={this.props.params.searchCategory} searchTerm = {this.props.params.searchTerm}/>;
+    return <SEARCHPAGE user={user} searchCategory={this.props.params.searchCategory} searchTerm = {this.props.params.searchTerm}/>;
   }
 }
 
 class ClassPage extends React.Component {
   render() {
-    return <CLASSPAGE user={1} id={this.props.params.id}/>;
+    return <CLASSPAGE user={user} id={this.props.params.id}/>;
   }
 }
 class ItemPage extends React.Component {
   render() {
-    return <ITEM user={1} id={this.props.params.id}/>;
+    return <ITEM user={user} id={this.props.params.id}/>;
   }
 }
 
 class App extends React.Component {
   render() {
 
-    var loggedinuser = 1;
+    //var loggedinuser = 1;
     return (
       <div>
-        <NAVBAR user={loggedinuser} />
+        <NAVBAR user={user} />
         <div className="container">
           <div className="row">
             <div className="col-md-12">
