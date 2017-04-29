@@ -226,8 +226,11 @@ MongoClient.connect(url, function(err, db) {
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     // userid is a string. We need it to be a number.
     // Parameters are always strings.
-    var useridNumber = parseInt(userid, 10);
-    if (fromUser === useridNumber) {
+
+
+
+  //  var useridNumber = parseInt(userid, 10);
+    if (fromUser === userid) {
       // Send response.
       res.send(getRecomendedItems()); //INDUCING ERROR when commented out
     } else {
@@ -240,19 +243,19 @@ MongoClient.connect(url, function(err, db) {
   function getRecomendedItems()
   {
 
-    var recomendeditemIndexList = db.collection('recomendedItems');
+    var recomendeditemIndexList = db.Collection('recomendedItems');
 
 
     //var recomendeditemIndexList= getArray('recomendedItems'); //get array for items
-    // console.log("item list is:");
-    // console.log(recomendeditemIndexList);
+     console.log("item list is:");
+     console.log(recomendeditemIndexList);
     var recomendedItems = new Array(9);
     for (var i = 0; i < 9; i++) {
       //console.log("looking for: " + i + " with value of  " + recomendeditemIndexList[i]);
       recomendedItems[i] =  db.collection('items').findOne({ _id: recomendeditemIndexList[i]}, function(err,itemData){
 
           return itemData;
-        
+
 
         });//readDocument("items", recomendeditemIndexList[i]); //actually get the items
        //console.log("actual result: ")
