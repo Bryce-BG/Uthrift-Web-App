@@ -56,7 +56,7 @@ componentDidMount()
 
             };
 
-   getRecomendedItems(callbackFunction);
+   getRecomendedItems(this.props.user, callbackFunction);
     // console.log("itemlistr is")
     // console.log(this.state.itemListr);
 

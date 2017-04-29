@@ -687,7 +687,7 @@ function getArray(collection) {
  // Clone the data. We do this to model a database, where you receive a
  // *copy* of an object and not the object itself.
  return JSONClone(data[collection]);
-}
+ }
 module.exports.getArray = getArray;
 
 
