@@ -94,44 +94,10 @@ sendXHR('GET', '/recomendedItems/' + user, undefined, (xhr) => {
   cb(JSON.parse(xhr.responseText));
 });
 
-  // var recomendeditemIndexList= getArray('recomendedItems'); //get array for items
-  //
-  // var recomendedItems = new Array(9);
-  // for (var i = 0; i < 9; i++) {
-  //
-  //   recomendedItems[i] = readDocument("items", recomendeditemIndexList[i]); //actually get the items
-  //   }
-  //
-  // emulateServerReturn(recomendedItems, cb);
+
 }
 
-/**
-// Submit stuff from Submission Form
-export function submitItem(data){
-  var userData = readDocument('items', 1);
-  var time = new Date().getTime();
 
-  var itemID = (Object.keys(getArray('items')).length) + 1;
-  userData._id = itemID;
-  userData.postDate = time;
-  userData.Title = data.title;
-  userData.Price = data.price;
-  userData.Condition = data.condition;
-  userData.Description = data.conDesc;
-  userData.classRelated = data.classRelated;
-  userData.subject = data.subject;
-  userData.courseNumber = data.courseNumber;
-  userData.Category = data.category;
-  userData.categoryDescription = data.categoryDescription;
-  userData.photoRef = "img/iclicker.jpg";
-  userData.Sold = false;
-  userData.SellerId = 1;
-  writeDocument('items', userData);
-
-  //Update selling list by copying seller profile and adding item # to array
-  var userInfo = readDocument('users', 1);
-  userInfo.sellingList.push(itemID);
-} */
 // Submit stuff from Submission Form
 export function submitItem(data, cb){
   sendXHR('POST', '/submissionForm', { //No idea what the file path is supposed to be here.

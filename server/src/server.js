@@ -232,7 +232,19 @@ MongoClient.connect(url, function(err, db) {
   //  var useridNumber = parseInt(userid, 10);
     if (fromUser === userid) {
       // Send response.
-      res.send(getRecomendedItems()); //INDUCING ERROR when commented out
+      res.send(getRecomendedItems(function(err, recomendedItems) {
+        if (err) {
+          // A database error happened.
+          // Internal Error: 500.
+          res.status(500).send("Database error: " + err);
+        } else if (recomendedItems === null) {
+          // Couldn't find the class in the database.
+          res.status(400).send("Could not look up recomendedItems");
+        } else {
+          // Send data.
+          res.send(recomendedItems);
+        }
+      })); //INDUCING ERROR when commented out
     } else {
       // 401: Unauthorized request.
       res.status(401).end();
@@ -240,33 +252,26 @@ MongoClient.connect(url, function(err, db) {
   });
 
 
-  function getRecomendedItems()
+  function getRecomendedItems( cb)
   {
-
-    var recomendeditemIndexList = db.Collection('recomendedItems');
+    console.log("getRecomendedItems was called");
+    var recomendeditemIndexList = db.collection('recomendedItems');
 
 
     //var recomendeditemIndexList= getArray('recomendedItems'); //get array for items
      console.log("item list is:");
      console.log(recomendeditemIndexList);
+
+
     var recomendedItems = new Array(9);
     for (var i = 0; i < 9; i++) {
       //console.log("looking for: " + i + " with value of  " + recomendeditemIndexList[i]);
-      recomendedItems[i] =  db.collection('items').findOne({ _id: recomendeditemIndexList[i]}, function(err,itemData){
-
-          return itemData;
+      recomendedItems[i] = getItemInfo(recomendeditemIndexList[i],cb);
 
 
-        });//readDocument("items", recomendeditemIndexList[i]); //actually get the items
-       //console.log("actual result: ")
-       //console.log(recomendedItems[i]);
-    }
-
-
-  //console.log("size of recomended item list: " + recomendedItems.length);
-
-    return recomendedItems;
   }
+  return recomendedItems;
+}
 
   function getUserIdFromToken(authorizationLine) {
     try {
