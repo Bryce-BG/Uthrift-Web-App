@@ -259,17 +259,22 @@ MongoClient.connect(url, function(err, db) {
 
 
     //var recomendeditemIndexList= getArray('recomendedItems'); //get array for items
-     console.log("item list is:");
-     console.log(recomendeditemIndexList);
+    //console.log("item list is:");
+     //console.log(recomendeditemIndexList);
 
 
     var recomendedItems = new Array(9);
     for (var i = 0; i < 9; i++) {
       //console.log("looking for: " + i + " with value of  " + recomendeditemIndexList[i]);
-      recomendedItems[i] = getItemInfo(recomendeditemIndexList[i],cb);
+      recomendedItems[i] = getItemInfo(recomendeditemIndexList[i], function( itemData)
+    {
+    recomendedItems[i] = itemData;
+    });
 
 
   }
+  console.log("RECOMENDED ITEMS ARE:");
+  console.log(recomendedItems);
   return recomendedItems;
 }
 
