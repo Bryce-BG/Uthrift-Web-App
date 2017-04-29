@@ -86,10 +86,10 @@ export function getClassSearch(term, cb) {
    }
  }
 
-export function getRecomendedItems(cb)
+export function getRecomendedItems(user, cb)
 {
 
-sendXHR('GET', '/recomendedItems/1', undefined, (xhr) => {
+sendXHR('GET', '/recomendedItems/' + user, undefined, (xhr) => {
   // Call the callback with the data.
   cb(JSON.parse(xhr.responseText));
 });

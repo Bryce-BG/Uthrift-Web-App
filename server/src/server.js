@@ -21,7 +21,7 @@ var url = 'mongodb://localhost:27017/uthrift';
 // Creates an Express server.
 var app = express();
 
-var writeDocument = database.writeDocument;
+
 var addDocument = database.addDocument;
 var readDocument = database.readDocument;
 var getArray = database.getArray;
@@ -240,13 +240,21 @@ MongoClient.connect(url, function(err, db) {
   function getRecomendedItems()
   {
 
-    var recomendeditemIndexList= getArray('recomendedItems'); //get array for items
+    var recomendeditemIndexList = db.collection('recomendedItems');
+
+
+    //var recomendeditemIndexList= getArray('recomendedItems'); //get array for items
     // console.log("item list is:");
     // console.log(recomendeditemIndexList);
     var recomendedItems = new Array(9);
     for (var i = 0; i < 9; i++) {
       //console.log("looking for: " + i + " with value of  " + recomendeditemIndexList[i]);
-      recomendedItems[i] = readDocument("items", recomendeditemIndexList[i]); //actually get the items
+      recomendedItems[i] =  db.collection('items').findOne({ _id: recomendeditemIndexList[i]}, function(err,itemData){
+
+          return itemData;
+        
+
+        });//readDocument("items", recomendeditemIndexList[i]); //actually get the items
        //console.log("actual result: ")
        //console.log(recomendedItems[i]);
     }
