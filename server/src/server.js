@@ -158,10 +158,51 @@ MongoClient.connect(url, function(err, db) {
 
   app.get('/searchPage/:cat/:term', function(req, res) {
     //console.log(req);
-    var cat = req.params.cat;
     var term = req.params.term;
+    //res.send(getClassSearch(term));
+    var queryText = term.toLowerCase();
 
-    res.send(getSearch(cat, term));
+    // Look for feed items within the feed that contain queryText.
+    db.collection('items').find({
+      $text: {
+        $search: queryText
+      }
+    }).toArray(function(err, items) {
+      if (err) {
+        return sendDatabaseError(res, err);
+      }
+      // Resolve all of the feed items.
+      var resolvedItems = [];
+      var errored = false;
+      function onResolve(err, item) {
+        if (errored) {
+          return;
+        } else if (err) {
+          errored = true;
+          sendDatabaseError(res, err);
+        } else {
+          resolvedItems.push(item);
+          if (resolvedItems.length === items.length) {
+            // Send resolved items to the client!
+            res.send(resolvedItems);
+          }
+        }
+      }
+      // Resolve all of the matched feed items in parallel.
+      console.log(items);
+      for (var i = 0; i < items.length; i++) {
+        // Would be more efficient if we had a separate helper that
+        // resolved feed items from their objects and not their IDs.
+        // Not a big deal in our small applications, though.
+        if (req.params.cat.trim().toLowerCase() === "all" || req.params.cat.trim().toLowerCase() === items[i].Category.trim().toLowerCase())
+          getItemInfo(items[i]._id, onResolve);
+      }
+
+      // Special case: No results.
+      if (items.length === 0) {
+        res.send([]);
+      }
+    });
   });
 
   function sendDatabaseError(res, err) {
@@ -205,7 +246,7 @@ MongoClient.connect(url, function(err, db) {
           }
         }
       }
-
+      console.log(items);
       // Resolve all of the matched feed items in parallel.
       for (var i = 0; i < items.length; i++) {
         // Would be more efficient if we had a separate helper that
