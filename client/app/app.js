@@ -33,8 +33,6 @@ class HomePage extends React.Component {
 
 class SearchPage extends React.Component {
   render() {
-
-
     return <SEARCHPAGE user={user} searchCategory={this.props.params.searchCategory} searchTerm = {this.props.params.searchTerm}/>;
   }
 }
@@ -52,7 +50,6 @@ class ItemPage extends React.Component {
 
 class App extends React.Component {
   render() {
-
     //var loggedinuser = 1;
     return (
       <div>
@@ -64,14 +61,10 @@ class App extends React.Component {
             </div>
           </div>
           <div className="row">
-
             {this.props.children}
-
           </div>
         </div>
-
       </div>
-
     )
   }
 }

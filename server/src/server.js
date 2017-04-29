@@ -4,7 +4,7 @@ var express = require('express');
 var ResetDatabase = require('./resetdatabase');
 var bodyParser = require('body-parser');
 var database = require('./database');
-var validate = require('express-jsonschema').validate;
+//var validate = require('express-jsonschema').validate;
 
 var mongo_express = require('mongo-express/lib/middleware');
 // Import the default Mongo Express configuration
@@ -20,14 +20,6 @@ var url = 'mongodb://localhost:27017/uthrift';
 
 // Creates an Express server.
 var app = express();
-app.use(express.static('../client/build'));
-app.use(bodyParser.text());
-app.use(bodyParser.json());
-
-// Defines what happens when it receives the `GET /` request
-// app.get('/', function (req, res) {
-//   res.send('Hello World!');
-// });
 
 var writeDocument = database.writeDocument;
 var addDocument = database.addDocument;
@@ -274,8 +266,8 @@ MongoClient.connect(url, function(err, db) {
       // Convert the UTF-8 string into a JavaScript object.
       var tokenObj = JSON.parse(regularString);
       var id = tokenObj['id'];
-      // Check that id is a number.
-      if (typeof id === 'number') {
+      // Check that id is a string.
+      if (typeof id === 'string') {
         return id;
       } else {
         // Not a number. Return -1, an invalid ID.
@@ -318,9 +310,11 @@ MongoClient.connect(url, function(err, db) {
   //Get User data
   app.get('/profile/:userid', function(req, res) {
     var userid = req.params.userid;
+    console.log("Before");
     var fromUser = getUserIdFromToken(req.get('Authorization'));
-    var useridNumber = parseInt(userid, 10);
-    if (fromUser === useridNumber) {
+    //var useridNumber = parseInt(userid, 10);
+    // Was using an int instead of string
+    if (fromUser === userid) {
       getUserData(new ObjectID(userid), function(err, userData) {
         if (err) {
           res.status(500).send("Database error: " + err);
