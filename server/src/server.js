@@ -221,62 +221,7 @@ MongoClient.connect(url, function(err, db) {
     });
   });
 
-  app.get('/recomendedItems/:userid', function(req, res) {
-    var userid = req.params.userid;
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    // userid is a string. We need it to be a number.
-    // Parameters are always strings.
 
-
-
-  //  var useridNumber = parseInt(userid, 10);
-    if (fromUser === userid) {
-      // Send response.
-      res.send(getRecomendedItems(function(err, recomendedItems) {
-        if (err) {
-          // A database error happened.
-          // Internal Error: 500.
-          res.status(500).send("Database error: " + err);
-        } else if (recomendedItems === null) {
-          // Couldn't find the class in the database.
-          res.status(400).send("Could not look up recomendedItems");
-        } else {
-          // Send data.
-          res.send(recomendedItems);
-        }
-      })); //INDUCING ERROR when commented out
-    } else {
-      // 401: Unauthorized request.
-      res.status(401).end();
-    }
-  });
-
-
-  function getRecomendedItems( cb)
-  {
-    console.log("getRecomendedItems was called");
-    var recomendeditemIndexList = db.collection('recomendedItems');
-
-
-    //var recomendeditemIndexList= getArray('recomendedItems'); //get array for items
-    //console.log("item list is:");
-     //console.log(recomendeditemIndexList);
-
-
-    var recomendedItems = new Array(9);
-    for (var i = 0; i < 9; i++) {
-      //console.log("looking for: " + i + " with value of  " + recomendeditemIndexList[i]);
-      recomendedItems[i] = getItemInfo(recomendeditemIndexList[i], function( itemData)
-    {
-    recomendedItems[i] = itemData;
-    });
-
-
-  }
-  console.log("RECOMENDED ITEMS ARE:");
-  console.log(recomendedItems);
-  return recomendedItems;
-}
 
   function getUserIdFromToken(authorizationLine) {
     try {
@@ -299,6 +244,111 @@ MongoClient.connect(url, function(err, db) {
       return -1;
     }
   }
+
+
+
+
+
+  app.get('/recomendedItems/:userid', function(req, res) {
+    var userid = req.params.userid;
+    var fromUser = getUserIdFromToken(req.get('Authorization'));
+    // userid is a string. We need it to be a number.
+    // Parameters are always strings.
+
+
+
+  //  var useridNumber = parseInt(userid, 10);
+    if (fromUser === userid) {
+      // Send response.
+
+    getRecomendedItems(new ObjectID(userid), function(err, recomendedItems) {
+        if (err) {
+          res.status(500).send("Database error: " + err);
+        } else if (recomendedItems === null) {
+          res.status(400).send("Could not look up feed for user " + userid);
+        } else {
+          console.log("recomendedItems ARE: ");
+          console.log(recomendedItems);
+          res.send(recomendedItems.recomendedItems);
+        }
+      })
+    }
+     else {
+      // 401: Unauthorized request.
+      res.status(401).end();
+    }
+  });
+
+
+  function getRecomendedItems(user, callback)
+  {
+    console.log("getRecomendedItems was called");
+
+
+    db.collection('users').findOne({ _id: user}, function(err,itemData){
+      if (err) {
+        return callback(err);
+      }
+
+      var len = itemData.recomendedItems.length;
+      var recomendedItems = [];
+      if (len === 0){
+        callback(null, itemData);
+      }else{
+        for (var i = 0; i < len; i ++){
+          db.collection('items').findOne({_id: new ObjectID(itemData.recomendedItems[i])}, function(err, item){
+            if (err) {
+              return callback(err);
+            }
+            recomendedItems.push(item);
+            if (recomendedItems.length === len){
+              itemData.recomendedItems = recomendedItems;
+              callback(null, itemData);
+            }
+
+          });
+        }
+      }
+    });
+
+
+    //
+    //
+    //
+    //
+    //   var recomendeditemIndexList = db.collection('users').findOne({
+    //     _id: 'recomendedItems'})//db.collection('recomendedItems');
+    //
+    //
+    //   console.log("item list is:");
+    //   console.log(recomendeditemIndexList);
+    //
+    //
+    //   var recomendedItems = new Array(9);
+    //   for (var i = 0; i < 9; i++) {
+    //     //console.log("looking for: " + i + " with value of  " + recomendeditemIndexList[i]);
+    //     recomendedItems[i] = getItemInfo(recomendeditemIndexList[i], function( itemData)
+    //   {
+    //   recomendedItems[i] = itemData;
+    //   });
+    //
+    //
+    // }
+    // console.log("RECOMENDED ITEMS ARE:");
+    // console.log(recomendedItems);
+    // cb(recomendedItems);
+    // return recomendedItems;
+  }
+
+
+
+
+
+
+
+
+
+
 
   function getUserData(user, callback){
     db.collection('users').findOne({ _id: user}, function(err,userData){
