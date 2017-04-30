@@ -447,44 +447,71 @@ MongoClient.connect(url, function(err, db) {
     return userData;
   }
     
-  function getUserDataItem(id, user, callback){
-    
-    //user  
-    db.collection('users').findOne({ _id: user}, function(err,userData){
-      if (err) {
-        return callback(err);
-      }
+  function getUserDataItem(id, user, callback) {
 
-      var len = userData.sellingList.length;
-      var sell = [];
-      if (len === 0){
-        callback(null, userData);
-      }else{
-        for (var i = 0; i < len; i ++){
-          db.collection('items').findOne({_id: new ObjectID(userData.sellingList[i])}, function(err, item){
-            if (err) {
-              return callback(err);
-            }
-            sell.push(item);
-            if (sell.length === len){
-              userData.sellingList = sell;
-              callback(null, userData);
-            }
+      //user  
+      db.collection('users').findOne({
+                  _id: user
+              }, function (err, userData) {
+                  if (err) {
+                      return callback(err);
+                  }
 
-          });
-        }
-      }
-    });
-      
-    //item
-    db.collection('items').findOne({ _id: id}, function(err,userData){
-      if (err) {
-        return callback(err);
-      }
+                  var len = userData.sellingList.length;
+                  var sell = [];
+                  if (len === 0) {
+                      callback(null, userData);
+                  } else {
+                      for (var i = 0; i < len; i++) {
+                          db.collection('items').findOne({
+                              _id: new ObjectID(userData.sellingList[i])
+                          }, function (err, item) {
+                              if (err) {
+                                  return callback(err);
+                              }
+                              sell.push(item);
+                              if (sell.length === len) {
+                                  userData.sellingList = sell;
+                                  callback(null, userData);
+                              }
 
-      
-    });
+                          });
+                      }
+                      db.collection('items').findOne({
+                          _id: id
+                      }, function (err, item) {
+                          // console.log("item: ");
+                          // console.log(item);
+                          if (err) {
+                              // An error occurred.
+                              return callback(err);
+                          }
+                          userData.viewingItem = item;
+                          callback(null, item);
+                      });
+                  }
+              });
   }
+    
+  app.get('/ItemPage/:itemID', function(req, res) {
+
+    var itemID = req.params.itemID;
+
+    // change this when other parts use DB
+    getItemInfo(new ObjectID(itemID), function(err, itemData) {
+      if (err) {
+        // A database error happened.
+        // Internal Error: 500.
+        res.status(500).send("Database error: " + err);
+      } else if (itemID === null) {
+        // Couldn't find the class in the database.
+        res.status(400).send("Could not look up item data: " + itemID);
+      } else {
+        // Send data.
+        res.send(itemData);
+      }
+    });
+  });
 
   app.get('/ItemPage/:itemID', function(req, res) {
       var itemID = req.params.itemID;
