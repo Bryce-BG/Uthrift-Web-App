@@ -446,6 +446,45 @@ MongoClient.connect(url, function(err, db) {
 
     return userData;
   }
+    
+  function getUserDataItem(id, user, callback){
+    
+    //user  
+    db.collection('users').findOne({ _id: user}, function(err,userData){
+      if (err) {
+        return callback(err);
+      }
+
+      var len = userData.sellingList.length;
+      var sell = [];
+      if (len === 0){
+        callback(null, userData);
+      }else{
+        for (var i = 0; i < len; i ++){
+          db.collection('items').findOne({_id: new ObjectID(userData.sellingList[i])}, function(err, item){
+            if (err) {
+              return callback(err);
+            }
+            sell.push(item);
+            if (sell.length === len){
+              userData.sellingList = sell;
+              callback(null, userData);
+            }
+
+          });
+        }
+      }
+    });
+      
+    //item
+    db.collection('items').findOne({ _id: id}, function(err,userData){
+      if (err) {
+        return callback(err);
+      }
+
+      
+    });
+  }
 
   app.get('/ItemPage/:itemID', function(req, res) {
       var itemID = req.params.itemID;
