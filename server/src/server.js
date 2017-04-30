@@ -437,61 +437,45 @@ MongoClient.connect(url, function(err, db) {
       res.status(401).end();
     }
   });
-
-//  function getUserDataItem(id, user) {
-//    var userData = readDocument('users', user);
-//    var itemData = readDocument('items', id);
-//    userData.sellingList = userData.sellingList.map((itemId) => readDocument('items', itemId));
-//    userData.viewingItem = itemData;
-//
-//    return userData;
-//  }
     
   function getUserDataItem(id, user, callback) {
 
       //user  
       db.collection('users').findOne({
-                  _id: user
-              }, function (err, userData) {
-                  if (err) {
-                      return callback(err);
-                  }
+              _id: user
+          }, function (err, userData) {
+              if (err) {
+                  return callback(err);
+              }
 
-                  var len = userData.sellingList.length;
-                  var sell = [];
-                  if (len === 0) {
-                      callback(null, userData);
-                  } else {
-                      for (var i = 0; i < len; i++) {
-                          db.collection('items').findOne({
-                              _id: new ObjectID(userData.sellingList[i])
-                          }, function (err, item) {
-                              if (err) {
-                                  return callback(err);
-                              }
-                              sell.push(item);
-                              if (sell.length === len) {
-                                  userData.sellingList = sell;
-                                  callback(null, userData);
-                              }
-
-                          });
-                      }
+              var len = userData.sellingList.length;
+              var sell = [];
+              if (len === 0) {
+                  callback(null, userData);
+              } else {
+                  for (var i = 0; i < len; i++) {
                       db.collection('items').findOne({
-                          _id: id
+                          _id: new ObjectID(userData.sellingList[i])
                       }, function (err, item) {
-                          // console.log("item: ");
-                          // console.log(item);
                           if (err) {
-                              // An error occurred.
                               return callback(err);
                           }
-                          userData.viewingItem = item;
-                          console.log(userData);
-                          callback(null, item);
+                          sell.push(item);
+                          if (sell.length === len) {
+                              userData.sellingList = sell;
+                              getItemInfo(id, function (err, item) {
+                                  if (err) {
+                                      callback(err);
+                                  } else {
+                                      userData.viewingItem = item;
+                                      callback(null, userData);
+                                  }
+                              });
+                          }
                       });
                   }
-              });
+              }
+      });
   }
     
   app.get('/ItemPage/:itemID', function(req, res) {
@@ -513,18 +497,12 @@ MongoClient.connect(url, function(err, db) {
       }
     });
   });
-
-//  app.get('/ItemPage/:itemID', function(req, res) {
-//      var itemID = req.params.itemID;
-//
-//      res.send(getItemInfo(itemID));
-//  });
     
   app.get('/ItemPage/:userID/:itemID', function(req, res) {
 
     var itemID = req.params.itemID;
     var userID = req.params.userID;
-
+    //var fromUser = getUserIdFromToken(req.get('Authorization'));
     // change this when other parts use DB
     getUserDataItem(new ObjectID(itemID), new ObjectID(userID), function(err, itemData, userData) {
       if (err) {
@@ -539,16 +517,10 @@ MongoClient.connect(url, function(err, db) {
         res.status(400).send("Could not look up user data: " + userID);
       } else {
         // Send data.
-        res.send(itemData, userData);
+        res.send(itemData);
       }
     });
   });
-
-//  app.get('/ItemPage/:userID/:itemID', function(req,res){
-//      //var itemID = req.params.itemID;
-//      res.send(getUserDataItem(req.params.itemID, req.params.userID));
-//
-//  });
 
   // Reset the database.
   app.post('/resetdb', function(req, res) {
