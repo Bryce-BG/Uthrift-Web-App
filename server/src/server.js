@@ -438,14 +438,14 @@ MongoClient.connect(url, function(err, db) {
     }
   });
 
-  function getUserDataItem(id, user) {
-    var userData = readDocument('users', user);
-    var itemData = readDocument('items', id);
-    userData.sellingList = userData.sellingList.map((itemId) => readDocument('items', itemId));
-    userData.viewingItem = itemData;
-
-    return userData;
-  }
+//  function getUserDataItem(id, user) {
+//    var userData = readDocument('users', user);
+//    var itemData = readDocument('items', id);
+//    userData.sellingList = userData.sellingList.map((itemId) => readDocument('items', itemId));
+//    userData.viewingItem = itemData;
+//
+//    return userData;
+//  }
     
   function getUserDataItem(id, user, callback) {
 
@@ -487,6 +487,7 @@ MongoClient.connect(url, function(err, db) {
                               return callback(err);
                           }
                           userData.viewingItem = item;
+                          console.log(userData);
                           callback(null, item);
                       });
                   }
@@ -513,17 +514,41 @@ MongoClient.connect(url, function(err, db) {
     });
   });
 
-  app.get('/ItemPage/:itemID', function(req, res) {
-      var itemID = req.params.itemID;
+//  app.get('/ItemPage/:itemID', function(req, res) {
+//      var itemID = req.params.itemID;
+//
+//      res.send(getItemInfo(itemID));
+//  });
+    
+  app.get('/ItemPage/:userID/:itemID', function(req, res) {
 
-      res.send(getItemInfo(itemID));
+    var itemID = req.params.itemID;
+    var userID = req.params.userID;
+
+    // change this when other parts use DB
+    getUserDataItem(new ObjectID(itemID), new ObjectID(userID), function(err, itemData, userData) {
+      if (err) {
+        // A database error happened.
+        // Internal Error: 500.
+        res.status(500).send("Database error: " + err);
+      } else if (itemID === null) {
+        // Couldn't find the class in the database.
+        res.status(400).send("Could not look up item data: " + itemID);
+      }else if (userID === null) {
+        // Couldn't find the class in the database.
+        res.status(400).send("Could not look up user data: " + userID);
+      } else {
+        // Send data.
+        res.send(itemData, userData);
+      }
+    });
   });
 
-  app.get('/ItemPage/:userID/:itemID', function(req,res){
-      //var itemID = req.params.itemID;
-      res.send(getUserDataItem(req.params.itemID, req.params.userID));
-
-  });
+//  app.get('/ItemPage/:userID/:itemID', function(req,res){
+//      //var itemID = req.params.itemID;
+//      res.send(getUserDataItem(req.params.itemID, req.params.userID));
+//
+//  });
 
   // Reset the database.
   app.post('/resetdb', function(req, res) {
