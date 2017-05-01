@@ -386,11 +386,11 @@ MongoClient.connect(url, function(err, db) {
 
   //submission form junk
   function xxsubmitItem(title, price, condition, conDesc, classRelated,
-      subject, courseNumber, category, categoryDescription, photoRef, sold, sellerId){
+      subject, courseNumber, category, categoryDescription, photoRef, sold, sellerId, callback){
     //var itemData = readDocument('items', 1);
     // var time = new Date().getTime();
 
-    var itemID = (Object.keys(getArray('items')).length) + 1;
+  //  var itemID = (Object.keys(getArray('items')).length) + 1;
     var itemData = {
       //"postDate": time,
       "Title": title,
@@ -407,16 +407,52 @@ MongoClient.connect(url, function(err, db) {
 
     //itemInfo.itemID = itemData;
 
-    addDocument('items', itemData);
+//    addDocument('items', itemData);
 
     //  console.log(getArray('items'));
       //Update selling list by copying seller profile and adding item # to array
-      var userInfo = readDocument('users', sellerId);
-      userInfo.sellingList.push(itemID);
+//      var userInfo = readDocument('users', sellerId);
+//      userInfo.sellingList.push(itemID);
 
-      console.log(getArray('items'));
-    return itemData;
+//      console.log(getArray('items'));
+//    return itemData;
 
+
+    // Add the status update to the database.
+    db.collection('items').insertOne(itemData, function(err, result) {
+      if (err) {
+        return callback(err);
+      }
+      // Unlike the mock database, MongoDB does not return the newly added object
+      // with the _id set.
+      // Attach the new feed item's ID to the newStatusUpdate object. We will
+      // return this object to the client when we are done.
+      // (When performing an insert operation, result.insertedId contains the new
+      // document's ID.)
+      itemData._id = result.insertedId;
+
+      // Retrieve the author's user object.
+      db.collection('users').findOne({ _id: sellerId }, function(err) {
+        if (err) {
+          return callback(err);
+        }
+        // Update the author's feed with the new status update's ID.
+        db.collection('users').updateOne({ _id: sellerId },
+          {
+            $push: {
+                sellingList: [itemData._id]
+            }
+          },
+          function(err) {
+            if (err) {
+              return callback(err);
+            }
+            // Return the new status update to the application.
+            callback(null, itemData);
+          }
+        );
+      });
+    });
   }
 
   var ItemsSchema = require('./schemas/items.json');
@@ -437,15 +473,14 @@ MongoClient.connect(url, function(err, db) {
           // in the 'Location' header and use status code 201.
           res.status(201);
 
-
-
-          res.send(newItem); //not sure what this should be
+          res.send(newItem);
         }
       });
     } else {
       res.status(401).end();
     }
   });
+  
 
   function getUserDataItem(id, user) {
     var userData = readDocument('users', user);
