@@ -403,12 +403,12 @@ var initialData = {
     "31":
     {
       "_id": new ObjectID("000000000000000000000031"),
-      "Title": "Craking The Code",
+      "Title": "Cracking The Code",
       "Price": "18.00",
       "Description": "CS187 Basic Coding",
       "Condition": "Brand New",
       "Sold": false,
-      "Category": "Classes",
+      "Category": "Textbooks",
       "photoRef": "img/book1.jpg",
       "SellerID": new ObjectID("000000000000000000000002")
     },
@@ -420,7 +420,7 @@ var initialData = {
       "Description": "CS311 Algorithms",
       "Condition": "Brand New",
       "Sold": false,
-      "Category": "Classes",
+      "Category": "Textbooks",
       "photoRef": "img/book2.jpg",
       "SellerID": new ObjectID("000000000000000000000002")
     },
@@ -432,7 +432,7 @@ var initialData = {
       "Description": "CS383 AI",
       "Condition": "Brand New",
       "Sold": false,
-      "Category": "Classes",
+      "Category": "Textbooks",
       "photoRef": "img/book3.jpg",
       "SellerID": new ObjectID("000000000000000000000001")
     },
@@ -444,7 +444,7 @@ var initialData = {
       "Description": "COLL200 Love",
       "Condition": "Brand New",
       "Sold": false,
-      "Category": "Classes",
+      "Category": "Textbooks",
       "photoRef": "img/book4.jpg",
       "SellerID": new ObjectID("000000000000000000000001")
     },
@@ -456,7 +456,7 @@ var initialData = {
       "Description": "COLL102 Life Advices",
       "Condition": "Brand New",
       "Sold": false,
-      "Category": "Classes",
+      "Category": "Textbooks",
       "photoRef": "img/book5.jpg",
       "SellerID": new ObjectID("000000000000000000000001")
     },
@@ -468,7 +468,7 @@ var initialData = {
       "Description": "COLL 101 Education",
       "Condition": "Brand New",
       "Sold": false,
-      "Category": "Classes",
+      "Category": "Textbooks",
       "photoRef": "img/book6.jpg",
       "SellerID": new ObjectID("000000000000000000000001")
     },

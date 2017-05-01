@@ -144,6 +144,9 @@ MongoClient.connect(url, function(err, db) {
         return sendDatabaseError(res, err);
       }
       // Resolve all of the feed items.
+      items = items.filter( (item)=>{ return req.params.cat.trim().toLowerCase() === "all" ||
+      req.params.cat.trim().toLowerCase() === item.Category.trim().toLowerCase()});
+
       var resolvedItems = [];
       var errored = false;
       function onResolve(err, item) {
@@ -166,7 +169,6 @@ MongoClient.connect(url, function(err, db) {
         // Would be more efficient if we had a separate helper that
         // resolved feed items from their objects and not their IDs.
         // Not a big deal in our small applications, though.
-        if (req.params.cat.trim().toLowerCase() === "all" || req.params.cat.trim().toLowerCase() === items[i].Category.trim().toLowerCase())
           getItemInfo(items[i]._id, onResolve);
       }
 
@@ -218,7 +220,7 @@ MongoClient.connect(url, function(err, db) {
           }
         }
       }
-      console.log(items);
+      //console.log(items);
       // Resolve all of the matched feed items in parallel.
       for (var i = 0; i < items.length; i++) {
         // Would be more efficient if we had a separate helper that
@@ -280,8 +282,8 @@ MongoClient.connect(url, function(err, db) {
         } else if (recomendedItems === null) {
           res.status(400).send("Could not look up feed for user " + userid);
         } else {
-          console.log("recomendedItems ARE: ");
-          console.log(recomendedItems);
+        //  console.log("recomendedItems ARE: ");
+          //console.log(recomendedItems);
           res.send(recomendedItems.recomendedItems);
         }
       })
@@ -295,7 +297,7 @@ MongoClient.connect(url, function(err, db) {
 
   function getRecomendedItems(user, callback)
   {
-    console.log("getRecomendedItems was called");
+  //  console.log("getRecomendedItems was called");
 
 
     db.collection('users').findOne({ _id: user}, function(err,itemData){
@@ -394,7 +396,7 @@ MongoClient.connect(url, function(err, db) {
   //Get User data
   app.get('/profile/:userid', function(req, res) {
     var userid = req.params.userid;
-    console.log("Before");
+    //console.log("Before");
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     //var useridNumber = parseInt(userid, 10);
     // Was using an int instead of string
