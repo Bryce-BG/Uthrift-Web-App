@@ -383,62 +383,41 @@ MongoClient.connect(url, function(err, db) {
     }
   });
 
-  function createId(id){
-    var idSize = id.length;
-    var newId = "";
-    for (var x = 0; x <= 24 - idSize; x++){ //add enough zeros in front of id number
-      newId += "0";
-    }
-    newId += id;
-    return newId;
-  }
-
 
   //submission form junk
   function xxsubmitItem(title, price, condition, conDesc, classRelated,
       subject, courseNumber, category, categoryDescription, photoRef, sold, sellerId, callback){
-    //var itemData = readDocument('items', 1);
-    // var time = new Date().getTime();
+    db.collection('items').find({}).toArray(function(err, items){
+       var itemIDint = items.length+1; //generate id number
+          var id = itemIDint.toString();
+          var idSize = id.length;
+          var newId = "";
+          for (var x = 0; x < 24 - idSize; x++){ //add enough zeros in front of id number
+            newId += "0";
+          }
+          newId += id;
+          var itemIDstring = newId;
 
-    var itemIDint = (Object.keys(getArray('items')).length) + 1;
-    var itemIDstring = createId(itemIDint.toString);
-    var itemData = {
-      //"postDate": time,
-      "Title": title,
-      "Price": price,
-      "Condition": condition,
-      "Description": conDesc,
-      "Sold": sold,
-      "Category": category,
-      "photoRef": "img/iclicker.jpg",
-      "SellerID": "" + sellerId
-    };
-    console.log(itemData);
-    //var itemInfo = getArray('items');
+        var itemData = { //create item
+          "Title": title,
+          "Price": price,
+          "Condition": condition,
+          "Description": conDesc,
+          "Sold": sold,
+          "Category": category,
+          "photoRef": "img/iclicker.jpg",
+          "SellerID": "" + sellerId
+        };
+        itemData._id = itemIDstring;
 
-    //itemInfo.itemID = itemData;
+        // Add the item to the database.
+        db.collection('items').insertOne(itemData, function(err) {
+          if (err) {
+            return callback(err);
+          }
+          callback(null, itemData);
 
-//    addDocument('items', itemData);
-
-    //  console.log(getArray('items'));
-      //Update selling list by copying seller profile and adding item # to array
-//      var userInfo = readDocument('users', sellerId);
-//      userInfo.sellingList.push(itemID);
-
-//      console.log(getArray('items'));
-//    return itemData;
-
-
-    // Add the item to the database.
-    db.collection('items').insertOne(itemData, function(err) {
-      if (err) {
-        return callback(err);
-      }
-      console.log("inserted id: ");
-      console.log(itemIDint);
-      console.log(itemIDstring);
-      itemData._id = itemIDstring;
-      callback(null, itemData);
+          
       // Retrieve the author's user object.
 /*      db.collection('users').findOne({ _id: sellerId }, function(err) {
         if (err) {
@@ -460,6 +439,7 @@ MongoClient.connect(url, function(err, db) {
           }
         );
       }); */
+   });
     });
   }
 
@@ -480,6 +460,7 @@ MongoClient.connect(url, function(err, db) {
           res.status(500).send("A database error occurred: " + err);
         } else {
           console.log("xxsubmititem succeeded.");
+          console.log(newItem);
           // When POST creates a new resource, we should tell the client about it
           // in the 'Location' header and use status code 201.
           res.status(201);
