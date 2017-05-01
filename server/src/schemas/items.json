@@ -3,13 +3,9 @@
   "id": "/",
   "type": "object",
   "properties": {
-    "itemId": {
+    "_id": {
       "id": "itemId",
-      "type": "integer"
-    },
-    "postDate": {
-      "id": "postDate",
-      "type": "integer"
+      "type": "string"
     },
     "Title": {
       "id": "Title",
@@ -57,7 +53,7 @@
     },
     "SellerId": {
       "id": "SellerId",
-      "type": "integer"
+      "type": "string"
     }
   },
   "additionalProperties": false

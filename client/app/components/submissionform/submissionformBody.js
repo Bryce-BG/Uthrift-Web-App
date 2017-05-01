@@ -159,7 +159,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       // Database is now updated. Refresh the feed.
       //this.refresh();
     });
-        window.location.reload();
+        //window.location.reload();
     }
 
     //User clicks post:

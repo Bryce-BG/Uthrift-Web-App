@@ -383,6 +383,16 @@ MongoClient.connect(url, function(err, db) {
     }
   });
 
+  function createId(id){
+    var idSize = id.length;
+    var newId = "";
+    for (var x = 0; x <= 24 - idSize; x++){ //add enough zeros in front of id number
+      newId += "0";
+    }
+    newId += id;
+    return newId;
+  }
+
 
   //submission form junk
   function xxsubmitItem(title, price, condition, conDesc, classRelated,
@@ -390,7 +400,8 @@ MongoClient.connect(url, function(err, db) {
     //var itemData = readDocument('items', 1);
     // var time = new Date().getTime();
 
-  //  var itemID = (Object.keys(getArray('items')).length) + 1;
+    var itemIDint = (Object.keys(getArray('items')).length) + 1;
+    var itemIDstring = createId(itemIDint.toString);
     var itemData = {
       //"postDate": time,
       "Title": title,
@@ -400,9 +411,9 @@ MongoClient.connect(url, function(err, db) {
       "Sold": sold,
       "Category": category,
       "photoRef": "img/iclicker.jpg",
-      "SellerId": "" + sellerId
+      "SellerID": "" + sellerId
     };
-
+    console.log(itemData);
     //var itemInfo = getArray('items');
 
     //itemInfo.itemID = itemData;
@@ -418,21 +429,18 @@ MongoClient.connect(url, function(err, db) {
 //    return itemData;
 
 
-    // Add the status update to the database.
-    db.collection('items').insertOne(itemData, function(err, result) {
+    // Add the item to the database.
+    db.collection('items').insertOne(itemData, function(err) {
       if (err) {
         return callback(err);
       }
-      // Unlike the mock database, MongoDB does not return the newly added object
-      // with the _id set.
-      // Attach the new feed item's ID to the newStatusUpdate object. We will
-      // return this object to the client when we are done.
-      // (When performing an insert operation, result.insertedId contains the new
-      // document's ID.)
-      itemData._id = result.insertedId;
-
+      console.log("inserted id: ");
+      console.log(itemIDint);
+      console.log(itemIDstring);
+      itemData._id = itemIDstring;
+      callback(null, itemData);
       // Retrieve the author's user object.
-      db.collection('users').findOne({ _id: sellerId }, function(err) {
+/*      db.collection('users').findOne({ _id: sellerId }, function(err) {
         if (err) {
           return callback(err);
         }
@@ -451,24 +459,27 @@ MongoClient.connect(url, function(err, db) {
             callback(null, itemData);
           }
         );
-      });
+      }); */
     });
   }
 
   var ItemsSchema = require('./schemas/items.json');
 
-  //no idea what vvv this file path is supposed to be
   app.post('/submissionForm', validate({ body:  ItemsSchema }), function(req, res) {
+    console.log("post is called.");
     var body = req.body;
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     if (fromUser === body.SellerId) {
+      console.log("trying to xxsubmit item...");
       xxsubmitItem(body.Title, body.Price, body.Condition, body.Description, body.classRelated, body.subject,
         body.courseNumber, body.Category, body.categoryDescription, body.photoRef, body.Sold, body.SellerId, function(err, newItem) {
         if (err) {
+          console.log("xxsubmititem error.");
           // A database error happened.
           // 500: Internal error.
           res.status(500).send("A database error occurred: " + err);
         } else {
+          console.log("xxsubmititem succeeded.");
           // When POST creates a new resource, we should tell the client about it
           // in the 'Location' header and use status code 201.
           res.status(201);
@@ -480,7 +491,7 @@ MongoClient.connect(url, function(err, db) {
       res.status(401).end();
     }
   });
-  
+
 
   function getUserDataItem(id, user) {
     var userData = readDocument('users', user);

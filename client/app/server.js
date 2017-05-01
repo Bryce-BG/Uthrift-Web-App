@@ -134,22 +134,26 @@ export function submitItem(data){
 } */
 // Submit stuff from Submission Form
 export function submitItem(data, cb){
+  console.log("start to send xhr");
+  console.log(data);
   sendXHR('POST', '/submissionForm', { //No idea what the file path is supposed to be here.
-    itemId: data.itemId, //not sure what the userId is supposed to be. (don't want to mix it up with itemId)
-    postDate: new Date().getTime(),
+  //  itemId: data.itemId, //not sure what the userId is supposed to be. (don't want to mix it up with itemId)
+  //  postDate: new Date().getTime(),
     Title: data.title,
     Price: data.price,
     Condition: data.condition,
     Description: data.conDesc,
     classRelated: data.classRelated,
-    subject: data.subject,
-    courseNumber: data.courseNumber,
+  //  subject: data.subject,
+  //  courseNumber: data.courseNumber,
     Category: data.category,
-    categoryDescription: data.categoryDescription,
+  //  categoryDescription: data.categoryDescription,
     photoRef: "img/iclicker.jpg",
     Sold: false,
     SellerId: data.SellerId
   }, (xhr) => {
+      console.log("xhr.responseText: ");
+      console.log(xhr.responseText);
     cb(JSON.parse(xhr.responseText));
   });
   //Update selling list by copying seller profile and adding item # to array
