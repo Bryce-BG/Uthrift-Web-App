@@ -127,41 +127,54 @@ MongoClient.connect(url, function(err, db) {
     });
   });
 
-  function getSearch(cat, term) {
-    var queryText = term.toLowerCase();
-    var category = cat.toLowerCase();
-    var searchResults;
-    // Search the user's feed.
-    var itemList= getArray('items');
-    //console.log(getArray('items')); //DEBUG
-    var itemlistArray = Object.keys(itemList).map(function(key) {return itemList[key];}); //convert into array
-
-    console.log(category);
-    if(category.trim() === "all")
-    {
-      searchResults = (itemlistArray.filter((item) => {
-        //console.log(item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1));
-        return (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1);
-      }));
-    }
-
-    else{
-      searchResults = (itemlistArray.filter((item) => {
-        //console.log(item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1));
-        return item.Category.toLowerCase().indexOf(category) !== -1 && (item.Title.toLowerCase().indexOf(queryText) !== -1  || item.Description.toLowerCase().indexOf(queryText) !== -1);
-      }));
-    }
-
-  return searchResults;
-  }
-
-
+  // for searching items
   app.get('/searchPage/:cat/:term', function(req, res) {
     //console.log(req);
-    var cat = req.params.cat;
     var term = req.params.term;
+    //res.send(getClassSearch(term));
+    var queryText = term.toLowerCase();
 
-    res.send(getSearch(cat, term));
+    // Look for feed items within the feed that contain queryText.
+    db.collection('items').find({
+      $text: {
+        $search: queryText
+      }
+    }).toArray(function(err, items) {
+      if (err) {
+        return sendDatabaseError(res, err);
+      }
+      // Resolve all of the feed items.
+      var resolvedItems = [];
+      var errored = false;
+      function onResolve(err, item) {
+        if (errored) {
+          return;
+        } else if (err) {
+          errored = true;
+          sendDatabaseError(res, err);
+        } else {
+          resolvedItems.push(item);
+          if (resolvedItems.length === items.length) {
+            // Send resolved items to the client!
+            res.send(resolvedItems);
+          }
+        }
+      }
+      // Resolve all of the matched feed items in parallel.
+      //console.log(items);
+      for (var i = 0; i < items.length; i++) {
+        // Would be more efficient if we had a separate helper that
+        // resolved feed items from their objects and not their IDs.
+        // Not a big deal in our small applications, though.
+        if (req.params.cat.trim().toLowerCase() === "all" || req.params.cat.trim().toLowerCase() === items[i].Category.trim().toLowerCase())
+          getItemInfo(items[i]._id, onResolve);
+      }
+
+      // Special case: No results.
+      if (items.length === 0) {
+        res.send([]);
+      }
+    });
   });
 
   function sendDatabaseError(res, err) {
@@ -205,7 +218,7 @@ MongoClient.connect(url, function(err, db) {
           }
         }
       }
-
+      console.log(items);
       // Resolve all of the matched feed items in parallel.
       for (var i = 0; i < items.length; i++) {
         // Would be more efficient if we had a separate helper that
@@ -495,26 +508,89 @@ MongoClient.connect(url, function(err, db) {
       res.status(401).end();
     }
   });
+    
+  function getUserDataItem(id, user, callback) {
 
-  function getUserDataItem(id, user) {
-    var userData = readDocument('users', user);
-    var itemData = readDocument('items', id);
-    userData.sellingList = userData.sellingList.map((itemId) => readDocument('items', itemId));
-    userData.viewingItem = itemData;
+      //user  
+      db.collection('users').findOne({
+              _id: user
+          }, function (err, userData) {
+              if (err) {
+                  return callback(err);
+              }
 
-    return userData;
+              var len = userData.sellingList.length;
+              var sell = [];
+              if (len === 0) {
+                  callback(null, userData);
+              } else {
+                  for (var i = 0; i < len; i++) {
+                      db.collection('items').findOne({
+                          _id: new ObjectID(userData.sellingList[i])
+                      }, function (err, item) {
+                          if (err) {
+                              return callback(err);
+                          }
+                          sell.push(item);
+                          if (sell.length === len) {
+                              userData.sellingList = sell;
+                              getItemInfo(id, function (err, item) {
+                                  if (err) {
+                                      callback(err);
+                                  } else {
+                                      userData.viewingItem = item;
+                                      callback(null, userData);
+                                  }
+                              });
+                          }
+                      });
+                  }
+              }
+      });
   }
-
+    
   app.get('/ItemPage/:itemID', function(req, res) {
-      var itemID = req.params.itemID;
 
-      res.send(getItemInfo(itemID));
+    var itemID = req.params.itemID;
+
+    // change this when other parts use DB
+    getItemInfo(new ObjectID(itemID), function(err, itemData) {
+      if (err) {
+        // A database error happened.
+        // Internal Error: 500.
+        res.status(500).send("Database error: " + err);
+      } else if (itemID === null) {
+        // Couldn't find the class in the database.
+        res.status(400).send("Could not look up item data: " + itemID);
+      } else {
+        // Send data.
+        res.send(itemData);
+      }
+    });
   });
+    
+  app.get('/ItemPage/:userID/:itemID', function(req, res) {
 
-  app.get('/ItemPage/:userID/:itemID', function(req,res){
-      //var itemID = req.params.itemID;
-      res.send(getUserDataItem(req.params.itemID, req.params.userID));
-
+    var itemID = req.params.itemID;
+    var userID = req.params.userID;
+    //var fromUser = getUserIdFromToken(req.get('Authorization'));
+    // change this when other parts use DB
+    getUserDataItem(new ObjectID(itemID), new ObjectID(userID), function(err, itemData, userData) {
+      if (err) {
+        // A database error happened.
+        // Internal Error: 500.
+        res.status(500).send("Database error: " + err);
+      } else if (itemID === null) {
+        // Couldn't find the class in the database.
+        res.status(400).send("Could not look up item data: " + itemID);
+      }else if (userID === null) {
+        // Couldn't find the class in the database.
+        res.status(400).send("Could not look up user data: " + userID);
+      } else {
+        // Send data.
+        res.send(itemData);
+      }
+    });
   });
 
   // Reset the database.

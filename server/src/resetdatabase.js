@@ -654,4 +654,5 @@ if(require.main === module) {
 
 function addIndexes(db, cb) {
   db.collection('classes').createIndex({ "title": "text", "subject": "text" }, null, cb);
+  db.collection('items').createIndex({ "Title": "text", "Description": "text" }, null, cb);
 }
