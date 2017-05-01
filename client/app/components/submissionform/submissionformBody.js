@@ -159,7 +159,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       // Database is now updated. Refresh the feed.
       //this.refresh();
     });
-        //window.location.reload();
+        window.location.reload();
     }
 
     //User clicks post:
@@ -356,7 +356,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                         <option>Poor</option>
                       </select>
                     </div>
-                    <div className="form-group form-entry">
+          {/*          <div className="form-group form-entry">
                       <label className = "sr-only" htmlFor="conditionTextarea">Condition Description</label>
                       <textarea className="form-control textarea" id="conditionTextarea" rows="3" placeholder = "Describe the item here..."
                         value={this.state.conDesc} onChange={(e) => this.handleChange(e)} />
@@ -381,7 +381,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
 
               <div className = "col-md-7" htmlStyle="padding-bottom: 50px;">
 
-                {/*<!--- Start Class Related --->*/}
+                {/*<!--- Start Class Related --->/}
                   <div className = "form-check form-check-inline top">
                       <label className = "sp8">Is this item class-related?</label>
                       <label className="form-check-label sp8" htmlFor = "classRelated">
@@ -403,7 +403,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                       <option>Community Health (see PUBHLTH)</option>
                     </select>
                     <label className = "sp8" htmlFor="courseSelect">Course Number:</label> {/*}<!--- Note: This does not allow for course number that include letters like 197U. Search criteria should simply be 197 in this example --->*/}
-                    <div className="pull-right right">
+            {/*        <div className="pull-right right">
                       <input type="number" min = "0" step = "1" className="custom-select narrow" id="courseNumber" placeholder="000" value={this.state.courseNumber} onChange={(e) => this.handleChange(e)} />
                     </div>
                     <h1 className="page-header"></h1>
@@ -547,6 +547,13 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                       <textarea className="form-control textarea" id="miscTextarea" rows="3" placeholder = "Describe the item here..." value={this.state.miscDesc} onChange={(e) => this.handleChange(e)} ></textarea>
                     </div>*/}
                 {/*<!--- End Misc --->*/}
+
+                  <hr />
+                  <div className="form-group form-entry">
+                    <label className = "sr-only" htmlFor="conditionTextarea">Condition Description</label>
+                    <textarea className="form-control textarea" id="conditionTextarea" rows="3" placeholder = "Describe the item here..."
+                      value={this.state.conDesc} onChange={(e) => this.handleChange(e)} />
+                  </div>
                 </div>
 
               </div>

@@ -416,53 +416,45 @@ MongoClient.connect(url, function(err, db) {
             return callback(err);
           }
           callback(null, itemData);
+/*
 
-          
-      // Retrieve the author's user object.
-/*      db.collection('users').findOne({ _id: sellerId }, function(err) {
-        if (err) {
-          return callback(err);
-        }
-        // Update the author's feed with the new status update's ID.
-        db.collection('users').updateOne({ _id: sellerId },
-          {
-            $push: {
-                sellingList: [itemData._id]
-            }
-          },
-          function(err) {
+          // Retrieve the author's user object.
+         db.collection('users').findOne({ _id: sellerId }, function(err) {
             if (err) {
               return callback(err);
             }
-            // Return the new status update to the application.
-            callback(null, itemData);
-          }
-        );
-      }); */
-   });
+            // Update the user's sellingList with the new item's ID.
+            db.collection('users').updateOne({ _id: sellerId },
+              {
+                $addToSet: {
+                    ['sellingList']: new ObjectID(itemData._id)
+                }
+              },
+              function(err) {
+                if (err) {
+                  console.log(itemData._id);
+                  return callback(err);
+                }
+                // Return the new item to the application.
+                callback(null, itemData);
+              }
+            );
+          }); */
+       });
     });
   }
 
   var ItemsSchema = require('./schemas/items.json');
 
   app.post('/submissionForm', validate({ body:  ItemsSchema }), function(req, res) {
-    console.log("post is called.");
     var body = req.body;
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     if (fromUser === body.SellerId) {
-      console.log("trying to xxsubmit item...");
       xxsubmitItem(body.Title, body.Price, body.Condition, body.Description, body.classRelated, body.subject,
         body.courseNumber, body.Category, body.categoryDescription, body.photoRef, body.Sold, body.SellerId, function(err, newItem) {
         if (err) {
-          console.log("xxsubmititem error.");
-          // A database error happened.
-          // 500: Internal error.
           res.status(500).send("A database error occurred: " + err);
         } else {
-          console.log("xxsubmititem succeeded.");
-          console.log(newItem);
-          // When POST creates a new resource, we should tell the client about it
-          // in the 'Location' header and use status code 201.
           res.status(201);
 
           res.send(newItem);
