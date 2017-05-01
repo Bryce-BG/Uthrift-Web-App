@@ -21,7 +21,7 @@ var url = 'mongodb://localhost:27017/uthrift';
 // Creates an Express server.
 var app = express();
 
-var writeDocument = database.writeDocument;
+
 var addDocument = database.addDocument;
 var readDocument = database.readDocument;
 var getArray = database.getArray;
@@ -234,41 +234,7 @@ MongoClient.connect(url, function(err, db) {
     });
   });
 
-  app.get('/recomendedItems/:userid', function(req, res) {
-    var userid = req.params.userid;
-    var fromUser = getUserIdFromToken(req.get('Authorization'));
-    // userid is a string. We need it to be a number.
-    // Parameters are always strings.
-    var useridNumber = parseInt(userid, 10);
-    if (fromUser === useridNumber) {
-      // Send response.
-      res.send(getRecomendedItems()); //INDUCING ERROR when commented out
-    } else {
-      // 401: Unauthorized request.
-      res.status(401).end();
-    }
-  });
 
-
-  function getRecomendedItems()
-  {
-
-    var recomendeditemIndexList= getArray('recomendedItems'); //get array for items
-    // console.log("item list is:");
-    // console.log(recomendeditemIndexList);
-    var recomendedItems = new Array(9);
-    for (var i = 0; i < 9; i++) {
-      //console.log("looking for: " + i + " with value of  " + recomendeditemIndexList[i]);
-      recomendedItems[i] = readDocument("items", recomendeditemIndexList[i]); //actually get the items
-       //console.log("actual result: ")
-       //console.log(recomendedItems[i]);
-    }
-
-
-  //console.log("size of recomended item list: " + recomendedItems.length);
-
-    return recomendedItems;
-  }
 
   function getUserIdFromToken(authorizationLine) {
     try {
@@ -291,6 +257,111 @@ MongoClient.connect(url, function(err, db) {
       return -1;
     }
   }
+
+
+
+
+
+  app.get('/recomendedItems/:userid', function(req, res) {
+    var userid = req.params.userid;
+    var fromUser = getUserIdFromToken(req.get('Authorization'));
+    // userid is a string. We need it to be a number.
+    // Parameters are always strings.
+
+
+
+  //  var useridNumber = parseInt(userid, 10);
+    if (fromUser === userid) {
+      // Send response.
+
+    getRecomendedItems(new ObjectID(userid), function(err, recomendedItems) {
+        if (err) {
+          res.status(500).send("Database error: " + err);
+        } else if (recomendedItems === null) {
+          res.status(400).send("Could not look up feed for user " + userid);
+        } else {
+          console.log("recomendedItems ARE: ");
+          console.log(recomendedItems);
+          res.send(recomendedItems.recomendedItems);
+        }
+      })
+    }
+     else {
+      // 401: Unauthorized request.
+      res.status(401).end();
+    }
+  });
+
+
+  function getRecomendedItems(user, callback)
+  {
+    console.log("getRecomendedItems was called");
+
+
+    db.collection('users').findOne({ _id: user}, function(err,itemData){
+      if (err) {
+        return callback(err);
+      }
+
+      var len = itemData.recomendedItems.length;
+      var recomendedItems = [];
+      if (len === 0){
+        callback(null, itemData);
+      }else{
+        for (var i = 0; i < len; i ++){
+          db.collection('items').findOne({_id: new ObjectID(itemData.recomendedItems[i])}, function(err, item){
+            if (err) {
+              return callback(err);
+            }
+            recomendedItems.push(item);
+            if (recomendedItems.length === len){
+              itemData.recomendedItems = recomendedItems;
+              callback(null, itemData);
+            }
+
+          });
+        }
+      }
+    });
+
+
+    //
+    //
+    //
+    //
+    //   var recomendeditemIndexList = db.collection('users').findOne({
+    //     _id: 'recomendedItems'})//db.collection('recomendedItems');
+    //
+    //
+    //   console.log("item list is:");
+    //   console.log(recomendeditemIndexList);
+    //
+    //
+    //   var recomendedItems = new Array(9);
+    //   for (var i = 0; i < 9; i++) {
+    //     //console.log("looking for: " + i + " with value of  " + recomendeditemIndexList[i]);
+    //     recomendedItems[i] = getItemInfo(recomendeditemIndexList[i], function( itemData)
+    //   {
+    //   recomendedItems[i] = itemData;
+    //   });
+    //
+    //
+    // }
+    // console.log("RECOMENDED ITEMS ARE:");
+    // console.log(recomendedItems);
+    // cb(recomendedItems);
+    // return recomendedItems;
+  }
+
+
+
+
+
+
+
+
+
+
 
   function getUserData(user, callback){
     db.collection('users').findOne({ _id: user}, function(err,userData){
@@ -465,26 +536,88 @@ MongoClient.connect(url, function(err, db) {
     }
   });
 
+  function getUserDataItem(id, user, callback) {
 
-  function getUserDataItem(id, user) {
-    var userData = readDocument('users', user);
-    var itemData = readDocument('items', id);
-    userData.sellingList = userData.sellingList.map((itemId) => readDocument('items', itemId));
-    userData.viewingItem = itemData;
+      //user
+      db.collection('users').findOne({
+              _id: user
+          }, function (err, userData) {
+              if (err) {
+                  return callback(err);
+              }
 
-    return userData;
+              var len = userData.sellingList.length;
+              var sell = [];
+              if (len === 0) {
+                  callback(null, userData);
+              } else {
+                  for (var i = 0; i < len; i++) {
+                      db.collection('items').findOne({
+                          _id: new ObjectID(userData.sellingList[i])
+                      }, function (err, item) {
+                          if (err) {
+                              return callback(err);
+                          }
+                          sell.push(item);
+                          if (sell.length === len) {
+                              userData.sellingList = sell;
+                              getItemInfo(id, function (err, item) {
+                                  if (err) {
+                                      callback(err);
+                                  } else {
+                                      userData.viewingItem = item;
+                                      callback(null, userData);
+                                  }
+                              });
+                          }
+                      });
+                  }
+              }
+      });
   }
 
   app.get('/ItemPage/:itemID', function(req, res) {
-      var itemID = req.params.itemID;
 
-      res.send(getItemInfo(itemID));
+    var itemID = req.params.itemID;
+
+    // change this when other parts use DB
+    getItemInfo(new ObjectID(itemID), function(err, itemData) {
+      if (err) {
+        // A database error happened.
+        // Internal Error: 500.
+        res.status(500).send("Database error: " + err);
+      } else if (itemID === null) {
+        // Couldn't find the class in the database.
+        res.status(400).send("Could not look up item data: " + itemID);
+      } else {
+        // Send data.
+        res.send(itemData);
+      }
+    });
   });
 
-  app.get('/ItemPage/:userID/:itemID', function(req,res){
-      //var itemID = req.params.itemID;
-      res.send(getUserDataItem(req.params.itemID, req.params.userID));
+  app.get('/ItemPage/:userID/:itemID', function(req, res) {
 
+    var itemID = req.params.itemID;
+    var userID = req.params.userID;
+    //var fromUser = getUserIdFromToken(req.get('Authorization'));
+    // change this when other parts use DB
+    getUserDataItem(new ObjectID(itemID), new ObjectID(userID), function(err, itemData, userData) {
+      if (err) {
+        // A database error happened.
+        // Internal Error: 500.
+        res.status(500).send("Database error: " + err);
+      } else if (itemID === null) {
+        // Couldn't find the class in the database.
+        res.status(400).send("Could not look up item data: " + itemID);
+      }else if (userID === null) {
+        // Couldn't find the class in the database.
+        res.status(400).send("Could not look up user data: " + userID);
+      } else {
+        // Send data.
+        res.send(itemData);
+      }
+    });
   });
 
   // Reset the database.

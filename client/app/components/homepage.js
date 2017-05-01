@@ -10,7 +10,7 @@ export default class HOMEPAGE extends React.Component {
 
     return (
       <div>
-        <HOMEPAGEBODY />
+        <HOMEPAGEBODY user = {this.props.user} />
 
       </div>
 
