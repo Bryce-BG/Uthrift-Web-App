@@ -392,7 +392,6 @@ MongoClient.connect(url, function(err, db) {
 
     var itemID = (Object.keys(getArray('items')).length) + 1;
     var itemData = {
-
       //"postDate": time,
       "Title": title,
       "Price": price,
@@ -427,12 +426,22 @@ MongoClient.connect(url, function(err, db) {
     var body = req.body;
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     if (fromUser === body.SellerId) {
-      var newItem = xxsubmitItem(body.Title, body.Price, body.Condition, body.Description, body.classRelated, body.subject,
-        body.courseNumber, body.Category, body.categoryDescription, body.photoRef, body.Sold, body.SellerId);
+      xxsubmitItem(body.Title, body.Price, body.Condition, body.Description, body.classRelated, body.subject,
+        body.courseNumber, body.Category, body.categoryDescription, body.photoRef, body.Sold, body.SellerId, function(err, newItem) {
+        if (err) {
+          // A database error happened.
+          // 500: Internal error.
+          res.status(500).send("A database error occurred: " + err);
+        } else {
+          // When POST creates a new resource, we should tell the client about it
+          // in the 'Location' header and use status code 201.
+          res.status(201);
 
 
 
-      res.send(newItem); //not sure what this should be
+          res.send(newItem); //not sure what this should be
+        }
+      });
     } else {
       res.status(401).end();
     }
