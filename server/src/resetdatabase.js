@@ -14,7 +14,8 @@ var initialData = {
       "Photo": "img/avatar.png",
       "trackList": [],
       "sellingList": [new ObjectID("000000000000000000000004"),new ObjectID("000000000000000000000005"),new ObjectID("000000000000000000000006"),new ObjectID("000000000000000000000007"),new ObjectID("000000000000000000000008"),new ObjectID("000000000000000000000009"),new ObjectID("000000000000000000000010"),new ObjectID("000000000000000000000011"),new ObjectID("000000000000000000000012"),new ObjectID("000000000000000000000013"),
-      new ObjectID("000000000000000000000019"),new ObjectID("000000000000000000000020"),new ObjectID("000000000000000000000025"),new ObjectID("000000000000000000000033"),new ObjectID("000000000000000000000034"),new ObjectID("000000000000000000000035"),new ObjectID("000000000000000000000036"),new ObjectID("000000000000000000000039"),new ObjectID("000000000000000000000040"),new ObjectID("000000000000000000000041"),new ObjectID("000000000000000000000042")],
+      new ObjectID("000000000000000000000019"),new ObjectID("000000000000000000000020"),new ObjectID("000000000000000000000025"),new ObjectID("000000000000000000000033"),new ObjectID("000000000000000000000034"),new ObjectID("000000000000000000000035"),new ObjectID("000000000000000000000036"),new ObjectID("000000000000000000000039"),new ObjectID("000000000000000000000040"),new ObjectID("000000000000000000000041"),new ObjectID("000000000000000000000042"),
+      new ObjectID("000000000000000000000043")],
       "Password": "123456",
       "viewingItem": new ObjectID("000000000000000000000001"),
       "recomendedItems": [new ObjectID("000000000000000000000001"),new ObjectID("000000000000000000000002"),new ObjectID("000000000000000000000003"),new ObjectID("000000000000000000000004"),new ObjectID("000000000000000000000005"),new ObjectID("000000000000000000000006"),new ObjectID("000000000000000000000007"),new ObjectID("000000000000000000000001"),new ObjectID("000000000000000000000001")]
@@ -564,7 +565,8 @@ var initialData = {
     "1":
     {
       "_id": new ObjectID("000000000000000000000001"),
-      "title": "CS 326",
+      "title": "Web Developement",
+      "code": "CS 326",
       "description": "We teach you how to make facebook",
       "instructor": "Tim Richards, First of his name",
       "credits": "3",
@@ -577,13 +579,42 @@ var initialData = {
     "2":
     {
       "_id": new ObjectID("000000000000000000000002"),
-      "title": "CS Test",
+      "title": "Test",
+      "code": "CS 000",
       "description": "This is just a test",
       "instructor": "No Man",
       "credits": "6",
       "term": "Spring 2017",
       "subject": "Computer Science",
       "textbookList": [new ObjectID("000000000000000000000004"),new ObjectID("000000000000000000000005"),new ObjectID("000000000000000000000006")],
+      "techList": [],
+      "Photo": "img/class.png"
+    },
+    "3":
+    {
+      "_id": new ObjectID("000000000000000000000003"),
+      "title": "Writing Composition",
+      "code": "ENG 101",
+      "description": "This class teaches you how to english well",
+      "instructor": "Ten Goodmen",
+      "credits": "3",
+      "term": "Spring 2017",
+      "subject": "English",
+      "textbookList": [new ObjectID("000000000000000000000005")],
+      "techList": [],
+      "Photo": "img/class.png"
+    },
+    "4":
+    {
+      "_id": new ObjectID("000000000000000000000004"),
+      "title": "Essay Hell",
+      "code": "ENG 666",
+      "description": "Death by a million essays",
+      "instructor": "Satan",
+      "credits": "666",
+      "term": "Spring 2017",
+      "subject": "English",
+      "textbookList": [new ObjectID("000000000000000000000007")],
       "techList": [new ObjectID("000000000000000000000001")],
       "Photo": "img/class.png"
     }
@@ -653,6 +684,6 @@ if(require.main === module) {
 }
 
 function addIndexes(db, cb) {
-  db.collection('classes').createIndex({ "title": "text", "subject": "text" }, null, cb);
+  db.collection('classes').createIndex({ "title": "text", "subject": "text", "code": "text" }, null, cb);
   db.collection('items').createIndex({ "Title": "text", "Description": "text" }, null, cb);
 }

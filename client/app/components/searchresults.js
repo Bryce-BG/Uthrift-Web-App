@@ -91,7 +91,7 @@ export default class SEARCHRESULTS extends React.Component{
 
 							return(
 
-								<SEARCHCLASS key = {i} id={this.state.itemListr[i]._id} title={this.state.itemListr[i].title} src={this.state.itemListr[i].Photo} />
+								<SEARCHCLASS key = {i} id={this.state.itemListr[i]._id} title={this.state.itemListr[i].title} code={this.state.itemListr[i].code} src={this.state.itemListr[i].Photo} />
 							)
 						})}
 

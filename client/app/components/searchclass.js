@@ -10,7 +10,7 @@ export default class SEARCHCLASS extends React.Component
             <img src={this.props.src}/>
           </Link>
 
-          <p className="title">{this.props.title}</p>
+          <p className="title"><b>{this.props.code}</b>: {this.props.title}</p>
       </div>
     )
   }

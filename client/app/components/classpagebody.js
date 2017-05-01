@@ -41,7 +41,7 @@ export default class CLASSPAGEBODY extends React.Component {
     <div className="container content-contain">
       <CLASSINFO title = {this.state.title} description ={this.state.description}
         instructor= {this.state.instructor} credits={this.state.credits}
-        term={this.state.term} subject={this.state.subject} user={this.props.UserID}/>
+        term={this.state.term} code={this.state.code} subject={this.state.subject} user={this.props.UserID}/>
       <div className="row">
         <ul className="nav nav-tabs nav-justified">
           <li className="active"><a data-toggle="tab" href="#Material">Course Material</a></li>
