@@ -32,6 +32,44 @@ MongoClient.connect(url, function(err, db) {
   app.use(express.static('../client/build'));
   app.use('/mongo_express', mongo_express(mongo_express_config));
 
+  function getClassItem(itemID, callback) {
+    db.collection('classItems').findOne({
+      _id: itemID
+    }, function(err, item) {
+      // console.log("item: ");
+      // console.log(item);
+      if (err) {
+        // An error occurred.
+        return callback(err);
+      } else if (item === null) {
+          // Feed item not found!
+          return callback(null, null);
+        }
+      callback(null, item);
+    });
+  }
+
+  // Class data route
+  app.get('/classItem/:classItemID', function(req, res) {
+
+    var classItemID = req.params.classItemID;
+
+    // change this when other parts use DB
+    getClassItem(new ObjectID(classItemID), function(err, classData) {
+      if (err) {
+        // A database error happened.
+        // Internal Error: 500.
+        res.status(500).send("Database error: " + err);
+      } else if (classData === null) {
+        // Couldn't find the class in the database.
+        res.status(400).send("Could not look up class data: " + classItemID);
+      } else {
+        // Send data.
+        res.send(classData);
+      }
+    });
+  });
+
   function getItemInfo(itemID, callback) {
     db.collection('items').findOne({
       _id: itemID
@@ -63,7 +101,7 @@ MongoClient.connect(url, function(err, db) {
       var Tech = [];
 
       function processBooks(i) {
-        getItemInfo(classData.textbookList[i], function(err, item) {
+        getClassItem(classData.textbookList[i], function(err, item) {
           if (err) {
             callback(err);
           } else {
@@ -83,7 +121,7 @@ MongoClient.connect(url, function(err, db) {
       }
 
       function processTech(i) {
-        getItemInfo(classData.techList[i], function(err, item) {
+        getClassItem(classData.techList[i], function(err, item) {
           if (err) {
             callback(err);
           } else {
@@ -123,6 +161,51 @@ MongoClient.connect(url, function(err, db) {
       } else {
         // Send data.
         res.send(classData);
+      }
+    });
+  });
+
+  // for searching class items
+  app.get('/searchPageClassItems/:term', function(req, res) {
+    //console.log(req);
+    var term = req.params.term;
+
+    // Look for feed items within the feed that contain queryText.
+    db.collection('items').find({
+      core_id: new ObjectID(term)
+    }).toArray(function(err, items) {
+      if (err) {
+        return sendDatabaseError(res, err);
+      }
+
+      var resolvedItems = [];
+      var errored = false;
+      function onResolve(err, item) {
+        if (errored) {
+          return;
+        } else if (err) {
+          errored = true;
+          sendDatabaseError(res, err);
+        } else {
+          resolvedItems.push(item);
+          if (resolvedItems.length === items.length) {
+            // Send resolved items to the client!
+            res.send(resolvedItems);
+          }
+        }
+      }
+      // Resolve all of the matched feed items in parallel.
+      //console.log(items);
+      for (var i = 0; i < items.length; i++) {
+        // Would be more efficient if we had a separate helper that
+        // resolved feed items from their objects and not their IDs.
+        // Not a big deal in our small applications, though.
+          getItemInfo(items[i]._id, onResolve);
+      }
+
+      // Special case: No results.
+      if (items.length === 0) {
+        res.send([]);
       }
     });
   });
@@ -458,7 +541,7 @@ MongoClient.connect(url, function(err, db) {
 
 
   //submission form junk
-  function xxsubmitItem(title, price, condition, conDesc, classRelated,
+  function xxsubmitItem(core_id, title, price, condition, conDesc, classRelated,
       subject, courseNumber, category, categoryDescription, photoRef, sold, sellerId, callback){
     db.collection('items').find({}).toArray(function(err, items){
        var itemIDint = items.length+1; //generate id number
@@ -472,6 +555,7 @@ MongoClient.connect(url, function(err, db) {
           var itemIDstring = newId;
 
         var itemData = { //create item
+          "core_id": new ObjectID(core_id),
           "Title": title,
           "Price": price,
           "Condition": condition,
@@ -510,7 +594,7 @@ MongoClient.connect(url, function(err, db) {
     var body = req.body;
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     if (fromUser === body.SellerId) {
-      xxsubmitItem(body.Title, body.Price, body.Condition, body.Description, body.classRelated, body.subject,
+      xxsubmitItem(body.core_id, body.Title, body.Price, body.Condition, body.Description, body.classRelated, body.subject,
         body.courseNumber, body.Category, body.categoryDescription, body.photoRef, body.Sold, body.SellerId, function(err, newItem) {
         if (err) {
           res.status(500).send("A database error occurred: " + err);

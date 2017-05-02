@@ -1,7 +1,7 @@
 import React from 'react';
 import SEARCHITEM from './searchitem.js';
 import SEARCHCLASS from './searchclass.js';
-import  {getUserData, getSearch, getClassSearch} from '../server';
+import  {getUserData, getSearch, getClassSearch, getClassItemSearch, getClassItem} from '../server';
 
 export default class SEARCHRESULTS extends React.Component{
 	constructor(props) {
@@ -30,6 +30,11 @@ export default class SEARCHRESULTS extends React.Component{
 
 		};
 
+		var callbackFunction2 = (item) => {
+      this.setState({searchTerm: item});
+
+		};
+
 		if(this.props.category === "Classes")
 		{
 			document.getElementById("items").style.visibility = "hidden";
@@ -39,7 +44,12 @@ export default class SEARCHRESULTS extends React.Component{
 		else
 		{
 			document.getElementById("classes").style.visibility = "hidden";
-			getSearch(this.props.category, this.props.searchTerm, callbackFunction);
+			if(this.props.category === "ClassItem"){
+				getClassItemSearch(this.props.searchTerm, callbackFunction);
+				//getClassItem(this.props.searchTerm, callbackFunction2);
+			}
+			else
+				getSearch(this.props.category, this.props.searchTerm, callbackFunction);
 		}
 	}
 

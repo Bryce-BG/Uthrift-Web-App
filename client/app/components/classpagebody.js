@@ -58,7 +58,7 @@ export default class CLASSPAGEBODY extends React.Component {
               <div className="item-row row">{
                 this.state.textbookList.map((item, i) => {
                   return (
-                    <CLASSITEM key={this.state.textbookList[i]._id} item={this.state.textbookList[i]}/>
+                    <CLASSITEM key={this.state.textbookList[i]._id} item={this.state.textbookList[i]} user={this.props.UserID}/>
                   );
                 })}
               </div>
@@ -73,7 +73,7 @@ export default class CLASSPAGEBODY extends React.Component {
               <div className="item-row row">{
                 this.state.techList.map((item, i) => {
                   return (
-                    <CLASSITEM key={i} item={this.state.techList[i]}/>
+                    <CLASSITEM key={i} item={this.state.techList[i]} user={this.props.UserID}/>
                   );
                 })}
               </div>

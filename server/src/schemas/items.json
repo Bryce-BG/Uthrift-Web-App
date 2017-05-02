@@ -7,6 +7,10 @@
       "id": "itemId",
       "type": "string"
     },
+    "core_id": {
+      "id": "core_id",
+      "type": "string"
+    },
     "Title": {
       "id": "Title",
       "type": "string"

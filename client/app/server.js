@@ -8,12 +8,26 @@
    });
  }
 
+ export function getClassItem(classItemID, cb) {
+   sendXHR('GET', '/classItem/' + classItemID, undefined, (xhr) => {
+  cb(JSON.parse(xhr.responseText));
+  });
+}
+
  export function getSearch(cat, term, cb) {
    // We don't need to send a body, so pass in 'undefined' for the body.
    sendXHR('GET', '/searchPage/' + cat + '/' + term, undefined, (xhr) => {
   // Call the callback with the data.
   cb(JSON.parse(xhr.responseText));
   });
+}
+
+export function getClassItemSearch(term, cb) {
+  // We don't need to send a body, so pass in 'undefined' for the body.
+  sendXHR('GET', '/searchPageClassItems/' + term, undefined, (xhr) => {
+ // Call the callback with the data.
+ cb(JSON.parse(xhr.responseText));
+ });
 }
 
 export function getClassSearch(term, cb) {
@@ -103,6 +117,7 @@ export function submitItem(data, cb){
   sendXHR('POST', '/submissionForm', { //No idea what the file path is supposed to be here.
   //  itemId: data.itemId, //not sure what the userId is supposed to be. (don't want to mix it up with itemId)
   //  postDate: new Date().getTime(),
+    core_id: data.core_id,
     Title: data.title,
     Price: data.price,
     Condition: data.condition,

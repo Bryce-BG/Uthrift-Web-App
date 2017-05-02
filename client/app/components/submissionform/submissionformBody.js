@@ -1,5 +1,5 @@
 import React from 'react';
-import {submitItem} from '../../server';
+import {submitItem, getClassItem} from '../../server';
 
 
 export default class SUBMISSIONFORMBODY extends React.Component {
@@ -44,6 +44,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
           categoryDescription05: "",
           categoryDescription06: "",
 
+          core_id: "000000000000000000000000",
           boolean: false, //for looping purposes
           photoRef: "img/war_peace.jpg", //This will normally save the info of the photo here, but will not store it to the database because the database can only hold 5mb so instead loads iclicker image when changed
           photoReftemp: "", //so that handlePhoto can take in parameter event e
@@ -290,6 +291,36 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       }
     }
 
+    handleClassItemSelection(e) {
+      e.preventDefault();
+      this.classItemFill();
+      console.log(this.state.classItem);
+    }
+
+    classItemFill(){
+      var se = document.getElementById("classItems").value;
+      if(se === "none"){
+        this.setState({
+          core_id: "000000000000000000000000",
+          title: "",
+          conDesc: "",
+          photoRef: "",
+          category: ""
+        });
+      }
+      else{
+        var callbackFunction = (classItemData) => {
+          this.setState({
+            core_id: classItemData._id,
+            title: classItemData.Title,
+            conDesc: classItemData.Description,
+            photoRef: classItemData.photoRef,
+            category: classItemData.Category
+          });
+        }
+        getClassItem(se, callbackFunction);
+      }
+    }
 
     uploadImage(e) {
     e.preventDefault();
@@ -343,7 +374,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
 
                     <div className="photo-entry categoryEntry">
                       <label htmlFor="photoUpload1">Upload Photo</label>
-                      <input type="file" name="file" accept=".jpg,.jpeg,.png,.gif" aria-describedby="fileHelp" onChange={(e) => this.uploadImage(e)}/>
+                      <input type="file" id="photoInput" name="file" accept=".jpg,.jpeg,.png,.gif" aria-describedby="fileHelp" onChange={(e) => this.uploadImage(e)}/>
                     </div>
 
                   {/* }  <label htmlFor="photoUpload2">OR drag and drop files below:</label>
@@ -402,34 +433,16 @@ export default class SUBMISSIONFORMBODY extends React.Component {
 
               <div className = "col-md-7" htmlStyle="padding-bottom: 50px;">
 
-                {/*<!--- Start Class Related --->/}
-                  <div className = "form-check form-check-inline top">
-                      <label className = "sp8">Is this item class-related?</label>
-                      <label className="form-check-label sp8" htmlFor = "classRelated">
-                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="radioYes" checked={this.state.crYes} onChange={(e) => this.handleCheckboxChange(e)}/> Yes
-                      </label>
-                      <label className="form-check-label sp50" htmlFor = "classRelated">
-                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="radioNo" checked={this.state.crNo} onChange={(e) => this.handleCheckboxChange(e)}/> No
-                      </label>
-                  </div>
-                  <div className = "form-group-row">
-                    <label className = "sp8" htmlFor="courseSelect">Course Subject:</label>
-                    <select className="custom-select sp16" id="subjectSelect" value={this.state.subjectSelect} onChange={(e) => this.handleChange(e)} >
-                      <option selected>Choose...</option>
-                      <option>Accounting</option>
-                      <option>Aerospace Studies</option>
-                      <option>Animal Science</option>
-                      <option>Anthropology</option>
-                      <option>Arabic</option>
-                      <option>Community Health (see PUBHLTH)</option>
-                    </select>
-                    <label className = "sp8" htmlFor="courseSelect">Course Number:</label> {/*}<!--- Note: This does not allow for course number that include letters like 197U. Search criteria should simply be 197 in this example --->*/}
-            {/*        <div className="pull-right right">
-                      <input type="number" min = "0" step = "1" className="custom-select narrow" id="courseNumber" placeholder="000" value={this.state.courseNumber} onChange={(e) => this.handleChange(e)} />
-                    </div>
-                    <h1 className="page-header"></h1>
-                  </div>
-                {/*<!--- End Class Related --->*/}
+                <select id="classItems" className="form-control dropdown" onChange={(e) => this.handleClassItemSelection(e)}>
+                  <option value = "none">Select Class Item</option>
+                  <option value="000000000000000000000001">iClicker</option>
+                  <option value="000000000000000000000002">Cracking the Code</option>
+                  <option value="000000000000000000000003">Introductions to Algorithms</option>
+                  <option value="000000000000000000000004">Artificial Intelligence</option>
+                  <option value="000000000000000000000005">The Rules of Love</option>
+                  <option value="000000000000000000000006">Unlock Your Educational Potental</option>
+                </select>
+
 
                 {/*<!--- Start Category Select --->*/}
                 <div className = "col-md-12" htmlStyle = "padding-top: 15px;">
