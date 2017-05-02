@@ -478,7 +478,7 @@ MongoClient.connect(url, function(err, db) {
           "Description": conDesc,
           "Sold": sold,
           "Category": category,
-          "photoRef": "img/iclicker.jpg",
+          "photoRef": photoRef,
           "SellerID":  new ObjectID(sellerId)
         };
         itemData._id = new ObjectID(itemIDstring);

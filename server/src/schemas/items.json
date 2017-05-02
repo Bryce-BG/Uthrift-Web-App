@@ -45,7 +45,7 @@
     },
     "photoRef": {
       "id": "photoRef",
-      "type": "string"
+      "type": ["string", "null"]
     },
     "Sold": {
       "id": "Sold",

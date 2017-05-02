@@ -112,7 +112,7 @@ export function submitItem(data, cb){
   //  courseNumber: data.courseNumber,
     Category: data.category,
   //  categoryDescription: data.categoryDescription,
-    photoRef: "img/iclicker.jpg",
+    photoRef: data.photoRef,
     Sold: false,
     SellerId: data.SellerId
   }, (xhr) => {

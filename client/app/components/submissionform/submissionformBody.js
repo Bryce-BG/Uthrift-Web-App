@@ -291,12 +291,33 @@ export default class SUBMISSIONFORMBODY extends React.Component {
     }
 
 
-      handleChangePhoto(e) {
-        //would use this to upload new image but because of database size restrictions, it just changes it to iclicker
-        this.setState({ photoReftemp: "img/" + e.target.value.substr(12) }); //Note: the target used a backslash at the start instead of a forward slash. (if substr(11) instead of 12.)
-        this.setState({ photoRef: "img/iclicker.jpg"});
-      }
+    uploadImage(e) {
+    e.preventDefault();
 
+    // Read the first file that the user selected (if the user selected multiple
+    // files, we ignore the others).
+    var reader = new FileReader();
+    var file = e.target.files[0];
+
+    // Called once the browser finishes loading the image.
+    reader.onload = (upload) => {
+      this.setState({
+        photoRef: upload.target.result
+      });
+    };
+
+    // Tell the brower to read the image in as a data URL!
+    reader.readAsDataURL(file);
+  }
+
+  /**
+   * Tells the browser to request a file from the user.
+   */
+  triggerImageUpload(e) {
+    e.preventDefault();
+    // Click the input HTML element to trigger a file selection dialog.
+    this.refs.file.click();
+  }
 
 
   render() {
@@ -322,7 +343,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
 
                     <div className="photo-entry categoryEntry">
                       <label htmlFor="photoUpload1">Upload Photo</label>
-                      <input type="file" className="form-control-file" id="photoUpload1" aria-describedby="fileHelp" onChange={(e) => this.handleChangePhoto(e)}/>
+                      <input type="file" name="file" accept=".jpg,.jpeg,.png,.gif" aria-describedby="fileHelp" onChange={(e) => this.uploadImage(e)}/>
                     </div>
 
                   {/* }  <label htmlFor="photoUpload2">OR drag and drop files below:</label>
