@@ -479,41 +479,28 @@ MongoClient.connect(url, function(err, db) {
           "Sold": sold,
           "Category": category,
           "photoRef": "img/iclicker.jpg",
-          "SellerID": "" + sellerId
+          "SellerID":  new ObjectID(sellerId)
         };
-        itemData._id = itemIDstring;
+        itemData._id = new ObjectID(itemIDstring);
 
         // Add the item to the database.
         db.collection('items').insertOne(itemData, function(err) {
           if (err) {
             return callback(err);
           }
-          callback(null, itemData);
-/*
 
-          // Retrieve the author's user object.
-         db.collection('users').findOne({ _id: sellerId }, function(err) {
-            if (err) {
-              return callback(err);
-            }
-            // Update the user's sellingList with the new item's ID.
-            db.collection('users').updateOne({ _id: sellerId },
-              {
-                $addToSet: {
-                    ['sellingList']: new ObjectID(itemData._id)
-                }
-              },
-              function(err) {
-                if (err) {
-                  console.log(itemData._id);
-                  return callback(err);
-                }
-                // Return the new item to the application.
-                callback(null, itemData);
+          //let path = "users." + sellerId + ".sellingList";
+
+          db.collection('users').findOneAndUpdate({
+            _id: new ObjectID(sellerId)
+          },
+            {
+              $addToSet: {
+                sellingList: new ObjectID(itemIDstring)
               }
-            );
-          }); */
-       });
+           });
+           callback(null, null);
+         });
     });
   }
 
