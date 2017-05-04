@@ -10,7 +10,8 @@ export default class SEARCHRESULTS extends React.Component{
 			itemListr: [],
       row1: new Array(3),
 			row2: new Array(3),
-			searchArray: new Array(2)
+			searchArray: new Array(2),
+			displayTerm: this.props.searchTerm
     };
   }
 
@@ -31,7 +32,7 @@ export default class SEARCHRESULTS extends React.Component{
 		};
 
 		var callbackFunction2 = (item) => {
-      this.setState({searchTerm: item});
+      this.setState({displayTerm: item.Title});
 
 		};
 
@@ -46,7 +47,7 @@ export default class SEARCHRESULTS extends React.Component{
 			document.getElementById("classes").style.visibility = "hidden";
 			if(this.props.category === "ClassItem"){
 				getClassItemSearch(this.props.searchTerm, callbackFunction);
-				//getClassItem(this.props.searchTerm, callbackFunction2);
+				getClassItem(this.props.searchTerm, callbackFunction2);
 			}
 			else
 				getSearch(this.props.category, this.props.searchTerm, callbackFunction);
@@ -82,7 +83,7 @@ export default class SEARCHRESULTS extends React.Component{
 		return(
 			<div>
 				<h1 className="page-header">Search Result
-					<small className="query">"{this.props.searchTerm}" in Category "{this.props.category}"</small>
+					<small className="query">"{this.state.displayTerm}" in Category "{this.props.category}"</small>
 				</h1>
 				<div className="row" id = "items">
 					{this.state.itemListr.map((items, i) => {

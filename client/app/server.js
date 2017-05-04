@@ -51,7 +51,7 @@ export function getClassSearch(term, cb) {
    // Response received from server. It could be a failure, though!
    xhr.addEventListener('load', function() {
      var statusCode = xhr.status;
-     var statusText = xhr.statusText;
+     //var statusText = xhr.statusText;
      if (statusCode >= 200 && statusCode < 300) {
        // Success: Status code is in the [200, 300) range.
        // Call the callback with the final XHR object.
@@ -60,7 +60,7 @@ export function getClassSearch(term, cb) {
        // Client or server error.
        // The server may have included some response text with details concerning
        // the error.
-       var responseText = xhr.responseText;
+       //var responseText = xhr.responseText;
        UthriftError('Could not ' + verb + " " + resource + ": Received " + statusCode + " "); // + statusText + ": " + responseText);
      }
    });
@@ -100,17 +100,19 @@ export function getClassSearch(term, cb) {
    }
  }
 
-export function getRecomendedItems(user, cb)
-{
-
-sendXHR('GET', '/recomendedItems/' + user, undefined, (xhr) => {
-  // Call the callback with the data.
-  cb(JSON.parse(xhr.responseText));
-});
-
-
+export function getRecomendedItems(user, cb){
+  sendXHR('GET', '/recomendedItems/' + user, undefined, (xhr) => {
+    // Call the callback with the data.
+    cb(JSON.parse(xhr.responseText));
+  });
 }
 
+export function getClassItemList(cb){
+  sendXHR('GET', '/getClassItemList/', undefined, (xhr) => {
+  // Call the callback with the data.
+  cb(JSON.parse(xhr.responseText));
+  });
+}
 
 // Submit stuff from Submission Form
 export function submitItem(data, cb){
@@ -157,14 +159,6 @@ export function updateUserData(data, cb){
     cb(JSON.parse(xhr.responseText));
   });
 }
-
-export function updateSearchUserData(data, userID){
-  var userData = readDocument('users', userID);
-  userData.searchGory = data.searchGory;
-  userData.searchTerm = data.searchTerm;
-  writeDocument('users', userData);
-}
-
 
 export function getItemInfo(itemID, cb) {
   sendXHR('GET', '/ItemPage/' + itemID, undefined, (xhr) => {

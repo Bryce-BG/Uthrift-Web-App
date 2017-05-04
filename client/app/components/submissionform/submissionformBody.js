@@ -1,5 +1,5 @@
 import React from 'react';
-import {submitItem, getClassItem} from '../../server';
+import {submitItem, getClassItemList} from '../../server';
 
 
 export default class SUBMISSIONFORMBODY extends React.Component {
@@ -44,12 +44,23 @@ export default class SUBMISSIONFORMBODY extends React.Component {
           categoryDescription05: "",
           categoryDescription06: "",
 
+
+          classItemList: [],
           core_id: "000000000000000000000000",
           boolean: false, //for looping purposes
           photoRef: "img/war_peace.jpg", //This will normally save the info of the photo here, but will not store it to the database because the database can only hold 5mb so instead loads iclicker image when changed
           photoReftemp: "", //so that handlePhoto can take in parameter event e
           SellerId: this.props.user
       };
+    }
+
+    componentDidMount(){
+      var callbackFunction = (items) => {
+        this.setState({
+          classItemList: items
+        });
+      }
+      getClassItemList(callbackFunction);
     }
 
     //Only way I could figure out how to beat react's asynchronous property when trying to update categoryDescription
@@ -291,15 +302,25 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       }
     }
 
+    createSelectItems() {
+      //console.log(this.state.classItemList);
+      let items = [];
+      items.push(<option key={0} value={0}>Select a class item</option>);
+      for (let i = 1; i <= this.state.classItemList.length; i++) {
+        items.push(<option key={i} value={i}>{this.state.classItemList[i-1].Title}</option>);
+      }
+      return items;
+    }
+
     handleClassItemSelection(e) {
       e.preventDefault();
       this.classItemFill();
-      console.log(this.state.classItem);
+      //console.log(this.state.classItem);
     }
 
     classItemFill(){
       var se = document.getElementById("classItems").value;
-      if(se === "none"){
+      if(se === "0"){
         this.setState({
           core_id: "000000000000000000000000",
           title: "",
@@ -309,16 +330,13 @@ export default class SUBMISSIONFORMBODY extends React.Component {
         });
       }
       else{
-        var callbackFunction = (classItemData) => {
           this.setState({
-            core_id: classItemData._id,
-            title: classItemData.Title,
-            conDesc: classItemData.Description,
-            photoRef: classItemData.photoRef,
-            category: classItemData.Category
+            core_id: this.state.classItemList[se-1]._id,
+            title: this.state.classItemList[se-1].Title,
+            conDesc: this.state.classItemList[se-1].Description,
+            photoRef: this.state.classItemList[se-1].photoRef,
+            category: this.state.classItemList[se-1].Category
           });
-        }
-        getClassItem(se, callbackFunction);
       }
     }
 
@@ -434,14 +452,9 @@ export default class SUBMISSIONFORMBODY extends React.Component {
               <div className = "col-md-7" htmlStyle="padding-bottom: 50px;">
 
                 <select id="classItems" className="form-control dropdown" onChange={(e) => this.handleClassItemSelection(e)}>
-                  <option value = "none">Select Class Item</option>
-                  <option value="000000000000000000000001">iClicker</option>
-                  <option value="000000000000000000000002">Cracking the Code</option>
-                  <option value="000000000000000000000003">Introductions to Algorithms</option>
-                  <option value="000000000000000000000004">Artificial Intelligence</option>
-                  <option value="000000000000000000000005">The Rules of Love</option>
-                  <option value="000000000000000000000006">Unlock Your Educational Potental</option>
+                     {this.createSelectItems()}
                 </select>
+
 
 
                 {/*<!--- Start Category Select --->*/}

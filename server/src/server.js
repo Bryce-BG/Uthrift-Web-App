@@ -3,7 +3,7 @@ var express = require('express');
 // Parses response bodies.
 var ResetDatabase = require('./resetdatabase');
 var bodyParser = require('body-parser');
-var database = require('./database');
+//var database = require('./database');
 //var validate = require('express-jsonschema').validate;
 
 var mongo_express = require('mongo-express/lib/middleware');
@@ -22,9 +22,9 @@ var url = 'mongodb://localhost:27017/uthrift';
 var app = express();
 
 
-var addDocument = database.addDocument;
-var readDocument = database.readDocument;
-var getArray = database.getArray;
+//var addDocument = database.addDocument;
+//var readDocument = database.readDocument;
+//var getArray = database.getArray;
 
 MongoClient.connect(url, function(err, db) {
   app.use(bodyParser.text());
@@ -319,8 +319,6 @@ MongoClient.connect(url, function(err, db) {
     });
   });
 
-
-
   function getUserIdFromToken(authorizationLine) {
     try {
       // Cut off "Bearer " from the header value.
@@ -343,17 +341,43 @@ MongoClient.connect(url, function(err, db) {
     }
   }
 
+    function getRecomendedItems(user, callback)
+    {
+    //  console.log("getRecomendedItems was called");
 
 
+      db.collection('users').findOne({ _id: user}, function(err,itemData){
+        if (err) {
+          return callback(err);
+        }
 
+        var len = itemData.recomendedItems.length;
+        var recomendedItems = [];
+        if (len === 0){
+          callback(null, itemData);
+        }else{
+          for (var i = 0; i < len; i ++){
+            db.collection('items').findOne({_id: new ObjectID(itemData.recomendedItems[i])}, function(err, item){
+              if (err) {
+                return callback(err);
+              }
+              recomendedItems.push(item);
+              if (recomendedItems.length === len){
+                itemData.recomendedItems = recomendedItems;
+                callback(null, itemData);
+              }
+
+            });
+          }
+        }
+      });
+    }
 
   app.get('/recomendedItems/:userid', function(req, res) {
     var userid = req.params.userid;
     var fromUser = getUserIdFromToken(req.get('Authorization'));
     // userid is a string. We need it to be a number.
     // Parameters are always strings.
-
-
 
   //  var useridNumber = parseInt(userid, 10);
     if (fromUser === userid) {
@@ -377,76 +401,43 @@ MongoClient.connect(url, function(err, db) {
     }
   });
 
-
-  function getRecomendedItems(user, callback)
-  {
-  //  console.log("getRecomendedItems was called");
-
-
-    db.collection('users').findOne({ _id: user}, function(err,itemData){
+  app.get('/getClassItemList/', function(req, res) {
+    db.collection('classItems').find().toArray(function(err, items) {
       if (err) {
-        return callback(err);
+        return sendDatabaseError(res, err);
       }
 
-      var len = itemData.recomendedItems.length;
-      var recomendedItems = [];
-      if (len === 0){
-        callback(null, itemData);
-      }else{
-        for (var i = 0; i < len; i ++){
-          db.collection('items').findOne({_id: new ObjectID(itemData.recomendedItems[i])}, function(err, item){
-            if (err) {
-              return callback(err);
-            }
-            recomendedItems.push(item);
-            if (recomendedItems.length === len){
-              itemData.recomendedItems = recomendedItems;
-              callback(null, itemData);
-            }
-
-          });
+      var resolvedItems = [];
+      var errored = false;
+      function onResolve(err, item) {
+        if (errored) {
+          return;
+        } else if (err) {
+          errored = true;
+          sendDatabaseError(res, err);
+        } else {
+          resolvedItems.push(item);
+          if (resolvedItems.length === items.length) {
+            // Send resolved items to the client!
+            res.send(resolvedItems);
+          }
         }
       }
+      // Resolve all of the matched feed items in parallel.
+      //console.log(items);
+      for (var i = 0; i < items.length; i++) {
+        // Would be more efficient if we had a separate helper that
+        // resolved feed items from their objects and not their IDs.
+        // Not a big deal in our small applications, though.
+          getItemInfo(items[i]._id, onResolve);
+      }
+
+      // Special case: No results.
+      if (items.length === 0) {
+        res.send([]);
+      }
     });
-
-
-    //
-    //
-    //
-    //
-    //   var recomendeditemIndexList = db.collection('users').findOne({
-    //     _id: 'recomendedItems'})//db.collection('recomendedItems');
-    //
-    //
-    //   console.log("item list is:");
-    //   console.log(recomendeditemIndexList);
-    //
-    //
-    //   var recomendedItems = new Array(9);
-    //   for (var i = 0; i < 9; i++) {
-    //     //console.log("looking for: " + i + " with value of  " + recomendeditemIndexList[i]);
-    //     recomendedItems[i] = getItemInfo(recomendeditemIndexList[i], function( itemData)
-    //   {
-    //   recomendedItems[i] = itemData;
-    //   });
-    //
-    //
-    // }
-    // console.log("RECOMENDED ITEMS ARE:");
-    // console.log(recomendedItems);
-    // cb(recomendedItems);
-    // return recomendedItems;
-  }
-
-
-
-
-
-
-
-
-
-
+  });
 
   function getUserData(user, callback){
     db.collection('users').findOne({ _id: user}, function(err,userData){
@@ -675,7 +666,7 @@ MongoClient.connect(url, function(err, db) {
     var userID = req.params.userID;
     //var fromUser = getUserIdFromToken(req.get('Authorization'));
     // change this when other parts use DB
-    getUserDataItem(new ObjectID(itemID), new ObjectID(userID), function(err, itemData, userData) {
+    getUserDataItem(new ObjectID(itemID), new ObjectID(userID), function(err, itemData) {
       if (err) {
         // A database error happened.
         // Internal Error: 500.
