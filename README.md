@@ -1,3 +1,4 @@
+
 # Uthrift-Web-App
 
 Uthrift has two main folders, client and server
@@ -37,3 +38,4 @@ Current features
    Can also select from a list of class items to use as templates
       These items still require the user to fill in price and condition of the listing
 5. Can view the user profile and modify account info
+
