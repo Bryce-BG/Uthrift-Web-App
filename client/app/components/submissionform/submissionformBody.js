@@ -327,7 +327,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
           core_id: "000000000000000000000000",
           title: "",
           conDesc: "",
-          photoRef: "",
+          photoRef: "img/war_peace.jpg",
           category: ""
         });
       }
