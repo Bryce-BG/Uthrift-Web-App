@@ -1,4 +1,5 @@
-# team-project-client-template
+
+# Uthrift-Web-App
 
 Uthrift has two main folders, client and server
 
