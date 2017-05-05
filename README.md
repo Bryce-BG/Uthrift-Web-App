@@ -1,6 +1,6 @@
 # team-project-client-template
 
-To try uthrift out. Uthrift has two main folders, client and server
+Uthrift has two main folders, client and server
 
 Installation
 
@@ -21,7 +21,10 @@ Installation
    2. Client folder
       1. Run: npm run watch
    3. Outside data folder
-      1. "C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe" --dbpath datafoldername
+      Windows
+         1. "C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe" --dbpath datafoldername
+      Mac/Linux
+         1. mongod --dbpath datafoldername
 7. Go to http://localhost:3000 in a browser
 
 Current features
