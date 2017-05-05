@@ -46,6 +46,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
 
 
           classItemList: [],
+          isClassItem: false,
           core_id: "000000000000000000000000",
           boolean: false, //for looping purposes
           photoRef: "img/war_peace.jpg", //This will normally save the info of the photo here, but will not store it to the database because the database can only hold 5mb so instead loads iclicker image when changed
@@ -322,6 +323,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       var se = document.getElementById("classItems").value;
       if(se === "0"){
         this.setState({
+          isClassItem: false,
           core_id: "000000000000000000000000",
           title: "",
           conDesc: "",
@@ -331,6 +333,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
       }
       else{
           this.setState({
+            isClassItem: true,
             core_id: this.state.classItemList[se-1]._id,
             title: this.state.classItemList[se-1].Title,
             conDesc: this.state.classItemList[se-1].Description,
@@ -392,7 +395,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
 
                     <div className="photo-entry categoryEntry">
                       <label htmlFor="photoUpload1">Upload Photo</label>
-                      <input type="file" id="photoInput" name="file" accept=".jpg,.jpeg,.png,.gif" aria-describedby="fileHelp" onChange={(e) => this.uploadImage(e)}/>
+                      <input type="file" id="photoInput" disabled={this.state.isClassItem} name="file" accept=".jpg,.jpeg,.png,.gif" aria-describedby="fileHelp" onChange={(e) => this.uploadImage(e)}/>
                     </div>
 
                   {/* }  <label htmlFor="photoUpload2">OR drag and drop files below:</label>
@@ -404,7 +407,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   {/*  <!--- Start Main Submission Criteria --->*/}
                     <div className="form-group">
                       <label htmlFor="titleInput">Title</label>
-                      <input type="text" className="form-control" id="titleInput" placeholder="ex. War and Peace"
+                      <input type="text" className="form-control" disabled={this.state.isClassItem} id="titleInput" placeholder="ex. War and Peace"
                         value={this.state.title} onChange={(e) => this.handleChange(e)} />
                     </div>
 
@@ -462,7 +465,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   <h3 htmlStyle ="margin-bottom: 25px;">Select Applicable Categories</h3>
                   {/*<!--- Start Textbook --->*/}
                   <label className="form-check-label categoryEntry" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
-                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Textbook" checked={this.state.txtbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Textbook
+                    <input className="form-check-input" disabled={this.state.isClassItem} type="checkbox" name="categoryOptions" id="Textbook" checked={this.state.txtbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Textbook
                   </label>
     {/*              <div className="row">
                     <div className="col-md-6">
@@ -502,7 +505,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   <hr />
                   {/*<!--- Start Clothing --->*/}
                   <label className="form-check-label" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
-                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Clothing" checked={this.state.clothbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Clothing
+                    <input className="form-check-input" disabled={this.state.isClassItem} type="checkbox" name="categoryOptions" id="Clothing" checked={this.state.clothbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Clothing
                   </label>
     {/*               <div className="row">
                     <div className="col-md-6">
@@ -557,7 +560,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   <hr />
                   {/*<!--- Start Tech --->*/}
                   <label className="form-check-label" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
-                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Tech" checked={this.state.techbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Tech
+                    <input className="form-check-input" disabled={this.state.isClassItem} type="checkbox" name="categoryOptions" id="Tech" checked={this.state.techbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Tech
                   </label>
   {/*                   <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
                     <div className="left">
@@ -567,7 +570,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   <hr />
                   {/*<!--- Start Events --->*/}
                   <label className="form-check-label" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
-                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Events" checked={this.state.eventbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Events
+                    <input className="form-check-input" disabled={this.state.isClassItem} type="checkbox" name="categoryOptions" id="Events" checked={this.state.eventbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Events
                   </label>
     {/*                 <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
                     <div className="left">
@@ -577,7 +580,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   <hr />
                   {/*<!--- Start Furniture --->*/}
                   <label className="form-check-label" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
-                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Furniture" checked={this.state.furnbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Furniture
+                    <input className="form-check-input" disabled={this.state.isClassItem} type="checkbox" name="categoryOptions" id="Furniture" checked={this.state.furnbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Furniture
                   </label>
     {/*                 <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
                     <div className="left">
@@ -587,7 +590,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   <hr />
                   {/*<!--- Start Misc --->*/}
                   <label className="form-check-label" htmlStyle ="font-size: 20px;" htmlFor = "categorySelect">
-                    <input className="form-check-input" type="checkbox" name="categoryOptions" id="Miscellaneous" checked={this.state.miscbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Miscellaneous
+                    <input className="form-check-input" disabled={this.state.isClassItem} type="checkbox" name="categoryOptions" id="Miscellaneous" checked={this.state.miscbxchked} onChange={(e) => this.handleCheckboxChange(e)}/> Miscellaneous
                   </label>
     {/*               <div className="left">
                     <label className = "sr-only" htmlFor="categoryTextarea">Condition Description</label>
@@ -598,7 +601,7 @@ export default class SUBMISSIONFORMBODY extends React.Component {
                   <hr />
                   <div className="form-group form-entry">
                     <label className = "sr-only" htmlFor="conditionTextarea">Condition Description</label>
-                    <textarea className="form-control textarea" id="conditionTextarea" rows="3" placeholder = "Describe the item here..."
+                    <textarea className="form-control textarea" disabled={this.state.isClassItem} id="conditionTextarea" rows="3" placeholder = "Describe the item here..."
                       value={this.state.conDesc} onChange={(e) => this.handleChange(e)} />
                   </div>
                 </div>
