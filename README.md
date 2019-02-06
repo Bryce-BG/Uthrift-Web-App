@@ -16,16 +16,16 @@ Installation
       1. npm install
 5. Create a data folder outside the project folder
 6. Run three prompts
-   1. Server folder: 
-      1. Run: node src/resetdatabase.js
-      2. Run: node src/server.js
-   2. Client folder
-      1. Run: npm run watch
-   3. Outside data folder
+   1. Outside data folder
       Windows
          1. "C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe" --dbpath datafoldername
       Mac/Linux
          1. mongod --dbpath datafoldername
+   2. Server folder: 
+      1. Run: node src/resetdatabase.js
+      2. Run: node src/server.js
+   3. Client folder
+      1. Run: npm run watch
 7. Go to http://localhost:3000 in a browser
 
 Current features
